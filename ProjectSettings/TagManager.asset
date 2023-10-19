@@ -7,6 +7,7 @@ TagManager:
   - Asteroid
   - Spaceship
   - Background
+  - ContextEngine
   layers:
   - Default
   - TransparentFX
