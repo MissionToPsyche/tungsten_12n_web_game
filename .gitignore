@@ -29,8 +29,12 @@ ExportedObj/
 *.pdb
 *.opendb
 *.VC.db
+*UpgradedLog.*
+*.DS_Store
 
 # ---------------------------------------------
 # Editor(s)
 *.vscode
-
+*.vsconfig
+*.vs/**
+*.vs
