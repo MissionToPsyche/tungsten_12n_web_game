@@ -39,60 +39,54 @@ public class ContextEngine : MonoBehaviour
 
     private void Start()
     {
-        spaceship.transform.SetParent(asteroid); // Making spaceship a child of the asteroid
+        SetControlState(ControlState.Character);
     }
 
     private void Update()
     {
-        // Switching context
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            SwitchControlState();
+            // If the current state is Character, switch to Spaceship and vice versa.
+            ControlState desiredState = (currentControlState == ControlState.Character) 
+                                        ? ControlState.Spaceship 
+                                        : ControlState.Character;
+            SetControlState(desiredState);
         }
 
         // Reorient the active camera based on context
         ReorientCameraBasedOnContext();
     }
 
-    public void SwitchControlState()
+    public void SetControlState(ControlState state)
     {
-        switch (currentControlState)
+        // Based on the desired state, set the appropriate parameters
+        if (state == ControlState.Character)
         {
-            case ControlState.Character:
-                currentControlState = ControlState.Spaceship;
+            currentControlState = ControlState.Character;
 
-                spaceshipCamera.Priority = 100;
-                characterCamera.Priority = 0;
+            spaceshipCamera.Priority = 0;
+            characterCamera.Priority = 100;
 
-                spaceship.transform.SetParent(null); // Detach spaceship from asteroid
+            character.transform.SetParent(null); // Detach character from asteroid
+            characterCamera.Follow = character.transform;
 
+            spaceship.transform.SetParent(asteroid); // Making spaceship a child of the asteroid
+        }
+        else if (state == ControlState.Spaceship)
+        {
+            currentControlState = ControlState.Spaceship;
 
-                spaceshipCamera.Follow = spaceship.transform; // The spaceship's camera should follow the spaceship.
+            spaceshipCamera.Priority = 100;
+            characterCamera.Priority = 0;
 
+            spaceship.transform.SetParent(null); // Detach spaceship from asteroid
+            spaceshipCamera.Follow = spaceship.transform;
 
-                character.transform.SetParent(asteroid); // Making character a child of the asteroid
-
-                break;
-
-            case ControlState.Spaceship:
-                currentControlState = ControlState.Character;
-
-                spaceshipCamera.Priority = 0;
-                characterCamera.Priority = 100;
-                    
-                character.transform.SetParent(null); // Detach character from asteroid
-
-                characterCamera.Follow = character.transform;
-
-                spaceship.transform.SetParent(asteroid); // Making spaceship a child of the asteroid
-
-                break;
+            character.transform.SetParent(asteroid); // Making character a child of the asteroid
         }
 
         AdjustPlayerOrientation();
-
-        // Whenever we switch control state, we force a reorientation immediately
-        ForceReorientCamera();
+        ForceReorientCamera(); // Whenever we switch control state, we force a reorientation immediately
     }
 
     void ReorientCameraBasedOnContext()
