@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    //initializing and declaring necessary variables
     public float jumpForce = 7.0f;
     [SerializeField] private Animator animator;
     private bool isFacingRight = true;
     private bool isGrounded = false;
     private Rigidbody2D rb;
 
+    //initialize animation and rigid body on start
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -21,6 +23,7 @@ public class Character : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Magnitude", movement.magnitude);
 
+
         float horizontalInput = Input.GetAxis("Horizontal");
 
         // Jumping
@@ -28,8 +31,26 @@ public class Character : MonoBehaviour
         {
             Debug.Log("Jump action triggered");
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            isGrounded = false; 
+            isGrounded = false;
+            animator.SetTrigger("Jump-Press");
         }
+        //update the animation when the interaction key, 'e' is pressed
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            Debug.Log("The e key has been pressed.");
+            animator.SetTrigger("Interaction-Press");
+        }
+        //update the animation when the crouch key, 'LeftControl' is held 
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Debug.Log("The left control key has been pressed.");
+            animator.SetBool("Crouch-Hold", true);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            animator.SetBool("Crouch-Hold", false);
+        }
+        //make sure the character is facing the correct way after walking
         if (movement.x != 0)
         {
             bool flipped = movement.x > 0; 
@@ -46,22 +67,20 @@ public class Character : MonoBehaviour
             animator.SetFloat("Direction", -1); 
         }
     }
-
-private void OnCollisionEnter2D(Collision2D collision)
-{
-    if (collision.gameObject.CompareTag("Asteroid"))
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        isGrounded = true;
-        Debug.Log("Character is on the ground.");
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            isGrounded = true;
+            Debug.Log("Character is on the ground.");
+        }
     }
-}
-
-private void OnCollisionExit2D(Collision2D collision)
-{
-    if (collision.gameObject.CompareTag("Asteroid"))
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        isGrounded = false;
-        Debug.Log("Character has left the ground.");
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            isGrounded = false;
+            Debug.Log("Character has left the ground.");
+        }
     }
-}
 }
