@@ -7,6 +7,8 @@ TagManager:
   - Asteroid
   - Spaceship
   - Background
+  - ContextEngine
+  - AsteroidSurface
   layers:
   - Default
   - TransparentFX
@@ -14,9 +16,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Asteroid
+  - AsteroidSurface
   - 
   - 
   - 
@@ -53,7 +55,7 @@ TagManager:
   - name: Objects
     uniqueID: 227411197
     locked: 0
-  - name: Character
+  - name: Player
     uniqueID: 4006680503
     locked: 0
   - name: Foreground
