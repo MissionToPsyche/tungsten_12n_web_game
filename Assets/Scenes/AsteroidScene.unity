@@ -351,7 +351,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 359099539}
-  - component: {fileID: 359099537}
   m_Layer: 6
   m_Name: SimpleGen
   m_TagString: Untagged
@@ -359,18 +358,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &359099537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359099536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0cc5d6626fd244bda88d6aabe662bc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &359099539
 Transform:
   m_ObjectHideFlags: 0
@@ -1200,6 +1187,7 @@ MonoBehaviour:
   noFriction: {fileID: 6200000, guid: e3e4bc97986e025428ca58029f70cc8b, type: 2}
   fullFriction: {fileID: 6200000, guid: 8408af685353c0b4692584af41722cf1, type: 2}
   isGrounded: 0
+  animator: {fileID: 0}
   gravityPoint: {fileID: 972182564}
   asteroid: {fileID: 972182554}
 --- !u!114 &911276425
@@ -1853,7 +1841,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1529911582}
   - component: {fileID: 1529911584}
-  - component: {fileID: 1529911583}
   - component: {fileID: 1529911585}
   m_Layer: 6
   m_Name: ResourceOverlay
@@ -1861,7 +1848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1529911582
 Transform:
   m_ObjectHideFlags: 0
@@ -1872,24 +1859,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.367801, y: 7.356712, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 15.489999, y: 15.466685, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 972182558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1529911583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529911581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a610bf777caf74341ac0afb2ea828f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  verticalSpeed: 5
 --- !u!212 &1529911584
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2188,7 +2162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -568.85, y: -266.9}
+  m_AnchoredPosition: {x: -593.7, y: -200.9}
   m_SizeDelta: {x: 97.75, y: 28.5113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2016363592
