@@ -23,35 +23,35 @@ public class ContextEngine : MonoBehaviour
     // Enum to track control state
     public enum ControlState
     {
-        Character,
+        Player,
         Spaceship
     }
 
     // Public variables set through Unity Editor
     public Transform asteroid;
-    public Transform character;
+    public Transform player;
     public Transform spaceship;
-    public CinemachineVirtualCamera characterCamera;
+    public CinemachineVirtualCamera playerCamera;
     public CinemachineVirtualCamera spaceshipCamera;
-    public ControlState currentControlState = ControlState.Character;
+    public ControlState currentControlState = ControlState.Spaceship;
 
     private float cameraReorientationSpeed = 5f;
 
     private void Start()
     {
-        SetControlState(ControlState.Character);
+        // SetControlState(ControlState.Player);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            // If the current state is Character, switch to Spaceship and vice versa.
-            ControlState desiredState = (currentControlState == ControlState.Character) 
-                                        ? ControlState.Spaceship 
-                                        : ControlState.Character;
-            SetControlState(desiredState);
-        }
+        // if (Input.GetKeyDown(KeyCode.Tab))
+        // {
+        //     // If the current state is Player, switch to Spaceship and vice versa.
+        //     ControlState desiredState = (currentControlState == ControlState.Player) 
+        //                                 ? ControlState.Spaceship 
+        //                                 : ControlState.Player;
+        //     SetControlState(desiredState);
+        // }
 
         // Reorient the active camera based on context
         ReorientCameraBasedOnContext();
@@ -60,15 +60,15 @@ public class ContextEngine : MonoBehaviour
     public void SetControlState(ControlState state)
     {
         // Based on the desired state, set the appropriate parameters
-        if (state == ControlState.Character)
+        if (state == ControlState.Player)
         {
-            currentControlState = ControlState.Character;
+            currentControlState = ControlState.Player;
 
             spaceshipCamera.Priority = 0;
-            characterCamera.Priority = 100;
+            playerCamera.Priority = 100;
 
-            character.transform.SetParent(null); // Detach character from asteroid
-            characterCamera.Follow = character.transform;
+            player.transform.SetParent(null); // Detach player from asteroid
+            playerCamera.Follow = player.transform;
 
             spaceship.transform.SetParent(asteroid); // Making spaceship a child of the asteroid
         }
@@ -77,21 +77,21 @@ public class ContextEngine : MonoBehaviour
             currentControlState = ControlState.Spaceship;
 
             spaceshipCamera.Priority = 100;
-            characterCamera.Priority = 0;
+            playerCamera.Priority = 0;
 
             spaceship.transform.SetParent(null); // Detach spaceship from asteroid
             spaceshipCamera.Follow = spaceship.transform;
 
-            character.transform.SetParent(asteroid); // Making character a child of the asteroid
+            player.transform.SetParent(asteroid); // Making player a child of the asteroid
         }
 
-        AdjustPlayerOrientation();
+        // AdjustPlayerOrientation();
         ForceReorientCamera(); // Whenever we switch control state, we force a reorientation immediately
     }
 
     void ReorientCameraBasedOnContext()
     {
-        CinemachineVirtualCamera activeCamera = (currentControlState == ControlState.Character) ? characterCamera : spaceshipCamera;
+        CinemachineVirtualCamera activeCamera = (currentControlState == ControlState.Player) ? playerCamera : spaceshipCamera;
         Transform focus = activeCamera.Follow;
         
         if (focus)
@@ -107,7 +107,7 @@ public class ContextEngine : MonoBehaviour
 
     void ForceReorientCamera()
     {
-        CinemachineVirtualCamera activeCamera = (currentControlState == ControlState.Character) ? characterCamera : spaceshipCamera;
+        CinemachineVirtualCamera activeCamera = (currentControlState == ControlState.Player) ? playerCamera : spaceshipCamera;
         Transform focus = activeCamera.Follow;
 
         if (focus)
@@ -118,25 +118,25 @@ public class ContextEngine : MonoBehaviour
         }
     }
 
-    void AdjustPlayerOrientation()
-    {
-        Vector3 directionToCenter = (character.position - asteroid.position).normalized;
-        character.up = directionToCenter; // This makes the character's 'up' direction point towards the center of the asteroid
-        spaceship.up = directionToCenter;
-    }
+    // void AdjustPlayerOrientation()
+    // {
+    //     Vector3 directionToCenter = (player.position - asteroid.position).normalized;
+    //     player.up = directionToCenter; // This makes the player's 'up' direction point towards the center of the asteroid
+    //     spaceship.up = directionToCenter;
+    // }
 
-    public float GetDirectionMultiplier()
-    {
-        switch (currentControlState)
-        {
-            case ControlState.Character:
-                return Vector2.Dot(character.up, asteroid.up) > 0 ? 1 : -1;
+    // public float GetDirectionMultiplier()
+    // {
+    //     switch (currentControlState)
+    //     {
+    //         case ControlState.Player:
+    //             return Vector2.Dot(player.up, asteroid.up) > 0 ? 1 : -1;
 
-            case ControlState.Spaceship:
-                return Vector2.Dot(spaceship.up, asteroid.up) > 0 ? 1 : -1;
+    //         case ControlState.Spaceship:
+    //             return Vector2.Dot(spaceship.up, asteroid.up) > 0 ? 1 : -1;
 
-            default:
-                return 1;  // Default multiplier
-        }
-    }
+    //         default:
+    //             return 1;  // Default multiplier
+    //     }
+    // }
 }
