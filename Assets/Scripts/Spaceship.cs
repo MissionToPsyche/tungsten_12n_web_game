@@ -14,11 +14,11 @@ public class Spaceship : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         // Calculate movement in both horizontal and vertical directions
-        Vector3 movement = new Vector3(horizontalInput * horizontalSpeed * Time.deltaTime,
-                                       verticalInput * verticalSpeed * Time.deltaTime,
-                                       0);
+        //Vector3 movement = new Vector3(horizontalInput * horizontalSpeed * Time.deltaTime,
+                                     //  verticalInput * verticalSpeed * Time.deltaTime,
+                                      // 0);
 
         // Apply the movement to the spaceship's position
-        transform.Translate(movement);
+        //transform.Translate(movement);
     }
 }
