@@ -31,6 +31,6 @@ public class Spaceship : MonoBehaviour
         Vector3 movement = new Vector3(0, verticalInput * verticalSpeed * Time.deltaTime, 0);
 
         // Apply the movement to the spaceship's position
-        transform.Translate(movement);
+        //transform.Translate(movement);
     }
 }
