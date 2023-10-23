@@ -22,7 +22,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
         rigidBody2D = GetComponent<Rigidbody2D>();
-        gravityPoint = gravityPoint;
+        // gravityPoint = gravityPoint;
 	}
 
 

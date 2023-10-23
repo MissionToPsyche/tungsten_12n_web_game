@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 newVelocity;
     private Vector2 newForce;
     private Vector2 capsuleColliderSize;
-
+    [SerializeField] private Animator animator;
     private Vector2 slopeNormalPerp;
     private Rigidbody2D playerBody;
     private CapsuleCollider2D playerCapsule;
@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         playerBody = GetComponent<Rigidbody2D>();
         playerCapsule = GetComponent<CapsuleCollider2D>();
 
@@ -164,6 +165,8 @@ public class PlayerMovement : MonoBehaviour
             playerBody.velocity = newVelocity;
             newForce.Set(0.0f, jumpForce);
             playerBody.AddForce(newForce, ForceMode2D.Impulse);
+            Debug.Log("Jump action triggered");
+            animator.SetTrigger("Jump-Press");
         }
     }  
     //This method is derived from our player input component/input actions
@@ -174,6 +177,18 @@ public class PlayerMovement : MonoBehaviour
     {
         //store player input value in form of vector2. left/right is x values, up/down is y values
         playerInputValue = value.Get<Vector2>();
+    }
+
+    private void OnInteract()
+    {
+        Debug.Log("The e key has been pressed.");
+        animator.SetTrigger("Interaction-Press");
+    }
+
+    private void OnCrouch()
+    {
+        Debug.Log("The left control key has been pressed.");
+        animator.SetBool("Crouch-Hold", true);
     }
 
     public void OnJump()
