@@ -19,10 +19,11 @@ public class PlayerController : MonoBehaviour
     private GravityBody2D gravityBody;
     private bool isControllerActive = false;
     private bool rotateToWorldUp = false;
+    private bool isFacingRight = false;
     private float groundedRotationSpeed = 90f;
     private float airborneRotationSpeed = 2f;
-    private float groundCheckRadius = 0.3f;
-    private float speed = 15;
+    private float groundCheckRadius = 0.5f;
+    private float speed = 10;
     private float jumpForce = 20f;
     private float cameraRotationSpeed = 2.0f;
 
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
+        Debug.Log("OnMove pressed");
         if (!isControllerActive) return;
         playerInputValue = value.Get<Vector2>();
     }
@@ -79,11 +81,32 @@ public class PlayerController : MonoBehaviour
     {
         if (!isControllerActive || !isGrounded) return;
 
-        Vector2 jumpDirection = playerInputValue.x != 0 ? 
-            (-gravityBody.GravityDirection + new Vector2(playerInputValue.x, 0)).normalized : 
+        Debug.Log("OnJump pressed");
+
+        Vector2 jumpDirection = isGrounded ? 
+            transform.right * playerInputValue.x + transform.up : 
             -gravityBody.GravityDirection;
 
         objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+
+        animator.SetTrigger("Jump-Press");
+    }
+
+    // public void OnCrouch()
+    // {
+    //     if (!isControllerActive || !isGrounded) return;
+
+    //     Debug.Log("OnCrouch pressed");
+
+    //     animator.SetBool("Crouch-Hold", true);
+    // }
+
+    public void OnInteract()
+    {
+        Debug.Log("OnInteract pressed");
+        if (!isControllerActive || !isGrounded) return;
+
+        animator.SetTrigger("Interaction-Press");
     }
 
     private void HandleEnterGravityArea(GravityArea2D gravityArea)
@@ -98,7 +121,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Camera rotation logic can be placed here if necessary.
         if (isControllerActive)
         {
             Quaternion currentRotation = playerCamera.transform.rotation;
@@ -106,14 +128,46 @@ public class PlayerController : MonoBehaviour
             
             playerCamera.transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Debug.Log("The left control key has been pressed.");
+            animator.SetBool("Crouch-Hold", true);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            animator.SetBool("Crouch-Hold", false);
+        }
     }
 
     private void FixedUpdate()
     {
-        if (isGrounded && playerInputValue.x != 0)
+        Vector2 movement = playerInputValue;
+
+        if (isGrounded && movement.x != 0)
         {
-            Vector2 direction = transform.right * playerInputValue.x;
+            Vector2 direction = transform.right * movement.x;
             objectBody2D.MovePosition(objectBody2D.position + direction * (speed * Time.fixedDeltaTime));
+
+            // Flip character based on movement direction
+            if (movement.x > 0 && !isFacingRight)
+            {
+                FlipCharacter();
+            }
+            else if (movement.x < 0 && isFacingRight)
+            {
+                FlipCharacter();
+            }
+
+            // Update animator values
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Magnitude", movement.magnitude);
+            animator.SetFloat("Direction", isFacingRight ? 1 : -1);
+        }
+        else 
+        {
+            animator.SetFloat("Magnitude", 0);
         }
 
         float targetAngle = rotateToWorldUp ? 
@@ -124,5 +178,13 @@ public class PlayerController : MonoBehaviour
         float smoothedAngle = Mathf.LerpAngle(objectBody2D.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
 
         objectBody2D.rotation = smoothedAngle;
+    }
+
+    private void FlipCharacter()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
