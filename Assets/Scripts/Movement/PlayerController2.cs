@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     // Private variables for internal state and component caching.
     private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
-    private Rigidbody2D playerBody;
+    private Rigidbody2D objectBody2D;
     private Vector2 playerInputValue;
     private GravityBody2D gravityBody;
 
@@ -22,15 +22,16 @@ public class PlayerController : MonoBehaviour
     private bool rotateToWorldUp = false;
     private float groundedRotationSpeed = 90f;
     private float airborneRotationSpeed = 2f;
-    private float groundCheckRadius = 1f;
+    private float groundCheckRadius = 0.3f;
     private float speed = 15;
     private float jumpForce = 20f;
+    private float cameraRotationSpeed = 2.0f;
 
     private void Start()
     {
         ContextEngine.Instance.OnContextChanged += HandleContextChanged;
 
-        playerBody = GetComponent<Rigidbody2D>();
+        objectBody2D = GetComponent<Rigidbody2D>();
         gravityBody = GetComponent<GravityBody2D>();
 
         gravityBody.OnEnterGravityArea += HandleEnterGravityArea;
@@ -52,12 +53,17 @@ public class PlayerController : MonoBehaviour
     {
         isControllerActive = false;
         playerCamera.Priority = 0;
-        playerBody.velocity = Vector2.zero; // Stop the player's movement
+        objectBody2D.velocity = Vector2.zero; // Stop the player's movement
     }
 
     private void HandleContextChanged(ContextEngine.ControlState newState)
     {
-        // Implementation for context change if needed
+        // Implementation for context change if necessary.
+    }
+
+    private void UpdateCameraOrientation()
+    {
+        // Implement updating the player's camera orientation if needed.
     }
 
     private void OnMove(InputValue value)
@@ -79,7 +85,7 @@ public class PlayerController : MonoBehaviour
             (-gravityBody.GravityDirection + new Vector2(playerInputValue.x, 0)).normalized : 
             -gravityBody.GravityDirection;
 
-        playerBody.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+        objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
     }
 
     private void HandleEnterGravityArea()
@@ -94,7 +100,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
+        // Camera rotation logic can be placed here if necessary.
+        if (isControllerActive)
+        {
+            Quaternion currentRotation = playerCamera.transform.rotation;
+            Quaternion targetRotation = transform.rotation;
+            
+            playerCamera.transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()
@@ -102,7 +115,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && playerInputValue.x != 0)
         {
             Vector2 direction = transform.right * playerInputValue.x;
-            playerBody.MovePosition(playerBody.position + direction * (speed * Time.fixedDeltaTime));
+            objectBody2D.MovePosition(objectBody2D.position + direction * (speed * Time.fixedDeltaTime));
         }
 
         float targetAngle = rotateToWorldUp ? 
@@ -110,8 +123,8 @@ public class PlayerController : MonoBehaviour
             Mathf.Atan2(gravityBody.GravityDirection.y, gravityBody.GravityDirection.x) * Mathf.Rad2Deg + 90;
 
         float currentRotationSpeed = isGrounded ? groundedRotationSpeed : airborneRotationSpeed;
-        float smoothedAngle = Mathf.LerpAngle(playerBody.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
+        float smoothedAngle = Mathf.LerpAngle(objectBody2D.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
 
-        playerBody.rotation = smoothedAngle;
+        objectBody2D.rotation = smoothedAngle;
     }
 }
