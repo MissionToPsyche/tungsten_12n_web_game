@@ -4,139 +4,72 @@ using Cinemachine;
 
 public class ContextEngine : MonoBehaviour
 {
-    public static ContextEngine Instance { get; private set; } // Singleton instance
+    // Singleton instance for easy access throughout the project.
+    public static ContextEngine Instance { get; private set; }
 
-    private void Awake()
-    {
-        // If the instance already exists and it's not this, destroy this and return
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // Else, this instance becomes the singleton instance
-        Instance = this;
-        DontDestroyOnLoad(gameObject); // This will make the instance persists across scenes
-    }
-
-    // Enum to track control state
+    // Enumeration to determine the current control context - Player or Spaceship.
     public enum ControlState
     {
         Player,
         Spaceship
     }
 
-    // Public variables set through Unity Editor
-    public Transform asteroid;
-    public Transform player;
-    public Transform spaceship;
-    public CinemachineVirtualCamera playerCamera;
-    public CinemachineVirtualCamera spaceshipCamera;
+    // References to other controllers and objects for context switching.
+    public PlayerController playerController;
+    public SpaceshipController spaceshipController;
+    public Transform asteroid; // The current asteroid the player/spaceship interacts with.
     public ControlState currentControlState = ControlState.Spaceship;
 
-    private float cameraReorientationSpeed = 5f;
+    // Event to notify other scripts about a change in control context.
+    public delegate void ContextChangedHandler(ControlState newState);
+    public event ContextChangedHandler OnContextChanged;
+
+    private void Awake()
+    {
+        // Ensure only one instance of this script exists throughout the game.
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // Set this as the singleton instance and ensure it persists between scenes.
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
-        // SetControlState(ControlState.Player);
+        // Initialize the game with the Player as the default control context.
+        SetControlState(ControlState.Player);
     }
 
     private void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Tab))
-        // {
-        //     // If the current state is Player, switch to Spaceship and vice versa.
-        //     ControlState desiredState = (currentControlState == ControlState.Player) 
-        //                                 ? ControlState.Spaceship 
-        //                                 : ControlState.Player;
-        //     SetControlState(desiredState);
-        // }
-
-        // Reorient the active camera based on context
-        ReorientCameraBasedOnContext();
+        // Toggle between Player and Spaceship control context when the Tab key is pressed.
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ControlState desiredState = (currentControlState == ControlState.Player) ? ControlState.Spaceship : ControlState.Player;
+            SetControlState(desiredState);
+        }
     }
 
+    /// <summary>
+    /// Set the current control context to either Player or Spaceship.
+    /// </summary>
     public void SetControlState(ControlState state)
     {
-        // Based on the desired state, set the appropriate parameters
         if (state == ControlState.Player)
         {
             currentControlState = ControlState.Player;
-
-            spaceshipCamera.Priority = 0;
-            playerCamera.Priority = 100;
-
-            player.transform.SetParent(null); // Detach player from asteroid
-            playerCamera.Follow = player.transform;
-
-            spaceship.transform.SetParent(asteroid); // Making spaceship a child of the asteroid
+            playerController.EnableController();
+            spaceshipController.DisableController();
         }
         else if (state == ControlState.Spaceship)
         {
             currentControlState = ControlState.Spaceship;
-
-            spaceshipCamera.Priority = 100;
-            playerCamera.Priority = 0;
-
-            spaceship.transform.SetParent(null); // Detach spaceship from asteroid
-            spaceshipCamera.Follow = spaceship.transform;
-
-            player.transform.SetParent(asteroid); // Making player a child of the asteroid
-        }
-
-        // AdjustPlayerOrientation();
-        ForceReorientCamera(); // Whenever we switch control state, we force a reorientation immediately
-    }
-
-    void ReorientCameraBasedOnContext()
-    {
-        CinemachineVirtualCamera activeCamera = (currentControlState == ControlState.Player) ? playerCamera : spaceshipCamera;
-        Transform focus = activeCamera.Follow;
-        
-        if (focus)
-        {
-            Vector2 toFocus = focus.position - asteroid.position;
-            float targetAngle = Mathf.Atan2(toFocus.y, toFocus.x) * Mathf.Rad2Deg - 90f;  // -90f to make it upright
-            float currentAngle = activeCamera.transform.eulerAngles.z;
-            float newAngle = Mathf.LerpAngle(currentAngle, targetAngle, Time.deltaTime * cameraReorientationSpeed);
-
-            activeCamera.transform.rotation = Quaternion.Euler(0f, 0f, newAngle);
+            spaceshipController.EnableController();
+            playerController.DisableController();
         }
     }
-
-    void ForceReorientCamera()
-    {
-        CinemachineVirtualCamera activeCamera = (currentControlState == ControlState.Player) ? playerCamera : spaceshipCamera;
-        Transform focus = activeCamera.Follow;
-
-        if (focus)
-        {
-            Vector2 toFocus = focus.position - asteroid.position;
-            float targetAngle = Mathf.Atan2(toFocus.y, toFocus.x) * Mathf.Rad2Deg - 90f;  // -90f to make it upright
-            activeCamera.transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
-        }
-    }
-
-    // void AdjustPlayerOrientation()
-    // {
-    //     Vector3 directionToCenter = (player.position - asteroid.position).normalized;
-    //     player.up = directionToCenter; // This makes the player's 'up' direction point towards the center of the asteroid
-    //     spaceship.up = directionToCenter;
-    // }
-
-    // public float GetDirectionMultiplier()
-    // {
-    //     switch (currentControlState)
-    //     {
-    //         case ControlState.Player:
-    //             return Vector2.Dot(player.up, asteroid.up) > 0 ? 1 : -1;
-
-    //         case ControlState.Spaceship:
-    //             return Vector2.Dot(spaceship.up, asteroid.up) > 0 ? 1 : -1;
-
-    //         default:
-    //             return 1;  // Default multiplier
-    //     }
-    // }
 }
