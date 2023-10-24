@@ -20,7 +20,7 @@
                     "id": "7f5802cc-2cf8-4f2e-b889-1fa888d587dc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -29,7 +29,7 @@
                     "id": "3d2226d7-29b4-4da8-b13b-876fb8eccc62",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -38,7 +38,7 @@
                     "id": "ad7d73ad-0f15-4593-9161-4383182cb274",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
@@ -102,7 +102,7 @@
                     "name": "",
                     "id": "6c1e19ce-d25d-4804-89df-725019d3e4ca",
                     "path": "<Keyboard>/space",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
@@ -113,7 +113,7 @@
                     "name": "",
                     "id": "3b457a86-3db8-4db6-9a4a-2f018609ad86",
                     "path": "<Keyboard>/leftCtrl",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Crouch",
@@ -124,7 +124,7 @@
                     "name": "",
                     "id": "e9cf730f-63cd-4b42-921e-85ec771e62ab",
                     "path": "<Keyboard>/e",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
