@@ -35,21 +35,22 @@ public class GravityBody2D : MonoBehaviour
         objectBody2D.MoveRotation(newRotation);
     }
 
-    public delegate void GravityAreaChangeHandler();
+    public delegate void GravityAreaChangeHandler(GravityArea2D gravityArea);
     public event GravityAreaChangeHandler OnEnterGravityArea;
     public event GravityAreaChangeHandler OnExitGravityArea;
 
     public void AddGravityArea(GravityArea2D gravityArea)
     {
         gravityAreas.Add(gravityArea);
-        OnEnterGravityArea?.Invoke();
+        OnEnterGravityArea?.Invoke(gravityArea);
+        Debug.Log("Entered a new gravity area");
     }
 
     public void RemoveGravityArea(GravityArea2D gravityArea)
     {
         if (gravityAreas.Count == 0)
         {
-            OnExitGravityArea?.Invoke();
+            OnExitGravityArea?.Invoke(gravityArea);
         }
     }
 }

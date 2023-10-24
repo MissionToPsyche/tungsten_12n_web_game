@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D objectBody2D;
     private Vector2 playerInputValue;
     private GravityBody2D gravityBody;
-
     private bool isControllerActive = false;
     private bool rotateToWorldUp = false;
     private float groundedRotationSpeed = 90f;
@@ -55,7 +54,6 @@ public class PlayerController : MonoBehaviour
         playerCamera.Priority = 0;
         objectBody2D.velocity = Vector2.zero; // Stop the player's movement
     }
-
     private void HandleContextChanged(ContextEngine.ControlState newState)
     {
         // Implementation for context change if necessary.
@@ -88,12 +86,12 @@ public class PlayerController : MonoBehaviour
         objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
     }
 
-    private void HandleEnterGravityArea()
-    {
+    private void HandleEnterGravityArea(GravityArea2D gravityArea)
+    { 
         rotateToWorldUp = false;
     }
 
-    private void HandleExitGravityArea()
+    private void HandleExitGravityArea(GravityArea2D gravityArea)
     {
         rotateToWorldUp = true;
     }
