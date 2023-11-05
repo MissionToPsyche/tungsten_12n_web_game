@@ -987,7 +987,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c422573a2bea904f8b0b57a1e67220f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
+  objPanel: {fileID: 394382395}
+  objectiveField: {fileID: 1411441239}
+  goals: [] 
 --- !u!114 &543868670
 MonoBehaviour:
   m_ObjectHideFlags: 0
