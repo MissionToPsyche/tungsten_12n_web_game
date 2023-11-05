@@ -1,11 +1,17 @@
 using System.Collections;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class ContextEngine : MonoBehaviour
 {
     // Singleton instance for easy access throughout the project.
     public static ContextEngine Instance { get; private set; }
+
+    // InputActionAsset reference to access Action Maps.
+    public InputActionAsset inputActions;
+    private InputActionMap playerActionMap;
+    private InputActionMap spaceshipActionMap;
 
     // Enumeration to determine the current control context - Player or Spaceship.
     public enum ControlState
@@ -36,6 +42,10 @@ public class ContextEngine : MonoBehaviour
         // Set this as the singleton instance and ensure it persists between scenes.
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        // Initialize Action Maps.
+        playerActionMap = inputActions.FindActionMap("Player");
+        spaceshipActionMap = inputActions.FindActionMap("Spaceship");
     }
 
     private void Start()
@@ -64,12 +74,21 @@ public class ContextEngine : MonoBehaviour
             currentControlState = ControlState.Player;
             playerController.EnableController();
             spaceshipController.DisableController();
+
+            playerActionMap.Enable();
+            spaceshipActionMap.Disable();
         }
         else if (state == ControlState.Spaceship)
         {
             currentControlState = ControlState.Spaceship;
             spaceshipController.EnableController();
             playerController.DisableController();
+
+            spaceshipActionMap.Enable();
+            playerActionMap.Disable();
         }
+
+        // Notify listeners about the context change.
+        OnContextChanged?.Invoke(currentControlState);
     }
 }
