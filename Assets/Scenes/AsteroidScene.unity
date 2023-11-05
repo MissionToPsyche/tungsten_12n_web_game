@@ -990,7 +990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPanel: {fileID: 394382395}
   objectiveField: {fileID: 1411441239}
-  goals: [] 
+  goals: []
 --- !u!114 &543868670
 MonoBehaviour:
   m_ObjectHideFlags: 0
