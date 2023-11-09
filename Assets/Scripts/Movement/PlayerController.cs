@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputValue value)
     {
         if (!isControllerActive) return;
-        Debug.Log("Player OnMove pressed");
+        //Debug.Log("Player OnMove pressed");
         playerInputValue = value.Get<Vector2>();
     }
 
@@ -80,8 +80,7 @@ public class PlayerController : MonoBehaviour
     public void OnJump()
     {
         if (!isControllerActive || !isGrounded) return;
-
-        Debug.Log("Player OnJump pressed");
+        //Debug.Log("Player OnJump pressed");
 
         Vector2 jumpDirection = isGrounded ? 
             transform.right * playerInputValue.x + transform.up : 
@@ -96,7 +95,7 @@ public class PlayerController : MonoBehaviour
     // {
     //     if (!isControllerActive || !isGrounded) return;
 
-    //     Debug.Log("OnCrouch pressed");
+    //     //Debug.Log("OnCrouch pressed");
 
     //     animator.SetBool("Crouch-Hold", true);
     // }
@@ -105,7 +104,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isControllerActive || !isGrounded) return;
 
-        Debug.Log("Player OnInteract pressed");
+        //Debug.Log("Player OnInteract pressed");
 
         animator.SetTrigger("Interaction-Press");
     }
@@ -132,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            Debug.Log("Player OnCrouch Pressed");
+            //Debug.Log("Player OnCrouch Pressed");
             animator.SetBool("Crouch-Hold", true);
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))

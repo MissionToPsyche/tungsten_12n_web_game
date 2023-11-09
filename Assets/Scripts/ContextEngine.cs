@@ -22,7 +22,7 @@ public class ContextEngine : MonoBehaviour
 
     // References to other controllers and objects for context switching.
     public PlayerController playerController;
-    public SpaceshipController spaceshipController;
+    //public SpaceshipController spaceshipController;
     public Transform asteroid; // The current asteroid the player/spaceship interacts with.
     public ControlState currentControlState = ControlState.Spaceship;
 
@@ -73,7 +73,7 @@ public class ContextEngine : MonoBehaviour
         {
             currentControlState = ControlState.Player;
             playerController.EnableController();
-            spaceshipController.DisableController();
+            //spaceshipController.DisableController();
 
             playerActionMap.Enable();
             spaceshipActionMap.Disable();
@@ -81,7 +81,7 @@ public class ContextEngine : MonoBehaviour
         else if (state == ControlState.Spaceship)
         {
             currentControlState = ControlState.Spaceship;
-            spaceshipController.EnableController();
+            //spaceshipController.EnableController();
             playerController.DisableController();
 
             spaceshipActionMap.Enable();
