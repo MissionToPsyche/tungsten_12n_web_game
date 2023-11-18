@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     // Exposed for editing in the editor but not intended for external access.
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animator; 
+
+    private CharacterDatabase characterDB;
+    private SpriteRenderer artworkSprite; 
+    private int selectedOption = 0; 
 
     // Private variables for internal state and component caching.
     private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
@@ -36,6 +40,41 @@ public class PlayerController : MonoBehaviour
 
         gravityBody.OnEnterGravityArea += HandleEnterGravityArea;
         gravityBody.OnExitGravityArea += HandleExitGravityArea;
+
+        Debug.Log("Selected option is: " + selectedOption);
+
+        if (!PlayerPrefs.HasKey("selectedOption")) 
+        {
+            selectedOption = 0;
+            animator.SetBool("John", true);
+        }
+        else 
+        {
+            Load(); 
+            switch (selectedOption) {
+                case 0: 
+                animator.SetBool("John", true);
+                break;
+
+                case 1: 
+                animator.SetBool("Steve", true);
+                break;
+
+                case 2: 
+                animator.SetBool("Donald", true);
+                break;
+
+                case 3:
+                animator.SetBool("Joy", true);
+                break;
+
+                case 4: 
+                 animator.SetBool("Amy", true);
+                break; 
+            }
+        }
+
+        UpdateCharacter(selectedOption);
     }
 
     private void OnDestroy()
@@ -142,7 +181,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 movement = playerInputValue;
+        Vector3 movement = playerInputValue;
 
         if (isGrounded && movement.x != 0)
         {
@@ -163,7 +202,7 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Horizontal", movement.x);
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Magnitude", movement.magnitude);
-            animator.SetFloat("Direction", isFacingRight ? 1 : -1);
+            animator.SetFloat("Direction", isFacingRight? 1 : -1);
         }
         else 
         {
@@ -186,5 +225,16 @@ public class PlayerController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    private void UpdateCharacter(int selectedOption) 
+    {
+        Character character = characterDB.GetCharacter(selectedOption);
+        artworkSprite.sprite = character.characterSprite; 
+    }
+
+    private void Load()
+    {
+        selectedOption = PlayerPrefs.GetInt("selectedOption");
     }
 }
