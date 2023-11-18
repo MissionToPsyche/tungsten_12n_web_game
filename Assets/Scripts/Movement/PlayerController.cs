@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isControllerActive = false;
     private bool rotateToWorldUp = false;
     private bool isFacingRight = false;
+    private bool canDoubleJump = true;
     private float groundedRotationSpeed = 90f;
     private float airborneRotationSpeed = 2f;
     private float groundCheckRadius = 0.5f;
@@ -118,17 +119,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump()
     {
-        if (!isControllerActive || !isGrounded) return;
-        //Debug.Log("Player OnJump pressed");
+        if (!isControllerActive) return;
 
-        Vector2 jumpDirection = isGrounded ? 
-            transform.right * playerInputValue.x + transform.up : 
-            -gravityBody.GravityDirection;
-
-        objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
-
-        animator.SetTrigger("Jump-Press");
+        if (isGrounded)
+        {
+            // Regular jump
+            Vector2 jumpDirection = transform.right * playerInputValue.x + transform.up;
+            objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump-Press");
+            canDoubleJump = true;
+        }
+        else if (canDoubleJump)
+        {
+            // Double jump
+            Vector2 jumpDirection = -gravityBody.GravityDirection;
+            objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump-Press");
+            canDoubleJump = false;
+        }
     }
+
 
     // public void OnCrouch()
     // {
@@ -181,6 +191,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float targetAngle;
+        float currentRotationSpeed;
+        float smoothedAngle;
+
+        if (isGrounded)
+        {
+            canDoubleJump = true; // Reset double jump when grounded
+        }
         Vector3 movement = playerInputValue;
 
         if (isGrounded && movement.x != 0)
@@ -209,12 +227,12 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Magnitude", 0);
         }
 
-        float targetAngle = rotateToWorldUp ? 
+        targetAngle = rotateToWorldUp ? 
             0f : 
             Mathf.Atan2(gravityBody.GravityDirection.y, gravityBody.GravityDirection.x) * Mathf.Rad2Deg + 90;
 
-        float currentRotationSpeed = isGrounded ? groundedRotationSpeed : airborneRotationSpeed;
-        float smoothedAngle = Mathf.LerpAngle(objectBody2D.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
+        currentRotationSpeed = isGrounded ? groundedRotationSpeed : airborneRotationSpeed;
+        smoothedAngle = Mathf.LerpAngle(objectBody2D.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
 
         objectBody2D.rotation = smoothedAngle;
     }
