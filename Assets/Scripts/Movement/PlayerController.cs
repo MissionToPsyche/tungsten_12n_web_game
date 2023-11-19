@@ -57,20 +57,8 @@ public class PlayerController : MonoBehaviour
                 break;
 
                 case 1: 
-                animator.SetBool("Steve", true);
-                break;
-
-                case 2: 
-                animator.SetBool("Donald", true);
-                break;
-
-                case 3:
                 animator.SetBool("Joy", true);
                 break;
-
-                case 4: 
-                 animator.SetBool("Amy", true);
-                break; 
             }
         }
 
