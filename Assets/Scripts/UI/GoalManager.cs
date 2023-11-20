@@ -36,17 +36,9 @@ public class GoalManager : MonoBehaviour {
         goals[5] = gameObject.GetComponent<DiscoveredLocations>(); 
         goals[6] = gameObject.GetComponent<CollectResources>(); 
         index = 0; 
+        objPanel.SetActive(false);
     }
 
-    void Awake() {
-        // goals[0] = gameObject.GetComponent<SetupCommunicationModule>();
-        // goals[1] = gameObject.GetComponent<SetupHabitatModule>();
-        // goals[2] = gameObject.GetComponent<SetupDriller>();
-        // goals[3] = gameObject.GetComponent<SetupMiner>();
-        // goals[4] = gameObject.GetComponent<SetupRefiner>();
-        // goals[5] = gameObject.GetComponent<DiscoveredLocations>(); 
-        // goals[6] = gameObject.GetComponent<CollectResources>(); 
-    }
 
     void OnGUI() {
         currGoalGUI = "";  

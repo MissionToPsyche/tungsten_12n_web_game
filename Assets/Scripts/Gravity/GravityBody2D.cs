@@ -6,7 +6,7 @@ using UnityEngine;
 public class GravityBody2D : MonoBehaviour
 {
     private const float GravityForce = 800;
-
+    [SerializeField] bool gravityForce;
     public Vector2 GravityDirection
     {
         get
@@ -28,11 +28,15 @@ public class GravityBody2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        objectBody2D.AddForce(GravityDirection * (GravityForce * Time.fixedDeltaTime), ForceMode2D.Force);
+        //some objects that use this script dont want a force to be applied, IE dragging entity
+        if (gravityForce == true)
+            objectBody2D.AddForce(GravityDirection * (GravityForce * Time.fixedDeltaTime), ForceMode2D.Force);
 
         float rotationAngle = Vector2.SignedAngle(transform.up, -GravityDirection);
         float newRotation = Mathf.LerpAngle(objectBody2D.rotation, objectBody2D.rotation + rotationAngle, Time.fixedDeltaTime * 3f);
-        objectBody2D.MoveRotation(newRotation);
+
+        if (gravityForce == true)
+            objectBody2D.MoveRotation(newRotation);
     }
 
     public delegate void GravityAreaChangeHandler(GravityArea2D gravityArea);
