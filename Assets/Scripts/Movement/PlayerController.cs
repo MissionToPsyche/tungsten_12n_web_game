@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     // Exposed for editing in the editor but not intended for external access.
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animator; 
+
+    private CharacterDatabase characterDB;
+    private SpriteRenderer artworkSprite; 
+    private int selectedOption = 0; 
 
     // Private variables for internal state and component caching.
     private bool isGrounded => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
@@ -20,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isControllerActive = false;
     private bool rotateToWorldUp = false;
     private bool isFacingRight = false;
+    private bool canDoubleJump = true;
     private float groundedRotationSpeed = 90f;
     private float airborneRotationSpeed = 2f;
     private float groundCheckRadius = 0.5f;
@@ -36,6 +41,29 @@ public class PlayerController : MonoBehaviour
 
         gravityBody.OnEnterGravityArea += HandleEnterGravityArea;
         gravityBody.OnExitGravityArea += HandleExitGravityArea;
+
+        Debug.Log("Selected option is: " + selectedOption);
+
+        if (!PlayerPrefs.HasKey("selectedOption")) 
+        {
+            selectedOption = 0;
+            animator.SetBool("John", true);
+        }
+        else 
+        {
+            Load(); 
+            switch (selectedOption) {
+                case 0: 
+                animator.SetBool("John", true);
+                break;
+
+                case 1: 
+                animator.SetBool("Joy", true);
+                break;
+            }
+        }
+
+        UpdateCharacter(selectedOption);
     }
 
     private void OnDestroy()
@@ -79,17 +107,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump()
     {
-        if (!isControllerActive || !isGrounded) return;
-        //Debug.Log("Player OnJump pressed");
+        if (!isControllerActive) return;
 
-        Vector2 jumpDirection = isGrounded ? 
-            transform.right * playerInputValue.x + transform.up : 
-            -gravityBody.GravityDirection;
-
-        objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
-
-        animator.SetTrigger("Jump-Press");
+        if (isGrounded)
+        {
+            // Regular jump
+            Vector2 jumpDirection = transform.right * playerInputValue.x + transform.up;
+            objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump-Press");
+            canDoubleJump = true;
+        }
+        else if (canDoubleJump)
+        {
+            // Double jump
+            Vector2 jumpDirection = -gravityBody.GravityDirection;
+            objectBody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump-Press");
+            canDoubleJump = false;
+        }
     }
+
 
     // public void OnCrouch()
     // {
@@ -142,7 +179,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 movement = playerInputValue;
+        float targetAngle;
+        float currentRotationSpeed;
+        float smoothedAngle;
+
+        if (isGrounded)
+        {
+            canDoubleJump = true; // Reset double jump when grounded
+        }
+        Vector3 movement = playerInputValue;
 
         //is walking on asteroid
         if (isGrounded && movement.x != 0)
@@ -164,19 +209,19 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Horizontal", movement.x);
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Magnitude", movement.magnitude);
-            animator.SetFloat("Direction", isFacingRight ? 1 : -1);
+            animator.SetFloat("Direction", isFacingRight? 1 : -1);
         }
         else 
         {
             animator.SetFloat("Magnitude", 0);
         }
 
-        float targetAngle = rotateToWorldUp ? 
+        targetAngle = rotateToWorldUp ? 
             0f : 
             Mathf.Atan2(gravityBody.GravityDirection.y, gravityBody.GravityDirection.x) * Mathf.Rad2Deg + 90;
 
-        float currentRotationSpeed = isGrounded ? groundedRotationSpeed : airborneRotationSpeed;
-        float smoothedAngle = Mathf.LerpAngle(objectBody2D.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
+        currentRotationSpeed = isGrounded ? groundedRotationSpeed : airborneRotationSpeed;
+        smoothedAngle = Mathf.LerpAngle(objectBody2D.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
 
         objectBody2D.rotation = smoothedAngle;
     }
@@ -187,5 +232,16 @@ public class PlayerController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    private void UpdateCharacter(int selectedOption) 
+    {
+        Character character = characterDB.GetCharacter(selectedOption);
+        artworkSprite.sprite = character.characterSprite; 
+    }
+
+    private void Load()
+    {
+        selectedOption = PlayerPrefs.GetInt("selectedOption");
     }
 }
