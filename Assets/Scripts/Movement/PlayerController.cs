@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movement = playerInputValue;
 
+        //is walking on asteroid
         if (isGrounded && movement.x != 0)
         {
             Vector2 direction = transform.right * movement.x;

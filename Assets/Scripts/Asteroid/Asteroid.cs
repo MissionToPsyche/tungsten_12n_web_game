@@ -53,6 +53,7 @@ public class Asteroid : MonoBehaviour
         newResourceObject.transform.localScale = addedResource.depositSize;
         newResourceObject.transform.parent = this.transform;
         newResourceObject.name = $"{addedResource.Name}_" + iter;
+        newResourceObject.layer = 8; //Resource Layer
         resourceList.Add(addedResource);
     }
 
