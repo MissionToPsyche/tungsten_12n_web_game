@@ -2447,6 +2447,7 @@ GameObject:
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 525358974}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -2600,10 +2601,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 525358973}
-  - component: {fileID: 525358974}
-  - component: {fileID: 525358975}
-  - component: {fileID: 525358977}
-  - component: {fileID: 525358976}
   m_Layer: 0
   m_Name: EntityPrefab
   m_TagString: Untagged
@@ -8265,3 +8262,4 @@ SceneRoots:
   - {fileID: 543868673}
   - {fileID: 11110646}
   - {fileID: 227657333}
+  - {fileID: 525358973}
