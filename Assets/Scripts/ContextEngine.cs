@@ -8,23 +8,22 @@ public class ContextEngine : MonoBehaviour
     // Singleton instance for easy access throughout the project.
     public static ContextEngine Instance { get; private set; }
 
-    // InputActionAsset reference to access Action Maps.
+    [SerializeField] private InputReader input;
     public InputActionAsset inputActions;
     private InputActionMap playerActionMap;
-    private InputActionMap spaceshipActionMap;
+    private InputActionMap satelliteActionMap;
 
-    // Enumeration to determine the current control context - Player or Spaceship.
     public enum ControlState
     {
         Player,
-        Spaceship
+        Satellite
     }
 
-    // References to other controllers and objects for context switching.
+    public Transform asteroid;
+
     public PlayerController playerController;
     //public SpaceshipController spaceshipController;
-    public Transform asteroid; // The current asteroid the player/spaceship interacts with.
-    public ControlState currentControlState = ControlState.Spaceship;
+    public ControlState currentControlState = ControlState.Player;
 
     // Event to notify other scripts about a change in control context.
     public delegate void ContextChangedHandler(ControlState newState);
@@ -45,28 +44,22 @@ public class ContextEngine : MonoBehaviour
 
         // Initialize Action Maps.
         playerActionMap = inputActions.FindActionMap("Player");
-        spaceshipActionMap = inputActions.FindActionMap("Spaceship");
+        satelliteActionMap = inputActions.FindActionMap("Satellite");
     }
 
     private void Start()
     {
-        // Initialize the game with the Player as the default control context.
+        input.SwitchContextEvent += HandleSwitchContext;
+
         SetControlState(ControlState.Player);
     }
 
-    private void Update()
+    private void HandleSwitchContext()
     {
-        // Toggle between Player and Spaceship control context when the Tab key is pressed.
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ControlState desiredState = (currentControlState == ControlState.Player) ? ControlState.Spaceship : ControlState.Player;
-            SetControlState(desiredState);
-        }
+        ControlState desiredState = (currentControlState == ControlState.Player) ? ControlState.Satellite : ControlState.Player;
+        SetControlState(desiredState);
     }
 
-    /// <summary>
-    /// Set the current control context to either Player or Spaceship.
-    /// </summary>
     public void SetControlState(ControlState state)
     {
         if (state == ControlState.Player)
@@ -76,15 +69,15 @@ public class ContextEngine : MonoBehaviour
             //spaceshipController.DisableController();
 
             playerActionMap.Enable();
-            spaceshipActionMap.Disable();
+            satelliteActionMap.Disable();
         }
-        else if (state == ControlState.Spaceship)
+        else if (state == ControlState.Satellite)
         {
-            currentControlState = ControlState.Spaceship;
+            currentControlState = ControlState.Satellite;
             //spaceshipController.EnableController();
             playerController.DisableController();
 
-            spaceshipActionMap.Enable();
+            satelliteActionMap.Enable();
             playerActionMap.Disable();
         }
 

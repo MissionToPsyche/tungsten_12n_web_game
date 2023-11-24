@@ -18,17 +18,27 @@ public class GravityBody2D : MonoBehaviour
     }
 
     private Rigidbody2D objectBody2D;
+    private Transform objectTransform;
     private List<GravityArea2D> gravityAreas;
 
     private void Start()
     {
         objectBody2D = GetComponent<Rigidbody2D>();
         gravityAreas = new List<GravityArea2D>();
+
+        objectBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        objectTransform = transform;
     }
 
     private void FixedUpdate()
     {
-        //some objects that use this script dont want a force to be applied, IE dragging entity
+        // Vector3 gravityUp = (objectTransform.position - transform.position).normalized;
+        // Vector3 bodyUp = objectTransform.up;
+        // objectBody2D.AddForce(gravityUp * -10f);
+        // Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * objectTransform.rotation;
+        // objectTransform.rotation = Quaternion.Slerp(objectTransform.rotation, targetRotation, 50f * Time.deltaTime);
+
+        // some objects that use this script dont want a force to be applied, IE dragging entity
         if (gravityForce == true)
             objectBody2D.AddForce(GravityDirection * (GravityForce * Time.fixedDeltaTime), ForceMode2D.Force);
 
