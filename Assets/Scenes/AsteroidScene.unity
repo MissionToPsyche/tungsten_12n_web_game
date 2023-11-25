@@ -1703,7 +1703,7 @@ GameObject:
   - component: {fileID: 394382398}
   - component: {fileID: 394382397}
   m_Layer: 5
-  m_Name: ObjectivePanel
+  m_Name: ObjectiveOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2672,9 +2672,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c422573a2bea904f8b0b57a1e67220f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objPanel: {fileID: 394382395}
+  input: {fileID: 11400000, guid: 9dca135c79fee004ab7ac8b3f7ee53ec, type: 2}
+  objectiveOverlay: {fileID: 394382395}
+  isOverlayActive: 0
   objectiveField: {fileID: 1411441239}
-  goals: []
+  objectives: []
+  currentObjectiveGUI: 
+  currentObjective: 
+  index: 0
 --- !u!114 &543868670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2771,7 +2776,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2694f4eee35a64b7b9145c89e5ada713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawingPanel: {fileID: 550765332}
+  input: {fileID: 11400000, guid: 9dca135c79fee004ab7ac8b3f7ee53ec, type: 2}
+  buildOverlay: {fileID: 550765332}
+  isOverlayActive: 0
   prefab: {fileID: 2578558429447656196, guid: 7741b501b201c462ab004368b5465273, type: 3}
 --- !u!1 &546330906
 GameObject:
@@ -3030,7 +3037,7 @@ GameObject:
   - component: {fileID: 550765334}
   - component: {fileID: 550765333}
   m_Layer: 5
-  m_Name: BuildPanel
+  m_Name: BuildOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

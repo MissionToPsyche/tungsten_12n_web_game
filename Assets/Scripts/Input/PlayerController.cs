@@ -198,15 +198,6 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimations()
     {
-        animator.SetBool("isFacingRight", isFacingRight);
-        animator.SetFloat("Horizontal", moveDirection);
-        animator.SetBool("isMoving", isMoving);
-        animator.SetBool("isGrounded", isGrounded);
-        animator.SetBool("isFalling", isFalling);
-        animator.SetBool("isJumping", isJumping);
-        animator.SetBool("isCrouching", isCrouching);
-        animator.SetBool("isInteracting", isInteracting);
-
         if (!isFacingRight && moveDirection > 0f)
         {
             Flip();
@@ -215,6 +206,15 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
+        
+        animator.SetBool("isFacingRight", isFacingRight);
+        animator.SetFloat("Horizontal", moveDirection);
+        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isFalling", isFalling);
+        animator.SetBool("isJumping", isJumping);
+        animator.SetBool("isCrouching", isCrouching);
+        animator.SetBool("isInteracting", isInteracting);
     }
 
     private void Flip()

@@ -6,34 +6,38 @@ using UnityEngine.UI;
 
 public class BuildManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject drawingPanel; 
+    // Input
+    [SerializeField] private InputReader input;
+
+    [SerializeField] GameObject buildOverlay;
+    [SerializeField, ReadOnly] private bool isOverlayActive;
 
     public GameObject prefab;
 
-    void Start(){
-        drawingPanel.SetActive(false);
-    }
-    void Update()
+    void Start()
     {
+        // Set up event handlers
+        input.BuildOverlayEvent += HandleBuildOverlay;
 
-        if (Input.GetKeyDown(KeyCode.B)) {
-            if (drawingPanel.activeSelf)
-            {
-                drawingPanel.SetActive(false);
-            }
-            else 
-            {
-                drawingPanel.SetActive(true);
-            }
-        }
+        buildOverlay.SetActive(false);
     }
+
+    // -------------------------------------------------------------------
+    // Event handlers
+
+    private void HandleBuildOverlay()
+    {
+        isOverlayActive = !isOverlayActive;
+        buildOverlay.SetActive(isOverlayActive);
+    }
+
+    // -------------------------------------------------------------------
 
     public void SpawnNewEntity()
     {
         Vector3 screenPos = new Vector3(375, 285, 10f); 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         Instantiate(prefab, worldPos, Quaternion.identity);
-        drawingPanel.SetActive(false);
+        buildOverlay.SetActive(false);
     }
 }

@@ -46,9 +46,10 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     public event Action InteractCancelledEvent;
 
     // Overlays
-    public event Action InventoryEvent;
+    public event Action BuildOverlayEvent;
+    public event Action InventoryOverlayEvent;
+    public event Action ObjectiveOverlayEvent;
     public event Action SwitchContextEvent;
-    public event Action MissionOverlayEvent;
     public event Action PauseEvent;
     public event Action ResumeEvent;
 
@@ -93,19 +94,24 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
         }
     }
 
-    public void OnInventory(InputAction.CallbackContext context)
+    public void OnBuildOverlay(InputAction.CallbackContext context)
     {
-        InventoryEvent?.Invoke();
+        BuildOverlayEvent?.Invoke();
+    }
+
+    public void OnInventoryOverlay(InputAction.CallbackContext context)
+    {
+        InventoryOverlayEvent?.Invoke();
+    }
+
+    public void OnObjectiveOverlay(InputAction.CallbackContext context)
+    {
+        ObjectiveOverlayEvent?.Invoke();
     }
 
     public void OnSwitchContext(InputAction.CallbackContext context)
     {
         SwitchContextEvent?.Invoke();
-    }
-
-    public void OnMissionOverlay(InputAction.CallbackContext context)
-    {
-        MissionOverlayEvent?.Invoke();
     }
 
     public void OnPause(InputAction.CallbackContext context)

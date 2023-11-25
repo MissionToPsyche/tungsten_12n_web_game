@@ -9,79 +9,92 @@ using UnityEngine.UIElements;
 using System.Reflection;
 using System.Linq;
 
-public class GoalManager : MonoBehaviour {
-    [SerializeField]
-    GameObject objPanel; 
-    [SerializeField]
-    public Text objectiveField;
-    public Goal[] goals;
+public class ObjectiveManager : MonoBehaviour
+{
+    // Input
+    [SerializeField] private InputReader input;
 
-    private string currGoalGUI; 
-    private string currGoal; 
-    private int index; 
-    void Start() {
+    [SerializeField] GameObject objectiveOverlay;
+    [SerializeField, ReadOnly] private bool isOverlayActive;
+
+    [SerializeField, ReadOnly] public Text objectiveField;
+
+    public Objective[] objectives;
+
+    [SerializeField, ReadOnly] private string currentObjectiveGUI;
+    [SerializeField, ReadOnly] private string currentObjective;
+    [SerializeField, ReadOnly] private int index; 
+
+    void Start() 
+    {
+        // Set up event handlers
+        input.ObjectiveOverlayEvent += HandleObjectiveOverlay;
+
         gameObject.AddComponent<SetupCommunicationModule>(); 
         gameObject.AddComponent<SetupHabitatModule>();
         gameObject.AddComponent<SetupDriller>();
         gameObject.AddComponent<SetupMiner>();
         gameObject.AddComponent<SetupRefiner>();
         gameObject.AddComponent<DiscoveredLocations>(); 
-        gameObject.AddComponent<CollectResources>(); 
-        goals = new Goal[7];
-        goals[0] = gameObject.GetComponent<SetupCommunicationModule>();
-        goals[1] = gameObject.GetComponent<SetupHabitatModule>();
-        goals[2] = gameObject.GetComponent<SetupDriller>();
-        goals[3] = gameObject.GetComponent<SetupMiner>();
-        goals[4] = gameObject.GetComponent<SetupRefiner>();
-        goals[5] = gameObject.GetComponent<DiscoveredLocations>(); 
-        goals[6] = gameObject.GetComponent<CollectResources>(); 
-        index = 0; 
-        objPanel.SetActive(false);
+        gameObject.AddComponent<CollectResources>();
+        objectives = new Objective[7];
+        objectives[0] = gameObject.GetComponent<SetupCommunicationModule>();
+        objectives[1] = gameObject.GetComponent<SetupHabitatModule>();
+        objectives[2] = gameObject.GetComponent<SetupDriller>();
+        objectives[3] = gameObject.GetComponent<SetupMiner>();
+        objectives[4] = gameObject.GetComponent<SetupRefiner>();
+        objectives[5] = gameObject.GetComponent<DiscoveredLocations>();
+        objectives[6] = gameObject.GetComponent<CollectResources>(); 
+        index = 0;
+
+        objectiveOverlay.SetActive(false);
     }
 
+    // -------------------------------------------------------------------
+    // Event handlers
 
-    void OnGUI() {
-        currGoalGUI = "";  
+    private void HandleObjectiveOverlay()
+    {
+        isOverlayActive = !isOverlayActive;
+        objectiveOverlay.SetActive(isOverlayActive);
+    }
+
+    // -------------------------------------------------------------------
+
+    void OnGUI() 
+    {
+        currentObjectiveGUI = "";  
         index=0; 
 
-        foreach (Goal goal in goals) {
-            currGoal = String.Format("\nObjective {0} : {1}\n", index, goal.DrawHud());
-            currGoalGUI = currGoalGUI + currGoal;
+        foreach (Objective objective in objectives) {
+            currentObjective = String.Format("\nObjective {0} : {1}\n", index, objective.DrawHud());
+            currentObjectiveGUI += currentObjective;
             index++;
         }
-        objectiveField.text = currGoalGUI;
+        objectiveField.text = currentObjectiveGUI;
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (Goal goal in goals) {
-            if (goal.IsAchieved()) {
-                goal.Progression(); 
-                Destroy(goal);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.R)) {
-
-            if (objPanel.activeSelf)
-            {
-                objPanel.SetActive(false);
-            }
-            else 
-            {
-                objPanel.SetActive(true);
+        foreach (Objective objective in objectives) {
+            if (objective.IsAchieved()) {
+                objective.Progression(); 
+                Destroy(objective);
             }
         }
     }
 }
 
-public abstract class Goal : MonoBehaviour {
+public abstract class Objective : MonoBehaviour 
+{
     public abstract bool IsAchieved();
     public abstract void Progression();
     public abstract string DrawHud(); 
 }
 
-public class SetupHabitatModule : Goal {
+public class SetupHabitatModule : Objective 
+{
     public int progression = 0;
     public int requiredProgression = 100; 
 
@@ -96,7 +109,8 @@ public class SetupHabitatModule : Goal {
     }
 }
 
-public class SetupCommunicationModule : Goal {
+public class SetupCommunicationModule : Objective
+{
     public int progression = 0; 
     public int requiredProgression = 100;
 
@@ -114,7 +128,7 @@ public class SetupCommunicationModule : Goal {
     }
 }
 
-public class SetupDriller : Goal 
+public class SetupDriller : Objective
 {
     public int progression = 0; 
     public int requiredProgression = 100;
@@ -133,7 +147,7 @@ public class SetupDriller : Goal
     }
 }
 
-public class SetupRefiner : Goal 
+public class SetupRefiner : Objective
 {
     public int progression = 0; 
     public int requiredProgression = 100;
@@ -152,7 +166,7 @@ public class SetupRefiner : Goal
     }
 }
 
-public class SetupMiner : Goal 
+public class SetupMiner : Objective
 {
     public int progression = 0; 
     public int requiredProgression = 100;
@@ -171,38 +185,40 @@ public class SetupMiner : Goal
     }
 }
 
-public class DiscoveredLocations : Goal {
-    public int currDiscoveries = 0; 
+public class DiscoveredLocations : Objective
+{
+    public int currentDiscoveries = 0; 
     public int maxDiscoveries = 10; 
 
     public override bool IsAchieved() {
-        return (currDiscoveries >= maxDiscoveries);
+        return (currentDiscoveries >= maxDiscoveries);
     }
     public override void Progression()
     {
-        currDiscoveries += 1; 
+        currentDiscoveries += 1; 
     }
     public override string DrawHud()
     {
-        return string.Format("Discovered Locations {0}/{1}", currDiscoveries, maxDiscoveries);
+        return string.Format("Discovered Locations {0}/{1}", currentDiscoveries, maxDiscoveries);
         
     }
 }
 
-public class CollectResources : Goal {
-    public int currResources = 0; 
+public class CollectResources : Objective
+{
+    public int currentResources = 0; 
     public int requiredResources = 100;
 
     public override bool IsAchieved()
     {
-        return (currResources >= requiredResources);
+        return (currentResources >= requiredResources);
     }
     public override void Progression()
     {
-        currResources += 5; 
+        currentResources += 5; 
     }
     public override string DrawHud()
     {
-        return string.Format("Collected Resources {0}/{1}", currResources, requiredResources);
+        return string.Format("Collected Resources {0}/{1}", currentResources, requiredResources);
     }
 }

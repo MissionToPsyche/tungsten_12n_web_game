@@ -64,27 +64,27 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MissionOverlay"",
+                    ""name"": ""BuildOverlay"",
                     ""type"": ""Button"",
-                    ""id"": ""d4369218-3c36-46e3-98ce-4db59f7bdeef"",
+                    ""id"": ""e4df92d7-b739-41dd-afa3-675ac9711219"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""2c7ecb66-fa73-4228-a9e1-57a4554e2d9b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Inventory"",
+                    ""name"": ""InventoryOverlay"",
                     ""type"": ""Button"",
                     ""id"": ""f1d370a2-bd6f-4e67-9dbb-03c8a544ccf0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ObjectiveOverlay"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4369218-3c36-46e3-98ce-4db59f7bdeef"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -94,6 +94,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""SwitchContext"",
                     ""type"": ""Button"",
                     ""id"": ""b802e976-ac25-47f2-b462-a281dc43eadd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c7ecb66-fa73-4228-a9e1-57a4554e2d9b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -218,18 +227,18 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MissionOverlay"",
+                    ""action"": ""ObjectiveOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""331159ca-187e-4494-8936-9f1b65faada7"",
-                    ""path"": ""<Gamepad>/select"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MissionOverlay"",
+                    ""action"": ""ObjectiveOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -257,28 +266,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0955537e-91ca-4807-9fff-fc1c2744add6"",
-                    ""path"": ""<Keyboard>/i"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b9e9d714-f71a-4c9f-a639-50a69de66280"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0ea61509-7cae-4f2d-97b8-b602e8f8c46b"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
@@ -291,11 +278,55 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e980663d-3242-4917-a482-3c185917491d"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwitchContext"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7a9542c-c15f-4c60-83c6-f0dea80f56b9"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BuildOverlay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5208440e-dad7-45a4-be90-871b5b1988ae"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BuildOverlay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0955537e-91ca-4807-9fff-fc1c2744add6"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryOverlay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9e9d714-f71a-4c9f-a639-50a69de66280"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -525,10 +556,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_MissionOverlay = m_Player.FindAction("MissionOverlay", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-        m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_BuildOverlay = m_Player.FindAction("BuildOverlay", throwIfNotFound: true);
+        m_Player_InventoryOverlay = m_Player.FindAction("InventoryOverlay", throwIfNotFound: true);
+        m_Player_ObjectiveOverlay = m_Player.FindAction("ObjectiveOverlay", throwIfNotFound: true);
         m_Player_SwitchContext = m_Player.FindAction("SwitchContext", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // Satellite
         m_Satellite = asset.FindActionMap("Satellite", throwIfNotFound: true);
         m_Satellite_Move = m_Satellite.FindAction("Move", throwIfNotFound: true);
@@ -603,10 +635,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_MissionOverlay;
-    private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_BuildOverlay;
+    private readonly InputAction m_Player_InventoryOverlay;
+    private readonly InputAction m_Player_ObjectiveOverlay;
     private readonly InputAction m_Player_SwitchContext;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -615,10 +648,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @MissionOverlay => m_Wrapper.m_Player_MissionOverlay;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        public InputAction @BuildOverlay => m_Wrapper.m_Player_BuildOverlay;
+        public InputAction @InventoryOverlay => m_Wrapper.m_Player_InventoryOverlay;
+        public InputAction @ObjectiveOverlay => m_Wrapper.m_Player_ObjectiveOverlay;
         public InputAction @SwitchContext => m_Wrapper.m_Player_SwitchContext;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -640,18 +674,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @MissionOverlay.started += instance.OnMissionOverlay;
-            @MissionOverlay.performed += instance.OnMissionOverlay;
-            @MissionOverlay.canceled += instance.OnMissionOverlay;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
-            @Inventory.started += instance.OnInventory;
-            @Inventory.performed += instance.OnInventory;
-            @Inventory.canceled += instance.OnInventory;
+            @BuildOverlay.started += instance.OnBuildOverlay;
+            @BuildOverlay.performed += instance.OnBuildOverlay;
+            @BuildOverlay.canceled += instance.OnBuildOverlay;
+            @InventoryOverlay.started += instance.OnInventoryOverlay;
+            @InventoryOverlay.performed += instance.OnInventoryOverlay;
+            @InventoryOverlay.canceled += instance.OnInventoryOverlay;
+            @ObjectiveOverlay.started += instance.OnObjectiveOverlay;
+            @ObjectiveOverlay.performed += instance.OnObjectiveOverlay;
+            @ObjectiveOverlay.canceled += instance.OnObjectiveOverlay;
             @SwitchContext.started += instance.OnSwitchContext;
             @SwitchContext.performed += instance.OnSwitchContext;
             @SwitchContext.canceled += instance.OnSwitchContext;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -668,18 +705,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @MissionOverlay.started -= instance.OnMissionOverlay;
-            @MissionOverlay.performed -= instance.OnMissionOverlay;
-            @MissionOverlay.canceled -= instance.OnMissionOverlay;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
-            @Inventory.started -= instance.OnInventory;
-            @Inventory.performed -= instance.OnInventory;
-            @Inventory.canceled -= instance.OnInventory;
+            @BuildOverlay.started -= instance.OnBuildOverlay;
+            @BuildOverlay.performed -= instance.OnBuildOverlay;
+            @BuildOverlay.canceled -= instance.OnBuildOverlay;
+            @InventoryOverlay.started -= instance.OnInventoryOverlay;
+            @InventoryOverlay.performed -= instance.OnInventoryOverlay;
+            @InventoryOverlay.canceled -= instance.OnInventoryOverlay;
+            @ObjectiveOverlay.started -= instance.OnObjectiveOverlay;
+            @ObjectiveOverlay.performed -= instance.OnObjectiveOverlay;
+            @ObjectiveOverlay.canceled -= instance.OnObjectiveOverlay;
             @SwitchContext.started -= instance.OnSwitchContext;
             @SwitchContext.performed -= instance.OnSwitchContext;
             @SwitchContext.canceled -= instance.OnSwitchContext;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -819,10 +859,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnMissionOverlay(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
-        void OnInventory(InputAction.CallbackContext context);
+        void OnBuildOverlay(InputAction.CallbackContext context);
+        void OnInventoryOverlay(InputAction.CallbackContext context);
+        void OnObjectiveOverlay(InputAction.CallbackContext context);
         void OnSwitchContext(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface ISatelliteActions
     {

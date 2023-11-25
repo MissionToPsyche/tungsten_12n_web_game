@@ -1,5 +1,5 @@
 {
-    "name": "GameInput",
+    "name": "InputSystem",
     "maps": [
         {
             "name": "Player",
@@ -42,27 +42,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MissionOverlay",
+                    "name": "BuildOverlay",
                     "type": "Button",
-                    "id": "d4369218-3c36-46e3-98ce-4db59f7bdeef",
+                    "id": "e4df92d7-b739-41dd-afa3-675ac9711219",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "2c7ecb66-fa73-4228-a9e1-57a4554e2d9b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Inventory",
+                    "name": "InventoryOverlay",
                     "type": "Button",
                     "id": "f1d370a2-bd6f-4e67-9dbb-03c8a544ccf0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ObjectiveOverlay",
+                    "type": "Button",
+                    "id": "d4369218-3c36-46e3-98ce-4db59f7bdeef",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -72,6 +72,15 @@
                     "name": "SwitchContext",
                     "type": "Button",
                     "id": "b802e976-ac25-47f2-b462-a281dc43eadd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "2c7ecb66-fa73-4228-a9e1-57a4554e2d9b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -196,18 +205,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MissionOverlay",
+                    "action": "ObjectiveOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "331159ca-187e-4494-8936-9f1b65faada7",
-                    "path": "<Gamepad>/select",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MissionOverlay",
+                    "action": "ObjectiveOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,28 +244,6 @@
                 },
                 {
                     "name": "",
-                    "id": "0955537e-91ca-4807-9fff-fc1c2744add6",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b9e9d714-f71a-4c9f-a639-50a69de66280",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0ea61509-7cae-4f2d-97b8-b602e8f8c46b",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -269,11 +256,55 @@
                 {
                     "name": "",
                     "id": "e980663d-3242-4917-a482-3c185917491d",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SwitchContext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7a9542c-c15f-4c60-83c6-f0dea80f56b9",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BuildOverlay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5208440e-dad7-45a4-be90-871b5b1988ae",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BuildOverlay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0955537e-91ca-4807-9fff-fc1c2744add6",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryOverlay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9e9d714-f71a-4c9f-a639-50a69de66280",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
