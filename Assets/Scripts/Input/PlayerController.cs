@@ -3,66 +3,61 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputReader input;
-    [SerializeField] private CinemachineVirtualCamera playerCamera;
-    [SerializeField] private Animator animator;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
-    private float groundCheckRadius = 1f;
+    [SerializeField, ReadOnly] private float groundCheckRadius = 1f;
 
-    //--------------------------------------------------
     // Objects
-    private Rigidbody2D playerBody;
-    private GravityBody2D gravityBody;
+    [SerializeField] private Rigidbody2D playerBody;
+    [SerializeField] private GravityBody2D gravityBody;
 
-    //--------------------------------------------------
     // Movement
-    public GameInput playerControls;
-    private Vector3 moveDirection;
-    private bool isJumping;
-    private bool isCrouching;
-    [SerializeField] private float movementSpeed = 10f;
-    [SerializeField] private float jumpSpeed = 5f;
-    private bool isFacingRight = false;
-    private bool canDoubleJump = true;
+    [SerializeField] private InputReader input;
+    [SerializeField, ReadOnly] private float walkingSpeed = 10f;
+    [SerializeField, ReadOnly] private float crouchingSpeed = 5f;
+    [SerializeField, ReadOnly] private float currentSpeed;
+    [SerializeField, ReadOnly] private float jumpSpeed = 4f;
+    [SerializeField, ReadOnly] private float moveDirection;
+    [SerializeField, ReadOnly] private bool isMoving = false;
+    [SerializeField, ReadOnly] private bool isFacingRight = false;
+    [SerializeField, ReadOnly] private bool isGrounded = false;
+    [SerializeField, ReadOnly] private bool isJumping = false;
+    [SerializeField, ReadOnly] private bool canDoubleJump = false;
+    [SerializeField, ReadOnly] private bool isCrouching = false;
+    [SerializeField, ReadOnly] private bool isFalling = false;
 
-    //--------------------------------------------------
+    // Interaction
+    [SerializeField, ReadOnly] private bool isInteracting = false;
+
     // Animation
-    private CharacterDatabase characterDB;
-    private SpriteRenderer artworkSprite; 
-    private int selectedOption = 0; 
+    [SerializeField] private Animator animator;
+    private CharacterDatabase characterDatabase;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField, ReadOnly] private int selection = 0;
 
-
-    private bool isControllerActive = false;
     private float groundedRotationSpeed = 90f;
     private float airborneRotationSpeed = 2f;
 
-    private float cameraRotationSpeed = 2.0f;
-
     private void Start()
     {
+        // Set up event handlers
         input.MoveEvent += HandleMove;
         input.JumpEvent += HandleJump;
         input.JumpCancelledEvent += HandleJumpCancelled;
-        input.CrouchEvent+= HandleCrouch;
+        input.CrouchEvent += HandleCrouch;
         input.CrouchCancelledEvent += HandleCrouchCancelled;
-
-        ContextEngine.Instance.OnContextChanged += HandleContextChanged;
-
-        playerBody = GetComponent<Rigidbody2D>();
-        gravityBody = GetComponent<GravityBody2D>();
-
-        Debug.Log("Selected option is: " + selectedOption);
+        input.InteractEvent += HandleInteract;
+        input.InteractCancelledEvent += HandleInteractCancelled;
 
         if (!PlayerPrefs.HasKey("selectedOption"))
         {
-            selectedOption = 0;
+            selection = 0;
             animator.SetBool("John", true);
         }
         else
         {
-            Load();
-            switch (selectedOption)
+            GetSelectedCharacter();
+            switch (selection)
             {
                 case 0:
                     animator.SetBool("John", true);
@@ -74,47 +69,26 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        UpdateCharacter(selectedOption);
+        LoadSelectedCharacter(selection);
     }
 
-    private void Update()
+    // -------------------------------------------------------------------
+    // Event handlers
+
+    private void HandleMove(float direction)
     {
-        Move();
-        Jump();
-        UpdateAnimations();
-    }
+        if (isInteracting) return;
 
-    private void UpdateAnimations()
-    {
-        if (!isControllerActive) return;
-
-        if (!isFacingRight && moveDirection.x > 0f)
-        {
-            Flip();
-        }
-        else if (isFacingRight && moveDirection.x < 0f)
-        {
-            Flip();
-        }
-
-        animator.SetFloat("Direction", isFacingRight ? 1 : -1);
-        animator.SetFloat("Horizontal", moveDirection.x);
-        // animator.SetFloat("Vertical", moveDirection.y);
-        animator.SetFloat("Magnitude", moveDirection.magnitude);
-        animator.SetBool("Jump-Press", isJumping);
-        animator.SetBool("Crouch-Hold", isCrouching);
-    }
-
-    private void HandleMove(Vector2 direction)
-    {
-        moveDirection = direction.normalized;
+        moveDirection = direction;
+        isMoving = moveDirection != 0;
+        // isFacingRight = moveDirection > 0;
     }
 
     private void HandleJump()
     {
+        if (isCrouching) return;
+
         isJumping = true;
-        // animator.SetTrigger("Jump-Press");
-        canDoubleJump = true;
     }
 
     private void HandleJumpCancelled()
@@ -124,6 +98,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleCrouch()
     {
+        if (!isGrounded) return;
+
         isCrouching = true;
     }
 
@@ -132,34 +108,42 @@ public class PlayerController : MonoBehaviour
         isCrouching = false;
     }
 
+    private void HandleInteract()
+    {
+        if (isMoving || isCrouching || !isGrounded) return;
+
+        isInteracting = true;
+    }
+
+    private void HandleInteractCancelled()
+    {
+        if (!isGrounded) return;
+
+        isInteracting = false;
+    }
+
+    // -------------------------------------------------------------------
+
     private void Move()
     {
-        if (!isControllerActive) return;
+        currentSpeed = isCrouching ? crouchingSpeed : walkingSpeed;
+        playerBody.velocity = new Vector2(moveDirection * currentSpeed, playerBody.velocity.y);
 
-        if (moveDirection == Vector3.zero) return;
-
-        if (IsGrounded())
-        {
-            Vector2 direction = transform.right * moveDirection.x;
-            playerBody.MovePosition(playerBody.position + direction * (movementSpeed * Time.fixedDeltaTime));
-        }
+        // Vector2 direction = transform.right * moveDirection;
+        // playerBody.MovePosition(playerBody.position + direction * (currentSpeed * Time.fixedDeltaTime));
     }
+
 
     private void Jump()
     {
-        if (!isControllerActive || !IsGrounded()) return;
+        if (!isGrounded) return;
 
-        // if (isJumping)
-        // {
-        //     transform.position += new Vector3(0, 1, 0) * (jumpSpeed * Time.deltaTime);
-        // }
         if (isJumping)
         {
-            Vector2 jumpDirection = transform.right * moveDirection.x + transform.up;
+            Vector2 jumpDirection = transform.right * moveDirection + transform.up;
             playerBody.AddForce(jumpDirection * jumpSpeed, ForceMode2D.Impulse);
         }
 
-            // playerBody.velocity = new Vector2(playerBody.velocity.x, jumpForce);
         // else if (canDoubleJump)
         // {
         //     // Double jump
@@ -172,94 +156,85 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch()
     {
-
+        if (isGrounded)
+        {
+            // do something
+        }
     }
 
     private void Interact()
     {
-        if (!isControllerActive || !IsGrounded()) return;
-
-        animator.SetBool("Interaction", true);
+        if (isGrounded)
+        {
+            // do something
+        }
     }
 
-    private void SwitchContext()
+    // User input, animations, moving non-physics objects, game logic
+    private void Update()
     {
+        UpdateAnimations();
+    }
 
+    // Physics calculations, ridigbody movement, collision detection
+    private void FixedUpdate()
+    {
+        // First check to make sure the player is grounded
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // Handle possible inputs
+        Move();
+        Jump();
+        Crouch();
+        Interact();
+
+        // Rotation logic based on gravity direction
+        float targetAngle = Mathf.Atan2(gravityBody.GravityDirection.y, gravityBody.GravityDirection.x) * Mathf.Rad2Deg + 90;
+        float currentRotationSpeed = isGrounded ? groundedRotationSpeed : airborneRotationSpeed;
+        float smoothedAngle = Mathf.LerpAngle(playerBody.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
+
+        playerBody.rotation = smoothedAngle;
+    }
+
+    private void UpdateAnimations()
+    {
+        animator.SetBool("isFacingRight", isFacingRight);
+        animator.SetFloat("Horizontal", moveDirection);
+        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isFalling", isFalling);
+        animator.SetBool("isJumping", isJumping);
+        animator.SetBool("isCrouching", isCrouching);
+        animator.SetBool("isInteracting", isInteracting);
+
+        if (!isFacingRight && moveDirection > 0f)
+        {
+            Flip();
+        }
+        else if (isFacingRight && moveDirection < 0f)
+        {
+            Flip();
+        }
     }
 
     private void Flip()
     {
+        // Switch the way the player is labelled as facing
         isFacingRight = !isFacingRight;
+
         Vector3 localScale = transform.localScale;
-        localScale.x *= -1f;
+        localScale.x *= -1;
         transform.localScale = localScale;
     }
 
-    private bool IsGrounded()
+    private void LoadSelectedCharacter(int selection)
     {
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Character character = characterDatabase.GetSelectedCharacter(selection);
+        spriteRenderer.sprite = character.characterSprite;
     }
 
-    private void OnDestroy()
+    private void GetSelectedCharacter()
     {
-        ContextEngine.Instance.OnContextChanged -= HandleContextChanged;
-    }
-
-    public void EnableController()
-    {
-        isControllerActive = true;
-        playerCamera.Priority = 100;
-    }
-
-    public void DisableController()
-    {
-        isControllerActive = false;
-        playerCamera.Priority = 0;
-        playerBody.velocity = Vector2.zero; // Stop the player's movement
-    }
-    private void HandleContextChanged(ContextEngine.ControlState newState)
-    {
-        // Implementation for context change if necessary.
-    }
-
-    private void UpdateCameraOrientation()
-    {
-        // Implement updating the player's camera orientation if needed.
-    }
-
-    private void EnteredNewGravityOrbit(Transform newAsteroid)
-    {
-        ContextEngine.Instance.asteroid = newAsteroid;
-    }
-
-    private void FixedUpdate()
-    {
-        // playerBody.MovePosition(playerBody.position + (Vector2)transform.TransformDirection(moveDirection) * movementSpeed * Time.deltaTime);
-        // Rotation logic based on gravity direction
-        float targetAngle = Mathf.Atan2(gravityBody.GravityDirection.y, gravityBody.GravityDirection.x) * Mathf.Rad2Deg + 90;
-
-        float currentRotationSpeed = IsGrounded() ? groundedRotationSpeed : airborneRotationSpeed;
-        float smoothedAngle = Mathf.LerpAngle(playerBody.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
-
-        playerBody.rotation = smoothedAngle;
-
-        if (isControllerActive)
-        {
-            Quaternion currentRotation = playerCamera.transform.rotation;
-            Quaternion targetRotation = transform.rotation;
-            
-            playerCamera.transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
-        }
-    }
-
-    private void UpdateCharacter(int selectedOption) 
-    {
-        Character character = characterDB.GetCharacter(selectedOption);
-        artworkSprite.sprite = character.characterSprite; 
-    }
-
-    private void Load()
-    {
-        selectedOption = PlayerPrefs.GetInt("selectedOption");
+        selection = PlayerPrefs.GetInt("selectedOption");
     }
 }

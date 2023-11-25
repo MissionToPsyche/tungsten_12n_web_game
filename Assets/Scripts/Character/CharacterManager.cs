@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class CharacterManager : MonoBehaviour
 {
-    public CharacterDatabase characterDB;
+    public CharacterDatabase characterDatabase;
     public TextMeshProUGUI nameText; 
     public SpriteRenderer artworkSprite; 
-    private int selectedOption = 0; 
+    private int selection = 0; 
 
 
     // Start is called before the first frame update
@@ -18,57 +18,57 @@ public class CharacterManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("selectedOption")) 
         {
-            selectedOption = 0;
+            selection = 0;
         }
         else 
         {
-            Load(); 
+            LoadSelection(); 
         }
 
-        UpdateCharacter(selectedOption);
+        UpdateCharacter(selection);
     }
 
     public void NextOption() 
     {
-        selectedOption++; 
+        selection++; 
 
-        if (selectedOption >= characterDB.CharacterCount) 
+        if (selection >= characterDatabase.CharacterCount) 
         {
-            selectedOption = 0; 
+            selection = 0; 
         }
 
-        UpdateCharacter(selectedOption);
-        Save();
+        UpdateCharacter(selection);
+        SaveSelection();
     }
 
     public void BackOption() 
     {
-        selectedOption--; 
+        selection--; 
 
-        if (selectedOption < 0) 
+        if (selection < 0) 
         {
-            selectedOption = characterDB.CharacterCount - 1; 
+            selection = characterDatabase.CharacterCount - 1; 
         }
 
-        UpdateCharacter(selectedOption);
-        Save();
+        UpdateCharacter(selection);
+        SaveSelection();
     }
 
-    private void UpdateCharacter(int selectedOption) 
+    private void UpdateCharacter(int selection) 
     {
-        Character character = characterDB.GetCharacter(selectedOption);
+        Character character = characterDatabase.GetSelectedCharacter(selection);
         artworkSprite.sprite = character.characterSprite; 
         nameText.text = character.characterName;
     }
 
-    private void Load()
+    private void LoadSelection()
     {
-        selectedOption = PlayerPrefs.GetInt("selectedOption");
+        selection = PlayerPrefs.GetInt("selectedOption");
     }
 
-    private void Save() 
+    private void SaveSelection() 
     {
-        PlayerPrefs.SetInt("selectedOption", selectedOption);
+        PlayerPrefs.SetInt("selectedOption", selection);
     }
 
     public void ChangeScene() 

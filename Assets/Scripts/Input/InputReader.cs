@@ -5,18 +5,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "InputReader")]
-public class InputReader : ScriptableObject, GameInput.IPlayerActions, GameInput.ISatelliteActions, GameInput.IUIActions
+public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSystem.ISatelliteActions, InputSystem.IUIActions
 {
-    private GameInput gameInput;
+    private InputSystem inputSystem;
 
     private void OnEnable()
     {
-        if (gameInput == null)
+        if (inputSystem == null)
         {
-            gameInput = new GameInput();
-            gameInput.Player.SetCallbacks(this);
-            gameInput.Satellite.SetCallbacks(this);
-            gameInput.UI.SetCallbacks(this);
+            inputSystem = new InputSystem();
+            inputSystem.Player.SetCallbacks(this);
+            inputSystem.Satellite.SetCallbacks(this);
+            inputSystem.UI.SetCallbacks(this);
         }
 
         SetPlayer();
@@ -24,21 +24,28 @@ public class InputReader : ScriptableObject, GameInput.IPlayerActions, GameInput
 
     public void SetPlayer()
     {
-        gameInput.Player.Enable();
-        gameInput.UI.Disable();
-    }
-    public void SetUI()
-    {
-        gameInput.Player.Disable();
-        gameInput.UI.Enable();
+        inputSystem.Player.Enable();
+        inputSystem.UI.Disable();
     }
 
-    public event Action<Vector2> MoveEvent;
+    public void SetUI()
+    {
+        inputSystem.Player.Disable();
+        inputSystem.UI.Enable();
+    }
+
+    // Movement
+    public event Action<float> MoveEvent;
     public event Action JumpEvent;
     public event Action JumpCancelledEvent;
     public event Action CrouchEvent;
     public event Action CrouchCancelledEvent;
+
+    // Interactions
     public event Action InteractEvent;
+    public event Action InteractCancelledEvent;
+
+    // Overlays
     public event Action InventoryEvent;
     public event Action SwitchContextEvent;
     public event Action MissionOverlayEvent;
@@ -47,7 +54,7 @@ public class InputReader : ScriptableObject, GameInput.IPlayerActions, GameInput
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        MoveEvent?.Invoke(context.ReadValue<Vector2>());
+        MoveEvent?.Invoke(context.ReadValue<float>());
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -76,7 +83,14 @@ public class InputReader : ScriptableObject, GameInput.IPlayerActions, GameInput
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        InteractEvent?.Invoke();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            InteractEvent?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            InteractCancelledEvent?.Invoke();
+        }
     }
 
     public void OnInventory(InputAction.CallbackContext context)

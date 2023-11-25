@@ -80,9 +80,9 @@
             ],
             "bindings": [
                 {
-                    "name": "WASD",
+                    "name": "AD",
                     "id": "122f1c76-507c-4605-89c1-9c34aedf3964",
-                    "path": "2DVector",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -91,30 +91,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "Negative",
                     "id": "3b670b53-cf28-4e2d-ac5b-e285879c2c21",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "2097c163-399f-4647-98b7-a19d08a6504b",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "9afcc10f-7d62-4b53-bd92-3f945ad89a5b",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -124,8 +102,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "19039135-11ab-46ac-824d-63f71b20880e",
+                    "name": "Positive",
+                    "id": "2097c163-399f-4647-98b7-a19d08a6504b",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
