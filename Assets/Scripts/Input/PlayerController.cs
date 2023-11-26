@@ -13,21 +13,32 @@ public class PlayerController : MonoBehaviour
 
     // Movement
     [SerializeField] private InputReader input;
-    [SerializeField, ReadOnly] private float walkingSpeed = 10f;
-    [SerializeField, ReadOnly] private float crouchingSpeed = 5f;
+    private float sprintingSpeed = 10f;
+    private float walkingSpeed = 7.5f;
+    private float strafingSpeed = 5f;
+    private float crawlingSpeed = 2.5f;
+    private float idleSpeed = 0f;
     [SerializeField, ReadOnly] private float currentSpeed;
-    [SerializeField, ReadOnly] private float jumpSpeed = 4f;
-    [SerializeField, ReadOnly] private float moveDirection;
-    [SerializeField, ReadOnly] private bool isMoving = false;
-    [SerializeField, ReadOnly] private bool isFacingRight = false;
-    [SerializeField, ReadOnly] private bool isGrounded = false;
-    [SerializeField, ReadOnly] private bool isJumping = false;
-    [SerializeField, ReadOnly] private bool canDoubleJump = false;
-    [SerializeField, ReadOnly] private bool isCrouching = false;
-    [SerializeField, ReadOnly] private bool isFalling = false;
 
-    // Interaction
-    [SerializeField, ReadOnly] private bool isInteracting = false;
+    [SerializeField, ReadOnly] private float jumpForce = 4f;
+    [SerializeField, ReadOnly] private float moveDirection = 0f;
+
+    private bool isIdle = false;
+    private bool isSprinting = false;
+    private bool isWalking = false;
+    private bool isCrawling = false;
+    private bool isStrafing = false;
+
+    private bool isJumping = false;
+    private bool isCrouching = false;
+
+    [SerializeField, ReadOnly] private bool isGrounded = false;
+    [SerializeField, ReadOnly] private bool canSprint = false;
+    [SerializeField, ReadOnly] private bool canDoubleJump = false;
+    [SerializeField, ReadOnly] private bool isFacingRight = false;
+
+    private enum PlayerState { Idle, Walking, Sprinting, Strafing, Jumping, Crouching, Crawling, Interacting }
+    [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
 
     // Animation
     [SerializeField] private Animator animator;
@@ -42,6 +53,8 @@ public class PlayerController : MonoBehaviour
     {
         // Set up event handlers
         input.MoveEvent += HandleMove;
+        input.SprintEvent += HandleSprint;
+        input.SprintCancelledEvent += HandleSprintCancelled;
         input.JumpEvent += HandleJump;
         input.JumpCancelledEvent += HandleJumpCancelled;
         input.CrouchEvent += HandleCrouch;
@@ -77,56 +90,170 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMove(float direction)
     {
-        if (isInteracting) return;
-
         moveDirection = direction;
-        isMoving = moveDirection != 0;
-        // isFacingRight = moveDirection > 0;
+        isIdle = direction == 0;
+
+        if (isIdle)
+        {
+            UpdatePlayerState(isCrouching ? PlayerState.Crouching : PlayerState.Idle);
+        }
+        else if (isSprinting)
+        {
+            UpdatePlayerState(PlayerState.Sprinting);
+        }
+        else if (isCrouching)
+        {
+            UpdatePlayerState(PlayerState.Crawling);
+        }
+        else if (!isGrounded)
+        {
+            UpdatePlayerState(PlayerState.Strafing);
+        }
+        else
+        {
+            UpdatePlayerState(PlayerState.Walking);
+        }
+    }
+
+    private void HandleSprint()
+    {
+        canSprint = true;
+
+        if (isGrounded && !isCrouching && !isIdle)
+        {
+            isSprinting = true;
+            UpdatePlayerState(PlayerState.Sprinting);
+        }
+    }
+
+    private void HandleSprintCancelled()
+    {
+        canSprint = false;
+        isSprinting = false;
+        UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
     }
 
     private void HandleJump()
     {
-        if (isCrouching) return;
-
-        isJumping = true;
+        if (isGrounded)
+        {
+            isJumping = true;
+            UpdatePlayerState(PlayerState.Jumping);
+        }
     }
 
     private void HandleJumpCancelled()
     {
         isJumping = false;
+        UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
     }
 
     private void HandleCrouch()
     {
-        if (!isGrounded) return;
-
-        isCrouching = true;
+        if (isGrounded)
+        {
+            isCrouching = true;
+            UpdatePlayerState(isIdle ? PlayerState.Crouching : PlayerState.Crawling);
+        }
     }
 
     private void HandleCrouchCancelled()
     {
         isCrouching = false;
+        UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
     }
+
 
     private void HandleInteract()
     {
-        if (isMoving || isCrouching || !isGrounded) return;
+        if (currentState != PlayerState.Idle) return;
 
-        isInteracting = true;
+        UpdatePlayerState(PlayerState.Interacting);
     }
 
     private void HandleInteractCancelled()
     {
-        if (!isGrounded) return;
+        if (currentState == PlayerState.Interacting)
+        {
+            UpdatePlayerState(PlayerState.Idle);
+        }
+    }
+    // -------------------------------------------------------------------
 
-        isInteracting = false;
+    private void UpdatePlayerState(PlayerState newState)
+    {
+        currentState = newState;
+        UpdateAnimatorParameters();
     }
 
-    // -------------------------------------------------------------------
+    private void UpdateAnimatorParameters()
+    {
+        // Reset all animator parameters
+        animator.SetBool("isIdle", false);
+        animator.SetBool("isWalking", false);
+        animator.SetBool("canSprint", false);
+        animator.SetBool("isSprinting", false);
+        animator.SetBool("isCrouching", false);
+        animator.SetBool("isCrawling", false);
+        animator.SetBool("isStrafing", false);
+        animator.SetBool("isJumping", false);
+        animator.SetBool("isInteracting", false);
+
+        animator.SetBool("canSprint", canSprint);
+
+        // Update based on current state
+        switch (currentState)
+        {
+            case PlayerState.Idle:
+                animator.SetBool("isIdle", true);
+                break;
+            case PlayerState.Walking:
+                animator.SetBool("isWalking", true);
+                break;
+            case PlayerState.Sprinting:
+                animator.SetBool("isSprinting", true);
+                break;
+            case PlayerState.Crouching:
+                animator.SetBool("isIdle", true);
+                animator.SetBool("isCrouching", true);
+                break;
+            case PlayerState.Crawling:
+                animator.SetBool("isCrawling", true);
+                break;
+            case PlayerState.Strafing:
+                animator.SetBool("isStrafing", true);
+                break;
+            case PlayerState.Jumping:
+                animator.SetBool("isJumping", true);
+                break;
+            case PlayerState.Interacting:
+                animator.SetBool("isIdle", true);
+                animator.SetBool("isInteracting", true);
+                break;
+        }
+    }
 
     private void Move()
     {
-        currentSpeed = isCrouching ? crouchingSpeed : walkingSpeed;
+        switch (currentState)
+        {
+            case PlayerState.Idle:
+                currentSpeed = idleSpeed;
+                break;
+            case PlayerState.Crawling:
+                currentSpeed = crawlingSpeed;
+                break;
+            case PlayerState.Strafing:
+                currentSpeed = strafingSpeed;
+                break;
+            case PlayerState.Walking:
+                currentSpeed = walkingSpeed;
+                break;
+            case PlayerState.Sprinting:
+                currentSpeed = sprintingSpeed;
+                break;
+        }
+        
         playerBody.velocity = new Vector2(moveDirection * currentSpeed, playerBody.velocity.y);
 
         // Vector2 direction = transform.right * moveDirection;
@@ -138,10 +265,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGrounded) return;
 
-        if (isJumping)
+        if (currentState == PlayerState.Jumping)
         {
             Vector2 jumpDirection = transform.right * moveDirection + transform.up;
-            playerBody.AddForce(jumpDirection * jumpSpeed, ForceMode2D.Impulse);
+            playerBody.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
         }
 
         // else if (canDoubleJump)
@@ -206,15 +333,10 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        
+
         animator.SetBool("isFacingRight", isFacingRight);
         animator.SetFloat("Horizontal", moveDirection);
-        animator.SetBool("isMoving", isMoving);
         animator.SetBool("isGrounded", isGrounded);
-        animator.SetBool("isFalling", isFalling);
-        animator.SetBool("isJumping", isJumping);
-        animator.SetBool("isCrouching", isCrouching);
-        animator.SetBool("isInteracting", isInteracting);
     }
 
     private void Flip()

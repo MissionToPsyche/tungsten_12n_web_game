@@ -4722,7 +4722,8 @@ MonoBehaviour:
   gravityBody: {fileID: 911276432}
   input: {fileID: 11400000, guid: 9dca135c79fee004ab7ac8b3f7ee53ec, type: 2}
   walkingSpeed: 10
-  crouchingSpeed: 5
+  strafingSpeed: 5
+  crouchingSpeed: 2.5
   currentSpeed: 0
   jumpSpeed: 4
   moveDirection: 0

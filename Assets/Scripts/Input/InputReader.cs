@@ -36,6 +36,8 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
 
     // Movement
     public event Action<float> MoveEvent;
+    public event Action SprintEvent;
+    public event Action SprintCancelledEvent;
     public event Action JumpEvent;
     public event Action JumpCancelledEvent;
     public event Action CrouchEvent;
@@ -56,6 +58,18 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveEvent?.Invoke(context.ReadValue<float>());
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            SprintEvent?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            SprintCancelledEvent?.Invoke();
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
