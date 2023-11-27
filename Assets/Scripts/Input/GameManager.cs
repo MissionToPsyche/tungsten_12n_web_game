@@ -4,20 +4,39 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private InputReader input;
+    // Input
+    [SerializeField] private InputReader inputReader;
+
     [SerializeField] private GameObject pauseMenu;
+
     void Start()
     {
-        input.PauseEvent += HandlePause;
-        input.ResumeEvent += HandleResume;   
+
     }
 
-    private void HandlePause()
+    // -------------------------------------------------------------------
+
+    private void OnEnable()
+    {
+        inputReader.PauseGame += OnPauseGame;
+        inputReader.ResumeGame += OnResumeGame;
+    }
+
+    private void OnDisable()
+    {
+        inputReader.PauseGame -= OnPauseGame;
+        inputReader.ResumeGame -= OnResumeGame;
+    }
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    private void OnPauseGame()
     {
         pauseMenu.SetActive(true);
     }
 
-    private void HandleResume()
+    private void OnResumeGame()
     {
         pauseMenu.SetActive(false);
     }

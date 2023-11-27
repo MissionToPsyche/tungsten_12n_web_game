@@ -24,11 +24,143 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem"",
     ""maps"": [
         {
+            ""name"": ""Gameplay"",
+            ""id"": ""e9b589d1-a5cc-4ba8-9251-63e9f8332707"",
+            ""actions"": [
+                {
+                    ""name"": ""SwitchControlState"",
+                    ""type"": ""Button"",
+                    ""id"": ""8aa0126f-bb95-482f-b0b0-96315ee6c072"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""794299d1-56ea-488d-ba1a-8f23517d87e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ZoomIn"",
+                    ""type"": ""Value"",
+                    ""id"": ""1dee4c8e-9e61-476d-9900-9dae4036e9e0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ZoomOut"",
+                    ""type"": ""Value"",
+                    ""id"": ""13c0b36b-db91-404f-9717-dcd0e5a4234e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""50febe85-c71c-4f6d-b15d-252f55750782"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchControlState"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""847ac409-3391-40c7-bc06-e24b58a66561"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchControlState"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a1662d2-b689-4210-9f7f-d14e86343885"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05bced67-0580-4341-b4bb-4c88fee0fe69"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd35ca22-2737-4b72-8e1a-f8722d91c62a"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Invert"",
+                    ""groups"": """",
+                    ""action"": ""ZoomIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a518f90-0c3d-4c94-b363-602803be068d"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": ""Invert"",
+                    ""groups"": """",
+                    ""action"": ""ZoomIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d014f1d-fe42-42d2-a3c9-c0cb3a917d5e"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0173bcf5-d732-4413-80d0-ff6716fdaee2"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Player"",
             ""id"": ""597606c8-3d4b-42b2-bda1-5b323bb426d0"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""PlayerMove"",
                     ""type"": ""Value"",
                     ""id"": ""46d3b28f-5056-41e5-a1cf-401f0b9f8f27"",
                     ""expectedControlType"": """",
@@ -37,7 +169,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Sprint"",
+                    ""name"": ""PlayerSprint"",
                     ""type"": ""Button"",
                     ""id"": ""a4a54349-275f-40c8-a9c2-277df1fafe09"",
                     ""expectedControlType"": ""Button"",
@@ -46,7 +178,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""PlayerJump"",
                     ""type"": ""Button"",
                     ""id"": ""7f5802cc-2cf8-4f2e-b889-1fa888d587dc"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +187,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Crouch"",
+                    ""name"": ""PlayerCrouch"",
                     ""type"": ""Button"",
                     ""id"": ""3d2226d7-29b4-4da8-b13b-876fb8eccc62"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +196,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""PlayerInteract"",
                     ""type"": ""Button"",
                     ""id"": ""ad7d73ad-0f15-4593-9161-4383182cb274"",
                     ""expectedControlType"": ""Button"",
@@ -73,7 +205,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""BuildOverlay"",
+                    ""name"": ""PlayerBuildOverlay"",
                     ""type"": ""Button"",
                     ""id"": ""e4df92d7-b739-41dd-afa3-675ac9711219"",
                     ""expectedControlType"": ""Button"",
@@ -82,7 +214,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""InventoryOverlay"",
+                    ""name"": ""PlayerInventoryOverlay"",
                     ""type"": ""Button"",
                     ""id"": ""f1d370a2-bd6f-4e67-9dbb-03c8a544ccf0"",
                     ""expectedControlType"": ""Button"",
@@ -91,27 +223,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ObjectiveOverlay"",
+                    ""name"": ""PlayerObjectiveOverlay"",
                     ""type"": ""Button"",
                     ""id"": ""d4369218-3c36-46e3-98ce-4db59f7bdeef"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwitchContext"",
-                    ""type"": ""Button"",
-                    ""id"": ""b802e976-ac25-47f2-b462-a281dc43eadd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""2c7ecb66-fa73-4228-a9e1-57a4554e2d9b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -120,13 +234,13 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""AD"",
+                    ""name"": ""WASD"",
                     ""id"": ""122f1c76-507c-4605-89c1-9c34aedf3964"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -137,7 +251,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -148,7 +262,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -159,7 +273,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -170,7 +284,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -181,7 +295,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -192,7 +306,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -203,7 +317,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -214,7 +328,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -225,7 +339,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""PlayerMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -236,7 +350,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""PlayerJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -247,7 +361,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""PlayerJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -258,7 +372,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Crouch"",
+                    ""action"": ""PlayerCrouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -269,7 +383,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Crouch"",
+                    ""action"": ""PlayerCrouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -280,7 +394,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""PlayerInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -291,7 +405,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""PlayerInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -302,7 +416,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ObjectiveOverlay"",
+                    ""action"": ""PlayerObjectiveOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -313,51 +427,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ObjectiveOverlay"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9e30a96b-7838-4d3a-99ca-05c5d719446a"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""910100f0-36a1-4f10-b68d-65133fd6f35d"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0ea61509-7cae-4f2d-97b8-b602e8f8c46b"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchContext"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e980663d-3242-4917-a482-3c185917491d"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchContext"",
+                    ""action"": ""PlayerObjectiveOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -368,7 +438,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BuildOverlay"",
+                    ""action"": ""PlayerBuildOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -379,7 +449,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BuildOverlay"",
+                    ""action"": ""PlayerBuildOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -390,7 +460,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""InventoryOverlay"",
+                    ""action"": ""PlayerInventoryOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -401,7 +471,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""InventoryOverlay"",
+                    ""action"": ""PlayerInventoryOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -412,7 +482,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sprint"",
+                    ""action"": ""PlayerSprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -423,7 +493,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sprint"",
+                    ""action"": ""PlayerSprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -434,7 +504,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             ""id"": ""0eda7410-4158-4a3b-a247-ef641bf86758"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""SatelliteMove"",
                     ""type"": ""Value"",
                     ""id"": ""90e5e924-7ba2-49a3-b5a4-791a82a70f0f"",
                     ""expectedControlType"": """",
@@ -443,27 +513,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""SatelliteScan"",
                     ""type"": ""Button"",
                     ""id"": ""9a4176a6-907b-411d-80e1-cfa8891b6d42"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""be8f1af5-bf33-4d9b-8c9c-27a119eac11e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwitchContext"",
-                    ""type"": ""Button"",
-                    ""id"": ""c7c18b1a-1348-40af-a1d5-74e19f1787bb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -478,7 +530,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""SatelliteMove"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -489,7 +541,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""SatelliteMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -500,7 +552,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""SatelliteMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -511,7 +563,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""SatelliteMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -522,7 +574,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""SatelliteMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -533,7 +585,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""SatelliteMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -544,7 +596,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""SatelliteScan"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -555,51 +607,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""92716b31-fd31-40bf-b8ab-a76f9b0b9a74"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2dcc1f2f-5023-4fee-bdf2-96bcb3189a3c"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7c619bc5-6a5e-461d-9a13-7e26837f0a9b"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchContext"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5963ac8c-e2a2-46a3-b56e-e15141d57cd7"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwitchContext"",
+                    ""action"": ""SatelliteScan"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -610,7 +618,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             ""id"": ""56f7490e-17e1-423e-a893-c02cfbd74d78"",
             ""actions"": [
                 {
-                    ""name"": ""Resume"",
+                    ""name"": ""ResumeGame"",
                     ""type"": ""Button"",
                     ""id"": ""601bccd5-e0b7-4b2c-8165-766785c7dca0"",
                     ""expectedControlType"": ""Button"",
@@ -627,7 +635,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Resume"",
+                    ""action"": ""ResumeGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -638,7 +646,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Resume"",
+                    ""action"": ""ResumeGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -647,27 +655,29 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
+        // Gameplay
+        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_SwitchControlState = m_Gameplay.FindAction("SwitchControlState", throwIfNotFound: true);
+        m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
+        m_Gameplay_ZoomIn = m_Gameplay.FindAction("ZoomIn", throwIfNotFound: true);
+        m_Gameplay_ZoomOut = m_Gameplay.FindAction("ZoomOut", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_BuildOverlay = m_Player.FindAction("BuildOverlay", throwIfNotFound: true);
-        m_Player_InventoryOverlay = m_Player.FindAction("InventoryOverlay", throwIfNotFound: true);
-        m_Player_ObjectiveOverlay = m_Player.FindAction("ObjectiveOverlay", throwIfNotFound: true);
-        m_Player_SwitchContext = m_Player.FindAction("SwitchContext", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_PlayerMove = m_Player.FindAction("PlayerMove", throwIfNotFound: true);
+        m_Player_PlayerSprint = m_Player.FindAction("PlayerSprint", throwIfNotFound: true);
+        m_Player_PlayerJump = m_Player.FindAction("PlayerJump", throwIfNotFound: true);
+        m_Player_PlayerCrouch = m_Player.FindAction("PlayerCrouch", throwIfNotFound: true);
+        m_Player_PlayerInteract = m_Player.FindAction("PlayerInteract", throwIfNotFound: true);
+        m_Player_PlayerBuildOverlay = m_Player.FindAction("PlayerBuildOverlay", throwIfNotFound: true);
+        m_Player_PlayerInventoryOverlay = m_Player.FindAction("PlayerInventoryOverlay", throwIfNotFound: true);
+        m_Player_PlayerObjectiveOverlay = m_Player.FindAction("PlayerObjectiveOverlay", throwIfNotFound: true);
         // Satellite
         m_Satellite = asset.FindActionMap("Satellite", throwIfNotFound: true);
-        m_Satellite_Move = m_Satellite.FindAction("Move", throwIfNotFound: true);
-        m_Satellite_Interact = m_Satellite.FindAction("Interact", throwIfNotFound: true);
-        m_Satellite_Pause = m_Satellite.FindAction("Pause", throwIfNotFound: true);
-        m_Satellite_SwitchContext = m_Satellite.FindAction("SwitchContext", throwIfNotFound: true);
+        m_Satellite_SatelliteMove = m_Satellite.FindAction("SatelliteMove", throwIfNotFound: true);
+        m_Satellite_SatelliteScan = m_Satellite.FindAction("SatelliteScan", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
+        m_UI_ResumeGame = m_UI.FindAction("ResumeGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -726,33 +736,99 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
+    // Gameplay
+    private readonly InputActionMap m_Gameplay;
+    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
+    private readonly InputAction m_Gameplay_SwitchControlState;
+    private readonly InputAction m_Gameplay_PauseGame;
+    private readonly InputAction m_Gameplay_ZoomIn;
+    private readonly InputAction m_Gameplay_ZoomOut;
+    public struct GameplayActions
+    {
+        private @InputSystem m_Wrapper;
+        public GameplayActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SwitchControlState => m_Wrapper.m_Gameplay_SwitchControlState;
+        public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
+        public InputAction @ZoomIn => m_Wrapper.m_Gameplay_ZoomIn;
+        public InputAction @ZoomOut => m_Wrapper.m_Gameplay_ZoomOut;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+        public void AddCallbacks(IGameplayActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
+            @SwitchControlState.started += instance.OnSwitchControlState;
+            @SwitchControlState.performed += instance.OnSwitchControlState;
+            @SwitchControlState.canceled += instance.OnSwitchControlState;
+            @PauseGame.started += instance.OnPauseGame;
+            @PauseGame.performed += instance.OnPauseGame;
+            @PauseGame.canceled += instance.OnPauseGame;
+            @ZoomIn.started += instance.OnZoomIn;
+            @ZoomIn.performed += instance.OnZoomIn;
+            @ZoomIn.canceled += instance.OnZoomIn;
+            @ZoomOut.started += instance.OnZoomOut;
+            @ZoomOut.performed += instance.OnZoomOut;
+            @ZoomOut.canceled += instance.OnZoomOut;
+        }
+
+        private void UnregisterCallbacks(IGameplayActions instance)
+        {
+            @SwitchControlState.started -= instance.OnSwitchControlState;
+            @SwitchControlState.performed -= instance.OnSwitchControlState;
+            @SwitchControlState.canceled -= instance.OnSwitchControlState;
+            @PauseGame.started -= instance.OnPauseGame;
+            @PauseGame.performed -= instance.OnPauseGame;
+            @PauseGame.canceled -= instance.OnPauseGame;
+            @ZoomIn.started -= instance.OnZoomIn;
+            @ZoomIn.performed -= instance.OnZoomIn;
+            @ZoomIn.canceled -= instance.OnZoomIn;
+            @ZoomOut.started -= instance.OnZoomOut;
+            @ZoomOut.performed -= instance.OnZoomOut;
+            @ZoomOut.canceled -= instance.OnZoomOut;
+        }
+
+        public void RemoveCallbacks(IGameplayActions instance)
+        {
+            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGameplayActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GameplayActions @Gameplay => new GameplayActions(this);
+
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Crouch;
-    private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_BuildOverlay;
-    private readonly InputAction m_Player_InventoryOverlay;
-    private readonly InputAction m_Player_ObjectiveOverlay;
-    private readonly InputAction m_Player_SwitchContext;
-    private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_PlayerMove;
+    private readonly InputAction m_Player_PlayerSprint;
+    private readonly InputAction m_Player_PlayerJump;
+    private readonly InputAction m_Player_PlayerCrouch;
+    private readonly InputAction m_Player_PlayerInteract;
+    private readonly InputAction m_Player_PlayerBuildOverlay;
+    private readonly InputAction m_Player_PlayerInventoryOverlay;
+    private readonly InputAction m_Player_PlayerObjectiveOverlay;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
         public PlayerActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @BuildOverlay => m_Wrapper.m_Player_BuildOverlay;
-        public InputAction @InventoryOverlay => m_Wrapper.m_Player_InventoryOverlay;
-        public InputAction @ObjectiveOverlay => m_Wrapper.m_Player_ObjectiveOverlay;
-        public InputAction @SwitchContext => m_Wrapper.m_Player_SwitchContext;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @PlayerMove => m_Wrapper.m_Player_PlayerMove;
+        public InputAction @PlayerSprint => m_Wrapper.m_Player_PlayerSprint;
+        public InputAction @PlayerJump => m_Wrapper.m_Player_PlayerJump;
+        public InputAction @PlayerCrouch => m_Wrapper.m_Player_PlayerCrouch;
+        public InputAction @PlayerInteract => m_Wrapper.m_Player_PlayerInteract;
+        public InputAction @PlayerBuildOverlay => m_Wrapper.m_Player_PlayerBuildOverlay;
+        public InputAction @PlayerInventoryOverlay => m_Wrapper.m_Player_PlayerInventoryOverlay;
+        public InputAction @PlayerObjectiveOverlay => m_Wrapper.m_Player_PlayerObjectiveOverlay;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -762,70 +838,58 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
-            @Sprint.started += instance.OnSprint;
-            @Sprint.performed += instance.OnSprint;
-            @Sprint.canceled += instance.OnSprint;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
-            @Crouch.started += instance.OnCrouch;
-            @Crouch.performed += instance.OnCrouch;
-            @Crouch.canceled += instance.OnCrouch;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
-            @BuildOverlay.started += instance.OnBuildOverlay;
-            @BuildOverlay.performed += instance.OnBuildOverlay;
-            @BuildOverlay.canceled += instance.OnBuildOverlay;
-            @InventoryOverlay.started += instance.OnInventoryOverlay;
-            @InventoryOverlay.performed += instance.OnInventoryOverlay;
-            @InventoryOverlay.canceled += instance.OnInventoryOverlay;
-            @ObjectiveOverlay.started += instance.OnObjectiveOverlay;
-            @ObjectiveOverlay.performed += instance.OnObjectiveOverlay;
-            @ObjectiveOverlay.canceled += instance.OnObjectiveOverlay;
-            @SwitchContext.started += instance.OnSwitchContext;
-            @SwitchContext.performed += instance.OnSwitchContext;
-            @SwitchContext.canceled += instance.OnSwitchContext;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
+            @PlayerMove.started += instance.OnPlayerMove;
+            @PlayerMove.performed += instance.OnPlayerMove;
+            @PlayerMove.canceled += instance.OnPlayerMove;
+            @PlayerSprint.started += instance.OnPlayerSprint;
+            @PlayerSprint.performed += instance.OnPlayerSprint;
+            @PlayerSprint.canceled += instance.OnPlayerSprint;
+            @PlayerJump.started += instance.OnPlayerJump;
+            @PlayerJump.performed += instance.OnPlayerJump;
+            @PlayerJump.canceled += instance.OnPlayerJump;
+            @PlayerCrouch.started += instance.OnPlayerCrouch;
+            @PlayerCrouch.performed += instance.OnPlayerCrouch;
+            @PlayerCrouch.canceled += instance.OnPlayerCrouch;
+            @PlayerInteract.started += instance.OnPlayerInteract;
+            @PlayerInteract.performed += instance.OnPlayerInteract;
+            @PlayerInteract.canceled += instance.OnPlayerInteract;
+            @PlayerBuildOverlay.started += instance.OnPlayerBuildOverlay;
+            @PlayerBuildOverlay.performed += instance.OnPlayerBuildOverlay;
+            @PlayerBuildOverlay.canceled += instance.OnPlayerBuildOverlay;
+            @PlayerInventoryOverlay.started += instance.OnPlayerInventoryOverlay;
+            @PlayerInventoryOverlay.performed += instance.OnPlayerInventoryOverlay;
+            @PlayerInventoryOverlay.canceled += instance.OnPlayerInventoryOverlay;
+            @PlayerObjectiveOverlay.started += instance.OnPlayerObjectiveOverlay;
+            @PlayerObjectiveOverlay.performed += instance.OnPlayerObjectiveOverlay;
+            @PlayerObjectiveOverlay.canceled += instance.OnPlayerObjectiveOverlay;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
-            @Sprint.started -= instance.OnSprint;
-            @Sprint.performed -= instance.OnSprint;
-            @Sprint.canceled -= instance.OnSprint;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
-            @BuildOverlay.started -= instance.OnBuildOverlay;
-            @BuildOverlay.performed -= instance.OnBuildOverlay;
-            @BuildOverlay.canceled -= instance.OnBuildOverlay;
-            @InventoryOverlay.started -= instance.OnInventoryOverlay;
-            @InventoryOverlay.performed -= instance.OnInventoryOverlay;
-            @InventoryOverlay.canceled -= instance.OnInventoryOverlay;
-            @ObjectiveOverlay.started -= instance.OnObjectiveOverlay;
-            @ObjectiveOverlay.performed -= instance.OnObjectiveOverlay;
-            @ObjectiveOverlay.canceled -= instance.OnObjectiveOverlay;
-            @SwitchContext.started -= instance.OnSwitchContext;
-            @SwitchContext.performed -= instance.OnSwitchContext;
-            @SwitchContext.canceled -= instance.OnSwitchContext;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
+            @PlayerMove.started -= instance.OnPlayerMove;
+            @PlayerMove.performed -= instance.OnPlayerMove;
+            @PlayerMove.canceled -= instance.OnPlayerMove;
+            @PlayerSprint.started -= instance.OnPlayerSprint;
+            @PlayerSprint.performed -= instance.OnPlayerSprint;
+            @PlayerSprint.canceled -= instance.OnPlayerSprint;
+            @PlayerJump.started -= instance.OnPlayerJump;
+            @PlayerJump.performed -= instance.OnPlayerJump;
+            @PlayerJump.canceled -= instance.OnPlayerJump;
+            @PlayerCrouch.started -= instance.OnPlayerCrouch;
+            @PlayerCrouch.performed -= instance.OnPlayerCrouch;
+            @PlayerCrouch.canceled -= instance.OnPlayerCrouch;
+            @PlayerInteract.started -= instance.OnPlayerInteract;
+            @PlayerInteract.performed -= instance.OnPlayerInteract;
+            @PlayerInteract.canceled -= instance.OnPlayerInteract;
+            @PlayerBuildOverlay.started -= instance.OnPlayerBuildOverlay;
+            @PlayerBuildOverlay.performed -= instance.OnPlayerBuildOverlay;
+            @PlayerBuildOverlay.canceled -= instance.OnPlayerBuildOverlay;
+            @PlayerInventoryOverlay.started -= instance.OnPlayerInventoryOverlay;
+            @PlayerInventoryOverlay.performed -= instance.OnPlayerInventoryOverlay;
+            @PlayerInventoryOverlay.canceled -= instance.OnPlayerInventoryOverlay;
+            @PlayerObjectiveOverlay.started -= instance.OnPlayerObjectiveOverlay;
+            @PlayerObjectiveOverlay.performed -= instance.OnPlayerObjectiveOverlay;
+            @PlayerObjectiveOverlay.canceled -= instance.OnPlayerObjectiveOverlay;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -847,18 +911,14 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     // Satellite
     private readonly InputActionMap m_Satellite;
     private List<ISatelliteActions> m_SatelliteActionsCallbackInterfaces = new List<ISatelliteActions>();
-    private readonly InputAction m_Satellite_Move;
-    private readonly InputAction m_Satellite_Interact;
-    private readonly InputAction m_Satellite_Pause;
-    private readonly InputAction m_Satellite_SwitchContext;
+    private readonly InputAction m_Satellite_SatelliteMove;
+    private readonly InputAction m_Satellite_SatelliteScan;
     public struct SatelliteActions
     {
         private @InputSystem m_Wrapper;
         public SatelliteActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Satellite_Move;
-        public InputAction @Interact => m_Wrapper.m_Satellite_Interact;
-        public InputAction @Pause => m_Wrapper.m_Satellite_Pause;
-        public InputAction @SwitchContext => m_Wrapper.m_Satellite_SwitchContext;
+        public InputAction @SatelliteMove => m_Wrapper.m_Satellite_SatelliteMove;
+        public InputAction @SatelliteScan => m_Wrapper.m_Satellite_SatelliteScan;
         public InputActionMap Get() { return m_Wrapper.m_Satellite; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -868,34 +928,22 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_SatelliteActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_SatelliteActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
-            @SwitchContext.started += instance.OnSwitchContext;
-            @SwitchContext.performed += instance.OnSwitchContext;
-            @SwitchContext.canceled += instance.OnSwitchContext;
+            @SatelliteMove.started += instance.OnSatelliteMove;
+            @SatelliteMove.performed += instance.OnSatelliteMove;
+            @SatelliteMove.canceled += instance.OnSatelliteMove;
+            @SatelliteScan.started += instance.OnSatelliteScan;
+            @SatelliteScan.performed += instance.OnSatelliteScan;
+            @SatelliteScan.canceled += instance.OnSatelliteScan;
         }
 
         private void UnregisterCallbacks(ISatelliteActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
-            @SwitchContext.started -= instance.OnSwitchContext;
-            @SwitchContext.performed -= instance.OnSwitchContext;
-            @SwitchContext.canceled -= instance.OnSwitchContext;
+            @SatelliteMove.started -= instance.OnSatelliteMove;
+            @SatelliteMove.performed -= instance.OnSatelliteMove;
+            @SatelliteMove.canceled -= instance.OnSatelliteMove;
+            @SatelliteScan.started -= instance.OnSatelliteScan;
+            @SatelliteScan.performed -= instance.OnSatelliteScan;
+            @SatelliteScan.canceled -= instance.OnSatelliteScan;
         }
 
         public void RemoveCallbacks(ISatelliteActions instance)
@@ -917,12 +965,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_Resume;
+    private readonly InputAction m_UI_ResumeGame;
     public struct UIActions
     {
         private @InputSystem m_Wrapper;
         public UIActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Resume => m_Wrapper.m_UI_Resume;
+        public InputAction @ResumeGame => m_Wrapper.m_UI_ResumeGame;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -932,16 +980,16 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @Resume.started += instance.OnResume;
-            @Resume.performed += instance.OnResume;
-            @Resume.canceled += instance.OnResume;
+            @ResumeGame.started += instance.OnResumeGame;
+            @ResumeGame.performed += instance.OnResumeGame;
+            @ResumeGame.canceled += instance.OnResumeGame;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
         {
-            @Resume.started -= instance.OnResume;
-            @Resume.performed -= instance.OnResume;
-            @Resume.canceled -= instance.OnResume;
+            @ResumeGame.started -= instance.OnResumeGame;
+            @ResumeGame.performed -= instance.OnResumeGame;
+            @ResumeGame.canceled -= instance.OnResumeGame;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -959,28 +1007,31 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+    public interface IGameplayActions
+    {
+        void OnSwitchControlState(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
+        void OnZoomIn(InputAction.CallbackContext context);
+        void OnZoomOut(InputAction.CallbackContext context);
+    }
     public interface IPlayerActions
     {
-        void OnMove(InputAction.CallbackContext context);
-        void OnSprint(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnBuildOverlay(InputAction.CallbackContext context);
-        void OnInventoryOverlay(InputAction.CallbackContext context);
-        void OnObjectiveOverlay(InputAction.CallbackContext context);
-        void OnSwitchContext(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
+        void OnPlayerMove(InputAction.CallbackContext context);
+        void OnPlayerSprint(InputAction.CallbackContext context);
+        void OnPlayerJump(InputAction.CallbackContext context);
+        void OnPlayerCrouch(InputAction.CallbackContext context);
+        void OnPlayerInteract(InputAction.CallbackContext context);
+        void OnPlayerBuildOverlay(InputAction.CallbackContext context);
+        void OnPlayerInventoryOverlay(InputAction.CallbackContext context);
+        void OnPlayerObjectiveOverlay(InputAction.CallbackContext context);
     }
     public interface ISatelliteActions
     {
-        void OnMove(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
-        void OnSwitchContext(InputAction.CallbackContext context);
+        void OnSatelliteMove(InputAction.CallbackContext context);
+        void OnSatelliteScan(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
-        void OnResume(InputAction.CallbackContext context);
+        void OnResumeGame(InputAction.CallbackContext context);
     }
 }

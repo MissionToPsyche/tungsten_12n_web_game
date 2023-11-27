@@ -5,138 +5,256 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "InputReader")]
-public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSystem.ISatelliteActions, InputSystem.IUIActions
+
+public class InputReader :
+    ScriptableObject,
+    InputSystem.IGameplayActions,
+    InputSystem.IPlayerActions,
+    InputSystem.ISatelliteActions,
+    InputSystem.IUIActions
 {
     private InputSystem inputSystem;
+
+    public enum ControlState
+    {
+        Player,
+        Satellite,
+        UI
+    }
+
+    private ControlState lastControlState;
+
+    private ControlState currentControlState;
+    private Dictionary<ControlState, InputActionMap> stateToActionMap;
 
     private void OnEnable()
     {
         if (inputSystem == null)
         {
             inputSystem = new InputSystem();
+            inputSystem.Gameplay.SetCallbacks(this);
             inputSystem.Player.SetCallbacks(this);
             inputSystem.Satellite.SetCallbacks(this);
             inputSystem.UI.SetCallbacks(this);
         }
 
-        SetPlayer();
+        stateToActionMap = new Dictionary<ControlState, InputActionMap>
+        {
+            { ControlState.Player, inputSystem.Player },
+            { ControlState.Satellite, inputSystem.Satellite },
+            { ControlState.UI, inputSystem.UI }
+        };
+
+        SetControlState(ControlState.Player);
     }
 
-    public void SetPlayer()
+    public void SetControlState(ControlState targetState)
     {
-        inputSystem.Player.Enable();
-        inputSystem.UI.Disable();
+        foreach (var state in stateToActionMap)
+        {
+            if (state.Key == targetState)
+            {
+                state.Value.Enable();
+            }
+            else
+            {
+                state.Value.Disable();
+            }
+        }
+
+        // Directly control the state of the Gameplay action map depending on the UI context
+        if (targetState != ControlState.UI)
+        {
+            inputSystem.Gameplay.Enable();
+            // Debug.Log("Enabled action map: Gameplay");
+        }
+        else
+        {
+            inputSystem.Gameplay.Disable();
+            // Debug.Log("Disabled action map: Gameplay");
+        }
+
+        lastControlState = currentControlState;
+        currentControlState = targetState;
+        // Debug.Log($"Current control state set to: {currentControlState}");
     }
 
-    public void SetUI()
-    {
-        inputSystem.Player.Disable();
-        inputSystem.UI.Enable();
-    }
+    // -------------------------------------------------------------------
+    // Define events
 
-    // Movement
-    public event Action<Vector2> MoveEvent;
-    public event Action SprintEvent;
-    public event Action SprintCancelledEvent;
-    public event Action JumpEvent;
-    public event Action JumpCancelledEvent;
-    public event Action CrouchEvent;
-    public event Action CrouchCancelledEvent;
+    // Gameplay
+    public event Action<ControlState> SwitchControlState;
+    public event Action PauseGame;
+    public event Action<float> ZoomIn;
+    public event Action<float> ZoomOut;
 
-    // Interactions
-    public event Action InteractEvent;
-    public event Action InteractCancelledEvent;
+    // Player
+    public event Action<Vector2> PlayerMove;
+    public event Action PlayerSprint;
+    public event Action PlayerSprintCancelled;
+    public event Action PlayerJump;
+    public event Action PlayerJumpCancelled;
+    public event Action PlayerCrouch;
+    public event Action PlayerCrouchCancelled;
+    public event Action PlayerInteract;
+    public event Action PlayerInteractCancelled;
+    public event Action PlayerBuildOverlay;
+    public event Action PlayerInventoryOverlay;
+    public event Action PlayerObjectiveOverlay;
 
-    // Overlays
-    public event Action BuildOverlayEvent;
-    public event Action InventoryOverlayEvent;
-    public event Action ObjectiveOverlayEvent;
-    public event Action SwitchContextEvent;
-    public event Action PauseEvent;
-    public event Action ResumeEvent;
+    // Satellite
+    public event Action<Vector2> SatelliteMove;
+    public event Action SatelliteScan;
+    public event Action SatelliteScanCancelled;
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        MoveEvent?.Invoke(context.ReadValue<Vector2>());
-    }
+    // UI
+    public event Action ResumeGame;
 
-    public void OnSprint(InputAction.CallbackContext context)
+    // -------------------------------------------------------------------
+    // Gameplay action map
+
+    public void OnSwitchControlState(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            SprintEvent?.Invoke();
-        }
-        if (context.phase == InputActionPhase.Canceled)
-        {
-            SprintCancelledEvent?.Invoke();
+            if (currentControlState == ControlState.Player)
+            {
+                SetControlState(ControlState.Satellite);
+            }
+            else if (currentControlState == ControlState.Satellite)
+            {
+                SetControlState(ControlState.Player);
+            }
+
+            SwitchControlState?.Invoke(currentControlState);
         }
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnPauseGame(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            JumpEvent?.Invoke();
-        }
-        if (context.phase == InputActionPhase.Canceled)
-        {
-            JumpCancelledEvent?.Invoke();
+            SetControlState(ControlState.UI);
+            PauseGame?.Invoke();
         }
     }
 
-    public void OnCrouch(InputAction.CallbackContext context)
+    public void OnZoomIn(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            CrouchEvent?.Invoke();
+            // ZoomIn?.Invoke(context.ReadValue<float>());
+        }
+    }
+
+    public void OnZoomOut(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            // ZoomOut?.Invoke(context.ReadValue<float>());
+        }
+    }
+
+    // -------------------------------------------------------------------
+    // Player action map
+
+    public void OnPlayerMove(InputAction.CallbackContext context)
+    {
+        PlayerMove?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnPlayerSprint(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            PlayerSprint?.Invoke();
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            CrouchCancelledEvent?.Invoke();
+            PlayerSprintCancelled?.Invoke();
+        }
+    }
+
+    public void OnPlayerJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            PlayerJump?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            PlayerJumpCancelled?.Invoke();
+        }
+    }
+
+    public void OnPlayerCrouch(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            PlayerCrouch?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            PlayerCrouchCancelled?.Invoke();
         }      
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnPlayerInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            InteractEvent?.Invoke();
+            PlayerInteract?.Invoke();
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            InteractCancelledEvent?.Invoke();
+            PlayerInteractCancelled?.Invoke();
         }
     }
 
-    public void OnBuildOverlay(InputAction.CallbackContext context)
+    public void OnPlayerBuildOverlay(InputAction.CallbackContext context)
     {
-        BuildOverlayEvent?.Invoke();
+        PlayerBuildOverlay?.Invoke();
     }
 
-    public void OnInventoryOverlay(InputAction.CallbackContext context)
+    public void OnPlayerInventoryOverlay(InputAction.CallbackContext context)
     {
-        InventoryOverlayEvent?.Invoke();
+        PlayerInventoryOverlay?.Invoke();
     }
 
-    public void OnObjectiveOverlay(InputAction.CallbackContext context)
+    public void OnPlayerObjectiveOverlay(InputAction.CallbackContext context)
     {
-        ObjectiveOverlayEvent?.Invoke();
+        PlayerObjectiveOverlay?.Invoke();
     }
 
-    public void OnSwitchContext(InputAction.CallbackContext context)
+    // -------------------------------------------------------------------
+    // Satellite action map
+
+    public void OnSatelliteMove(InputAction.CallbackContext context)
     {
-        SwitchContextEvent?.Invoke();
+        SatelliteMove?.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void OnPause(InputAction.CallbackContext context)
+    public void OnSatelliteScan(InputAction.CallbackContext context)
     {
-        PauseEvent?.Invoke();
-        SetUI();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            SatelliteScan?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            SatelliteScanCancelled?.Invoke();
+        }
     }
 
-    public void OnResume(InputAction.CallbackContext context)
+    // -------------------------------------------------------------------
+    // UI action map
+
+    public void OnResumeGame(InputAction.CallbackContext context)
     {
-        ResumeEvent?.Invoke();
-        SetPlayer();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            SetControlState(lastControlState);
+            ResumeGame?.Invoke();
+        }
     }
 }

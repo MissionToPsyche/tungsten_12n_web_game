@@ -7,25 +7,36 @@ using UnityEngine.UI;
 public class BuildManager : MonoBehaviour
 {
     // Input
-    [SerializeField] private InputReader input;
+    [SerializeField] private InputReader inputReader;
 
     [SerializeField] GameObject buildOverlay;
     [SerializeField, ReadOnly] private bool isOverlayActive;
 
     public GameObject prefab;
 
-    void Start()
+    private void Start()
     {
-        // Set up event handlers
-        input.BuildOverlayEvent += HandleBuildOverlay;
-
         buildOverlay.SetActive(false);
     }
 
     // -------------------------------------------------------------------
-    // Event handlers
 
-    private void HandleBuildOverlay()
+    void OnEnable()
+    {
+        // Subscribe to events
+        inputReader.PlayerBuildOverlay += OnPlayerBuildOverlay;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from events
+        inputReader.PlayerBuildOverlay -= OnPlayerBuildOverlay;
+    }
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    private void OnPlayerBuildOverlay()
     {
         isOverlayActive = !isOverlayActive;
         buildOverlay.SetActive(isOverlayActive);

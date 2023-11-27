@@ -5,7 +5,7 @@ using Cinemachine;
 public class ContextEngine : MonoBehaviour
 {
     // Input
-    [SerializeField] private InputReader input;
+    [SerializeField] private InputReader inputReader;
 
     // Objects
     [SerializeField] private GameObject playerObject;
@@ -18,46 +18,40 @@ public class ContextEngine : MonoBehaviour
     [SerializeField, ReadOnly] private CinemachineVirtualCamera currentCamera;
     [SerializeField, ReadOnly] private float cameraRotationSpeed = 2.5f;
 
-    public enum ControlState
-    {
-        Player,
-        Satellite
-    }
-
-    [SerializeField][ReadOnly] private ControlState currentControlState;
-
     private void Start()
     {
-        // Set up event handlers
-        input.SwitchContextEvent += HandleSwitchContext;
-
-        SetControlState(ControlState.Player);
-    }
-
-    // -------------------------------------------------------------------
-    // Event handlers
-
-    private void HandleSwitchContext()
-    {
-        ControlState desiredState = (currentControlState == ControlState.Player) ? ControlState.Satellite : ControlState.Player;
-        SetControlState(desiredState);
+        currentCamera = playerCamera;
+        currentObject = playerObject;
     }
 
     // -------------------------------------------------------------------
 
-    public void SetControlState(ControlState state)
+    private void OnEnable()
     {
-        if (state == ControlState.Player)
+        // Subscribe to events
+        inputReader.SwitchControlState += OnSwitchControlState;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from events
+        inputReader.SwitchControlState -= OnSwitchControlState;
+    }
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    private void OnSwitchControlState(InputReader.ControlState currentControlState)
+    {
+        if (currentControlState == InputReader.ControlState.Player)
         {
-            currentControlState = ControlState.Player;
             playerCamera.Priority = 100;
             satelliteCamera.Priority = 0;
             currentCamera = playerCamera;
             currentObject = playerObject;
         }
-        else if (state == ControlState.Satellite)
+        else if (currentControlState == InputReader.ControlState.Satellite)
         {
-            currentControlState = ControlState.Satellite;
             playerCamera.Priority = 0;
             satelliteCamera.Priority = 100;
             currentCamera = satelliteCamera;
@@ -65,14 +59,19 @@ public class ContextEngine : MonoBehaviour
         }
     }
 
+    // -------------------------------------------------------------------
+
     // Physics calculations, ridigbody movement, collision detection
     private void FixedUpdate()
     {
-        Quaternion currentRotation = currentCamera.transform.rotation;
-        Quaternion targetRotation = currentObject.transform.rotation;
-        Quaternion smoothRotation = Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
+        if (currentCamera != null && currentObject != null)
+        {
+            Quaternion currentRotation = currentCamera.transform.rotation;
+            Quaternion targetRotation = currentObject.transform.rotation;
+            Quaternion smoothRotation = Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
 
-        // Apply the smooth rotation to the camera
-        currentCamera.transform.rotation = smoothRotation;
+            // Apply the smooth rotation to the camera
+            currentCamera.transform.rotation = smoothRotation;
+        }
     }
 }

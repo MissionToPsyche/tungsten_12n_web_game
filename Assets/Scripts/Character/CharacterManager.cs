@@ -10,7 +10,7 @@ public class CharacterManager : MonoBehaviour
     public CharacterDatabase characterDatabase;
     public TextMeshProUGUI nameText; 
     public SpriteRenderer artworkSprite; 
-    private int selection = 0; 
+    private int selection = 0;
 
 
     // Start is called before the first frame update

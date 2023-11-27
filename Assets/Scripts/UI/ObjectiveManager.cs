@@ -12,7 +12,7 @@ using System.Linq;
 public class ObjectiveManager : MonoBehaviour
 {
     // Input
-    [SerializeField] private InputReader input;
+    [SerializeField] private InputReader inputReader;
 
     [SerializeField] GameObject objectiveOverlay;
     [SerializeField, ReadOnly] private bool isOverlayActive;
@@ -25,17 +25,14 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField, ReadOnly] private string currentObjective;
     [SerializeField, ReadOnly] private int index; 
 
-    void Start() 
+    private void Start()
     {
-        // Set up event handlers
-        input.ObjectiveOverlayEvent += HandleObjectiveOverlay;
-
-        gameObject.AddComponent<SetupCommunicationModule>(); 
+        gameObject.AddComponent<SetupCommunicationModule>();
         gameObject.AddComponent<SetupHabitatModule>();
         gameObject.AddComponent<SetupDriller>();
         gameObject.AddComponent<SetupMiner>();
         gameObject.AddComponent<SetupRefiner>();
-        gameObject.AddComponent<DiscoveredLocations>(); 
+        gameObject.AddComponent<DiscoveredLocations>();
         gameObject.AddComponent<CollectResources>();
         objectives = new Objective[7];
         objectives[0] = gameObject.GetComponent<SetupCommunicationModule>();
@@ -44,16 +41,30 @@ public class ObjectiveManager : MonoBehaviour
         objectives[3] = gameObject.GetComponent<SetupMiner>();
         objectives[4] = gameObject.GetComponent<SetupRefiner>();
         objectives[5] = gameObject.GetComponent<DiscoveredLocations>();
-        objectives[6] = gameObject.GetComponent<CollectResources>(); 
+        objectives[6] = gameObject.GetComponent<CollectResources>();
         index = 0;
 
         objectiveOverlay.SetActive(false);
     }
 
     // -------------------------------------------------------------------
-    // Event handlers
 
-    private void HandleObjectiveOverlay()
+    void OnEnable() 
+    {
+        // Subscribe to events
+        inputReader.PlayerObjectiveOverlay += OnPlayerObjectiveOverlay;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from events
+        inputReader.PlayerObjectiveOverlay -= OnPlayerObjectiveOverlay;
+    }
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    private void OnPlayerObjectiveOverlay()
     {
         isOverlayActive = !isOverlayActive;
         objectiveOverlay.SetActive(isOverlayActive);

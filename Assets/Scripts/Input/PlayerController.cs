@@ -3,6 +3,9 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Input
+    [SerializeField] private InputReader inputReader;
+
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField, ReadOnly] private float groundCheckRadius = 0.3f;
@@ -12,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GravityBody2D gravityBody;
 
     // Movement
-    [SerializeField] private InputReader input;
     private float sprintingSpeed = 10f;
     private float walkingSpeed = 7.5f;
     private float strafingSpeed = 5f;
@@ -49,17 +51,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // Set up event handlers
-        input.MoveEvent += HandleMove;
-        input.SprintEvent += HandleSprint;
-        input.SprintCancelledEvent += HandleSprintCancelled;
-        input.JumpEvent += HandleJump;
-        input.JumpCancelledEvent += HandleJumpCancelled;
-        input.CrouchEvent += HandleCrouch;
-        input.CrouchCancelledEvent += HandleCrouchCancelled;
-        input.InteractEvent += HandleInteract;
-        input.InteractCancelledEvent += HandleInteractCancelled;
-
         if (!PlayerPrefs.HasKey("selectedOption"))
         {
             selection = 0;
@@ -84,9 +75,39 @@ public class PlayerController : MonoBehaviour
     }
 
     // -------------------------------------------------------------------
-    // Event handlers
 
-    private void HandleMove(Vector2 direction)
+    private void OnEnable()
+    {
+        // Subscribe to events
+        inputReader.PlayerMove += OnPlayerMove;
+        inputReader.PlayerSprint += OnPlayerSprint;
+        inputReader.PlayerSprintCancelled += OnPlayerSprintCancelled;
+        inputReader.PlayerJump += OnPlayerJump;
+        inputReader.PlayerJumpCancelled += OnPlayerJumpCancelled;
+        inputReader.PlayerCrouch += OnPlayerCrouch;
+        inputReader.PlayerCrouchCancelled += OnPlayerCrouchCancelled;
+        inputReader.PlayerInteract += OnPlayerInteract;
+        inputReader.PlayerInteractCancelled += OnPlayerInteractCancelled;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from events
+        inputReader.PlayerMove -= OnPlayerMove;
+        inputReader.PlayerSprint -= OnPlayerSprint;
+        inputReader.PlayerSprintCancelled -= OnPlayerSprintCancelled;
+        inputReader.PlayerJump -= OnPlayerJump;
+        inputReader.PlayerJumpCancelled -= OnPlayerJumpCancelled;
+        inputReader.PlayerCrouch -= OnPlayerCrouch;
+        inputReader.PlayerCrouchCancelled -= OnPlayerCrouchCancelled;
+        inputReader.PlayerInteract -= OnPlayerInteract;
+        inputReader.PlayerInteractCancelled -= OnPlayerInteractCancelled;
+    }
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    private void OnPlayerMove(Vector2 direction)
     {
         horizontalInput = direction.x;
         isIdle = horizontalInput == 0;
@@ -113,7 +134,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleSprint()
+    private void OnPlayerSprint()
     {
         canSprint = true;
 
@@ -124,14 +145,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleSprintCancelled()
+    private void OnPlayerSprintCancelled()
     {
         canSprint = false;
         isSprinting = false;
         UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
     }
 
-    private void HandleJump()
+    private void OnPlayerJump()
     {
         if (isGrounded)
         {
@@ -140,13 +161,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleJumpCancelled()
+    private void OnPlayerJumpCancelled()
     {
         isJumping = false;
         UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
     }
 
-    private void HandleCrouch()
+    private void OnPlayerCrouch()
     {
         if (isGrounded)
         {
@@ -155,27 +176,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleCrouchCancelled()
+    private void OnPlayerCrouchCancelled()
     {
         isCrouching = false;
         UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
     }
 
 
-    private void HandleInteract()
+    private void OnPlayerInteract()
     {
         if (currentState != PlayerState.Idle) return;
 
         UpdatePlayerState(PlayerState.Interacting);
     }
 
-    private void HandleInteractCancelled()
+    private void OnPlayerInteractCancelled()
     {
         if (currentState == PlayerState.Interacting)
         {
             UpdatePlayerState(PlayerState.Idle);
         }
     }
+
     // -------------------------------------------------------------------
 
     private void UpdatePlayerState(PlayerState newState)

@@ -2,11 +2,143 @@
     "name": "InputSystem",
     "maps": [
         {
+            "name": "Gameplay",
+            "id": "e9b589d1-a5cc-4ba8-9251-63e9f8332707",
+            "actions": [
+                {
+                    "name": "SwitchControlState",
+                    "type": "Button",
+                    "id": "8aa0126f-bb95-482f-b0b0-96315ee6c072",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "794299d1-56ea-488d-ba1a-8f23517d87e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ZoomIn",
+                    "type": "Value",
+                    "id": "1dee4c8e-9e61-476d-9900-9dae4036e9e0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ZoomOut",
+                    "type": "Value",
+                    "id": "13c0b36b-db91-404f-9717-dcd0e5a4234e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "50febe85-c71c-4f6d-b15d-252f55750782",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchControlState",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "847ac409-3391-40c7-bc06-e24b58a66561",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchControlState",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a1662d2-b689-4210-9f7f-d14e86343885",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05bced67-0580-4341-b4bb-4c88fee0fe69",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd35ca22-2737-4b72-8e1a-f8722d91c62a",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "Invert",
+                    "groups": "",
+                    "action": "ZoomIn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a518f90-0c3d-4c94-b363-602803be068d",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "Invert",
+                    "groups": "",
+                    "action": "ZoomIn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d014f1d-fe42-42d2-a3c9-c0cb3a917d5e",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0173bcf5-d732-4413-80d0-ff6716fdaee2",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Player",
             "id": "597606c8-3d4b-42b2-bda1-5b323bb426d0",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "PlayerMove",
                     "type": "Value",
                     "id": "46d3b28f-5056-41e5-a1cf-401f0b9f8f27",
                     "expectedControlType": "",
@@ -15,7 +147,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Sprint",
+                    "name": "PlayerSprint",
                     "type": "Button",
                     "id": "a4a54349-275f-40c8-a9c2-277df1fafe09",
                     "expectedControlType": "Button",
@@ -24,7 +156,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
+                    "name": "PlayerJump",
                     "type": "Button",
                     "id": "7f5802cc-2cf8-4f2e-b889-1fa888d587dc",
                     "expectedControlType": "Button",
@@ -33,7 +165,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Crouch",
+                    "name": "PlayerCrouch",
                     "type": "Button",
                     "id": "3d2226d7-29b4-4da8-b13b-876fb8eccc62",
                     "expectedControlType": "Button",
@@ -42,7 +174,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "PlayerInteract",
                     "type": "Button",
                     "id": "ad7d73ad-0f15-4593-9161-4383182cb274",
                     "expectedControlType": "Button",
@@ -51,7 +183,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BuildOverlay",
+                    "name": "PlayerBuildOverlay",
                     "type": "Button",
                     "id": "e4df92d7-b739-41dd-afa3-675ac9711219",
                     "expectedControlType": "Button",
@@ -60,7 +192,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InventoryOverlay",
+                    "name": "PlayerInventoryOverlay",
                     "type": "Button",
                     "id": "f1d370a2-bd6f-4e67-9dbb-03c8a544ccf0",
                     "expectedControlType": "Button",
@@ -69,27 +201,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ObjectiveOverlay",
+                    "name": "PlayerObjectiveOverlay",
                     "type": "Button",
                     "id": "d4369218-3c36-46e3-98ce-4db59f7bdeef",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwitchContext",
-                    "type": "Button",
-                    "id": "b802e976-ac25-47f2-b462-a281dc43eadd",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "2c7ecb66-fa73-4228-a9e1-57a4554e2d9b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -98,13 +212,13 @@
             ],
             "bindings": [
                 {
-                    "name": "AD",
+                    "name": "WASD",
                     "id": "122f1c76-507c-4605-89c1-9c34aedf3964",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -115,7 +229,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -126,7 +240,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -137,7 +251,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -148,7 +262,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -159,7 +273,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -170,7 +284,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -181,7 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -192,7 +306,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -203,7 +317,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "PlayerMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -214,7 +328,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "PlayerJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -225,7 +339,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "PlayerJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -236,7 +350,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Crouch",
+                    "action": "PlayerCrouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -247,7 +361,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Crouch",
+                    "action": "PlayerCrouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -258,7 +372,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "PlayerInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -269,7 +383,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "PlayerInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -280,7 +394,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ObjectiveOverlay",
+                    "action": "PlayerObjectiveOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -291,51 +405,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ObjectiveOverlay",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9e30a96b-7838-4d3a-99ca-05c5d719446a",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "910100f0-36a1-4f10-b68d-65133fd6f35d",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0ea61509-7cae-4f2d-97b8-b602e8f8c46b",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchContext",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e980663d-3242-4917-a482-3c185917491d",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchContext",
+                    "action": "PlayerObjectiveOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -346,7 +416,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BuildOverlay",
+                    "action": "PlayerBuildOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -357,7 +427,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BuildOverlay",
+                    "action": "PlayerBuildOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -368,7 +438,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryOverlay",
+                    "action": "PlayerInventoryOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -379,7 +449,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryOverlay",
+                    "action": "PlayerInventoryOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -390,7 +460,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sprint",
+                    "action": "PlayerSprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -401,7 +471,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sprint",
+                    "action": "PlayerSprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -412,7 +482,7 @@
             "id": "0eda7410-4158-4a3b-a247-ef641bf86758",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "SatelliteMove",
                     "type": "Value",
                     "id": "90e5e924-7ba2-49a3-b5a4-791a82a70f0f",
                     "expectedControlType": "",
@@ -421,27 +491,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
+                    "name": "SatelliteScan",
                     "type": "Button",
                     "id": "9a4176a6-907b-411d-80e1-cfa8891b6d42",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "be8f1af5-bf33-4d9b-8c9c-27a119eac11e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwitchContext",
-                    "type": "Button",
-                    "id": "c7c18b1a-1348-40af-a1d5-74e19f1787bb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -456,7 +508,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SatelliteMove",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -467,7 +519,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SatelliteMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -478,7 +530,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SatelliteMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -489,7 +541,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SatelliteMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -500,7 +552,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SatelliteMove",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -511,7 +563,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "SatelliteMove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -522,7 +574,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "SatelliteScan",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -533,51 +585,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "92716b31-fd31-40bf-b8ab-a76f9b0b9a74",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2dcc1f2f-5023-4fee-bdf2-96bcb3189a3c",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7c619bc5-6a5e-461d-9a13-7e26837f0a9b",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchContext",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5963ac8c-e2a2-46a3-b56e-e15141d57cd7",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchContext",
+                    "action": "SatelliteScan",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -588,7 +596,7 @@
             "id": "56f7490e-17e1-423e-a893-c02cfbd74d78",
             "actions": [
                 {
-                    "name": "Resume",
+                    "name": "ResumeGame",
                     "type": "Button",
                     "id": "601bccd5-e0b7-4b2c-8165-766785c7dca0",
                     "expectedControlType": "Button",
@@ -605,7 +613,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Resume",
+                    "action": "ResumeGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -616,7 +624,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Resume",
+                    "action": "ResumeGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
