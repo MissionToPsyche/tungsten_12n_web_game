@@ -5,8 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class GravityBody2D : MonoBehaviour
 {
-    private const float GravityForce = 800;
-    [SerializeField] bool gravityForce;
+    [SerializeField, ReadOnly] private const float GRAVITY_FORCE = 500;
+    [SerializeField] private bool gravityApplied;
+
+    [SerializeField] private LayerMask groundLayer;
+    private float maxGravityDistance = 10f;
+    private float minRotationSpeed = 1f;
+    private float maxRotationSpeed = 5f;
+    [SerializeField, ReadOnly] private float currentRotationSpeed = 0f;
+
     public Vector2 GravityDirection
     {
         get
@@ -17,26 +24,41 @@ public class GravityBody2D : MonoBehaviour
         }
     }
 
-    private Rigidbody2D objectBody2D;
+    private Rigidbody2D rigidBody2D;
     private List<GravityArea2D> gravityAreas;
 
     private void Start()
     {
-        objectBody2D = GetComponent<Rigidbody2D>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
         gravityAreas = new List<GravityArea2D>();
+    }
+
+    private float GetDistanceToGround()
+    {
+        Vector2 rayDirection = GravityDirection;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, GravityDirection, maxGravityDistance, groundLayer);
+
+        // Draw Raycast for debugging
+        Debug.DrawRay(transform.position, rayDirection * maxGravityDistance, Color.red);
+
+        if (hit.collider != null)
+        {
+            return hit.distance;
+        }
+        return maxGravityDistance; // Return max distance if no ground is detected
     }
 
     private void FixedUpdate()
     {
-        //some objects that use this script dont want a force to be applied, IE dragging entity
-        if (gravityForce == true)
-            objectBody2D.AddForce(GravityDirection * (GravityForce * Time.fixedDeltaTime), ForceMode2D.Force);
+        if (gravityApplied)
+            rigidBody2D.AddForce(GravityDirection * (GRAVITY_FORCE * Time.fixedDeltaTime), ForceMode2D.Force);
 
-        float rotationAngle = Vector2.SignedAngle(transform.up, -GravityDirection);
-        float newRotation = Mathf.LerpAngle(objectBody2D.rotation, objectBody2D.rotation + rotationAngle, Time.fixedDeltaTime * 3f);
+        float distanceToGround = GetDistanceToGround();
+        currentRotationSpeed = Mathf.Lerp(maxRotationSpeed, minRotationSpeed, distanceToGround / maxGravityDistance);
 
-        if (gravityForce == true)
-            objectBody2D.MoveRotation(newRotation);
+        float targetAngle = Mathf.Atan2(GravityDirection.y, GravityDirection.x) * Mathf.Rad2Deg + 90;
+        float smoothedAngle = Mathf.LerpAngle(rigidBody2D.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
+        rigidBody2D.rotation = smoothedAngle;
     }
 
     public delegate void GravityAreaChangeHandler(GravityArea2D gravityArea);
@@ -52,6 +74,8 @@ public class GravityBody2D : MonoBehaviour
 
     public void RemoveGravityArea(GravityArea2D gravityArea)
     {
+        // gravityAreas.Remove(gravityArea); // disable to prevent player from free-floating in space
+
         if (gravityAreas.Count == 0)
         {
             OnExitGravityArea?.Invoke(gravityArea);

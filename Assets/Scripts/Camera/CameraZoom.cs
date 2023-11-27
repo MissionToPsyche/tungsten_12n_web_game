@@ -3,6 +3,9 @@ using Cinemachine;
 
 public class CameraZoom : MonoBehaviour
 {
+    // Input
+    [SerializeField] private InputReader inputReader;
+
     public CinemachineVirtualCamera playerCamera;
     public CinemachineVirtualCamera satelliteCamera;
     private CinemachineVirtualCamera activeCamera;
@@ -19,6 +22,45 @@ public class CameraZoom : MonoBehaviour
         SetInitialZoomLevel(10f); // Starting zoom level
         SetInitialZoomLevel(targetZoom);
     }
+
+    // -------------------------------------------------------------------
+
+    private void OnEnable()
+    {
+        // Subscribe to events
+        inputReader.ZoomIn += OnZoomIn;
+        inputReader.ZoomOut += OnZoomOut;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from events
+        inputReader.ZoomIn -= OnZoomIn;
+        inputReader.ZoomOut -= OnZoomOut;
+    }
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    private void OnZoomIn(float value)
+    {
+        // Debug.Log($"OnZoomIn called with value: {value}");
+        // if (value > 0)
+        // {
+        //     Zoom(-zoomIncrement);
+        // }
+    }
+
+    private void OnZoomOut(float value)
+    {
+        // Debug.Log($"OnZoomOut called with value: {value}");
+        // if (value < 0)
+        // {
+        //     Zoom(zoomIncrement);
+        // }
+    }
+
+    // -------------------------------------------------------------------
 
     public void UpdateActiveCamera(CinemachineVirtualCamera camera)
     {

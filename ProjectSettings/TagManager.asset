@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Asteroid
-  - Spaceship
-  - Background
-  - ContextEngine
-  - AsteroidSurface
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -19,7 +14,7 @@ TagManager:
   - Player
   - Asteroid
   - Resource
-  - 
+  - Background
   - 
   - 
   - 

@@ -15,7 +15,7 @@ public class CharacterDatabase : ScriptableObject
         }
     }
 
-    public Character GetCharacter(int index)
+    public Character GetSelectedCharacter(int index)
     {
         return character[index];
     }

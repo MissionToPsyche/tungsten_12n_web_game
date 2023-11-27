@@ -1,94 +1,77 @@
 using System.Collections;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.InputSystem;
 
 public class ContextEngine : MonoBehaviour
 {
-    // Singleton instance for easy access throughout the project.
-    public static ContextEngine Instance { get; private set; }
+    // Input
+    [SerializeField] private InputReader inputReader;
 
-    // InputActionAsset reference to access Action Maps.
-    public InputActionAsset inputActions;
-    private InputActionMap playerActionMap;
-    private InputActionMap spaceshipActionMap;
+    // Objects
+    [SerializeField] private GameObject playerObject;
+    [SerializeField] private GameObject satelliteObject;
+    [SerializeField, ReadOnly] private GameObject currentObject;
 
-    // Enumeration to determine the current control context - Player or Spaceship.
-    public enum ControlState
-    {
-        Player,
-        Spaceship
-    }
-
-    // References to other controllers and objects for context switching.
-    public PlayerController playerController;
-    //public SpaceshipController spaceshipController;
-    public Transform asteroid; // The current asteroid the player/spaceship interacts with.
-    public ControlState currentControlState = ControlState.Spaceship;
-
-    // Event to notify other scripts about a change in control context.
-    public delegate void ContextChangedHandler(ControlState newState);
-    public event ContextChangedHandler OnContextChanged;
-
-    private void Awake()
-    {
-        // Ensure only one instance of this script exists throughout the game.
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // Set this as the singleton instance and ensure it persists between scenes.
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        // Initialize Action Maps.
-        playerActionMap = inputActions.FindActionMap("Player");
-        spaceshipActionMap = inputActions.FindActionMap("Spaceship");
-    }
+    // Camera
+    [SerializeField] private CinemachineVirtualCamera playerCamera;
+    [SerializeField] private CinemachineVirtualCamera satelliteCamera;
+    [SerializeField, ReadOnly] private CinemachineVirtualCamera currentCamera;
+    [SerializeField, ReadOnly] private float cameraRotationSpeed = 2.5f;
 
     private void Start()
     {
-        // Initialize the game with the Player as the default control context.
-        SetControlState(ControlState.Player);
+        currentCamera = playerCamera;
+        currentObject = playerObject;
     }
 
-    private void Update()
+    // -------------------------------------------------------------------
+
+    private void OnEnable()
     {
-        // Toggle between Player and Spaceship control context when the Tab key is pressed.
-        if (Input.GetKeyDown(KeyCode.Tab))
+        // Subscribe to events
+        inputReader.SwitchControlState += OnSwitchControlState;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from events
+        inputReader.SwitchControlState -= OnSwitchControlState;
+    }
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    private void OnSwitchControlState(InputReader.ControlState currentControlState)
+    {
+        if (currentControlState == InputReader.ControlState.Player)
         {
-            ControlState desiredState = (currentControlState == ControlState.Player) ? ControlState.Spaceship : ControlState.Player;
-            SetControlState(desiredState);
+            playerCamera.Priority = 100;
+            satelliteCamera.Priority = 0;
+            currentCamera = playerCamera;
+            currentObject = playerObject;
+        }
+        else if (currentControlState == InputReader.ControlState.Satellite)
+        {
+            playerCamera.Priority = 0;
+            satelliteCamera.Priority = 100;
+            currentCamera = satelliteCamera;
+            currentObject = satelliteObject;
         }
     }
 
-    /// <summary>
-    /// Set the current control context to either Player or Spaceship.
-    /// </summary>
-    public void SetControlState(ControlState state)
+    // -------------------------------------------------------------------
+
+    // Physics calculations, ridigbody movement, collision detection
+    private void FixedUpdate()
     {
-        if (state == ControlState.Player)
+        if (currentCamera != null && currentObject != null)
         {
-            currentControlState = ControlState.Player;
-            playerController.EnableController();
-            //spaceshipController.DisableController();
+            Quaternion currentRotation = currentCamera.transform.rotation;
+            Quaternion targetRotation = currentObject.transform.rotation;
+            Quaternion smoothRotation = Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
 
-            playerActionMap.Enable();
-            spaceshipActionMap.Disable();
+            // Apply the smooth rotation to the camera
+            currentCamera.transform.rotation = smoothRotation;
         }
-        else if (state == ControlState.Spaceship)
-        {
-            currentControlState = ControlState.Spaceship;
-            //spaceshipController.EnableController();
-            playerController.DisableController();
-
-            spaceshipActionMap.Enable();
-            playerActionMap.Disable();
-        }
-
-        // Notify listeners about the context change.
-        OnContextChanged?.Invoke(currentControlState);
     }
 }
