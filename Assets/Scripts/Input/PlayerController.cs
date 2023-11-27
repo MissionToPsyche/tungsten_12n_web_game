@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
-    [SerializeField, ReadOnly] private float groundCheckRadius = 1f;
+    [SerializeField, ReadOnly] private float groundCheckRadius = 0.3f;
 
     // Objects
     [SerializeField] private Rigidbody2D playerBody;
@@ -20,8 +20,9 @@ public class PlayerController : MonoBehaviour
     private float idleSpeed = 0f;
     [SerializeField, ReadOnly] private float currentSpeed;
 
-    [SerializeField, ReadOnly] private float jumpForce = 4f;
-    [SerializeField, ReadOnly] private float moveDirection = 0f;
+    [SerializeField] private float jumpForce = 1f;
+    [SerializeField, ReadOnly] private float horizontalInput = 0f;
+    // [SerializeField, ReadOnly] private float verticalInput = 0f;
 
     private bool isIdle = false;
     private bool isSprinting = false;
@@ -46,9 +47,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField, ReadOnly] private int selection = 0;
 
-    private float groundedRotationSpeed = 90f;
-    private float airborneRotationSpeed = 2f;
-
     private void Start()
     {
         // Set up event handlers
@@ -69,7 +67,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            GetSelectedCharacter();
+            selection = PlayerPrefs.GetInt("selectedOption");
             switch (selection)
             {
                 case 0:
@@ -88,10 +86,10 @@ public class PlayerController : MonoBehaviour
     // -------------------------------------------------------------------
     // Event handlers
 
-    private void HandleMove(float direction)
+    private void HandleMove(Vector2 direction)
     {
-        moveDirection = direction;
-        isIdle = direction == 0;
+        horizontalInput = direction.x;
+        isIdle = horizontalInput == 0;
 
         if (isIdle)
         {
@@ -253,13 +251,14 @@ public class PlayerController : MonoBehaviour
                 currentSpeed = sprintingSpeed;
                 break;
         }
-        
-        playerBody.velocity = new Vector2(moveDirection * currentSpeed, playerBody.velocity.y);
 
-        // Vector2 direction = transform.right * moveDirection;
-        // playerBody.MovePosition(playerBody.position + direction * (currentSpeed * Time.fixedDeltaTime));
+        // Calculate the movement direction based on the player's current orientation and input
+        Vector2 direction = transform.right * horizontalInput;
+        // Calculate the actual movement amount
+        Vector2 movement = direction * (currentSpeed * Time.fixedDeltaTime);
+        // Move the player's rigidbody
+        playerBody.position += movement;
     }
-
 
     private void Jump()
     {
@@ -267,18 +266,15 @@ public class PlayerController : MonoBehaviour
 
         if (currentState == PlayerState.Jumping)
         {
-            Vector2 jumpDirection = transform.right * moveDirection + transform.up;
-            playerBody.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+            playerBody.AddForce(-gravityBody.GravityDirection * jumpForce, ForceMode2D.Impulse);
         }
-
-        // else if (canDoubleJump)
-        // {
-        //     // Double jump
-        //     Vector2 jumpDirection = -gravityBody.GravityDirection;
-        //     playerBody.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
-        //     animator.SetTrigger("Jump-Press");
-        //     canDoubleJump = false;
-        // }
+        else if (canDoubleJump)
+        {
+            // // Double jump
+            // playerBody.AddForce(-gravityBody.GravityDirection * jumpForce, ForceMode2D.Impulse);
+            // animator.SetTrigger("Jump-Press");
+            // canDoubleJump = false;
+        }
     }
 
     private void Crouch()
@@ -314,28 +310,21 @@ public class PlayerController : MonoBehaviour
         Jump();
         Crouch();
         Interact();
-
-        // Rotation logic based on gravity direction
-        float targetAngle = Mathf.Atan2(gravityBody.GravityDirection.y, gravityBody.GravityDirection.x) * Mathf.Rad2Deg + 90;
-        float currentRotationSpeed = isGrounded ? groundedRotationSpeed : airborneRotationSpeed;
-        float smoothedAngle = Mathf.LerpAngle(playerBody.rotation, targetAngle, currentRotationSpeed * Time.fixedDeltaTime);
-
-        playerBody.rotation = smoothedAngle;
     }
 
     private void UpdateAnimations()
     {
-        if (!isFacingRight && moveDirection > 0f)
+        if (!isFacingRight && horizontalInput > 0f)
         {
             Flip();
         }
-        else if (isFacingRight && moveDirection < 0f)
+        else if (isFacingRight && horizontalInput < 0f)
         {
             Flip();
         }
 
         animator.SetBool("isFacingRight", isFacingRight);
-        animator.SetFloat("Horizontal", moveDirection);
+        animator.SetFloat("Horizontal", horizontalInput);
         animator.SetBool("isGrounded", isGrounded);
     }
 
@@ -353,10 +342,5 @@ public class PlayerController : MonoBehaviour
     {
         Character character = characterDatabase.GetSelectedCharacter(selection);
         spriteRenderer.sprite = character.characterSprite;
-    }
-
-    private void GetSelectedCharacter()
-    {
-        selection = PlayerPrefs.GetInt("selectedOption");
     }
 }

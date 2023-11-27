@@ -16,7 +16,7 @@ public class ContextEngine : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private CinemachineVirtualCamera satelliteCamera;
     [SerializeField, ReadOnly] private CinemachineVirtualCamera currentCamera;
-    [SerializeField, ReadOnly] private float cameraRotationSpeed = 90f;
+    [SerializeField, ReadOnly] private float cameraRotationSpeed = 2.5f;
 
     public enum ControlState
     {
@@ -68,10 +68,11 @@ public class ContextEngine : MonoBehaviour
     // Physics calculations, ridigbody movement, collision detection
     private void FixedUpdate()
     {
-        // Follow the current virtual camera
         Quaternion currentRotation = currentCamera.transform.rotation;
         Quaternion targetRotation = currentObject.transform.rotation;
+        Quaternion smoothRotation = Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
 
-        currentCamera.transform.rotation = targetRotation; //Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.fixedDeltaTime);
+        // Apply the smooth rotation to the camera
+        currentCamera.transform.rotation = smoothRotation;
     }
 }

@@ -252,7 +252,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &13107448
 Rigidbody2D:
   serializedVersion: 4
@@ -486,7 +486,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &78490902
 Rigidbody2D:
   serializedVersion: 4
@@ -648,7 +648,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &113853199
 Rigidbody2D:
   serializedVersion: 4
@@ -891,7 +891,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &130051507
 Rigidbody2D:
   serializedVersion: 4
@@ -1053,7 +1053,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &158883400
 Rigidbody2D:
   serializedVersion: 4
@@ -1372,7 +1372,7 @@ Transform:
   m_GameObject: {fileID: 226683958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -259.5, y: 280.3, z: 0}
+  m_LocalPosition: {x: -279.1, y: 288, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1922,7 +1922,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &464922636
 Rigidbody2D:
   serializedVersion: 4
@@ -2523,7 +2523,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -258.29, y: 320.06, z: -10}
+  m_LocalPosition: {x: -259.16, y: 321.37, z: -10}
   m_LocalScale: {x: 3.75, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2617,7 +2617,7 @@ Transform:
   m_GameObject: {fileID: 525358971}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -289.9, y: 332.69998, z: 0.35079843}
+  m_LocalPosition: {x: -271.14, y: 322.28, z: 0.35079843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2967,7 +2967,7 @@ Transform:
   m_GameObject: {fileID: 546839580}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -258.29, y: 320.06, z: -10}
+  m_LocalPosition: {x: -259.16, y: 321.37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3171,7 +3171,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &555145232
 Rigidbody2D:
   serializedVersion: 4
@@ -3414,7 +3414,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &605567324
 Rigidbody2D:
   serializedVersion: 4
@@ -4339,7 +4339,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &834247598
 Rigidbody2D:
   serializedVersion: 4
@@ -4583,7 +4583,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2.5}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -4598,9 +4598,9 @@ Transform:
   m_GameObject: {fileID: 911276410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -258.29, y: 320.06, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.4293015, z: 0}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: -259.16, y: 321.37, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1870327768}
   m_Father: {fileID: 0}
@@ -4652,7 +4652,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &911276431
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4685,8 +4685,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7}
-  m_Size: {x: 1, y: 1.5}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.25, y: 1.5}
   m_Direction: 0
 --- !u!114 &911276432
 MonoBehaviour:
@@ -4700,7 +4700,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a30e2dfa7a4dd24caba69a57664a7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityForce: 1
+  gravityApplied: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  currentRotationSpeed: 0
 --- !u!114 &911276433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4721,20 +4725,14 @@ MonoBehaviour:
   playerBody: {fileID: 911276414}
   gravityBody: {fileID: 911276432}
   input: {fileID: 11400000, guid: 9dca135c79fee004ab7ac8b3f7ee53ec, type: 2}
-  walkingSpeed: 10
-  strafingSpeed: 5
-  crouchingSpeed: 2.5
   currentSpeed: 0
-  jumpSpeed: 4
-  moveDirection: 0
-  isMoving: 0
-  isFacingRight: 0
+  jumpForce: 3
+  horizontalInput: 0
   isGrounded: 0
-  isJumping: 0
+  canSprint: 0
   canDoubleJump: 0
-  isCrouching: 0
-  isFalling: 0
-  isInteracting: 0
+  isFacingRight: 0
+  currentState: 0
   animator: {fileID: 911276413}
   spriteRenderer: {fileID: 911276411}
   selection: 0
@@ -5271,7 +5269,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!114 &972182562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5438,7 +5436,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &1208179418
 Rigidbody2D:
   serializedVersion: 4
@@ -6127,7 +6125,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &1432494089
 Rigidbody2D:
   serializedVersion: 4
@@ -6289,7 +6287,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &1450284041
 Rigidbody2D:
   serializedVersion: 4
@@ -6410,7 +6408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070040534bf588748b5d221d3d0824e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityPrefab: {fileID: 0}
+  entityPrefab: {fileID: 525358971}
   cameraTransform: {fileID: 546839582}
   characterTransform: {fileID: 911276412}
   asteroid1: {fileID: 972182558}
@@ -6426,7 +6424,7 @@ Transform:
   m_GameObject: {fileID: 1495688851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -269.1642, y: 363.43393, z: 0.35079843}
+  m_LocalPosition: {x: -259.28, y: 322.51, z: 0.35079843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6583,7 +6581,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &1525405814
 Rigidbody2D:
   serializedVersion: 4
@@ -6726,7 +6724,7 @@ MonoBehaviour:
   playerCamera: {fileID: 546839581}
   satelliteCamera: {fileID: 1399560953}
   currentCamera: {fileID: 0}
-  cameraRotationSpeed: 2
+  cameraRotationSpeed: 90
   currentControlState: 0
 --- !u!1 &1704959951
 GameObject:
@@ -6963,7 +6961,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &1775143304
 Rigidbody2D:
   serializedVersion: 4
@@ -7347,7 +7345,7 @@ Transform:
   m_GameObject: {fileID: 1870327767}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7423,7 +7421,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &1897327671
 Rigidbody2D:
   serializedVersion: 4
@@ -7569,7 +7567,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &1914321043
 Rigidbody2D:
   serializedVersion: 4
@@ -7828,7 +7826,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 7.86
+  m_Radius: 7.8
 --- !u!50 &1927361945
 Rigidbody2D:
   serializedVersion: 4

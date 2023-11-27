@@ -35,7 +35,7 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
     }
 
     // Movement
-    public event Action<float> MoveEvent;
+    public event Action<Vector2> MoveEvent;
     public event Action SprintEvent;
     public event Action SprintCancelledEvent;
     public event Action JumpEvent;
@@ -57,7 +57,7 @@ public class InputReader : ScriptableObject, InputSystem.IPlayerActions, InputSy
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        MoveEvent?.Invoke(context.ReadValue<float>());
+        MoveEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnSprint(InputAction.CallbackContext context)
