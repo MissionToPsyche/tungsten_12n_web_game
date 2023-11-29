@@ -4737,7 +4737,7 @@ MonoBehaviour:
   playerBody: {fileID: 911276414}
   gravityBody: {fileID: 911276432}
   currentSpeed: 0
-  jumpForce: 3
+  jumpForce: 1.7
   horizontalInput: 0
   isGrounded: 0
   canSprint: 0

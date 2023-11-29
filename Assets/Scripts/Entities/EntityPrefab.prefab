@@ -188,7 +188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a30e2dfa7a4dd24caba69a57664a7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityForce: 0
+  gravityApplied: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  currentRotationSpeed: 0
 --- !u!114 &-8169795619258719561
 MonoBehaviour:
   m_ObjectHideFlags: 0

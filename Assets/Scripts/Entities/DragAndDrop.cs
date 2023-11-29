@@ -35,10 +35,10 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             //The length needs to be half of the size of the asteroid we are currently on
             RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.size.y / 2f), rayDirection, 20f, ResourceLayer);
 
-            float targetAngle = Mathf.Atan2(gravityBody.GravityDirection.y, gravityBody.GravityDirection.x) * Mathf.Rad2Deg + 90;
-            float smoothedAngle = Mathf.LerpAngle(objectBody2D.rotation, targetAngle, 180f * Time.fixedDeltaTime);
+            // float targetAngle = Mathf.Atan2(gravityBody.GravityDirection.y, gravityBody.GravityDirection.x) * Mathf.Rad2Deg + 90;
+            // float smoothedAngle = Mathf.LerpAngle(objectBody2D.rotation, targetAngle, 180f * Time.fixedDeltaTime);
 
-            objectBody2D.rotation = smoothedAngle;
+            //objectBody2D.rotation = smoothedAngle;
             if(isValidPos(hit)){
                 spriteRenderer.color = Color.green;
             }else{
