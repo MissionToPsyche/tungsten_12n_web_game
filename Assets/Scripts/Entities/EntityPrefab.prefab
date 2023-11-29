@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5149291494934147378}
   - component: {fileID: -2420542973938521454}
   - component: {fileID: -2952482920741327644}
+  - component: {fileID: -8169795619258719561}
   m_Layer: 7
   m_Name: EntityPrefab
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2578558429447656196}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -289.9, y: 332.69998, z: 0.35079843}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -188,3 +189,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityForce: 0
+--- !u!114 &-8169795619258719561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2578558429447656196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43d880886edc48fe9e5ba0c149b2c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mineSpeed: 5
+  textPrefabPlusOne: {fileID: 8680216331321866491, guid: 80ffff29a304143adb61d89a9b9518c0, type: 3}
+  textPrefabExclamation: {fileID: 4505113430269239087, guid: da0d7452910204e659bca99ca33f1030, type: 3}
+  currentExtractText: {fileID: 0}
+  isPlaced: 0

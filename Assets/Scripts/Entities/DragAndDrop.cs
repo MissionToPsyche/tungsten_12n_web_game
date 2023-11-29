@@ -15,11 +15,14 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     private GravityBody2D gravityBody;
     private bool dragging = false;
     private List<GravityArea2D> gravityAreas;
+    public delegate void placementEvent();
+    public static event placementEvent OnPlacementEvent;
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectBody2D = GetComponent<Rigidbody2D>();
         gravityBody = GetComponent<GravityBody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -54,6 +57,8 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     {
         if(spriteRenderer.color == Color.green){
             isPlaced = true;
+            //Lets Object know that it is placed in its final location, may start working
+            OnPlacementEvent?.Invoke();
             //Stops all possible movement
             objectBody2D.isKinematic = true;
             objectBody2D.bodyType = RigidbodyType2D.Static;
