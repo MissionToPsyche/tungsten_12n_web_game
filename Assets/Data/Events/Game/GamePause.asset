@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d4d9a6097324e345864a14cff49d7ba, type: 3}
-  m_Name: InputReader
+  m_Script: {fileID: 11500000, guid: aba0707742879b14dbfdd21ffe3f7940, type: 3}
+  m_Name: GamePause
   m_EditorClassIdentifier: 
-  PlayerJump: {fileID: 11400000, guid: 789fc49fa1fc10440b8c1006f5ab6a6d, type: 2}
-  PlayerSprint: {fileID: 11400000, guid: b01174c8f7e2456468aa3aaf697df93d, type: 2}
