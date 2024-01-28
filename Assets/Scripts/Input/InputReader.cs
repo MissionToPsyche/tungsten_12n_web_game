@@ -15,17 +15,10 @@ public class InputReader :
 {
     private InputSystem inputSystem;
 
-    public enum ControlState
-    {
-        Player,
-        Satellite,
-        UI
-    }
+    private Control.State lastControlState;
+    private Control.State currentControlState;
 
-    private ControlState lastControlState;
-
-    private ControlState currentControlState;
-    private Dictionary<ControlState, InputActionMap> stateToActionMap;
+    private Dictionary<Control.State, InputActionMap> stateToActionMap;
 
     private void OnEnable()
     {
@@ -38,17 +31,17 @@ public class InputReader :
             inputSystem.UI.SetCallbacks(this);
         }
 
-        stateToActionMap = new Dictionary<ControlState, InputActionMap>
+        stateToActionMap = new Dictionary<Control.State, InputActionMap>
         {
-            { ControlState.Player, inputSystem.Player },
-            { ControlState.Satellite, inputSystem.Satellite },
-            { ControlState.UI, inputSystem.UI }
+            { Control.State.Player, inputSystem.Player },
+            { Control.State.Satellite, inputSystem.Satellite },
+            { Control.State.UI, inputSystem.UI }
         };
 
-        SetControlState(ControlState.Player);
+        SetControlState(Control.State.Player);
     }
 
-    public void SetControlState(ControlState targetState)
+    public void SetControlState(Control.State targetState)
     {
         foreach (var state in stateToActionMap)
         {
@@ -63,7 +56,7 @@ public class InputReader :
         }
 
         // Directly control the state of the Gameplay action map depending on the UI context
-        if (targetState != ControlState.UI)
+        if (targetState != Control.State.UI)
         {
             inputSystem.Gameplay.Enable();
             // Debug.Log("Enabled action map: Gameplay");
@@ -81,33 +74,30 @@ public class InputReader :
 
     // -------------------------------------------------------------------
     // Define events
-    [Header("Events")]
+
+    // [Header("Gameplay Events")]
+    [SerializeField] private ControlStateEvent ControlStateUpdate;
+    [SerializeField] private VoidEvent ZoomIn;
+    [SerializeField] private VoidEvent ZoomOut;
+
+    [Header("Movement Events")]
+    [SerializeField] private Vector2Event PlayerMove;
     [SerializeField] private BoolEvent PlayerJump;
     [SerializeField] private BoolEvent PlayerSprint;
+    [SerializeField] private BoolEvent PlayerCrouch;
+    [SerializeField] private BoolEvent PlayerInteract;
 
-    // Gameplay
-    public event Action<ControlState> SwitchControlState;
-    public event Action PauseGame;
-    public event Action<float> ZoomIn;
-    public event Action<float> ZoomOut;
+    [SerializeField] private VoidEvent PlayerBuildOverlay;
+    [SerializeField] private VoidEvent PlayerInventoryOverlay;
+    [SerializeField] private VoidEvent PlayerObjectiveOverlay;
 
-    // Player
-    public event Action<Vector2> PlayerMove;
-    public event Action PlayerCrouch;
-    public event Action PlayerCrouchCancelled;
-    public event Action PlayerInteract;
-    public event Action PlayerInteractCancelled;
-    public event Action PlayerBuildOverlay;
-    public event Action PlayerInventoryOverlay;
-    public event Action PlayerObjectiveOverlay;
+    [Header("Satellite Events")]
+    [SerializeField] private Vector2Event SatelliteMove;
+    [SerializeField] private BoolEvent SatelliteScan;
 
-    // Satellite
-    public event Action<Vector2> SatelliteMove;
-    public event Action SatelliteScan;
-    public event Action SatelliteScanCancelled;
-
-    // UI
-    public event Action ResumeGame;
+    [Header("UI Events")]
+    [SerializeField] private VoidEvent GamePause;
+    [SerializeField] private VoidEvent GameResume;
 
     // -------------------------------------------------------------------
     // Gameplay action map
@@ -116,25 +106,25 @@ public class InputReader :
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            if (currentControlState == ControlState.Player)
+            if (currentControlState == Control.State.Player)
             {
-                SetControlState(ControlState.Satellite);
+                SetControlState(Control.State.Satellite);
             }
-            else if (currentControlState == ControlState.Satellite)
+            else if (currentControlState == Control.State.Satellite)
             {
-                SetControlState(ControlState.Player);
+                SetControlState(Control.State.Player);
             }
 
-            SwitchControlState?.Invoke(currentControlState);
+            ControlStateUpdate.Raise(currentControlState);
         }
     }
 
-    public void OnPauseGame(InputAction.CallbackContext context)
+    public void OnGamePause(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            SetControlState(ControlState.UI);
-            PauseGame?.Invoke();
+            SetControlState(Control.State.UI);
+            GamePause.Raise();
         }
     }
 
@@ -142,7 +132,7 @@ public class InputReader :
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            // ZoomIn?.Invoke(context.ReadValue<float>());
+            // ZoomIn.Raise();
         }
     }
 
@@ -150,7 +140,7 @@ public class InputReader :
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            // ZoomOut?.Invoke(context.ReadValue<float>());
+            // ZoomOut.Raise();
         }
     }
 
@@ -159,7 +149,7 @@ public class InputReader :
 
     public void OnPlayerMove(InputAction.CallbackContext context)
     {
-        PlayerMove?.Invoke(context.ReadValue<Vector2>());
+        PlayerMove.Raise(context.ReadValue<Vector2>());
     }
 
     public void OnPlayerSprint(InputAction.CallbackContext context)
@@ -190,11 +180,11 @@ public class InputReader :
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            PlayerCrouch?.Invoke();
+            PlayerCrouch.Raise(true);
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            PlayerCrouchCancelled?.Invoke();
+            PlayerCrouch.Raise(false);
         }
     }
 
@@ -202,27 +192,27 @@ public class InputReader :
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            PlayerInteract?.Invoke();
+            PlayerInteract.Raise(true);
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            PlayerInteractCancelled?.Invoke();
+            PlayerInteract.Raise(false);
         }
     }
 
     public void OnPlayerBuildOverlay(InputAction.CallbackContext context)
     {
-        PlayerBuildOverlay?.Invoke();
+        PlayerBuildOverlay.Raise();
     }
 
     public void OnPlayerInventoryOverlay(InputAction.CallbackContext context)
     {
-        PlayerInventoryOverlay?.Invoke();
+        PlayerInventoryOverlay.Raise();
     }
 
     public void OnPlayerObjectiveOverlay(InputAction.CallbackContext context)
     {
-        PlayerObjectiveOverlay?.Invoke();
+        PlayerObjectiveOverlay.Raise();
     }
 
     // -------------------------------------------------------------------
@@ -230,30 +220,30 @@ public class InputReader :
 
     public void OnSatelliteMove(InputAction.CallbackContext context)
     {
-        SatelliteMove?.Invoke(context.ReadValue<Vector2>());
+        SatelliteMove.Raise(context.ReadValue<Vector2>());
     }
 
     public void OnSatelliteScan(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            SatelliteScan?.Invoke();
+            SatelliteScan.Raise(true);
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            SatelliteScanCancelled?.Invoke();
+            SatelliteScan.Raise(false);
         }
     }
 
     // -------------------------------------------------------------------
     // UI action map
 
-    public void OnResumeGame(InputAction.CallbackContext context)
+    public void OnGameResume(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
             SetControlState(lastControlState);
-            ResumeGame?.Invoke();
+            GameResume.Raise();
         }
     }
 }

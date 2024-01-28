@@ -11,9 +11,6 @@ using System.Linq;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    // Input
-    [SerializeField] private InputReader inputReader;
-
     [SerializeField] GameObject objectiveOverlay;
     [SerializeField, ReadOnly] private bool isOverlayActive;
 
@@ -23,7 +20,7 @@ public class ObjectiveManager : MonoBehaviour
 
     [SerializeField, ReadOnly] private string currentObjectiveGUI;
     [SerializeField, ReadOnly] private string currentObjective;
-    [SerializeField, ReadOnly] private int index; 
+    [SerializeField, ReadOnly] private int index;
 
     private void Start()
     {
@@ -49,22 +46,20 @@ public class ObjectiveManager : MonoBehaviour
 
     // -------------------------------------------------------------------
 
-    void OnEnable() 
+    void OnEnable()
     {
-        // Subscribe to events
-        inputReader.PlayerObjectiveOverlay += OnPlayerObjectiveOverlay;
+
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from events
-        inputReader.PlayerObjectiveOverlay -= OnPlayerObjectiveOverlay;
+
     }
 
     // -------------------------------------------------------------------
     // Handle events
 
-    private void OnPlayerObjectiveOverlay()
+    public void OnPlayerObjectiveOverlay()
     {
         isOverlayActive = !isOverlayActive;
         objectiveOverlay.SetActive(isOverlayActive);
@@ -72,10 +67,10 @@ public class ObjectiveManager : MonoBehaviour
 
     // -------------------------------------------------------------------
 
-    void OnGUI() 
+    void OnGUI()
     {
-        currentObjectiveGUI = "";  
-        index=0; 
+        currentObjectiveGUI = "";
+        index=0;
 
         foreach (Objective objective in objectives) {
             currentObjective = String.Format("\nObjective {0} : {1}\n", index, objective.DrawHud());
@@ -90,30 +85,30 @@ public class ObjectiveManager : MonoBehaviour
     {
         foreach (Objective objective in objectives) {
             if (objective.IsAchieved()) {
-                objective.Progression(); 
+                objective.Progression();
                 Destroy(objective);
             }
         }
     }
 }
 
-public abstract class Objective : MonoBehaviour 
+public abstract class Objective : MonoBehaviour
 {
     public abstract bool IsAchieved();
     public abstract void Progression();
-    public abstract string DrawHud(); 
+    public abstract string DrawHud();
 }
 
-public class SetupHabitatModule : Objective 
+public class SetupHabitatModule : Objective
 {
     public int progression = 0;
-    public int requiredProgression = 100; 
+    public int requiredProgression = 100;
 
     public override bool IsAchieved() {
-        return (progression >= requiredProgression); 
+        return (progression >= requiredProgression);
     }
     public override void Progression() {
-        progression += 15; 
+        progression += 15;
     }
     public override string DrawHud() {
         return string.Format("Habitat Module Progression {0}/{1}", progression, requiredProgression);
@@ -122,7 +117,7 @@ public class SetupHabitatModule : Objective
 
 public class SetupCommunicationModule : Objective
 {
-    public int progression = 0; 
+    public int progression = 0;
     public int requiredProgression = 100;
 
     public override bool IsAchieved()
@@ -131,7 +126,7 @@ public class SetupCommunicationModule : Objective
     }
     public override void Progression()
     {
-        progression += 10; 
+        progression += 10;
     }
     public override string DrawHud()
     {
@@ -141,7 +136,7 @@ public class SetupCommunicationModule : Objective
 
 public class SetupDriller : Objective
 {
-    public int progression = 0; 
+    public int progression = 0;
     public int requiredProgression = 100;
 
     public override bool IsAchieved()
@@ -150,7 +145,7 @@ public class SetupDriller : Objective
     }
     public override void Progression()
     {
-        progression += 10; 
+        progression += 10;
     }
     public override string DrawHud()
     {
@@ -160,7 +155,7 @@ public class SetupDriller : Objective
 
 public class SetupRefiner : Objective
 {
-    public int progression = 0; 
+    public int progression = 0;
     public int requiredProgression = 100;
 
     public override bool IsAchieved()
@@ -169,7 +164,7 @@ public class SetupRefiner : Objective
     }
     public override void Progression()
     {
-        progression += 10; 
+        progression += 10;
     }
     public override string DrawHud()
     {
@@ -179,7 +174,7 @@ public class SetupRefiner : Objective
 
 public class SetupMiner : Objective
 {
-    public int progression = 0; 
+    public int progression = 0;
     public int requiredProgression = 100;
 
     public override bool IsAchieved()
@@ -188,7 +183,7 @@ public class SetupMiner : Objective
     }
     public override void Progression()
     {
-        progression += 10; 
+        progression += 10;
     }
     public override string DrawHud()
     {
@@ -198,26 +193,26 @@ public class SetupMiner : Objective
 
 public class DiscoveredLocations : Objective
 {
-    public int currentDiscoveries = 0; 
-    public int maxDiscoveries = 10; 
+    public int currentDiscoveries = 0;
+    public int maxDiscoveries = 10;
 
     public override bool IsAchieved() {
         return (currentDiscoveries >= maxDiscoveries);
     }
     public override void Progression()
     {
-        currentDiscoveries += 1; 
+        currentDiscoveries += 1;
     }
     public override string DrawHud()
     {
         return string.Format("Discovered Locations {0}/{1}", currentDiscoveries, maxDiscoveries);
-        
+
     }
 }
 
 public class CollectResources : Objective
 {
-    public int currentResources = 0; 
+    public int currentResources = 0;
     public int requiredResources = 100;
 
     public override bool IsAchieved()
@@ -226,7 +221,7 @@ public class CollectResources : Objective
     }
     public override void Progression()
     {
-        currentResources += 5; 
+        currentResources += 5;
     }
     public override string DrawHud()
     {

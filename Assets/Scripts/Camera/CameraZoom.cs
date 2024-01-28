@@ -3,9 +3,6 @@ using Cinemachine;
 
 public class CameraZoom : MonoBehaviour
 {
-    // Input
-    [SerializeField] private InputReader inputReader;
-
     public CinemachineVirtualCamera playerCamera;
     public CinemachineVirtualCamera satelliteCamera;
     private CinemachineVirtualCamera activeCamera;
@@ -27,16 +24,12 @@ public class CameraZoom : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to events
-        inputReader.ZoomIn += OnZoomIn;
-        inputReader.ZoomOut += OnZoomOut;
+
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from events
-        inputReader.ZoomIn -= OnZoomIn;
-        inputReader.ZoomOut -= OnZoomOut;
+
     }
 
     // -------------------------------------------------------------------
