@@ -79,28 +79,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to events
-        inputReader.PlayerMove += OnPlayerMove;
-        inputReader.PlayerCrouch += OnPlayerCrouch;
-        inputReader.PlayerCrouchCancelled += OnPlayerCrouchCancelled;
-        inputReader.PlayerInteract += OnPlayerInteract;
-        inputReader.PlayerInteractCancelled += OnPlayerInteractCancelled;
+
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from events
-        inputReader.PlayerMove -= OnPlayerMove;
-        inputReader.PlayerCrouch -= OnPlayerCrouch;
-        inputReader.PlayerCrouchCancelled -= OnPlayerCrouchCancelled;
-        inputReader.PlayerInteract -= OnPlayerInteract;
-        inputReader.PlayerInteractCancelled -= OnPlayerInteractCancelled;
+
     }
 
     // -------------------------------------------------------------------
     // Handle events
 
-    private void OnPlayerMove(Vector2 direction)
+    public void OnPlayerMove(Vector2 direction)
     {
         horizontalInput = direction.x;
         isIdle = horizontalInput == 0;
@@ -127,93 +117,78 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnPlayerSprint(bool data)
+    public void OnPlayerSprint(bool sprinting)
     {
-        if (data is bool sprinting)
+        // Debug.Log($"Player controller - OnPlayerSprint: {sprinting}");
+        if (sprinting)
         {
-            // Debug.Log($"Player controller - OnPlayerSprint: {sprinting}");
-
-            if (sprinting)
+            canSprint = true;
+            if (isGrounded && !isCrouching && !isIdle)
             {
-                this.canSprint = true;
-                if (this.isGrounded && !this.isCrouching && !this.isIdle)
-                {
-                    this.isSprinting = true;
-                    UpdatePlayerState(PlayerState.Sprinting);
-                    // Additional logic for starting sprint
-                }
-            }
-            else
-            {
-                // Handle sprint cancellation
-                canSprint = false;
-                this.isSprinting = false;
-                UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
-                // Additional logic for cancelling sprint
+                isSprinting = true;
+                UpdatePlayerState(PlayerState.Sprinting);
+                // Additional logic for starting sprint
             }
         }
         else
         {
-            Debug.LogError("OnPlayerSprint received non-bool data");
+            // Handle sprint cancellation
+            canSprint = false;
+            isSprinting = false;
+            UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
+            // Additional logic for cancelling sprint
         }
     }
 
-    public void OnPlayerJump(bool data)
+    public void OnPlayerJump(bool jumping)
     {
-        if (data is bool jumping)
+        // Debug.Log($"Player controller - OnPlayerJump: {jumping}");
+        if (jumping)
         {
-            // Debug.Log($"Player controller - OnPlayerJump: {jumping}");
-
-            if (jumping)
+            if (isGrounded)
             {
-                if (this.isGrounded)
-                {
-                    this.isJumping = true;
-                    UpdatePlayerState(PlayerState.Jumping);
-                }
+                isJumping = true;
+                UpdatePlayerState(PlayerState.Jumping);
             }
-            else
-            {
-                this.isJumping = false;
-                UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
-
-            }
-
         }
         else
         {
-            Debug.LogError("OnPlayerJump received non-bool data");
+            isJumping = false;
+            UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
+
         }
     }
 
-    private void OnPlayerCrouch()
+    public void OnPlayerCrouch(bool crouching)
     {
-        if (isGrounded)
+        if (crouching)
         {
-            isCrouching = true;
-            UpdatePlayerState(isIdle ? PlayerState.Crouching : PlayerState.Crawling);
+            if (isGrounded)
+            {
+                isCrouching = true;
+                UpdatePlayerState(isIdle ? PlayerState.Crouching : PlayerState.Crawling);
+            }
+        }
+        else
+        {
+            isCrouching = false;
+            UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
         }
     }
 
-    private void OnPlayerCrouchCancelled()
+    public void OnPlayerInteract(bool interacting)
     {
-        isCrouching = false;
-        UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
-    }
-
-
-    private void OnPlayerInteract()
-    {
-        if (currentState != PlayerState.Idle) return;
-
-        UpdatePlayerState(PlayerState.Interacting);
-    }
-
-    private void OnPlayerInteractCancelled()
-    {
-        if (currentState == PlayerState.Interacting)
+        if (interacting)
         {
-            UpdatePlayerState(PlayerState.Idle);
+            if (currentState != PlayerState.Idle) return;
+            UpdatePlayerState(PlayerState.Interacting);
+        }
+        else
+        {
+            if (currentState == PlayerState.Interacting)
+            {
+                UpdatePlayerState(PlayerState.Idle);
+            }
         }
     }
 

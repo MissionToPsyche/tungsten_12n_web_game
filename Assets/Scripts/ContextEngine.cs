@@ -4,9 +4,6 @@ using Cinemachine;
 
 public class ContextEngine : MonoBehaviour
 {
-    // Input
-    [SerializeField] private InputReader inputReader;
-
     // Objects
     [SerializeField] private GameObject playerObject;
     [SerializeField] private GameObject satelliteObject;
@@ -28,29 +25,27 @@ public class ContextEngine : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to events
-        inputReader.SwitchControlState += OnSwitchControlState;
+
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from events
-        inputReader.SwitchControlState -= OnSwitchControlState;
+
     }
 
     // -------------------------------------------------------------------
     // Handle events
 
-    private void OnSwitchControlState(InputReader.ControlState currentControlState)
+    public void OnControlStateUpdated(Control.State currentControlState)
     {
-        if (currentControlState == InputReader.ControlState.Player)
+        if (currentControlState == Control.State.Player)
         {
             playerCamera.Priority = 100;
             satelliteCamera.Priority = 0;
             currentCamera = playerCamera;
             currentObject = playerObject;
         }
-        else if (currentControlState == InputReader.ControlState.Satellite)
+        else if (currentControlState == Control.State.Satellite)
         {
             playerCamera.Priority = 0;
             satelliteCamera.Priority = 100;

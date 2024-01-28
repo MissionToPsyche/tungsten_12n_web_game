@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Input
-    [SerializeField] private InputReader inputReader;
-
     [SerializeField] private GameObject pauseMenu;
 
     void Start()
@@ -18,25 +15,21 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        inputReader.PauseGame += OnPauseGame;
-        inputReader.ResumeGame += OnResumeGame;
     }
 
     private void OnDisable()
     {
-        inputReader.PauseGame -= OnPauseGame;
-        inputReader.ResumeGame -= OnResumeGame;
     }
 
     // -------------------------------------------------------------------
     // Handle events
 
-    private void OnPauseGame()
+    public void OnGamePause()
     {
         pauseMenu.SetActive(true);
     }
 
-    private void OnResumeGame()
+    public void OnGameResume()
     {
         pauseMenu.SetActive(false);
     }
