@@ -42,7 +42,7 @@ public class Asteroid : MonoBehaviour
         
     }
 
-    //Makes the resource the desired color
+    //Makes the resource the desired color 
     public void setNewResourceObject(GameObject newResourceObject, Resource addedResource, int iter)
     {
         SpriteRenderer spriteRenderer = newResourceObject.GetComponent<SpriteRenderer>();
