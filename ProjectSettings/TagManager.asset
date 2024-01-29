@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,12 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 4166581037
+    locked: 0
+  - name: Secondary Background
+    uniqueID: 480727689
+    locked: 0
+  - name: Third Background
+    uniqueID: 1875967995
     locked: 0
   - name: Asteroid
     uniqueID: 3778531611
