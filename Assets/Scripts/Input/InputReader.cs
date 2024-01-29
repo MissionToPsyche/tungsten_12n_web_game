@@ -81,6 +81,9 @@ public class InputReader :
 
     // -------------------------------------------------------------------
     // Define events
+    [Header("Events")]
+    [SerializeField] private BoolEvent PlayerJump;
+    [SerializeField] private BoolEvent PlayerSprint;
 
     // Gameplay
     public event Action<ControlState> SwitchControlState;
@@ -90,10 +93,6 @@ public class InputReader :
 
     // Player
     public event Action<Vector2> PlayerMove;
-    public event Action PlayerSprint;
-    public event Action PlayerSprintCancelled;
-    public event Action PlayerJump;
-    public event Action PlayerJumpCancelled;
     public event Action PlayerCrouch;
     public event Action PlayerCrouchCancelled;
     public event Action PlayerInteract;
@@ -101,7 +100,8 @@ public class InputReader :
     public event Action PlayerBuildOverlay;
     public event Action PlayerInventoryOverlay;
     public event Action PlayerObjectiveOverlay;
-
+    public event Action PlayerBuildOverlayRight;
+    public event Action PlayerBuildOverlayLeft;
     // Satellite
     public event Action<Vector2> SatelliteMove;
     public event Action SatelliteScan;
@@ -167,11 +167,11 @@ public class InputReader :
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            PlayerSprint?.Invoke();
+            PlayerSprint.Raise(true);
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            PlayerSprintCancelled?.Invoke();
+            PlayerSprint.Raise(false);
         }
     }
 
@@ -179,11 +179,11 @@ public class InputReader :
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            PlayerJump?.Invoke();
+            PlayerJump.Raise(true);
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            PlayerJumpCancelled?.Invoke();
+            PlayerJump.Raise(false);
         }
     }
 
@@ -196,7 +196,7 @@ public class InputReader :
         if (context.phase == InputActionPhase.Canceled)
         {
             PlayerCrouchCancelled?.Invoke();
-        }      
+        }
     }
 
     public void OnPlayerInteract(InputAction.CallbackContext context)
@@ -213,9 +213,27 @@ public class InputReader :
 
     public void OnPlayerBuildOverlay(InputAction.CallbackContext context)
     {
-        PlayerBuildOverlay?.Invoke();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            PlayerBuildOverlay?.Invoke();
+        }
     }
 
+    public void OnPlayerBuildOverlayRight(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            PlayerBuildOverlayRight?.Invoke();
+        }
+    }
+
+    public void OnPlayerBuildOverlayLeft(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            PlayerBuildOverlayLeft?.Invoke();
+        }
+    }
     public void OnPlayerInventoryOverlay(InputAction.CallbackContext context)
     {
         PlayerInventoryOverlay?.Invoke();
@@ -225,6 +243,7 @@ public class InputReader :
     {
         PlayerObjectiveOverlay?.Invoke();
     }
+
 
     // -------------------------------------------------------------------
     // Satellite action map

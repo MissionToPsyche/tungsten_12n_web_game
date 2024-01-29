@@ -39,10 +39,10 @@ public class Asteroid : MonoBehaviour
     {
         GameObject newResourceObject = Instantiate(prefab, addedResource.Position + (Vector2)transform.position, Quaternion.identity);
         setNewResourceObject(newResourceObject, addedResource, iter);
-        
+
     }
 
-    //Makes the resource the desired color
+    //Makes the resource the desired color 
     public void setNewResourceObject(GameObject newResourceObject, Resource addedResource, int iter)
     {
         SpriteRenderer spriteRenderer = newResourceObject.GetComponent<SpriteRenderer>();

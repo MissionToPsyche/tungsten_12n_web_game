@@ -208,6 +208,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerBuildOverlayRight",
+                    "type": "Button",
+                    "id": "2091737c-2281-45a5-a1e8-c0afcf2fe8f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerBuildOverlayLeft",
+                    "type": "Button",
+                    "id": "e90dca09-61d8-4851-b96c-ec7820b5b077",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -472,6 +490,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "PlayerSprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ecd30a22-0641-4df0-8de8-87bb2d38fa71",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBuildOverlayRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08eb6268-14d4-4448-9e91-c0bc3c904ddc",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBuildOverlayRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d392b8ef-500b-4295-85e4-3b194a6de759",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBuildOverlayLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8761a1e5-de5e-4ab6-a12f-03f5f99246d1",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBuildOverlayLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

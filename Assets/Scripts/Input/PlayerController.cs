@@ -1,5 +1,6 @@
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,11 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField, ReadOnly] private float groundCheckRadius = 0.3f;
 
-    // Objects
+    [Header("Objects")]
     [SerializeField] private Rigidbody2D playerBody;
     [SerializeField] private GravityBody2D gravityBody;
 
-    // Movement
     private float sprintingSpeed = 10f;
     private float walkingSpeed = 7.5f;
     private float strafingSpeed = 5f;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private bool isJumping = false;
     private bool isCrouching = false;
 
+    [Header("Movement")]
     [SerializeField, ReadOnly] private bool isGrounded = false;
     [SerializeField, ReadOnly] private bool canSprint = false;
     [SerializeField, ReadOnly] private bool canDoubleJump = false;
@@ -80,10 +81,6 @@ public class PlayerController : MonoBehaviour
     {
         // Subscribe to events
         inputReader.PlayerMove += OnPlayerMove;
-        inputReader.PlayerSprint += OnPlayerSprint;
-        inputReader.PlayerSprintCancelled += OnPlayerSprintCancelled;
-        inputReader.PlayerJump += OnPlayerJump;
-        inputReader.PlayerJumpCancelled += OnPlayerJumpCancelled;
         inputReader.PlayerCrouch += OnPlayerCrouch;
         inputReader.PlayerCrouchCancelled += OnPlayerCrouchCancelled;
         inputReader.PlayerInteract += OnPlayerInteract;
@@ -94,10 +91,6 @@ public class PlayerController : MonoBehaviour
     {
         // Unsubscribe from events
         inputReader.PlayerMove -= OnPlayerMove;
-        inputReader.PlayerSprint -= OnPlayerSprint;
-        inputReader.PlayerSprintCancelled -= OnPlayerSprintCancelled;
-        inputReader.PlayerJump -= OnPlayerJump;
-        inputReader.PlayerJumpCancelled -= OnPlayerJumpCancelled;
         inputReader.PlayerCrouch -= OnPlayerCrouch;
         inputReader.PlayerCrouchCancelled -= OnPlayerCrouchCancelled;
         inputReader.PlayerInteract -= OnPlayerInteract;
@@ -134,29 +127,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnPlayerSprint()
+    public void OnPlayerSprint(bool data)
     {
-        canSprint = true;
-
-        if (isGrounded && !isCrouching && !isIdle)
+        if (data is bool sprinting)
         {
-            isSprinting = true;
-            UpdatePlayerState(PlayerState.Sprinting);
+            // Debug.Log($"Player controller - OnPlayerSprint: {sprinting}");
+
+            if (sprinting)
+            {
+                this.canSprint = true;
+                if (this.isGrounded && !this.isCrouching && !this.isIdle)
+                {
+                    this.isSprinting = true;
+                    UpdatePlayerState(PlayerState.Sprinting);
+                    // Additional logic for starting sprint
+                }
+            }
+            else
+            {
+                // Handle sprint cancellation
+                canSprint = false;
+                this.isSprinting = false;
+                UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
+                // Additional logic for cancelling sprint
+            }
+        }
+        else
+        {
+            Debug.LogError("OnPlayerSprint received non-bool data");
         }
     }
 
-    private void OnPlayerSprintCancelled()
-    {
-        canSprint = false;
-        isSprinting = false;
-        UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
-    }
-
-    private void OnPlayerJump()
+    public void OnPlayerJump(bool data)
     {
         if (data is bool jumping)
         {
-            //Debug.Log($"Player controller - OnPlayerJump: {jumping}");
+            // Debug.Log($"Player controller - OnPlayerJump: {jumping}");
 
             if (jumping)
             {
