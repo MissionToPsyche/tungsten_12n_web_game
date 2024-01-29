@@ -154,17 +154,30 @@ public class PlayerController : MonoBehaviour
 
     private void OnPlayerJump()
     {
-        if (isGrounded)
+        if (data is bool jumping)
         {
-            isJumping = true;
-            UpdatePlayerState(PlayerState.Jumping);
-        }
-    }
+            //Debug.Log($"Player controller - OnPlayerJump: {jumping}");
 
-    private void OnPlayerJumpCancelled()
-    {
-        isJumping = false;
-        UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
+            if (jumping)
+            {
+                if (this.isGrounded)
+                {
+                    this.isJumping = true;
+                    UpdatePlayerState(PlayerState.Jumping);
+                }
+            }
+            else
+            {
+                this.isJumping = false;
+                UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
+
+            }
+
+        }
+        else
+        {
+            Debug.LogError("OnPlayerJump received non-bool data");
+        }
     }
 
     private void OnPlayerCrouch()
