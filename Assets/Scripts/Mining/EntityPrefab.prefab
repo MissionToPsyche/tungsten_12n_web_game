@@ -194,7 +194,7 @@ MonoBehaviour:
   textPrefabPlusOne: {fileID: 8680216331321866491, guid: 80ffff29a304143adb61d89a9b9518c0, type: 3}
   textPrefabExclamation: {fileID: 4505113430269239087, guid: da0d7452910204e659bca99ca33f1030, type: 3}
   currentExtractText: {fileID: 0}
-  OnMineEvent: {fileID: 11400000, guid: 075d938adad844bb78d4cf8d3e285608, type: 2}
+  OnMineEvent: {fileID: 11400000, guid: 60e4244dc4d3249889fd08524029652e, type: 2}
   isPlaced: 0
 --- !u!114 &4979878270049794546
 MonoBehaviour:

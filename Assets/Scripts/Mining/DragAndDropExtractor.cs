@@ -8,8 +8,9 @@ public class DragAndDropExtractor : DragAndDropSuper{
     
     private GravityBody2D gravityBody;
     private List<GravityArea2D> gravityAreas;
-    public new delegate void placementEvent();
+    public new delegate void placementEvent(GameObject resourceHit);
     public new static event placementEvent OnPlacementEvent;
+    private GameObject resource;
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectBody2D = GetComponent<Rigidbody2D>();
@@ -31,6 +32,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, 20f, layerToUse);
             
             if(IsValidPos(hit, rayOrigin, direction)){
+                resource = hit.collider.gameObject;
                 spriteRenderer.color = Color.green;
             }else{
                 spriteRenderer.color = Color.red;
@@ -49,7 +51,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
         if(spriteRenderer.color == Color.green){
             isPlaced = true;
             //Lets Object know that it is placed in its final location, may start working
-            OnPlacementEvent?.Invoke();
+            OnPlacementEvent?.Invoke(resource);
             //Stops all possible movement
             objectBody2D.isKinematic = true;
             objectBody2D.bodyType = RigidbodyType2D.Static;
