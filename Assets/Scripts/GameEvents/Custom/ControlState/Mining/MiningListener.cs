@@ -1,0 +1,1 @@
+public class MiningListener : BaseGameEventListener<packet.MiningPacket, MiningEvent, UnityMineEvent> {}
