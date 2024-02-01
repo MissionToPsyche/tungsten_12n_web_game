@@ -22,7 +22,6 @@ public abstract class DragAndDropSuper : MonoBehaviour, IDragHandler, IBeginDrag
 
     public virtual void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Parent OnDrag called");
         if(!isPlaced){
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mousePosition.x, mousePosition.y, transform.position.z);

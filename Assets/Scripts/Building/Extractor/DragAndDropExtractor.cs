@@ -22,7 +22,6 @@ public class DragAndDropExtractor : DragAndDropSuper{
 
     public override void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("ChildOnDrag called");
         if(!isPlaced){
             //Move according to mouse
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
