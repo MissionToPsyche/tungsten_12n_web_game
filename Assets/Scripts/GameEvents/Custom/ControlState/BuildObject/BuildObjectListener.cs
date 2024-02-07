@@ -1,1 +1,1 @@
-public class BuildObjListener : BaseGameEventListener<InventoryTypes.BuildingType, BuildObjEvent, UnityBuildObjEvent> {}
+public class BuildObjListener : BaseGameEventListener<BuildingComponents.BuildingType, BuildObjEvent, UnityBuildObjEvent> {}

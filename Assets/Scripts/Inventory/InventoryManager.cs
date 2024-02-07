@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using InventoryTypes;
+using BuildingComponents;
 public class InventoryManager : MonoBehaviour
 {
     Inventory myInventory;

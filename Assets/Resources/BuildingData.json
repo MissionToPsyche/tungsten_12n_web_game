@@ -1,0 +1,165 @@
+{
+    "BuildingObject": [
+      {
+        "ID": "Extractor",
+        "Type": "Industrial",
+        "ItemTitle": "Extractor",
+        "ItemDescription": "Mines for 1 resource every X seconds",
+        "AmountToMine": 1,
+        "IntervalMine": 4,
+        "Costs": {
+          "Iron": 15,
+          "Nickel": 15,
+          "Cobalt": 5,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "CommercialExtractor",
+        "Type": "Industrial",
+        "ItemTitle": "Commercial Extractor",
+        "ItemDescription": "Mines for 2 resource every X seconds",
+        "AmountToMine": 2,
+        "IntervalMine": 6,
+        "Costs": {
+          "Iron": 25,
+          "Nickel": 25,
+          "Cobalt": 10,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "IndustrialExtractor",
+        "Type": "Industrial",
+        "ItemTitle": "Industrial Extractor",
+        "ItemDescription": "Mines for 3 resource every X seconds",
+        "AmountToMine": 3,
+        "IntervalMine": 7,
+        "Costs": {
+          "Iron": 75,
+          "Nickel": 75,
+          "Cobalt": 50,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "Masterkey",
+        "Type": "Suit",
+        "ItemTitle": "Masterkey",
+        "ItemDescription": "Not Sure Yet",
+        "Costs": {
+          "Iron": 10,
+          "Nickel": 10,
+          "Cobalt": 5,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "Jetpack",
+        "Type": "Suit",
+        "ItemTitle": "Jetpack",
+        "ItemDescription": "Better Jumping",
+        "Costs": {
+          "Iron": 50,
+          "Nickel": 50,
+          "Cobalt": 25,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "SuitCybernetics",
+        "Type": "Suit",
+        "ItemTitle": "Suit Cybernetics",
+        "ItemDescription": "Use a charge to instantly repair a module, gain a charge every X minutes",
+        "Costs": {
+          "Iron": 75,
+          "Nickel": 75,
+          "Cobalt": 50,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "RoboBuddy",
+        "Type": "Robotics",
+        "ItemTitle": "Robo Buddy",
+        "ItemDescription": "A controllable companion",
+        "Costs": {
+          "Iron": 35,
+          "Nickel": 35,
+          "Cobalt": 15,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "Satellite",
+        "Type": "Robotics",
+        "ItemTitle": "Satellite",
+        "ItemDescription": "Use to scan for resources",
+        "Costs": {
+          "Iron": 150,
+          "Nickel": 150,
+          "Cobalt": 150,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "AI",
+        "Type": "Robotics",
+        "ItemTitle": "AI",
+        "ItemDescription": "Yet to be Determined",
+        "Costs": {
+          "Iron": 150,
+          "Nickel": 150,
+          "Cobalt": 150,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+    }
+    ]
+  }
+    
+  

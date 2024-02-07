@@ -205,15 +205,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PlayerBuildOverlay"",
-                    ""type"": ""Button"",
-                    ""id"": ""e4df92d7-b739-41dd-afa3-675ac9711219"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""PlayerInventoryOverlay"",
                     ""type"": ""Button"",
                     ""id"": ""f1d370a2-bd6f-4e67-9dbb-03c8a544ccf0"",
@@ -226,6 +217,33 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""PlayerObjectiveOverlay"",
                     ""type"": ""Button"",
                     ""id"": ""d4369218-3c36-46e3-98ce-4db59f7bdeef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerBuildOverlayCycleRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""4986fc4a-cac2-4f08-8642-571836ab8d1c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerBuildOverlayCycleLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""62984d7d-ce48-46da-a946-91d1beef0833"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerBuildOverlay"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4df92d7-b739-41dd-afa3-675ac9711219"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -433,28 +451,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b7a9542c-c15f-4c60-83c6-f0dea80f56b9"",
-                    ""path"": ""<Keyboard>/b"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlayerBuildOverlay"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5208440e-dad7-45a4-be90-871b5b1988ae"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlayerBuildOverlay"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0955537e-91ca-4807-9fff-fc1c2744add6"",
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
@@ -494,6 +490,50 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PlayerSprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""760c33e2-df3c-4007-8aaa-03d7943e52ea"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerBuildOverlayCycleRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b09e7838-db99-4326-8513-c0ec25ac6e51"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerBuildOverlayCycleLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7a9542c-c15f-4c60-83c6-f0dea80f56b9"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerBuildOverlay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5208440e-dad7-45a4-be90-871b5b1988ae"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerBuildOverlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -668,9 +708,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_PlayerJump = m_Player.FindAction("PlayerJump", throwIfNotFound: true);
         m_Player_PlayerCrouch = m_Player.FindAction("PlayerCrouch", throwIfNotFound: true);
         m_Player_PlayerInteract = m_Player.FindAction("PlayerInteract", throwIfNotFound: true);
-        m_Player_PlayerBuildOverlay = m_Player.FindAction("PlayerBuildOverlay", throwIfNotFound: true);
         m_Player_PlayerInventoryOverlay = m_Player.FindAction("PlayerInventoryOverlay", throwIfNotFound: true);
         m_Player_PlayerObjectiveOverlay = m_Player.FindAction("PlayerObjectiveOverlay", throwIfNotFound: true);
+        m_Player_PlayerBuildOverlayCycleRight = m_Player.FindAction("PlayerBuildOverlayCycleRight", throwIfNotFound: true);
+        m_Player_PlayerBuildOverlayCycleLeft = m_Player.FindAction("PlayerBuildOverlayCycleLeft", throwIfNotFound: true);
+        m_Player_PlayerBuildOverlay = m_Player.FindAction("PlayerBuildOverlay", throwIfNotFound: true);
         // Satellite
         m_Satellite = asset.FindActionMap("Satellite", throwIfNotFound: true);
         m_Satellite_SatelliteMove = m_Satellite.FindAction("SatelliteMove", throwIfNotFound: true);
@@ -814,9 +856,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PlayerJump;
     private readonly InputAction m_Player_PlayerCrouch;
     private readonly InputAction m_Player_PlayerInteract;
-    private readonly InputAction m_Player_PlayerBuildOverlay;
     private readonly InputAction m_Player_PlayerInventoryOverlay;
     private readonly InputAction m_Player_PlayerObjectiveOverlay;
+    private readonly InputAction m_Player_PlayerBuildOverlayCycleRight;
+    private readonly InputAction m_Player_PlayerBuildOverlayCycleLeft;
+    private readonly InputAction m_Player_PlayerBuildOverlay;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -826,9 +870,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @PlayerJump => m_Wrapper.m_Player_PlayerJump;
         public InputAction @PlayerCrouch => m_Wrapper.m_Player_PlayerCrouch;
         public InputAction @PlayerInteract => m_Wrapper.m_Player_PlayerInteract;
-        public InputAction @PlayerBuildOverlay => m_Wrapper.m_Player_PlayerBuildOverlay;
         public InputAction @PlayerInventoryOverlay => m_Wrapper.m_Player_PlayerInventoryOverlay;
         public InputAction @PlayerObjectiveOverlay => m_Wrapper.m_Player_PlayerObjectiveOverlay;
+        public InputAction @PlayerBuildOverlayCycleRight => m_Wrapper.m_Player_PlayerBuildOverlayCycleRight;
+        public InputAction @PlayerBuildOverlayCycleLeft => m_Wrapper.m_Player_PlayerBuildOverlayCycleLeft;
+        public InputAction @PlayerBuildOverlay => m_Wrapper.m_Player_PlayerBuildOverlay;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -853,15 +899,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @PlayerInteract.started += instance.OnPlayerInteract;
             @PlayerInteract.performed += instance.OnPlayerInteract;
             @PlayerInteract.canceled += instance.OnPlayerInteract;
-            @PlayerBuildOverlay.started += instance.OnPlayerBuildOverlay;
-            @PlayerBuildOverlay.performed += instance.OnPlayerBuildOverlay;
-            @PlayerBuildOverlay.canceled += instance.OnPlayerBuildOverlay;
             @PlayerInventoryOverlay.started += instance.OnPlayerInventoryOverlay;
             @PlayerInventoryOverlay.performed += instance.OnPlayerInventoryOverlay;
             @PlayerInventoryOverlay.canceled += instance.OnPlayerInventoryOverlay;
             @PlayerObjectiveOverlay.started += instance.OnPlayerObjectiveOverlay;
             @PlayerObjectiveOverlay.performed += instance.OnPlayerObjectiveOverlay;
             @PlayerObjectiveOverlay.canceled += instance.OnPlayerObjectiveOverlay;
+            @PlayerBuildOverlayCycleRight.started += instance.OnPlayerBuildOverlayCycleRight;
+            @PlayerBuildOverlayCycleRight.performed += instance.OnPlayerBuildOverlayCycleRight;
+            @PlayerBuildOverlayCycleRight.canceled += instance.OnPlayerBuildOverlayCycleRight;
+            @PlayerBuildOverlayCycleLeft.started += instance.OnPlayerBuildOverlayCycleLeft;
+            @PlayerBuildOverlayCycleLeft.performed += instance.OnPlayerBuildOverlayCycleLeft;
+            @PlayerBuildOverlayCycleLeft.canceled += instance.OnPlayerBuildOverlayCycleLeft;
+            @PlayerBuildOverlay.started += instance.OnPlayerBuildOverlay;
+            @PlayerBuildOverlay.performed += instance.OnPlayerBuildOverlay;
+            @PlayerBuildOverlay.canceled += instance.OnPlayerBuildOverlay;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -881,15 +933,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @PlayerInteract.started -= instance.OnPlayerInteract;
             @PlayerInteract.performed -= instance.OnPlayerInteract;
             @PlayerInteract.canceled -= instance.OnPlayerInteract;
-            @PlayerBuildOverlay.started -= instance.OnPlayerBuildOverlay;
-            @PlayerBuildOverlay.performed -= instance.OnPlayerBuildOverlay;
-            @PlayerBuildOverlay.canceled -= instance.OnPlayerBuildOverlay;
             @PlayerInventoryOverlay.started -= instance.OnPlayerInventoryOverlay;
             @PlayerInventoryOverlay.performed -= instance.OnPlayerInventoryOverlay;
             @PlayerInventoryOverlay.canceled -= instance.OnPlayerInventoryOverlay;
             @PlayerObjectiveOverlay.started -= instance.OnPlayerObjectiveOverlay;
             @PlayerObjectiveOverlay.performed -= instance.OnPlayerObjectiveOverlay;
             @PlayerObjectiveOverlay.canceled -= instance.OnPlayerObjectiveOverlay;
+            @PlayerBuildOverlayCycleRight.started -= instance.OnPlayerBuildOverlayCycleRight;
+            @PlayerBuildOverlayCycleRight.performed -= instance.OnPlayerBuildOverlayCycleRight;
+            @PlayerBuildOverlayCycleRight.canceled -= instance.OnPlayerBuildOverlayCycleRight;
+            @PlayerBuildOverlayCycleLeft.started -= instance.OnPlayerBuildOverlayCycleLeft;
+            @PlayerBuildOverlayCycleLeft.performed -= instance.OnPlayerBuildOverlayCycleLeft;
+            @PlayerBuildOverlayCycleLeft.canceled -= instance.OnPlayerBuildOverlayCycleLeft;
+            @PlayerBuildOverlay.started -= instance.OnPlayerBuildOverlay;
+            @PlayerBuildOverlay.performed -= instance.OnPlayerBuildOverlay;
+            @PlayerBuildOverlay.canceled -= instance.OnPlayerBuildOverlay;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1021,9 +1079,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnPlayerJump(InputAction.CallbackContext context);
         void OnPlayerCrouch(InputAction.CallbackContext context);
         void OnPlayerInteract(InputAction.CallbackContext context);
-        void OnPlayerBuildOverlay(InputAction.CallbackContext context);
         void OnPlayerInventoryOverlay(InputAction.CallbackContext context);
         void OnPlayerObjectiveOverlay(InputAction.CallbackContext context);
+        void OnPlayerBuildOverlayCycleRight(InputAction.CallbackContext context);
+        void OnPlayerBuildOverlayCycleLeft(InputAction.CallbackContext context);
+        void OnPlayerBuildOverlay(InputAction.CallbackContext context);
     }
     public interface ISatelliteActions
     {

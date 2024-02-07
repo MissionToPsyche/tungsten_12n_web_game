@@ -54,6 +54,9 @@ TagManager:
   - name: Asteroid
     uniqueID: 3778531611
     locked: 0
+  - name: Resource
+    uniqueID: 1129582259
+    locked: 0
   - name: Objects
     uniqueID: 227411197
     locked: 0
@@ -62,4 +65,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2974986321
+    locked: 0
+  - name: UI
+    uniqueID: 1724270631
     locked: 0

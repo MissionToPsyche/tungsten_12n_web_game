@@ -47,7 +47,7 @@ public class Asteroid : MonoBehaviour
     {
         SpriteRenderer spriteRenderer = newResourceObject.GetComponent<SpriteRenderer>();
         spriteRenderer.color = addedResource.Color;
-        spriteRenderer.sortingLayerName = "Foreground";
+        spriteRenderer.sortingLayerName = "Resource";
 
         //Debug.Log(this.name + " " + transform.parent.name);
         newResourceObject.transform.localScale = addedResource.depositSize;

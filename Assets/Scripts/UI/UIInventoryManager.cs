@@ -4,13 +4,13 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using InventoryTypes;
+using BuildingComponents;
 public class InventoryUIManager : MonoBehaviour
 {
     [SerializeField] GameObject inventoryOverlay;
     [SerializeField] private TextMeshProUGUI IronInvText;
     [SerializeField] private TextMeshProUGUI NickelInvText;
-    [SerializeField] private TextMeshProUGUI SilverInvText;
+    [SerializeField] private TextMeshProUGUI CobaltInvText;
     [SerializeField] private TextMeshProUGUI PlatinumInvText;
     [SerializeField] private TextMeshProUGUI GoldInvText;
     [SerializeField] private TextMeshProUGUI TechnitiumInvText;
@@ -32,8 +32,8 @@ public class InventoryUIManager : MonoBehaviour
             case ResourceType.Nickel:
                 NickelInvText.text = amt.ToString();
                 break;
-            case ResourceType.Silver:
-                SilverInvText.text = amt.ToString();
+            case ResourceType.Cobalt:
+                CobaltInvText.text = amt.ToString();
                 break;
             case ResourceType.Platinum:
                 PlatinumInvText.text = amt.ToString();

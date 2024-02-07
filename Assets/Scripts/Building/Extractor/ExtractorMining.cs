@@ -7,7 +7,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-using InventoryTypes;
+using BuildingComponents;
 //This class holds the functionality of showing the the text above the extractor, sending the mineEvent out and reducing the available amount of resources in the resource
 public class ExtractorMining : MonoBehaviour
 {
@@ -116,8 +116,8 @@ public class ExtractorMining : MonoBehaviour
                     return ResourceType.Iron;
                 case "Nickel":
                     return ResourceType.Nickel;
-                case "Silver":
-                    return ResourceType.Silver;
+                case "Cobalt":
+                    return ResourceType.Cobalt;
                 case "Platinum":
                     return ResourceType.Platinum;
                 case "Gold":

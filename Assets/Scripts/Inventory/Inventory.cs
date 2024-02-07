@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using InventoryTypes;
+using BuildingComponents;
 
 public class Inventory
 {
     Dictionary<ResourceType, int> inv = new Dictionary<ResourceType, int>();
 
-    public Inventory(int IronAmt, int NickelAmt, int SilverAmt, 
+    public Inventory(int IronAmt, int NickelAmt, int CobaltAmt, 
     int PlatinumAmt, int GoldAmt, int TechnitiumAmt, int TungstenAmt, int IridiumAmt){
         inv.Add(ResourceType.Iron, IronAmt);
         inv.Add(ResourceType.Nickel, NickelAmt);
-        inv.Add(ResourceType.Silver, SilverAmt);
+        inv.Add(ResourceType.Cobalt, CobaltAmt);
         inv.Add(ResourceType.Platinum, PlatinumAmt);
         inv.Add(ResourceType.Gold, GoldAmt);
         inv.Add(ResourceType.Technitium, TechnitiumAmt);
@@ -45,8 +45,8 @@ public class Inventory
             case(ResourceType.Nickel):
                 inv[ResourceType.Nickel] += amt;
                 break;
-            case(ResourceType.Silver):
-                inv[ResourceType.Silver] += amt;
+            case(ResourceType.Cobalt):
+                inv[ResourceType.Cobalt] += amt;
                 break;
             case(ResourceType.Platinum):
                 inv[ResourceType.Platinum] += amt;
@@ -74,8 +74,8 @@ public class Inventory
             case(ResourceType.Nickel):
                 inv[ResourceType.Nickel] -= amt;
                 break;
-            case(ResourceType.Silver):
-                inv[ResourceType.Silver] -= amt;
+            case(ResourceType.Cobalt):
+                inv[ResourceType.Cobalt] -= amt;
                 break;
             case(ResourceType.Platinum):
                 inv[ResourceType.Platinum] -= amt;

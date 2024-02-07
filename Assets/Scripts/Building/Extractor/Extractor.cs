@@ -6,7 +6,7 @@ using UnityEngine;
 public class Extractor
 {
     GameObject prefab;
-    static InventoryTypes.BuildingType buildingType = InventoryTypes.BuildingType.Extractor;
+    static BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.Extractor;
     static int ironCost = 15;
     static int nickelCost = 15;
     static int silverCost = 5;
@@ -16,7 +16,7 @@ public class Extractor
         return thisCosts;
     }
 
-    public InventoryTypes.BuildingType GetBuildingType(){
+    public BuildingComponents.BuildingType GetBuildingType(){
         return buildingType;
     }
 

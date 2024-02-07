@@ -7,15 +7,15 @@ public class BuildManager : MonoBehaviour
     public GameObject prefab;
 
     static private Extractor extractor = new();
-    private BuildUIManager buildUI;
+    private UIBuildManager buildUI;
     void Awake(){
-        buildUI = GetComponent<BuildUIManager>();
+        buildUI = GetComponent<UIBuildManager>();
     }
-    public void OnBuildObjEvent(InventoryTypes.BuildingType type){
+    public void OnBuildObjEvent(BuildingComponents.BuildingType type){
         //Turns off Build overlay after an obj has been bought
         buildUI.OnPlayerBuildOverlay();
         switch(type){
-            case InventoryTypes.BuildingType.Extractor:
+            case BuildingComponents.BuildingType.Extractor:
                 SpawnNewExtractor();
                 return;
         }

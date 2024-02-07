@@ -69,11 +69,11 @@ public class Nickel : Resource
     }
 }
 
-public class Silver : Resource
+public class Cobalt : Resource
 {
-    public Silver(Vector2 pos) : base(pos)
+    public Cobalt(Vector2 pos) : base(pos)
     {
-        Name = "Silver";
+        Name = "Cobalt";
         Color = Color.white;
         Position = pos;
         depositSize = base.randomizeSize();

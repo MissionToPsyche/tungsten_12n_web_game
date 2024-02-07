@@ -21,6 +21,8 @@ MonoBehaviour:
   PlayerCrouch: {fileID: 11400000, guid: ba1fdff7e15dad54eae54cb7328a029b, type: 2}
   PlayerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
   PlayerBuildOverlay: {fileID: 11400000, guid: 43dda87bd996c3a419a00d01f438c121, type: 2}
+  PlayerBuildOverlayCycleLeft: {fileID: 11400000, guid: 3c0b26c2b7a9f45f98f62ad27811b805, type: 2}
+  PlayerBuildOverlayCycleRight: {fileID: 11400000, guid: c55e9f4c319f64f5782de4cfa355865b, type: 2}
   PlayerInventoryOverlay: {fileID: 11400000, guid: 731f79df71744ec43954fc41422a88c8, type: 2}
   PlayerObjectiveOverlay: {fileID: 11400000, guid: aa04b7753342a764d8a61b52ba0abe53, type: 2}
   SatelliteMove: {fileID: 11400000, guid: 6fca2a4f2e0e4c34dbc24956048aa2ad, type: 2}
