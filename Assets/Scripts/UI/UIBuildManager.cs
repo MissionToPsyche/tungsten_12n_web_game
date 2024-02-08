@@ -92,6 +92,6 @@ public class UIBuildManager : MonoBehaviour
     }
     public void TryBuildExtractor(){
         Extractor newExtractor = new();
-        checkInventory.Raise(new packet.CheckInventoryPacket(this.gameObject, newExtractor.GetBuildingType(), newExtractor.getCostDictionary()));
+        checkInventory.Raise(new packet.CheckInventoryPacket(this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
 }

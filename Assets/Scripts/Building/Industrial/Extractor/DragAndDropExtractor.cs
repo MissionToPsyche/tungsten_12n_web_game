@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using System.Linq;
 public class DragAndDropExtractor : DragAndDropSuper{
     
     private GravityBody2D gravityBody;
-    private List<GravityArea2D> gravityAreas;
     public new delegate void placementEvent(GameObject resourceHit);
     public new static event placementEvent OnPlacementEvent;
     private GameObject resource;
@@ -22,6 +21,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
 
     public override void OnDrag(PointerEventData eventData)
     {
+        objectBody2D.isKinematic = true;
         if(!isPlaced){
             //Move according to mouse
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -63,7 +63,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
     protected bool IsValidPos(RaycastHit2D hit, Vector2 origin, Vector2 dir)
     {
         float distToGround = getDistanceToGround(origin, dir);
-        if (hit.collider != null && distToGround < .2f)
+        if (hit.collider != null && distToGround < .15f)
         {
             return true;
         }
@@ -89,4 +89,6 @@ public class DragAndDropExtractor : DragAndDropSuper{
         //Resource Layer
         return 1 << 8;
     }
+
+
 }

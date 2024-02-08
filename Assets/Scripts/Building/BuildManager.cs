@@ -27,6 +27,6 @@ public class BuildManager : MonoBehaviour
         Instantiate(prefab, worldPos, Quaternion.identity);
     }
     public ObjectsCost GetExtractorCost(){
-        return extractor.getCostDictionary();
+        return extractor.GetCostDictionary();
     }
 }

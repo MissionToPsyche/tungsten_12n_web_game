@@ -1,41 +1,31 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Principal;
-using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using BuildingComponents;
 //This class holds the functionality of showing the the text above the extractor, sending the mineEvent out and reducing the available amount of resources in the resource
-public class ExtractorMining : MonoBehaviour
+public class AbstractExtractorMining : MonoBehaviour
 {
-    public float mineSpeed = 4f;
-    private float timer = 3f;
-    private const float displayDuration = 1.5f; // Duration to display the +1 text
-    private bool isShowingText = false;
-    private GravityBody2D gravityBody;
+    //Public
     public GameObject textPrefabPlusOne;
     public GameObject textPrefabExclamation;
-    public GameObject currentExtractText;
-    private ResourceType resourceToMine;
     public MiningEvent OnMineEvent;
-    [SerializeField] private bool isPlaced = false;
-    private bool isLerping = false;
+    //Protected
+    protected float mineInterval;
+    protected int amountToMine;
+    protected float timer = 0;
+    protected const float displayDuration = 1.5f;
+    protected bool isShowingText = false;
+    protected GravityBody2D gravityBody;
+    protected ResourceType resourceToMine;
+    protected bool isBroken = false;
+    protected int timesMinedSinceBroken = 0;
+    protected float baseBreakChance;
+    [SerializeField] protected bool isPlaced = false;
+    protected bool isLerping = false;
+    //Private
+    private GameObject currentExtractText;
 
-
-    void Start(){
-        DragAndDropExtractor.OnPlacementEvent += LinkToResource;
-        gravityBody = GetComponent<GravityBody2D>();
-    }
-
-    void Update(){
-        mineResource();
-    }
-
-    private void mineResource(){
-        if(isPlaced){
+    protected void MineIfPlaced(){
+        if(isPlaced && !isBroken){
             Mine();
         }
     }
@@ -44,11 +34,20 @@ public class ExtractorMining : MonoBehaviour
         timer += Time.deltaTime;
 
         // Check if it's time to display the +1 text
-        if (timer >= mineSpeed)
+        //CHANGE TO MineInterval
+        if (timer >= mineInterval)
         {
             OnMineEvent.Raise(new packet.MiningPacket(this.gameObject, 1, resourceToMine, true));
+            timesMinedSinceBroken += 1;
             timer = 0f;
-            showText();
+ 
+            if (RollForModuleBreak()){
+                isBroken = true;
+                ShowBrokeText();
+                timesMinedSinceBroken = 0;
+            }else{
+                ShowGainText();
+            }
         }
 
         // Check if the text is currently displayed and fade it away after display duration
@@ -56,19 +55,38 @@ public class ExtractorMining : MonoBehaviour
         {
             if (timer >= displayDuration)
             {
-                Destroy(currentExtractText);
-                timer = 0f;
-                isLerping = false;
-                isShowingText = false;
-                currentExtractText = null;
+                ResetText();
             }
         }
     }
-    private void showText(){
+    private void ResetText(){
+        Destroy(currentExtractText);
+        timer = 0f;
+        isLerping = false;
+        isShowingText = false;
+        currentExtractText = null;
+    }
+    GameObject SpawnGainText(Vector3 pos)
+    {
+        isShowingText = true;
+        return Instantiate(textPrefabPlusOne, pos, transform.rotation);
+    }
+    private void ShowGainText(){
         Vector3 initPos = GetPositionTextAboveExtractor();
-        currentExtractText = SpawnExtractText(initPos);
+        currentExtractText = SpawnGainText(initPos);
+        currentExtractText.GetComponent<TMPro.TextMeshPro>().SetText("+" + amountToMine.ToString());
         Vector3 newPos = new Vector3(-gravityBody.GravityDirection.x, -gravityBody.GravityDirection.y, 0f)/2;
         StartCoroutine(LerpTextPosition(currentExtractText.transform, initPos + newPos, displayDuration));
+    }
+    GameObject SpawnBrokeText(Vector3 pos){
+        return Instantiate(textPrefabExclamation, pos, transform.rotation);
+    }
+    private void ShowBrokeText(){
+        if(currentExtractText != null){
+            ResetText();
+        }
+        Vector3 initPos = GetPositionTextAboveExtractor();
+        currentExtractText = SpawnBrokeText(initPos);
     }
     IEnumerator LerpTextPosition(Transform textTransform, Vector3 targetPos, float duration)
     {
@@ -85,12 +103,6 @@ public class ExtractorMining : MonoBehaviour
             textTransform.position = targetPos;
         }
     }
-    GameObject SpawnExtractText(Vector3 pos)
-    {
-        isShowingText = true;
-        return Instantiate(textPrefabPlusOne, pos, transform.rotation);
-    }
-
     Vector3 GetPositionTextAboveExtractor()
     {
         //Position above the extractor relative to extractor
@@ -101,12 +113,10 @@ public class ExtractorMining : MonoBehaviour
         isPlaced = true;
         resourceToMine = ConvertStrToResourceType(resourceObject.name);
     }
-
     private void OnDestroy(){
         isShowingText = false;
         DragAndDropExtractor.OnPlacementEvent -= LinkToResource;
     }
-
     private ResourceType ConvertStrToResourceType(string str){
         int underScoreIndex = str.IndexOf('_');
 
@@ -137,4 +147,9 @@ public class ExtractorMining : MonoBehaviour
             return ResourceType.Iron;
         }
     }
+    private bool RollForModuleBreak(){
+        float breakChance = baseBreakChance * timesMinedSinceBroken;
+        return Random.value < breakChance;
+    }
+
 }

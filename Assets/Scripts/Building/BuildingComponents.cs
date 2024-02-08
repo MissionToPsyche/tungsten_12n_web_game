@@ -38,7 +38,8 @@ namespace BuildingComponents
         public string ItemTitle;
         public string ItemDescription;
         public int AmountToMine;
-        public int IntervalMine;
+        public float IntervalMine;
+        public float baseBreakChance;
         public Dictionary<string, int> Costs;
         public string Image;
     }
