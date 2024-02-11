@@ -4,25 +4,27 @@ using BuildingComponents;
 //This class holds the functionality of showing the the text above the extractor, sending the mineEvent out and reducing the available amount of resources in the resource
 public class AbstractExtractorMining : MonoBehaviour
 {
-    //Public
-    public GameObject textPrefabPlusOne;
-    public GameObject textPrefabExclamation;
+
+    //Mining
     public MiningEvent OnMineEvent;
-    //Protected
     protected float mineInterval;
     protected int amountToMine;
     protected float timer = 0;
     protected const float displayDuration = 1.5f;
     protected bool isShowingText = false;
-    protected GravityBody2D gravityBody;
-    protected ResourceType resourceToMine;
     protected bool isBroken = false;
     protected int timesMinedSinceBroken = 0;
     protected float baseBreakChance;
-    [SerializeField] protected bool isPlaced = false;
+    protected bool playerCanInteract = false;
+    //Mining UI
+    public GameObject textPrefabPlusOne;
+    public GameObject textPrefabExclamation;
     protected bool isLerping = false;
-    //Private
     private GameObject currentExtractText;
+    //GameObjects
+    protected GravityBody2D gravityBody;
+    protected ResourceType resourceToMine;
+    [SerializeField] protected bool isPlaced = false;
 
     protected void MineIfPlaced(){
         if(isPlaced && !isBroken){
@@ -33,11 +35,9 @@ public class AbstractExtractorMining : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        // Check if it's time to display the +1 text
-        //CHANGE TO MineInterval
         if (timer >= mineInterval)
         {
-            OnMineEvent.Raise(new packet.MiningPacket(this.gameObject, 1, resourceToMine, true));
+            OnMineEvent.Raise(new packet.MiningPacket(this.gameObject, amountToMine, resourceToMine, true));
             timesMinedSinceBroken += 1;
             timer = 0f;
  
@@ -55,12 +55,12 @@ public class AbstractExtractorMining : MonoBehaviour
         {
             if (timer >= displayDuration)
             {
-                ResetText();
+                ResetText(currentExtractText);
             }
         }
     }
-    private void ResetText(){
-        Destroy(currentExtractText);
+    private void ResetText(GameObject currText){
+        Destroy(currText);
         timer = 0f;
         isLerping = false;
         isShowingText = false;
@@ -83,7 +83,7 @@ public class AbstractExtractorMining : MonoBehaviour
     }
     private void ShowBrokeText(){
         if(currentExtractText != null){
-            ResetText();
+            ResetText(currentExtractText);
         }
         Vector3 initPos = GetPositionTextAboveExtractor();
         currentExtractText = SpawnBrokeText(initPos);
@@ -149,7 +149,32 @@ public class AbstractExtractorMining : MonoBehaviour
     }
     private bool RollForModuleBreak(){
         float breakChance = baseBreakChance * timesMinedSinceBroken;
+        //float breakChance = 0.5f;
+        //^Use this for debugging or testing the playerInteract feature
         return Random.value < breakChance;
     }
 
+    //Events
+    //------------------------------------------------------------------
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
+        {
+            playerCanInteract = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision){
+        if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
+        {
+            playerCanInteract = false;
+        }
+    }
+    public void OnPlayerInteract(){
+        if(playerCanInteract && isBroken){
+            //IMPLEMENT MINI GAME LOGIC HERE
+            isBroken = false;
+            ResetText(currentExtractText);
+        }
+    }
 }

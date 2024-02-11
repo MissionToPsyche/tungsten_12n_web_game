@@ -7,7 +7,8 @@
         "ItemDescription": "Mines for 2 resources every 5 seconds",
         "AmountToMine": 2,
         "IntervalMine": 5,
-        "BaseBreakChance": 0.01,
+        "percentAsteroidReach":  0.25,
+        "BaseBreakChance": 0.02,
         "Costs": {
           "Iron": 15,
           "Nickel": 15,
@@ -24,10 +25,11 @@
         "ID": "CommercialExtractor",
         "Type": "Industrial",
         "ItemTitle": "Commercial Extractor",
-        "ItemDescription": "Mines for 5 resource every 5 seconds",
+        "ItemDescription": "Mines for 5 resources every 5 seconds",
         "AmountToMine": 5,
         "IntervalMine": 5,
-        "BaseBreakChance": 0.005,
+        "percentAsteroidReach":  40,
+        "BaseBreakChance": 0.01,
         "Costs": {
           "Iron": 25,
           "Nickel": 25,
@@ -44,10 +46,11 @@
         "ID": "IndustrialExtractor",
         "Type": "Industrial",
         "ItemTitle": "Industrial Extractor",
-        "ItemDescription": "Mines for 10 resource every 5 seconds",
+        "ItemDescription": "Mines for 10 resources every 5 seconds",
         "AmountToMine": 10,
         "IntervalMine": 5,
-        "BaseBreakChance": 0,
+        "percentAsteroidReach":  50,
+        "BaseBreakChance": 0.005,
         "Costs": {
           "Iron": 75,
           "Nickel": 75,
@@ -61,10 +64,10 @@
         "Image": ""
       },
       {
-        "ID": "Masterkey",
+        "ID": "ExoSuit",
         "Type": "Suit",
-        "ItemTitle": "Masterkey",
-        "ItemDescription": "Not Sure Yet",
+        "ItemTitle": "ExoSuit",
+        "ItemDescription": "Alters and allows for better movement",
         "Costs": {
           "Iron": 10,
           "Nickel": 10,
@@ -137,28 +140,28 @@
           "Iron": 150,
           "Nickel": 150,
           "Cobalt": 150,
-          "Platinum": 0,
-          "Gold": 0,
-          "Technitium": 0,
-          "Tungsten": 0,
-          "Iridium": 0
+          "Platinum": 75,
+          "Gold": 75,
+          "Technitium": 75,
+          "Tungsten": 10,
+          "Iridium": 10
         },
         "Image": ""
       },
       {
-        "ID": "AI",
+        "ID": "RocketLaunchPad",
         "Type": "Robotics",
-        "ItemTitle": "AI",
-        "ItemDescription": "Yet to be Determined",
+        "ItemTitle": "Rocket Launch Pad",
+        "ItemDescription": "Fly home with all your mined resources!!!",
         "Costs": {
-          "Iron": 150,
-          "Nickel": 150,
-          "Cobalt": 150,
-          "Platinum": 0,
-          "Gold": 0,
-          "Technitium": 0,
-          "Tungsten": 0,
-          "Iridium": 0
+          "Iron": 500,
+          "Nickel": 500,
+          "Cobalt": 500,
+          "Platinum": 250,
+          "Gold": 250,
+          "Technitium": 250,
+          "Tungsten": 75,
+          "Iridium": 75
         },
         "Image": ""
     }

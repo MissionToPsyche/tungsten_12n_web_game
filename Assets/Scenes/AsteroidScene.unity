@@ -497,6 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildObjEvent: {fileID: 11400000, guid: 58818d4ae94bd4b5e93ceeba8a58d276, type: 2}
+  updateBuildButtonsEvent: {fileID: 0}
 --- !u!114 &40169399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3196,8 +3197,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 550765336}
-        m_TargetAssemblyTypeName: BuildUIManager, Assembly-CSharp
-        m_MethodName: TryBuildExtractor
+        m_TargetAssemblyTypeName: UIBuildManager, Assembly-CSharp
+        m_MethodName: TryBuildIndustrialExtractor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6054,7 +6055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2482be23678e54156953fd4764428901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8513086824239921780, guid: 31e93e3ca1ea44038b72ae6f1b567504, type: 3}
+  ExtractorPrefab: {fileID: 8513086824239921780, guid: 31e93e3ca1ea44038b72ae6f1b567504, type: 3}
+  CommercialExtractorPrefab: {fileID: 8513086824239921780, guid: 5e4c2d32c5522482aa28c0d3cb507740, type: 3}
+  IndustrialExtractorPrefab: {fileID: 8513086824239921780, guid: 9e78861529b66435e88d6c9a2b021a89, type: 3}
 --- !u!114 &550765339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6179,23 +6182,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b28a1f94710b443f8e14d9da5f09042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExtractorCostTexts: {fileID: 1388968537}
+  ExtractorCostText: {fileID: 1388968537}
   ExtractorHelpText: {fileID: 261024770}
-  CommercialExtractorCostTexts: {fileID: 405479402}
+  CommercialExtractorCostText: {fileID: 405479402}
   CommercialExtractorHelpText: {fileID: 1102586997}
-  IndustrialExtractorCostTexts: {fileID: 311363038}
+  IndustrialExtractorCostText: {fileID: 311363038}
   IndustrialExtractorHelpText: {fileID: 1527962142}
-  MasterkeyCostTexts: {fileID: 862173877}
+  MasterkeyCostText: {fileID: 862173877}
   MasterkeyHelpText: {fileID: 87701845}
-  JetpackCostTexts: {fileID: 1632229498}
+  JetpackCostText: {fileID: 1632229498}
   JetpackHelpText: {fileID: 1091667549}
-  CyberneticsCostTexts: {fileID: 1677254125}
+  CyberneticsCostText: {fileID: 1677254125}
   CyberneticsHelpText: {fileID: 1788745177}
-  RoboBuddyCostTexts: {fileID: 1928577627}
+  RoboBuddyCostText: {fileID: 1928577627}
   RoboBuddyHelpText: {fileID: 278515196}
-  SatelliteCostTexts: {fileID: 361992060}
+  SatelliteCostText: {fileID: 361992060}
   SatelliteHelpText: {fileID: 640440419}
-  AICostTexts: {fileID: 1093825653}
+  AICostText: {fileID: 1093825653}
   AIHelpText: {fileID: 364368495}
 --- !u!1 &555108198
 GameObject:
@@ -9288,6 +9291,7 @@ MonoBehaviour:
   canDoubleJump: 0
   isFacingRight: 0
   currentState: 0
+  playerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
   animator: {fileID: 911276413}
   spriteRenderer: {fileID: 911276411}
   selection: 0
@@ -11102,8 +11106,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 550765336}
-        m_TargetAssemblyTypeName: BuildUIManager, Assembly-CSharp
-        m_MethodName: TryBuildExtractor
+        m_TargetAssemblyTypeName: UIBuildManager, Assembly-CSharp
+        m_MethodName: TryBuildCommercialExtractor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

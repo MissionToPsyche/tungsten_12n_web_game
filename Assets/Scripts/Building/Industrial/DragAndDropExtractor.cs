@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Linq;
 public class DragAndDropExtractor : DragAndDropSuper{
     
     private GravityBody2D gravityBody;
@@ -15,13 +12,11 @@ public class DragAndDropExtractor : DragAndDropSuper{
         objectBody2D = GetComponent<Rigidbody2D>();
         gravityBody = GetComponent<GravityBody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
-        //boxCollider2D.enabled = true;
         layerToUse = SetLayerToUse();
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
-        objectBody2D.isKinematic = true;
         if(!isPlaced){
             //Move according to mouse
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -55,14 +50,13 @@ public class DragAndDropExtractor : DragAndDropSuper{
             //Stops all possible movement
             objectBody2D.isKinematic = true;
             objectBody2D.bodyType = RigidbodyType2D.Static;
-            objectBody2D.simulated = false;
-            boxCollider2D.enabled = false;
+            //objectBody2D.simulated = false;
         }
     }
 
     protected bool IsValidPos(RaycastHit2D hit, Vector2 origin, Vector2 dir)
     {
-        float distToGround = getDistanceToGround(origin, dir);
+        float distToGround = GetDistanceToGround(origin, dir);
         if (hit.collider != null && distToGround < .15f)
         {
             return true;
@@ -73,7 +67,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
         }
     }
 
-    private float getDistanceToGround(Vector2 origin, Vector2 dir){
+    private float GetDistanceToGround(Vector2 origin, Vector2 dir){
         float maxGravityDistance = 10f;
         RaycastHit2D hit = Physics2D.Raycast(origin, dir, maxGravityDistance, 1 << 7);
 

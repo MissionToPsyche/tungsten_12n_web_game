@@ -19,6 +19,9 @@ public class Inventory
         inv.Add(ResourceType.Tungsten, TungstenAmt);
         inv.Add(ResourceType.Iridium, IridiumAmt);
     }
+    public Inventory(Dictionary<ResourceType, int> passedInv){
+        inv = passedInv;
+    }
     public Dictionary<ResourceType, int> GetInvDictionary(){
         return inv;
     }

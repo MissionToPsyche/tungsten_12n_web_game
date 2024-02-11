@@ -10,6 +10,8 @@ public abstract class AbstractExtractor
     protected float mineInterval;
     protected int amountToMine;
     protected float baseBreakChance;
+    protected float percentAsteroidReach;
+    protected int currentTier = 0;
     protected BuildingComponents.BuildingType buildingType;
     // Abstract method to get the cost dictionary
     public BuildingData LoadBuildingData()
@@ -44,11 +46,13 @@ public abstract class AbstractExtractor
             );
             return thisCosts;
     }
-    protected void SetVarsFromJsonData(float mineInterval, int amountToMine, float baseBreakChance){
+    protected void SetVarsFromJsonData(float mineInterval, int amountToMine, float baseBreakChance, float percentAsteroidReach){
         this.mineInterval = mineInterval;
         this.amountToMine = amountToMine;
         this.baseBreakChance = baseBreakChance;
+        this.percentAsteroidReach = percentAsteroidReach;
     }
+
     public ObjectsCost GetCostDictionary(){
         return thisCosts;
     }
@@ -63,6 +67,9 @@ public abstract class AbstractExtractor
     }
     public float GetBaseBreakChance(){
         return baseBreakChance;
+    }
+    public float GetPercentAsteroidReach(){
+        return percentAsteroidReach;
     }
 }
 

@@ -39,6 +39,7 @@ namespace BuildingComponents
         public string ItemDescription;
         public int AmountToMine;
         public float IntervalMine;
+        public float percentAsteroidReach;
         public float baseBreakChance;
         public Dictionary<string, int> Costs;
         public string Image;

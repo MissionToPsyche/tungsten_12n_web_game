@@ -4,42 +4,44 @@ using BuildingComponents;
 using UnityEngine;
 using TMPro;
 using System;
-public class BuildingDataLoader : MonoBehaviour
+public class UIBuildingDataLoader : MonoBehaviour
 {
+    //This class is responsible for loading in the building data into the UI, 
+    //as well as updating the text to red or green based on whether or not the object is buyable
     private string filePath = "Assets/Resources/BuildingData.json"; // Adjust the path as per your project structure
 
     //<------------------------------------ <Industry Vars> ------------------------------------>
     //<---- <Extractor Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI ExtractorCostTexts;
+    [SerializeField] private TextMeshProUGUI ExtractorCostText;
     [SerializeField] private TextMeshProUGUI ExtractorHelpText;
     //<---- <Commercial Extractor Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI CommercialExtractorCostTexts;
+    [SerializeField] private TextMeshProUGUI CommercialExtractorCostText;
     [SerializeField] private TextMeshProUGUI CommercialExtractorHelpText;
     //<---- <Industrial Extractor Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI IndustrialExtractorCostTexts;
+    [SerializeField] private TextMeshProUGUI IndustrialExtractorCostText;
     [SerializeField] private TextMeshProUGUI IndustrialExtractorHelpText;
 
     //<------------------------------------ <Suit Vars> --------------------------------------->
 
     //<---- <Masterkey Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI MasterkeyCostTexts;
+    [SerializeField] private TextMeshProUGUI MasterkeyCostText;
     [SerializeField] private TextMeshProUGUI MasterkeyHelpText;
     //<---- <Jetpack Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI JetpackCostTexts;
+    [SerializeField] private TextMeshProUGUI JetpackCostText;
     [SerializeField] private TextMeshProUGUI JetpackHelpText;
     //<---- <Cybernetics Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI CyberneticsCostTexts;
+    [SerializeField] private TextMeshProUGUI CyberneticsCostText;
     [SerializeField] private TextMeshProUGUI CyberneticsHelpText;
 
     //<------------------------------------ <Robotic Vars> ------------------------------------>
     //<---- <RoboBuddy Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI RoboBuddyCostTexts;
+    [SerializeField] private TextMeshProUGUI RoboBuddyCostText;
     [SerializeField] private TextMeshProUGUI RoboBuddyHelpText;
     //<---- <Cybernetics Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI SatelliteCostTexts;
+    [SerializeField] private TextMeshProUGUI SatelliteCostText;
     [SerializeField] private TextMeshProUGUI SatelliteHelpText;
     //<---- <Cybernetics Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI AICostTexts;
+    [SerializeField] private TextMeshProUGUI AICostText;
     [SerializeField] private TextMeshProUGUI AIHelpText;
     //Json Vars
     //-----------------------------------------------------------------
@@ -67,31 +69,31 @@ public class BuildingDataLoader : MonoBehaviour
         
         switch(itemID){
             case "Extractor":
-                LoadIntoUI(item, ExtractorCostTexts, ExtractorHelpText);
+                LoadIntoUI(item, ExtractorCostText, ExtractorHelpText);
             break;
             case "CommercialExtractor":
-                LoadIntoUI(item, CommercialExtractorCostTexts, CommercialExtractorHelpText);
+                LoadIntoUI(item, CommercialExtractorCostText, CommercialExtractorHelpText);
             break;
             case "IndustrialExtractor":
-                LoadIntoUI(item, IndustrialExtractorCostTexts, IndustrialExtractorHelpText);
+                LoadIntoUI(item, IndustrialExtractorCostText, IndustrialExtractorHelpText);
             break;
             case "Masterkey":
-                LoadIntoUI(item, MasterkeyCostTexts, MasterkeyHelpText);
+                LoadIntoUI(item, MasterkeyCostText, MasterkeyHelpText);
             break;
             case "Jetpack":
-                LoadIntoUI(item, JetpackCostTexts, JetpackHelpText);
+                LoadIntoUI(item, JetpackCostText, JetpackHelpText);
             break;
             case "Cybernetics":
-                LoadIntoUI(item, CyberneticsCostTexts, CyberneticsHelpText);
+                LoadIntoUI(item, CyberneticsCostText, CyberneticsHelpText);
             break;
             case "RoboBuddy":
-                LoadIntoUI(item, RoboBuddyCostTexts, RoboBuddyHelpText);
+                LoadIntoUI(item, RoboBuddyCostText, RoboBuddyHelpText);
             break;
             case "Satellite":
-                LoadIntoUI(item, SatelliteCostTexts, SatelliteHelpText);
+                LoadIntoUI(item, SatelliteCostText, SatelliteHelpText);
             break;
             case "AI":
-                LoadIntoUI(item, AICostTexts, AIHelpText);
+                LoadIntoUI(item, AICostText, AIHelpText);
             break;
         }
     }
@@ -103,5 +105,7 @@ public class BuildingDataLoader : MonoBehaviour
         }
         helpText.text = item.ItemDescription;
     }
+
+
     
 }

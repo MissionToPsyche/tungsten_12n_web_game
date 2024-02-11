@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField, ReadOnly] private float groundCheckRadius = 0.3f;
-
     [Header("Objects")]
     [SerializeField] private Rigidbody2D playerBody;
     [SerializeField] private GravityBody2D gravityBody;
@@ -43,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private enum PlayerState { Idle, Walking, Sprinting, Strafing, Jumping, Crouching, Crawling, Interacting }
     [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
-
+    [SerializeField] public BoolEvent playerInteract;
     // Animation
     [SerializeField] private Animator animator;
     private CharacterDatabase characterDatabase;
@@ -303,9 +302,9 @@ public class PlayerController : MonoBehaviour
 
     private void Interact()
     {
-        if (isGrounded)
+        if (isGrounded && currentState == PlayerState.Interacting)
         {
-            // do something
+            playerInteract.Raise(true);
         }
     }
 
