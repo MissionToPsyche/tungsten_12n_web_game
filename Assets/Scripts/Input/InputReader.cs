@@ -86,10 +86,13 @@ public class InputReader :
     [SerializeField] private BoolEvent PlayerSprint;
     [SerializeField] private BoolEvent PlayerCrouch;
     [SerializeField] private BoolEvent PlayerInteract;
-
+    [Header("Player UI Events")]
     [SerializeField] private VoidEvent PlayerBuildOverlay;
+    [SerializeField] private VoidEvent PlayerBuildOverlayCycleLeft;
+    [SerializeField] private VoidEvent PlayerBuildOverlayCycleRight;
     [SerializeField] private VoidEvent PlayerInventoryOverlay;
     [SerializeField] private VoidEvent PlayerObjectiveOverlay;
+
 
     [Header("Satellite Events")]
     [SerializeField] private Vector2Event SatelliteMove;
@@ -203,6 +206,14 @@ public class InputReader :
     public void OnPlayerBuildOverlay(InputAction.CallbackContext context)
     {
         PlayerBuildOverlay.Raise();
+    }
+    public void OnPlayerBuildOverlayCycleLeft(InputAction.CallbackContext context)
+    {
+        PlayerBuildOverlayCycleLeft.Raise();
+    }
+    public void OnPlayerBuildOverlayCycleRight(InputAction.CallbackContext context)
+    {
+        PlayerBuildOverlayCycleRight.Raise();
     }
 
     public void OnPlayerInventoryOverlay(InputAction.CallbackContext context)

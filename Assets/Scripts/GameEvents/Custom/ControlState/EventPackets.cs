@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using BuildingComponents;
 
 namespace packet{
     /// <summary>
@@ -9,9 +10,9 @@ namespace packet{
     /// </summary>
     public class CheckInventoryPacket{
         public GameObject objectThatSent;
-        public InventoryTypes.BuildingType building;
+        public BuildingType building;
         public ObjectsCost objCost;
-        public CheckInventoryPacket(GameObject obj, InventoryTypes.BuildingType build, ObjectsCost cost){
+        public CheckInventoryPacket(GameObject obj, BuildingType build, ObjectsCost cost){
             objectThatSent = obj;
             building = build;
             objCost = cost;
@@ -21,9 +22,9 @@ namespace packet{
     public class MiningPacket{
         public GameObject objectThatSent;
         public int amountToChange;
-        public InventoryTypes.ResourceType resourceToChange;
+        public ResourceType resourceToChange;
         public bool Add;
-        public MiningPacket(GameObject obj, int amt, InventoryTypes.ResourceType resource, bool boolean){
+        public MiningPacket(GameObject obj, int amt, ResourceType resource, bool boolean){
             objectThatSent = obj;
             amountToChange = amt;
             resourceToChange = resource;
@@ -31,4 +32,11 @@ namespace packet{
         }
     }
 
+    public class UpdateButtonCostTextPacket{
+        public GameObject objectThatSent;
+        public Dictionary<ResourceType, int> inventory;
+        public UpdateButtonCostTextPacket(Dictionary<ResourceType, int> inventory){
+            this.inventory = inventory;
+        }
+    }
 }

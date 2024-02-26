@@ -53,7 +53,7 @@ public class SpawnResources
             case 1:
                 return new Nickel(Pos);
             case 2:
-                return new Silver(Pos);
+                return new Cobalt(Pos);
             case 3:
                 return new Platinum(Pos);
             case 4:
@@ -77,7 +77,7 @@ public class SpawnResources
                 return Rarity.Common;
             case 1: //Nickel
                 return Rarity.Common;
-            case 2: //Silver
+            case 2: //Cobalt
                 return Rarity.Common;
             case 3: //Plat
                 return Rarity.Commodity;

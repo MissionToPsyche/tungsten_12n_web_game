@@ -183,15 +183,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PlayerBuildOverlay",
-                    "type": "Button",
-                    "id": "e4df92d7-b739-41dd-afa3-675ac9711219",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "PlayerInventoryOverlay",
                     "type": "Button",
                     "id": "f1d370a2-bd6f-4e67-9dbb-03c8a544ccf0",
@@ -204,6 +195,33 @@
                     "name": "PlayerObjectiveOverlay",
                     "type": "Button",
                     "id": "d4369218-3c36-46e3-98ce-4db59f7bdeef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerBuildOverlayCycleRight",
+                    "type": "Button",
+                    "id": "4986fc4a-cac2-4f08-8642-571836ab8d1c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerBuildOverlayCycleLeft",
+                    "type": "Button",
+                    "id": "62984d7d-ce48-46da-a946-91d1beef0833",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerBuildOverlay",
+                    "type": "Button",
+                    "id": "e4df92d7-b739-41dd-afa3-675ac9711219",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -411,28 +429,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b7a9542c-c15f-4c60-83c6-f0dea80f56b9",
-                    "path": "<Keyboard>/b",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayerBuildOverlay",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5208440e-dad7-45a4-be90-871b5b1988ae",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayerBuildOverlay",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0955537e-91ca-4807-9fff-fc1c2744add6",
                     "path": "<Keyboard>/i",
                     "interactions": "",
@@ -472,6 +468,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "PlayerSprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "760c33e2-df3c-4007-8aaa-03d7943e52ea",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBuildOverlayCycleRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b09e7838-db99-4326-8513-c0ec25ac6e51",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBuildOverlayCycleLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7a9542c-c15f-4c60-83c6-f0dea80f56b9",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBuildOverlay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5208440e-dad7-45a4-be90-871b5b1988ae",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerBuildOverlay",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

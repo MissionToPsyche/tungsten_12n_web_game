@@ -3,39 +3,42 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using InventoryTypes;
+using BuildingComponents;
 public class InventoryManager : MonoBehaviour
 {
-    Inventory myInventory;
+    Inventory currentInventory;
     InventoryUIManager inventoryUI;
     [SerializeField] public BuildObjEvent buildObjEvent;
-    void Awake(){
+    [SerializeField] public UpdateButtonCostTextEvent updateBuildButtonsEvent;
+    void Start(){
         //init resource dictionary and add their starting resources
-        myInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0);
+        currentInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0);
         inventoryUI = GetComponent<InventoryUIManager>();
-        inventoryUI.UpdateInventoryFromDictionary(myInventory.GetInvDictionary());
+        inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }
-    void Update(){
-        //logic to update the ui to be red in real time when not enough resources
-    }
+    // void Update(){
+    //      Still unsure on how to update BuildUI, potentially just have a text at the bottom of card
+    //      that says not enough resources
+    //     updateBuildButtonsEvent.Raise(new packet.UpdateButtonCostTextPacket(currentInventory.GetInvDictionary()));
+    // }
     public void OnCheckInventoryEvent(packet.CheckInventoryPacket packet){
         if(CheckAvailResources(packet.objCost) == true){
-            myInventory.PayForObjectWithObjCost(packet.objCost);
-            inventoryUI.UpdateInventoryFromDictionary(GetMyInventory());
+            currentInventory.PayForObjectWithObjCost(packet.objCost);
+            inventoryUI.UpdateInventoryFromDictionary(GetcurrentInventory());
             buildObjEvent.Raise(packet.building);
         }
     }
-    public Dictionary<ResourceType, int> GetMyInventory(){
-        return myInventory.GetInvDictionary();
+    public Dictionary<ResourceType, int> GetcurrentInventory(){
+        return currentInventory.GetInvDictionary();
     }
 
     private bool CheckAvailResources(ObjectsCost costDictionary){
-        return myInventory.CheckCost(costDictionary);
+        return currentInventory.CheckCost(costDictionary);
     }
 
     public void OnMineEvent(packet.MiningPacket packet){
-        myInventory.AddResource(packet.resourceToChange, packet.amountToChange);
-        inventoryUI.UpdateInventoryFromDictionary(myInventory.GetInvDictionary());
+        currentInventory.AddResource(packet.resourceToChange, packet.amountToChange);
+        inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }
 
 }

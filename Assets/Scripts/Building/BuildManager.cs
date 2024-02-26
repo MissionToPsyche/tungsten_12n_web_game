@@ -4,29 +4,32 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-    public GameObject prefab;
-
-    static private Extractor extractor = new();
-    private BuildUIManager buildUI;
+    [SerializeField ]public GameObject ExtractorPrefab;
+    [SerializeField ]public GameObject CommercialExtractorPrefab;
+    [SerializeField ]public GameObject IndustrialExtractorPrefab;
+    private UIBuildManager buildUI;
     void Awake(){
-        buildUI = GetComponent<BuildUIManager>();
+        buildUI = GetComponent<UIBuildManager>();
     }
-    public void OnBuildObjEvent(InventoryTypes.BuildingType type){
+    public void OnBuildObjEvent(BuildingComponents.BuildingType type){
         //Turns off Build overlay after an obj has been bought
         buildUI.OnPlayerBuildOverlay();
         switch(type){
-            case InventoryTypes.BuildingType.Extractor:
-                SpawnNewExtractor();
+            case BuildingComponents.BuildingType.Extractor:
+                SpawnNewExtractor(ExtractorPrefab);
+                return;
+            case BuildingComponents.BuildingType.CommercialExtractor:
+                SpawnNewExtractor(CommercialExtractorPrefab);
+                return;
+            case BuildingComponents.BuildingType.IndustrialExtractor:
+                SpawnNewExtractor(IndustrialExtractorPrefab);
                 return;
         }
     }
-    public void SpawnNewExtractor()
+    public void SpawnNewExtractor(GameObject prefab)
     {
         Vector3 screenPos = new Vector3(375, 285, 10f); 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         Instantiate(prefab, worldPos, Quaternion.identity);
-    }
-    public ObjectsCost GetExtractorCost(){
-        return extractor.getCostDictionary();
     }
 }

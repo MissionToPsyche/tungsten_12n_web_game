@@ -1,0 +1,171 @@
+{
+    "BuildingObject": [
+      {
+        "ID": "Extractor",
+        "Type": "Industrial",
+        "ItemTitle": "Extractor",
+        "ItemDescription": "Mines for 2 resources every 5 seconds",
+        "AmountToMine": 2,
+        "IntervalMine": 5,
+        "percentAsteroidReach":  0.25,
+        "BaseBreakChance": 0.02,
+        "Costs": {
+          "Iron": 15,
+          "Nickel": 15,
+          "Cobalt": 5,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "CommercialExtractor",
+        "Type": "Industrial",
+        "ItemTitle": "Commercial Extractor",
+        "ItemDescription": "Mines for 5 resources every 5 seconds",
+        "AmountToMine": 5,
+        "IntervalMine": 5,
+        "percentAsteroidReach":  40,
+        "BaseBreakChance": 0.01,
+        "Costs": {
+          "Iron": 25,
+          "Nickel": 25,
+          "Cobalt": 10,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "IndustrialExtractor",
+        "Type": "Industrial",
+        "ItemTitle": "Industrial Extractor",
+        "ItemDescription": "Mines for 10 resources every 5 seconds",
+        "AmountToMine": 10,
+        "IntervalMine": 5,
+        "percentAsteroidReach":  50,
+        "BaseBreakChance": 0.005,
+        "Costs": {
+          "Iron": 75,
+          "Nickel": 75,
+          "Cobalt": 50,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "ExoSuit",
+        "Type": "Suit",
+        "ItemTitle": "ExoSuit",
+        "ItemDescription": "Alters and allows for better movement",
+        "Costs": {
+          "Iron": 10,
+          "Nickel": 10,
+          "Cobalt": 5,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "Jetpack",
+        "Type": "Suit",
+        "ItemTitle": "Jetpack",
+        "ItemDescription": "Better Jumping",
+        "Costs": {
+          "Iron": 50,
+          "Nickel": 50,
+          "Cobalt": 25,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "SuitCybernetics",
+        "Type": "Suit",
+        "ItemTitle": "Suit Cybernetics",
+        "ItemDescription": "Use a charge to instantly repair a module, gain a charge every X minutes",
+        "Costs": {
+          "Iron": 75,
+          "Nickel": 75,
+          "Cobalt": 50,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "RoboBuddy",
+        "Type": "Robotics",
+        "ItemTitle": "Robo Buddy",
+        "ItemDescription": "A controllable companion",
+        "Costs": {
+          "Iron": 35,
+          "Nickel": 35,
+          "Cobalt": 15,
+          "Platinum": 0,
+          "Gold": 0,
+          "Technitium": 0,
+          "Tungsten": 0,
+          "Iridium": 0
+        },
+        "Image": ""
+      },
+      {
+        "ID": "Satellite",
+        "Type": "Robotics",
+        "ItemTitle": "Satellite",
+        "ItemDescription": "Use to scan for resources",
+        "Costs": {
+          "Iron": 150,
+          "Nickel": 150,
+          "Cobalt": 150,
+          "Platinum": 75,
+          "Gold": 75,
+          "Technitium": 75,
+          "Tungsten": 10,
+          "Iridium": 10
+        },
+        "Image": ""
+      },
+      {
+        "ID": "RocketLaunchPad",
+        "Type": "Robotics",
+        "ItemTitle": "Rocket Launch Pad",
+        "ItemDescription": "Fly home with all your mined resources!!!",
+        "Costs": {
+          "Iron": 500,
+          "Nickel": 500,
+          "Cobalt": 500,
+          "Platinum": 250,
+          "Gold": 250,
+          "Technitium": 250,
+          "Tungsten": 75,
+          "Iridium": 75
+        },
+        "Image": ""
+    }
+    ]
+  }
+    
+  
