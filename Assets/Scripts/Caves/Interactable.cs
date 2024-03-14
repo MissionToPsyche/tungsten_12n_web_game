@@ -24,6 +24,9 @@ public class Interactable : MonoBehaviour
         {
             if (Input.GetKeyDown(interactKey)) 
             {
+                // dynamically locate the player manager and set the last position, then invoke the scene change
+                PlayerManager currPlayer = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManager>();
+                currPlayer.setLastPosition();
                 interactAction.Invoke();
             }
         }
