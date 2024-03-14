@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager instance;
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero; 
+    private Quaternion lastRotation = Quaternion.Euler(0,0,0);
     private GameObject playerInstance; 
     private CinemachineVirtualCamera virtualPlayerCamera;
     private Camera cam; 
@@ -24,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
         Debug.Log($"Last coordinates: {this.lastCoordinates}");
+        Debug.Log($"Last rotation: {this.lastRotation}");
         playerInstance = GameObject.FindWithTag("Player");
         setScenePosition(); 
 
@@ -42,7 +44,6 @@ public class PlayerManager : MonoBehaviour
         // // Singleton method
         if (instance != null && instance != this)
         {
-            Debug.Log("im in here");
             Destroy(gameObject);
         }
         else 
@@ -56,21 +57,24 @@ public class PlayerManager : MonoBehaviour
     private void setScenePosition() 
     {
         // put the player but to their original position if they come back to the asteroid scene
-        if (SceneManager.GetActiveScene().name == "AsteroidScene" && this.lastCoordinates != Vector3.zero) 
+        if (SceneManager.GetActiveScene().name == "AsteroidScene" && this.lastCoordinates != Vector3.zero && this.lastRotation != Quaternion.Euler(0,0,0)) 
         {  
             this.playerInstance.transform.position = this.lastCoordinates; 
+            this.playerInstance.transform.rotation = this.lastRotation;
             return; 
         }
         
         // put the player to the default spawn position in the scene
         Transform defaultSpawn = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
         this.playerInstance.transform.position = defaultSpawn.position;
+        this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
     }
 
     // set the players last known coordinates
     public void setLastPosition()
     {  
         this.lastCoordinates = playerInstance.transform.position;
+        this.lastRotation = playerInstance.transform.rotation;
     }
 
     void OnDisable()
