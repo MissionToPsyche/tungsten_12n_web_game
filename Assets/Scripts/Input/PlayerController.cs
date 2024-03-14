@@ -1,6 +1,7 @@
 using UnityEngine;
 using Cinemachine;
 using System;
+using System.Numerics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -48,9 +49,23 @@ public class PlayerController : MonoBehaviour
     private CharacterDatabase characterDatabase;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField, ReadOnly] private int selection = 0;
+    [SerializeField] private static PlayerController instance; 
+    private UnityEngine.Vector3 playerCoordinates; 
 
-    private void Start()
+    void Start()
     {
+        // // Singleton method
+        if (instance != null && instance != this)
+        {
+            Debug.Log("im in here");
+            Destroy(gameObject);
+        }
+        else 
+        {
+            instance = this; 
+            DontDestroyOnLoad(gameObject);
+        }
+
         if (!PlayerPrefs.HasKey("selectedOption"))
         {
             selection = 0;
@@ -70,7 +85,6 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-
         LoadSelectedCharacter(selection);
     }
 
@@ -88,8 +102,19 @@ public class PlayerController : MonoBehaviour
 
     // -------------------------------------------------------------------
     // Handle events
+    // this method will
+    public void SetPlayerCoordinates() 
+    {
+        this.playerCoordinates = this.transform.position;
+    }
 
-    public void OnPlayerMove(Vector2 direction)
+    public UnityEngine.Vector3 GetPlayerCoordinates() 
+    {
+        return this.playerCoordinates;
+    }
+
+
+    public void OnPlayerMove(UnityEngine.Vector2 direction)
     {
         horizontalInput = direction.x;
         isIdle = horizontalInput == 0;
@@ -268,9 +293,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Calculate the movement direction based on the player's current orientation and input
-        Vector2 direction = transform.right * horizontalInput;
+        UnityEngine.Vector2 direction = transform.right * horizontalInput;
         // Calculate the actual movement amount
-        Vector2 movement = direction * (currentSpeed * Time.fixedDeltaTime);
+        UnityEngine.Vector2 movement = direction * (currentSpeed * Time.fixedDeltaTime);
         // Move the player's rigidbody
         playerBody.position += movement;
     }
@@ -348,7 +373,7 @@ public class PlayerController : MonoBehaviour
         // Switch the way the player is labelled as facing
         isFacingRight = !isFacingRight;
 
-        Vector3 localScale = transform.localScale;
+        UnityEngine.Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
     }
