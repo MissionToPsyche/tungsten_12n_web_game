@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Background
+  - VirtualPlayerCamera
+  - PlayerLastCoordinates
   layers:
   - Default
   - TransparentFX
