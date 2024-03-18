@@ -691,6 +691,152 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Cave Scene"",
+            ""id"": ""f89fc0bf-31ae-4cf1-989f-73905dfb2990"",
+            ""actions"": [],
+            ""bindings"": []
+        },
+        {
+            ""name"": ""Asteroid Scene"",
+            ""id"": ""795878a4-992b-4534-8f1d-4712f906135a"",
+            ""actions"": [
+                {
+                    ""name"": ""ZoomIn"",
+                    ""type"": ""Value"",
+                    ""id"": ""a9c81524-658f-4067-a843-46832b2f08af"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ZoomOut"",
+                    ""type"": ""Value"",
+                    ""id"": ""88c4526c-7d51-4ae1-a82c-8d243c2dc56e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1d9285a2-db77-4436-b96b-2cf39c0b0486"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Invert"",
+                    ""groups"": """",
+                    ""action"": ""ZoomIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""106c07ce-1df9-4af8-93ed-714afbcfa148"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": ""Invert"",
+                    ""groups"": """",
+                    ""action"": ""ZoomIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ccf33f64-0f1c-4b77-9a1a-c142d8f720f2"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b94766eb-d09b-450c-9ac7-0d66ff34fd28"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Generic Scene"",
+            ""id"": ""8d170e31-5512-422d-a62a-e7038eb6f1d6"",
+            ""actions"": [
+                {
+                    ""name"": ""SwitchControlState"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c339574-b945-435e-8f91-3c27475f370a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GamePause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f85a4076-ccdd-479d-96e5-21ca3cd2ff51"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8bad45f6-9598-44ed-ad49-b2e29487634b"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchControlState"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4569529e-1a88-47f4-af2c-72078d1a4c2f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchControlState"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7994baf4-c5e6-44f9-a999-d27058792e3e"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GamePause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8b49424-67c2-4a49-aba2-ed9344da71c1"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GamePause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -720,6 +866,16 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_GameResume = m_UI.FindAction("GameResume", throwIfNotFound: true);
+        // Cave Scene
+        m_CaveScene = asset.FindActionMap("Cave Scene", throwIfNotFound: true);
+        // Asteroid Scene
+        m_AsteroidScene = asset.FindActionMap("Asteroid Scene", throwIfNotFound: true);
+        m_AsteroidScene_ZoomIn = m_AsteroidScene.FindAction("ZoomIn", throwIfNotFound: true);
+        m_AsteroidScene_ZoomOut = m_AsteroidScene.FindAction("ZoomOut", throwIfNotFound: true);
+        // Generic Scene
+        m_GenericScene = asset.FindActionMap("Generic Scene", throwIfNotFound: true);
+        m_GenericScene_SwitchControlState = m_GenericScene.FindAction("SwitchControlState", throwIfNotFound: true);
+        m_GenericScene_GamePause = m_GenericScene.FindAction("GamePause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1065,6 +1221,152 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Cave Scene
+    private readonly InputActionMap m_CaveScene;
+    private List<ICaveSceneActions> m_CaveSceneActionsCallbackInterfaces = new List<ICaveSceneActions>();
+    public struct CaveSceneActions
+    {
+        private @InputSystem m_Wrapper;
+        public CaveSceneActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_CaveScene; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CaveSceneActions set) { return set.Get(); }
+        public void AddCallbacks(ICaveSceneActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CaveSceneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CaveSceneActionsCallbackInterfaces.Add(instance);
+        }
+
+        private void UnregisterCallbacks(ICaveSceneActions instance)
+        {
+        }
+
+        public void RemoveCallbacks(ICaveSceneActions instance)
+        {
+            if (m_Wrapper.m_CaveSceneActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICaveSceneActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CaveSceneActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CaveSceneActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CaveSceneActions @CaveScene => new CaveSceneActions(this);
+
+    // Asteroid Scene
+    private readonly InputActionMap m_AsteroidScene;
+    private List<IAsteroidSceneActions> m_AsteroidSceneActionsCallbackInterfaces = new List<IAsteroidSceneActions>();
+    private readonly InputAction m_AsteroidScene_ZoomIn;
+    private readonly InputAction m_AsteroidScene_ZoomOut;
+    public struct AsteroidSceneActions
+    {
+        private @InputSystem m_Wrapper;
+        public AsteroidSceneActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ZoomIn => m_Wrapper.m_AsteroidScene_ZoomIn;
+        public InputAction @ZoomOut => m_Wrapper.m_AsteroidScene_ZoomOut;
+        public InputActionMap Get() { return m_Wrapper.m_AsteroidScene; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AsteroidSceneActions set) { return set.Get(); }
+        public void AddCallbacks(IAsteroidSceneActions instance)
+        {
+            if (instance == null || m_Wrapper.m_AsteroidSceneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_AsteroidSceneActionsCallbackInterfaces.Add(instance);
+            @ZoomIn.started += instance.OnZoomIn;
+            @ZoomIn.performed += instance.OnZoomIn;
+            @ZoomIn.canceled += instance.OnZoomIn;
+            @ZoomOut.started += instance.OnZoomOut;
+            @ZoomOut.performed += instance.OnZoomOut;
+            @ZoomOut.canceled += instance.OnZoomOut;
+        }
+
+        private void UnregisterCallbacks(IAsteroidSceneActions instance)
+        {
+            @ZoomIn.started -= instance.OnZoomIn;
+            @ZoomIn.performed -= instance.OnZoomIn;
+            @ZoomIn.canceled -= instance.OnZoomIn;
+            @ZoomOut.started -= instance.OnZoomOut;
+            @ZoomOut.performed -= instance.OnZoomOut;
+            @ZoomOut.canceled -= instance.OnZoomOut;
+        }
+
+        public void RemoveCallbacks(IAsteroidSceneActions instance)
+        {
+            if (m_Wrapper.m_AsteroidSceneActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IAsteroidSceneActions instance)
+        {
+            foreach (var item in m_Wrapper.m_AsteroidSceneActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_AsteroidSceneActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public AsteroidSceneActions @AsteroidScene => new AsteroidSceneActions(this);
+
+    // Generic Scene
+    private readonly InputActionMap m_GenericScene;
+    private List<IGenericSceneActions> m_GenericSceneActionsCallbackInterfaces = new List<IGenericSceneActions>();
+    private readonly InputAction m_GenericScene_SwitchControlState;
+    private readonly InputAction m_GenericScene_GamePause;
+    public struct GenericSceneActions
+    {
+        private @InputSystem m_Wrapper;
+        public GenericSceneActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SwitchControlState => m_Wrapper.m_GenericScene_SwitchControlState;
+        public InputAction @GamePause => m_Wrapper.m_GenericScene_GamePause;
+        public InputActionMap Get() { return m_Wrapper.m_GenericScene; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GenericSceneActions set) { return set.Get(); }
+        public void AddCallbacks(IGenericSceneActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GenericSceneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GenericSceneActionsCallbackInterfaces.Add(instance);
+            @SwitchControlState.started += instance.OnSwitchControlState;
+            @SwitchControlState.performed += instance.OnSwitchControlState;
+            @SwitchControlState.canceled += instance.OnSwitchControlState;
+            @GamePause.started += instance.OnGamePause;
+            @GamePause.performed += instance.OnGamePause;
+            @GamePause.canceled += instance.OnGamePause;
+        }
+
+        private void UnregisterCallbacks(IGenericSceneActions instance)
+        {
+            @SwitchControlState.started -= instance.OnSwitchControlState;
+            @SwitchControlState.performed -= instance.OnSwitchControlState;
+            @SwitchControlState.canceled -= instance.OnSwitchControlState;
+            @GamePause.started -= instance.OnGamePause;
+            @GamePause.performed -= instance.OnGamePause;
+            @GamePause.canceled -= instance.OnGamePause;
+        }
+
+        public void RemoveCallbacks(IGenericSceneActions instance)
+        {
+            if (m_Wrapper.m_GenericSceneActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGenericSceneActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GenericSceneActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GenericSceneActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GenericSceneActions @GenericScene => new GenericSceneActions(this);
     public interface IGameplayActions
     {
         void OnSwitchControlState(InputAction.CallbackContext context);
@@ -1093,5 +1395,18 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnGameResume(InputAction.CallbackContext context);
+    }
+    public interface ICaveSceneActions
+    {
+    }
+    public interface IAsteroidSceneActions
+    {
+        void OnZoomIn(InputAction.CallbackContext context);
+        void OnZoomOut(InputAction.CallbackContext context);
+    }
+    public interface IGenericSceneActions
+    {
+        void OnSwitchControlState(InputAction.CallbackContext context);
+        void OnGamePause(InputAction.CallbackContext context);
     }
 }
