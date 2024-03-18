@@ -669,6 +669,152 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Cave Scene",
+            "id": "f89fc0bf-31ae-4cf1-989f-73905dfb2990",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "Asteroid Scene",
+            "id": "795878a4-992b-4534-8f1d-4712f906135a",
+            "actions": [
+                {
+                    "name": "ZoomIn",
+                    "type": "Value",
+                    "id": "a9c81524-658f-4067-a843-46832b2f08af",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ZoomOut",
+                    "type": "Value",
+                    "id": "88c4526c-7d51-4ae1-a82c-8d243c2dc56e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1d9285a2-db77-4436-b96b-2cf39c0b0486",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "Invert",
+                    "groups": "",
+                    "action": "ZoomIn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "106c07ce-1df9-4af8-93ed-714afbcfa148",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "Invert",
+                    "groups": "",
+                    "action": "ZoomIn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ccf33f64-0f1c-4b77-9a1a-c142d8f720f2",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b94766eb-d09b-450c-9ac7-0d66ff34fd28",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Generic Scene",
+            "id": "8d170e31-5512-422d-a62a-e7038eb6f1d6",
+            "actions": [
+                {
+                    "name": "SwitchControlState",
+                    "type": "Button",
+                    "id": "3c339574-b945-435e-8f91-3c27475f370a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GamePause",
+                    "type": "Button",
+                    "id": "f85a4076-ccdd-479d-96e5-21ca3cd2ff51",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8bad45f6-9598-44ed-ad49-b2e29487634b",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchControlState",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4569529e-1a88-47f4-af2c-72078d1a4c2f",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchControlState",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7994baf4-c5e6-44f9-a999-d27058792e3e",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GamePause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8b49424-67c2-4a49-aba2-ed9344da71c1",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GamePause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

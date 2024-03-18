@@ -8280,6 +8280,8 @@ GameObject:
   - component: {fileID: 728220865}
   - component: {fileID: 728220867}
   - component: {fileID: 728220866}
+  - component: {fileID: 728220869}
+  - component: {fileID: 728220868}
   m_Layer: 7
   m_Name: Satellite
   m_TagString: Untagged
@@ -8432,13 +8434,13 @@ MonoBehaviour:
   unityEventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 728220860}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 728220869}
+        m_TargetAssemblyTypeName: SatelliteController, Assembly-CSharp
+        m_MethodName: OnSatelliteScan
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8460,18 +8462,49 @@ MonoBehaviour:
   unityEventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 728220860}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 728220869}
+        m_TargetAssemblyTypeName: SatelliteController, Assembly-CSharp
+        m_MethodName: OnSatelliteMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &728220868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728220860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccae3bc07eed174e8089f8100ab9cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  satellite: {fileID: 728220860}
+  asteroid: {fileID: 972182554}
+  orbitSpeed: 0.075
+--- !u!114 &728220869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728220860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a610bf777caf74341ac0afb2ea828f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  satelliteBody: {fileID: 728220865}
+  horizontalInput: 0
+  currentSpeed: 0
+  currentState: 0
 --- !u!1 &744533665
 GameObject:
   m_ObjectHideFlags: 0
