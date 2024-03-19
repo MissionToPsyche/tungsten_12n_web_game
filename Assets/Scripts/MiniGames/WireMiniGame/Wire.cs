@@ -6,6 +6,8 @@ public class Wire : MonoBehaviour
 {
     public SpriteRenderer wireEnd;
     public GameObject lightOn;
+
+    public VoidEvent wireAttachedEvent;
     Vector3 startPoint;
     Vector3 startPosition;
     // Start is called before the first frame update
@@ -53,6 +55,8 @@ public class Wire : MonoBehaviour
     {
         // turn on light
         lightOn.SetActive(true);
+
+        wireAttachedEvent.Raise();
 
         // destory the script
         Destroy(this);
