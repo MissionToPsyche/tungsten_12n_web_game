@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class WinConditionChecker : MonoBehaviour
 {
+    public BoolEvent winCondition;
     public GameObject[] lights;
 
-    void Update()
+    public void winCheck()
     {
         // Check if all lights are turned on
         bool allLightsOn = CheckAllLightsOn();
 
         if (allLightsOn)
         {
-            Debug.Log("You win!");
+            Debug.Log("MiniGame Won");
+            winCondition.Raise(true);
             // Implement your win condition actions here
         }
     }
 
-    bool CheckAllLightsOn()
+    private bool CheckAllLightsOn()
     {
         foreach (GameObject light in lights)
         {

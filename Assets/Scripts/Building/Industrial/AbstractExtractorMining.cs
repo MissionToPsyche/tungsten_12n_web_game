@@ -4,6 +4,8 @@ using BuildingComponents;
 //This class holds the functionality of showing the the text above the extractor, sending the mineEvent out and reducing the available amount of resources in the resource
 public class AbstractExtractorMining : MonoBehaviour
 {
+    //Mini Game Event
+    public VoidEvent OnMiniGameEvent;
 
     //Mining
     public MiningEvent OnMineEvent;
@@ -16,6 +18,8 @@ public class AbstractExtractorMining : MonoBehaviour
     protected int timesMinedSinceBroken = 0;
     protected float baseBreakChance;
     protected bool playerCanInteract = false;
+
+    protected bool playerInteracted = false;
     //Mining UI
     public GameObject textPrefabPlusOne;
     public GameObject textPrefabExclamation;
@@ -173,8 +177,21 @@ public class AbstractExtractorMining : MonoBehaviour
     public void OnPlayerInteract(){
         if(playerCanInteract && isBroken){
             //IMPLEMENT MINI GAME LOGIC HERE
-            isBroken = false;
-            ResetText(currentExtractText);
+            playerInteracted = true;
+            OnMiniGameEvent.Raise();
+
+            //isBroken = false;
+            //ResetText(currentExtractText);
         }
+    }
+
+    public void fix(){
+        if(playerInteracted){
+             isBroken = false;
+             ResetText(currentExtractText);
+
+             playerInteracted = false;
+        }
+       
     }
 }
