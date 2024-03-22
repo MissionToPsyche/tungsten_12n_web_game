@@ -39,4 +39,13 @@ namespace packet{
             this.inventory = inventory;
         }
     }
+
+    public class TechUpPacket{
+        public int TechToLevel;
+        public BuildingComponents.BuildingType building;
+        public TechUpPacket(BuildingComponents.BuildingType building, int TechToLevel){
+            this.building = building;
+            this.TechToLevel = TechToLevel;
+        }
+    }
 }

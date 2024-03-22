@@ -28,7 +28,7 @@ public class BuildManager : MonoBehaviour
     }
     public void SpawnNewExtractor(GameObject prefab)
     {
-        Vector3 screenPos = new Vector3(375, 285, 10f); 
+        Vector3 screenPos = new Vector3(375, 285, 10f);
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         Instantiate(prefab, worldPos, Quaternion.identity);
     }

@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using BuildingComponents;
-//This class holds the functionality of showing the the text above the extractor, sending the mineEvent out and reducing the available amount of resources in the resource
+//This class holds the functionality of showing the the text above the extractor, 
+//sending the mineEvent out and reducing the available amount of resources in the resource
 public class AbstractExtractorMining : MonoBehaviour
 {
 

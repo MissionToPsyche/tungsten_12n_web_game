@@ -16,7 +16,7 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TechnitiumInvText;
     [SerializeField] private TextMeshProUGUI TungestenInvText;
     [SerializeField] private TextMeshProUGUI IridiumInvText;
-
+    [SerializeField] private TextMeshProUGUI TechPointsInvText;
     
     public void UpdateInventoryFromDictionary(Dictionary<ResourceType, int> dict){
         foreach(var entry in dict)
@@ -49,6 +49,9 @@ public class InventoryUIManager : MonoBehaviour
                 break;
             case ResourceType.Iridium:
                 IridiumInvText.text = amt.ToString();
+                break;
+            case ResourceType.TechPoint:
+                TechPointsInvText.text = amt.ToString();
                 break;
         }
     }
