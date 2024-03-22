@@ -4,10 +4,10 @@
         "ID": "Extractor",
         "Type": "Industrial",
         "ItemTitle": "Extractor",
-        "ItemDescription": "Mines for 2 resources every 5 seconds",
+        "ItemDescription": "Mines resources, could maybe potentially break very easily",
         "AmountToMine": 2,
         "IntervalMine": 5,
-        "percentAsteroidReach":  0.25,
+        "AsteroidReach":  20,
         "BaseBreakChance": 0.02,
         "Costs": {
           "Iron": 15,
@@ -19,16 +19,21 @@
           "Tungsten": 0,
           "Iridium": 0
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "Increase mining amount by 20%, reduce break chance and increase extractor reach",
+          "Increase mining amount by 40%, further reduce break chance and increase reach",
+          "Peak Technology Reached!!!"
+        ]
       },
       {
         "ID": "CommercialExtractor",
         "Type": "Industrial",
         "ItemTitle": "Commercial Extractor",
-        "ItemDescription": "Mines for 5 resources every 5 seconds",
+        "ItemDescription": "Mines resources, could potentially break",
         "AmountToMine": 5,
         "IntervalMine": 5,
-        "percentAsteroidReach":  40,
+        "AsteroidReach":  30,
         "BaseBreakChance": 0.01,
         "Costs": {
           "Iron": 25,
@@ -40,16 +45,22 @@
           "Tungsten": 0,
           "Iridium": 0
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "Unlock this building",
+          "Increase mining amount by 20%, reduce break chance and increase extractor reach",
+          "Increase mining amount by 40%, further reduce break chance and increase reach",
+          "Peak Technology Reached!!!"
+        ]
       },
       {
         "ID": "IndustrialExtractor",
         "Type": "Industrial",
         "ItemTitle": "Industrial Extractor",
-        "ItemDescription": "Mines for 10 resources every 5 seconds",
+        "ItemDescription": "A Robust piece of mining equipment",
         "AmountToMine": 10,
         "IntervalMine": 5,
-        "percentAsteroidReach":  50,
+        "AsteroidReach":  50,
         "BaseBreakChance": 0.005,
         "Costs": {
           "Iron": 75,
@@ -61,10 +72,16 @@
           "Tungsten": 0,
           "Iridium": 0
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "Unlock this building",
+          "Increase mining amount by 20%, reduce break chance and increase extractor reach",
+          "Increase mining amount by 40%, further reduce break chance and increase reach",
+          "Peak Technology Reached!!!"
+        ]
       },
       {
-        "ID": "ExoSuit",
+        "ID": "Exosuit",
         "Type": "Suit",
         "ItemTitle": "ExoSuit",
         "ItemDescription": "Alters and allows for better movement",
@@ -78,12 +95,18 @@
           "Tungsten": 0,
           "Iridium": 0
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "Increase movement speed by 20%",
+          "Equip suit with flashlight for cave exploration",
+          "Mine cave resourcees with no minigame",
+          "Peak Technology Reached!!!"
+        ]
       },
       {
-        "ID": "Jetpack",
+        "ID": "JetPack",
         "Type": "Suit",
-        "ItemTitle": "Jetpack",
+        "ItemTitle": "JetPack",
         "ItemDescription": "Better Jumping",
         "Costs": {
           "Iron": 50,
@@ -95,13 +118,19 @@
           "Tungsten": 0,
           "Iridium": 0
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "Enable double jump",
+          "Enable prolonged flight",
+          "Better fuel efficency",
+          "Peak Technology Reached!!!"
+        ]
       },
       {
-        "ID": "SuitCybernetics",
+        "ID": "Cybernetics",
         "Type": "Suit",
         "ItemTitle": "Suit Cybernetics",
-        "ItemDescription": "Use a charge to instantly repair a module, gain a charge every X minutes",
+        "ItemDescription": "Gain a charge every 5 minutes that can instantly repair a module",
         "Costs": {
           "Iron": 75,
           "Nickel": 75,
@@ -112,13 +141,19 @@
           "Tungsten": 0,
           "Iridium": 0
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "Gain a charge every 5 minutes, can hold 3 at a time",
+          "Can now use a charge to fully charge RobotBuddy",
+          "Hold up to 6 charges with a 3.5 minute charge time",
+          "Peak Technology Reached!!!"
+        ]
       },
       {
-        "ID": "RoboBuddy",
+        "ID": "RobotBuddy",
         "Type": "Robotics",
         "ItemTitle": "Robo Buddy",
-        "ItemDescription": "A controllable companion",
+        "ItemDescription": "A friendly interface in this lonely asteroid cloud... can repair modules",
         "Costs": {
           "Iron": 35,
           "Nickel": 35,
@@ -129,13 +164,20 @@
           "Tungsten": 0,
           "Iridium": 0
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "Robot buddy is thirsty for more data... can now scan Geological Phenomina",
+          "Robot buddies hunger for the unkown knows no bounds... gains a flashlight and can mine cave resources",
+          "Solar panels make RobotBuddy charge while outside of caves",
+          "Through sheer will Robot buddy will never run out of power again...",
+          "Peak Technology Reached!!!"
+        ]
       },
       {
         "ID": "Satellite",
         "Type": "Robotics",
         "ItemTitle": "Satellite",
-        "ItemDescription": "Use to scan for resources",
+        "ItemDescription": "Use to scan for resources, 3 minute scan time",
         "Costs": {
           "Iron": 150,
           "Nickel": 150,
@@ -146,10 +188,16 @@
           "Tungsten": 10,
           "Iridium": 10
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "reduce scan time to 2 minutes",
+          "gain the ability to steer satellites",
+          "1 minute scan time",
+          "Peak Technology Reached!!!"
+        ]
       },
       {
-        "ID": "RocketLaunchPad",
+        "ID": "LaunchPad",
         "Type": "Robotics",
         "ItemTitle": "Rocket Launch Pad",
         "ItemDescription": "Fly home with all your mined resources!!!",
@@ -163,7 +211,14 @@
           "Tungsten": 75,
           "Iridium": 75
         },
-        "Image": ""
+        "Image": "",
+        "TechUpTexts": [
+          "Can now build Rocket parts",
+          "Can now build Solar Panels",
+          "Can now build Rocket Chasis",
+          "Can now build Cockpit",
+          "Peak Technology Reached!!!"
+        ]
     }
     ]
   }

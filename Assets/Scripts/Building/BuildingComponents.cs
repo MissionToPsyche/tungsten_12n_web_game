@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ namespace BuildingComponents
         Gold,
         Technitium,
         Tungsten,
-        Iridium
+        Iridium,
+        TechPoint
     }
 
     public enum BuildingType
@@ -21,11 +23,11 @@ namespace BuildingComponents
         Extractor,
         CommercialExtractor,
         IndustrialExtractor,
-        MasterKey,
+        Exosuit,
         Satellite,
         JetPack,
-        CommercialCommunications,
-        ExoSuit,
+        Cybernetics,
+        LaunchPad,
         RobotBuddy
     }
     
@@ -43,6 +45,7 @@ namespace BuildingComponents
         public float baseBreakChance;
         public Dictionary<string, int> Costs;
         public string Image;
+        public String[] TechUpTexts;
     }
 
     [System.Serializable]

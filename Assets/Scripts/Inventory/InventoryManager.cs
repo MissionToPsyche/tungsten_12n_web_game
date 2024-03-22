@@ -4,15 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using BuildingComponents;
+using packet;
 public class InventoryManager : MonoBehaviour
 {
     Inventory currentInventory;
     InventoryUIManager inventoryUI;
     [SerializeField] public BuildObjEvent buildObjEvent;
+    [SerializeField] public TechUpEvent techUpEvent;
     [SerializeField] public UpdateButtonCostTextEvent updateBuildButtonsEvent;
     void Start(){
         //init resource dictionary and add their starting resources
-        currentInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0);
+        currentInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0, 20);
         inventoryUI = GetComponent<InventoryUIManager>();
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }
@@ -22,16 +24,50 @@ public class InventoryManager : MonoBehaviour
     //     updateBuildButtonsEvent.Raise(new packet.UpdateButtonCostTextPacket(currentInventory.GetInvDictionary()));
     // }
     public void OnCheckInventoryEvent(packet.CheckInventoryPacket packet){
+        BuildingType building = packet.building;
         if(CheckAvailResources(packet.objCost) == true){
-            currentInventory.PayForObjectWithObjCost(packet.objCost);
-            inventoryUI.UpdateInventoryFromDictionary(GetcurrentInventory());
-            buildObjEvent.Raise(packet.building);
+            if(packet.objCost.hasTechCost() == false){
+                if(packet.building == BuildingType.CommercialExtractor || packet.building == BuildingType.CommercialExtractor){
+                    if(currentInventory.GetBuildingTechLevel(packet.building) > 0){
+                        buildObjEvent.Raise(building);
+                        return;
+                    }else return;
+                }
+                PayForObject(packet.objCost);
+                buildObjEvent.Raise(building);
+            }else{
+                CheckInvTechCase(packet);
+            }
         }
     }
-    public Dictionary<ResourceType, int> GetcurrentInventory(){
+
+    private void CheckInvTechCase(packet.CheckInventoryPacket packet){
+
+        int newLevel = currentInventory.GetBuildingTechLevel(packet.building) + 1;
+        //Only two buildings with 4 levels, using 0 indexing
+        if(packet.building == BuildingType.LaunchPad || packet.building == BuildingType.RobotBuddy){
+            if(newLevel <= 4){
+                PayForObject(packet.objCost);
+                currentInventory.TechUpBuilding(packet.building, newLevel);
+                techUpEvent.Raise(new TechUpPacket(packet.building, newLevel));
+            }else{
+                return;
+            }
+        //Every other building has 3 leves, using 0 indexing
+        }else if(newLevel <= 3){
+            PayForObject(packet.objCost);
+            currentInventory.TechUpBuilding(packet.building, newLevel);
+            techUpEvent.Raise(new TechUpPacket(packet.building, newLevel));
+            return;
+        }
+    }
+    public Dictionary<ResourceType, int> GetCurrentInventory(){
         return currentInventory.GetInvDictionary();
     }
-
+    public void PayForObject(ObjectsCost cost){
+        currentInventory.PayForObjectWithObjCost(cost);
+        inventoryUI.UpdateInventoryFromDictionary(GetCurrentInventory());
+    }
     private bool CheckAvailResources(ObjectsCost costDictionary){
         return currentInventory.CheckCost(costDictionary);
     }
@@ -41,4 +77,7 @@ public class InventoryManager : MonoBehaviour
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }
 
+    public void OnDiscoverGeoPhenom(){
+
+    }
 }

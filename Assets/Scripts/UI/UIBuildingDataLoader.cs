@@ -4,9 +4,11 @@ using BuildingComponents;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 public class UIBuildingDataLoader : MonoBehaviour
 {
-    //This class is responsible for loading in the building data into the UI, 
+    //This class is responsible for loading in the building data into the UI,
     //as well as updating the text to red or green based on whether or not the object is buyable
     private string filePath = "Assets/Resources/BuildingData.json"; // Adjust the path as per your project structure
 
@@ -14,38 +16,47 @@ public class UIBuildingDataLoader : MonoBehaviour
     //<---- <Extractor Text Fields> ---->
     [SerializeField] private TextMeshProUGUI ExtractorCostText;
     [SerializeField] private TextMeshProUGUI ExtractorHelpText;
+    [SerializeField] private TextMeshProUGUI ExtractorTechUpText;
     //<---- <Commercial Extractor Text Fields> ---->
     [SerializeField] private TextMeshProUGUI CommercialExtractorCostText;
     [SerializeField] private TextMeshProUGUI CommercialExtractorHelpText;
+    [SerializeField] private TextMeshProUGUI CommercialExtractorTechUpText;
     //<---- <Industrial Extractor Text Fields> ---->
     [SerializeField] private TextMeshProUGUI IndustrialExtractorCostText;
     [SerializeField] private TextMeshProUGUI IndustrialExtractorHelpText;
+    [SerializeField] private TextMeshProUGUI IndustrialExtractorTechUpText;
 
     //<------------------------------------ <Suit Vars> --------------------------------------->
 
-    //<---- <Masterkey Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI MasterkeyCostText;
-    [SerializeField] private TextMeshProUGUI MasterkeyHelpText;
+    //<---- <Exosuit Text Fields> ---->
+    [SerializeField] private TextMeshProUGUI ExosuitCostText;
+    [SerializeField] private TextMeshProUGUI ExosuitHelpText;
+    [SerializeField] private TextMeshProUGUI ExosuitTechUpText;
     //<---- <Jetpack Text Fields> ---->
     [SerializeField] private TextMeshProUGUI JetpackCostText;
     [SerializeField] private TextMeshProUGUI JetpackHelpText;
+    [SerializeField] private TextMeshProUGUI JetpackTechUpText;
     //<---- <Cybernetics Text Fields> ---->
     [SerializeField] private TextMeshProUGUI CyberneticsCostText;
     [SerializeField] private TextMeshProUGUI CyberneticsHelpText;
+    [SerializeField] private TextMeshProUGUI CyberneticsTechUpText;
 
     //<------------------------------------ <Robotic Vars> ------------------------------------>
     //<---- <RoboBuddy Text Fields> ---->
     [SerializeField] private TextMeshProUGUI RoboBuddyCostText;
     [SerializeField] private TextMeshProUGUI RoboBuddyHelpText;
-    //<---- <Cybernetics Text Fields> ---->
+    [SerializeField] private TextMeshProUGUI RoboBuddyTechUpText;
+    //<---- <Satellite Text Fields> ---->
     [SerializeField] private TextMeshProUGUI SatelliteCostText;
     [SerializeField] private TextMeshProUGUI SatelliteHelpText;
-    //<---- <Cybernetics Text Fields> ---->
-    [SerializeField] private TextMeshProUGUI AICostText;
-    [SerializeField] private TextMeshProUGUI AIHelpText;
+    [SerializeField] private TextMeshProUGUI SatelliteTechUpText;
+    //<---- <LaunchPad Text Fields> ---->
+    [SerializeField] private TextMeshProUGUI LaunchPadCostText;
+    [SerializeField] private TextMeshProUGUI LaunchPadHelpText;
+    [SerializeField] private TextMeshProUGUI LaunchPadTechUpText;
     //Json Vars
     //-----------------------------------------------------------------
-    BuildingData buildingData;
+    private BuildingData buildingData;
     private void Start()
     {
         buildingData = LoadBuildingData();
@@ -59,53 +70,127 @@ public class UIBuildingDataLoader : MonoBehaviour
         return buildingData;
     }
     private void LoadBuildingUI(BuildingData data){
-            foreach (var buildingObject in data.BuildingObject)
-            {
-                SetUIBuildingItem(buildingObject);
-            }
+        foreach (var buildingObject in data.BuildingObject)
+        {
+            SetUIBuildingItem(buildingObject);
+        }
     }
     private void SetUIBuildingItem(BuildingObject item){
         string itemID = item.ID;
         
         switch(itemID){
             case "Extractor":
-                LoadIntoUI(item, ExtractorCostText, ExtractorHelpText);
+                LoadIntoUI(item, ExtractorCostText, ExtractorHelpText, ExtractorTechUpText);
             break;
             case "CommercialExtractor":
-                LoadIntoUI(item, CommercialExtractorCostText, CommercialExtractorHelpText);
+                LoadIntoUI(item, CommercialExtractorCostText, CommercialExtractorHelpText, CommercialExtractorTechUpText);
             break;
             case "IndustrialExtractor":
-                LoadIntoUI(item, IndustrialExtractorCostText, IndustrialExtractorHelpText);
+                LoadIntoUI(item, IndustrialExtractorCostText, IndustrialExtractorHelpText, IndustrialExtractorTechUpText);
             break;
-            case "Masterkey":
-                LoadIntoUI(item, MasterkeyCostText, MasterkeyHelpText);
+            case "Exosuit":
+                LoadIntoUI(item, ExosuitCostText, ExosuitHelpText, ExosuitTechUpText);
             break;
-            case "Jetpack":
-                LoadIntoUI(item, JetpackCostText, JetpackHelpText);
+            case "JetPack":
+                LoadIntoUI(item, JetpackCostText, JetpackHelpText, JetpackTechUpText);
             break;
             case "Cybernetics":
-                LoadIntoUI(item, CyberneticsCostText, CyberneticsHelpText);
+                LoadIntoUI(item, CyberneticsCostText, CyberneticsHelpText, CyberneticsTechUpText);
             break;
-            case "RoboBuddy":
-                LoadIntoUI(item, RoboBuddyCostText, RoboBuddyHelpText);
+            case "RobotBuddy":
+                LoadIntoUI(item, RoboBuddyCostText, RoboBuddyHelpText, RoboBuddyTechUpText);
             break;
             case "Satellite":
-                LoadIntoUI(item, SatelliteCostText, SatelliteHelpText);
+                LoadIntoUI(item, SatelliteCostText, SatelliteHelpText, SatelliteTechUpText);
             break;
-            case "AI":
-                LoadIntoUI(item, AICostText, AIHelpText);
+            case "LaunchPad":
+                LoadIntoUI(item, LaunchPadCostText, LaunchPadHelpText, LaunchPadTechUpText);
             break;
         }
     }
-    private void LoadIntoUI(BuildingObject item, TextMeshProUGUI costText, TextMeshProUGUI helpText){
+    private void LoadIntoUI(BuildingObject item, TextMeshProUGUI costText, TextMeshProUGUI helpText, TextMeshProUGUI techUpText){
         costText.text = "";
+        int i = 0;
         foreach(var costNode in item.Costs){
             if (Convert.ToInt32(costNode.Value) > 0)
-                costText.text += $"{costNode.Key}: {costNode.Value}\n";
+                if(i % 2 == 0){
+                    costText.text += $"{costNode.Key}: {costNode.Value}\t";
+                }else{
+                    costText.text += $"{costNode.Key}: {costNode.Value}\n";
+                }
+                
+                i++;
         }
         helpText.text = item.ItemDescription;
+        techUpText.text = item.TechUpTexts[0];
     }
 
+    public void OnTechUpEvent(packet.TechUpPacket packet){
+        BuildingObject item = GetItemByBuilding(packet.building);
+        switch(packet.building){
+            case(BuildingComponents.BuildingType.Extractor):
+                ExtractorTechUpText.text = item.TechUpTexts[packet.TechToLevel - 1];
+            break;
+            case(BuildingComponents.BuildingType.CommercialExtractor):
+                CommercialExtractorTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+            break;
+            case(BuildingComponents.BuildingType.IndustrialExtractor):
+                IndustrialExtractorTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+            break;
+            case(BuildingComponents.BuildingType.Exosuit):
+                ExosuitTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+            break;
+            case(BuildingComponents.BuildingType.JetPack):
+                JetpackTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+            break;
+            case(BuildingComponents.BuildingType.Cybernetics):
+                CyberneticsTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+            break;
+            case(BuildingComponents.BuildingType.RobotBuddy):
+                RoboBuddyTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+            break;
+            case(BuildingComponents.BuildingType.Satellite):
+                SatelliteTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+            break;
+            case(BuildingComponents.BuildingType.LaunchPad):
+                LaunchPadTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+            break;
+        }
+    }
 
-    
+    private BuildingObject GetItemByBuilding(BuildingComponents.BuildingType building){
+        foreach (var buildingObject in buildingData.BuildingObject)
+        {
+            if(buildingObject.ID == BuildingTypeToString(building)){
+                return buildingObject;
+            }
+        }
+        Debug.LogError("UIBuildingDataLoader could not find json entry for building " + BuildingTypeToString(building));
+        return new BuildingObject();
+    }
+    private String BuildingTypeToString(BuildingComponents.BuildingType building){
+        switch(building){
+            case(BuildingComponents.BuildingType.Extractor):
+                return "Extractor";
+            case(BuildingComponents.BuildingType.CommercialExtractor):
+                return "CommercialExtractor";
+            case(BuildingComponents.BuildingType.IndustrialExtractor):
+                return "IndustrialExtractor";
+            case(BuildingComponents.BuildingType.Exosuit):
+                return "Exosuit";
+            case(BuildingComponents.BuildingType.JetPack):
+                return "JetPack";
+            case(BuildingComponents.BuildingType.Cybernetics):
+                return "Cybernetics";
+            case(BuildingComponents.BuildingType.RobotBuddy):
+                return "RobotBuddy";
+            case(BuildingComponents.BuildingType.Satellite):
+                return "Satellite";
+            case(BuildingComponents.BuildingType.LaunchPad):
+                return "LaunchPad";
+            default:
+                Debug.LogError("BuildingTypeToString failed to determine correct building type while teching up!!  Returning \"Extractor\"");
+                return "Extractor";
+        }
+    }
 }
