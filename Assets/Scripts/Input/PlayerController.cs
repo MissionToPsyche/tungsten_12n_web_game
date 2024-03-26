@@ -2,6 +2,8 @@ using UnityEngine;
 using Cinemachine;
 using System;
 using System.Numerics;
+using UnityEngine.SceneManagement;
+using UnityEditor.Callbacks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,9 +22,16 @@ public class PlayerController : MonoBehaviour
     private float strafingSpeed = 5f;
     private float crawlingSpeed = 2.5f;
     private float idleSpeed = 0f;
+
+    // variables used for ladder movement
+    private float vertical; 
+    private bool isLadder; 
+    private bool isClimibing; 
+
+
     [SerializeField, ReadOnly] private float currentSpeed;
 
-    [SerializeField] private float jumpForce = 1f;
+    [SerializeField] private float jumpForce = 0f;
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
     // [SerializeField, ReadOnly] private float verticalInput = 0f;
 
@@ -57,7 +66,6 @@ public class PlayerController : MonoBehaviour
         // // Singleton method
         if (instance != null && instance != this)
         {
-            Debug.Log("im in here");
             Destroy(gameObject);
         }
         else 
@@ -102,12 +110,12 @@ public class PlayerController : MonoBehaviour
 
     // -------------------------------------------------------------------
     // Handle events
-    // this method will
+    // this method will set the player's last coordinates on the main asteroid scene
     public void SetPlayerCoordinates() 
     {
         this.playerCoordinates = this.transform.position;
     }
-
+    // this method will get the player's last coordinates on the main asteroid scene
     public UnityEngine.Vector3 GetPlayerCoordinates() 
     {
         return this.playerCoordinates;
@@ -337,6 +345,14 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateAnimations();
+
+        // below is the code for climbing ladders
+        vertical = Input.GetAxis("Vertical");
+
+        if (isLadder && Mathf.Abs(vertical) > 0f)
+        {
+            isClimibing = true;
+        }
     }
 
     // Physics calculations, ridigbody movement, collision detection
@@ -350,6 +366,45 @@ public class PlayerController : MonoBehaviour
         Jump();
         Crouch();
         Interact();
+
+        // Handle ladder movement 
+        if (isClimibing && Input.GetKey(KeyCode.W))
+        {
+            this.playerBody.velocity = new UnityEngine.Vector2(playerBody.velocity.x, 4f);
+        }
+        else if (isClimibing && Input.GetKey(KeyCode.S))
+        {
+            this.playerBody.velocity = new UnityEngine.Vector2(playerBody.velocity.x, -4f);
+        }
+    }
+
+    public void UpdateJumpForce(float newJumpForce)
+    {
+        this.jumpForce = newJumpForce;
+    }
+
+    public float GetJumpForce()
+    {
+        return this.jumpForce;
+    }
+
+    // when in contact with objects 
+    private void OnTriggerEnter2D(Collider2D Collision)
+    {
+        if (Collision.CompareTag("Ladder"))
+        {
+            isLadder = true; 
+        }
+    }
+
+    // when not in contact with objects 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+            isLadder = false; 
+            isClimibing = false;
+        }
     }
 
     private void UpdateAnimations()

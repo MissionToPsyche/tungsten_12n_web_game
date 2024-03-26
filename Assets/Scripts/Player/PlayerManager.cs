@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero; 
     private Quaternion lastRotation = Quaternion.Euler(0,0,0);
     private GameObject playerInstance; 
+    private PlayerController playerController; 
     private CinemachineVirtualCamera virtualPlayerCamera;
     private Camera cam; 
 
@@ -24,9 +25,8 @@ public class PlayerManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
-        Debug.Log($"Last coordinates: {this.lastCoordinates}");
-        Debug.Log($"Last rotation: {this.lastRotation}");
         playerInstance = GameObject.FindWithTag("Player");
+        playerController = playerInstance.GetComponent<PlayerController>();  
         setScenePosition(); 
 
         virtualPlayerCamera = GameObject.FindWithTag("VirtualPlayerCamera").GetComponent<CinemachineVirtualCamera>(); 
@@ -53,21 +53,43 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    // set the players initial position
+    // set the players initial position and jump force
     private void setScenePosition() 
     {
-        // put the player but to their original position if they come back to the asteroid scene
-        if (SceneManager.GetActiveScene().name == "AsteroidScene" && this.lastCoordinates != Vector3.zero && this.lastRotation != Quaternion.Euler(0,0,0)) 
-        {  
-            this.playerInstance.transform.position = this.lastCoordinates; 
-            this.playerInstance.transform.rotation = this.lastRotation;
-            return; 
-        }
-        
-        // put the player to the default spawn position in the scene
         Transform defaultSpawn = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
-        this.playerInstance.transform.position = defaultSpawn.position;
-        this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
+        String sceneName = SceneManager.GetActiveScene().name;
+
+        // put the player but to their original position if they come back to the asteroid scene
+        switch (sceneName)
+        {
+            case "AsteroidScene":
+                if (this.lastCoordinates != Vector3.zero && this.lastRotation != Quaternion.Euler(0,0,0)) 
+                {
+                    this.playerInstance.transform.position = this.lastCoordinates; 
+                    this.playerInstance.transform.rotation = this.lastRotation;
+                    this.playerController.UpdateJumpForce(1.5f);
+                    Debug.Log(this.playerController.GetJumpForce());
+                }
+                else 
+                {
+                    // put the player to the default spawn position in the scene
+                    defaultSpawn = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
+                    this.playerInstance.transform.position = defaultSpawn.position;
+                    this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
+                    this.playerController.UpdateJumpForce(1.5f);
+                    Debug.Log(this.playerController.GetJumpForce());
+                }
+                break;
+
+            default:
+                // put the player to the default spawn position in the scene
+                defaultSpawn = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
+                this.playerInstance.transform.position = defaultSpawn.position;
+                this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
+                this.playerController.UpdateJumpForce(0.5f);
+                Debug.Log(this.playerController.GetJumpForce());
+                break; 
+        }
     }
 
     // set the players last known coordinates
