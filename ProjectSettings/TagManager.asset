@@ -8,6 +8,7 @@ TagManager:
   - VirtualPlayerCamera
   - PlayerLastCoordinates
   - PlayerManager
+  - Ladder
   layers:
   - Default
   - TransparentFX

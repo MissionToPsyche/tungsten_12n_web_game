@@ -14,7 +14,6 @@ public class LeaveCave : MonoBehaviour
     void Start()
     {
 
-        Debug.Log(gameObject.scene.name);
     }
 
     // Update is called once per frame
@@ -35,7 +34,6 @@ public class LeaveCave : MonoBehaviour
         {
             isInRange = true; 
             reminderText.text = "Press E to leave cave.";
-            Debug.Log("Player is now in range");
         }
     }
 
@@ -45,7 +43,6 @@ public class LeaveCave : MonoBehaviour
         {
             isInRange = false; 
             reminderText.text = "";
-            Debug.Log("Player is not in range");
         }
     }
 }

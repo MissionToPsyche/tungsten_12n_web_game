@@ -12629,7 +12629,6 @@ MonoBehaviour:
   playerBody: {fileID: 911276414}
   gravityBody: {fileID: 911276432}
   currentSpeed: 0
-  jumpForce: 1.5
   horizontalInput: 0
   isGrounded: 0
   canSprint: 0
@@ -16802,7 +16801,7 @@ Transform:
   m_GameObject: {fileID: 1374402997}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.1526845, w: 0.988275}
-  m_LocalPosition: {x: -319.65, y: 634.89, z: 0}
+  m_LocalPosition: {x: -257.77, y: 320.36, z: 0}
   m_LocalScale: {x: 3.7288995, y: 3.1761997, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
