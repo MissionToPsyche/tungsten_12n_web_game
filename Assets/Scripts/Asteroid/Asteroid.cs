@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 // using static UnityEditor.Progress;
@@ -14,7 +15,7 @@ public class Asteroid : MonoBehaviour
     private List<Resource> resourceList = new List<Resource>();
     public SpawnResources sr;
     public AsteroidClass asteroidClass { get; set; }
-    [SerializeField] private SpawnResourceEvent spawnResourceEvent;
+
     public void InstantiateAsteroid(float Size, int numberOfResources, AsteroidClass asteroidClass, GameObject prefab)
     {
         // Set the size based on the average scale of the GameObject
@@ -38,6 +39,7 @@ public class Asteroid : MonoBehaviour
     {
         GameObject newResourceObject = Instantiate(prefab, addedResource.Position + (Vector2)transform.position, Quaternion.identity);
         setNewResourceObject(newResourceObject, addedResource, iter);
+
     }
 
     //Makes the resource the desired color
@@ -52,10 +54,6 @@ public class Asteroid : MonoBehaviour
         newResourceObject.transform.parent = this.transform;
         newResourceObject.name = $"{addedResource.Name}_" + iter;
         newResourceObject.layer = 8; //Resource Layer
-
-        //Send a dictionary entry with [newresourceObject] = addedResource
-        //The key is the actual game object and its entry addedResource has all of resources information
-        spawnResourceEvent.Raise(new packet.ResourceGameObjectPacket(newResourceObject, addedResource));
         resourceList.Add(addedResource);
     }
 

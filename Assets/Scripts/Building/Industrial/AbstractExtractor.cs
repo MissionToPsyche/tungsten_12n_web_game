@@ -7,10 +7,10 @@ public abstract class AbstractExtractor
     protected GameObject prefab;
     protected BuildingData buildingData;
     protected ObjectsCost thisCosts;
-    [SerializeField] protected float mineInterval;
-    [SerializeField] protected int amountToMine;
-    [SerializeField] protected float baseBreakChance;
-    [SerializeField] protected float AsteroidReach;
+    protected float mineInterval;
+    protected int amountToMine;
+    protected float baseBreakChance;
+    protected float AsteroidReach;
     protected int currentTier = 0;
     protected BuildingComponents.BuildingType buildingType;
     // Abstract method to get the cost dictionary
@@ -19,6 +19,7 @@ public abstract class AbstractExtractor
         string filePath = "Assets/Resources/BuildingData.json";
         string jsonData = File.ReadAllText(filePath);
         BuildingData buildingData = JsonConvert.DeserializeObject<BuildingData>(jsonData);
+
         return buildingData;
     }
     protected BuildingObject FindBuildingObjectByID(string id)
@@ -34,8 +35,8 @@ public abstract class AbstractExtractor
     }
     protected ObjectsCost InitObjCost(BuildingObject thisObject){
         thisCosts = new ObjectsCost(
-                thisObject.Costs["Iron"],
-                thisObject.Costs["Nickel"],
+                thisObject.Costs["Iron"], 
+                thisObject.Costs["Nickel"], 
                 thisObject.Costs["Cobalt"],
                 thisObject.Costs["Platinum"],
                 thisObject.Costs["Gold"],
@@ -46,8 +47,7 @@ public abstract class AbstractExtractor
             );
             return thisCosts;
     }
-    protected void SetVarsFromJsonData(float mineInterval, int amountToMine, float baseBreakChance,
-    float AsteroidReach){
+    protected void SetVarsFromJsonData(float mineInterval, int amountToMine, float baseBreakChance, float AsteroidReach){
         this.mineInterval = mineInterval;
         this.amountToMine = amountToMine;
         this.baseBreakChance = baseBreakChance;

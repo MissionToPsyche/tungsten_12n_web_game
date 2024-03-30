@@ -4,7 +4,7 @@
         "ID": "Extractor",
         "Type": "Industrial",
         "ItemTitle": "Extractor",
-        "ItemDescription": "Mines resources, could possibly maybe potentially break very easily",
+        "ItemDescription": "Mines resources, could maybe potentially break very easily",
         "AmountToMine": 2,
         "IntervalMine": 5,
         "AsteroidReach":  20,
@@ -21,8 +21,8 @@
         },
         "Image": "",
         "TechUpTexts": [
-          "Increase mining amount by 50%, reduce break chance by 25%",
-          "Increase mining amount by 50%, reduce break chance by 50%",
+          "Increase mining amount by 20%, reduce break chance and increase extractor reach",
+          "Increase mining amount by 40%, further reduce break chance and increase reach",
           "Peak Technology Reached!!!"
         ]
       },
@@ -30,7 +30,7 @@
         "ID": "CommercialExtractor",
         "Type": "Industrial",
         "ItemTitle": "Commercial Extractor",
-        "ItemDescription": "Mines resources, better at not breaking",
+        "ItemDescription": "Mines resources, could potentially break",
         "AmountToMine": 5,
         "IntervalMine": 5,
         "AsteroidReach":  30,
@@ -48,8 +48,8 @@
         "Image": "",
         "TechUpTexts": [
           "Unlock this building",
-          "Increase mining amount by 20%, reduce break chance by 50%",
-          "Increase mining amount by 40%, reduce break chance by 50%",
+          "Increase mining amount by 20%, reduce break chance and increase extractor reach",
+          "Increase mining amount by 40%, further reduce break chance and increase reach",
           "Peak Technology Reached!!!"
         ]
       },
@@ -75,8 +75,8 @@
         "Image": "",
         "TechUpTexts": [
           "Unlock this building",
-          "Increase mining amount by 30%, Machine never breaks",
-          "Increase mining amount by 38%",
+          "Increase mining amount by 20%, reduce break chance and increase extractor reach",
+          "Increase mining amount by 40%, further reduce break chance and increase reach",
           "Peak Technology Reached!!!"
         ]
       },

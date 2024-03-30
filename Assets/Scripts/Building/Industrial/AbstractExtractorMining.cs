@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using BuildingComponents;
-using Unity.VisualScripting;
-//This class holds the functionality of showing the the text above the extractor,
+//This class holds the functionality of showing the the text above the extractor, 
 //sending the mineEvent out and reducing the available amount of resources in the resource
 public class AbstractExtractorMining : MonoBehaviour
 {
@@ -20,8 +19,8 @@ public class AbstractExtractorMining : MonoBehaviour
     protected int timesMinedSinceBroken = 0;
     protected float baseBreakChance;
     protected bool playerCanInteract = false;
+
     protected bool playerInteracted = false;
-    protected bool isDepracated = false;
     //Mining UI
     public GameObject textPrefabPlusOne;
     public GameObject textPrefabExclamation;
@@ -30,35 +29,11 @@ public class AbstractExtractorMining : MonoBehaviour
     //GameObjects
     protected GravityBody2D gravityBody;
     protected ResourceType resourceToMine;
-    protected GameObject linkedGameObject;
-    //Extractor Modifiers is determinate by buildingType
-    protected BuildingType buildingType;
-    protected int TechTier;
-    protected float mineAmtModifer;
-    protected float breakChanceModifer;
-    protected float[] ExtractorMineAmtModifiers = {0, 1, 1.5f, 2.5f};
-    protected float[] ExtractorBCModifiers = {0, 1, .75f, .5f};
-    protected float[] CommercialExtractorMineAmtModifiers = {0f, 1.25f, 1.6f};
-    protected float[] CommercialExtractorBCModifiers = {0f, .5f, .25f};
-    protected float[] IndustrialExtractorMineAmtModifiers = {0f, 1.3f, 1.8f};
-    protected float[] IndustrialExtractorBCModifiers = {0f, 1, 0f};
     [SerializeField] protected bool isPlaced = false;
-    [SerializeField] protected BuildObjEvent queryTechEvent;
-    void Awake(){
-        if(buildingType == BuildingType.Extractor){
-            TechTier = 1;
-        }
-        QueryTechLevel();
-        //sets modifers for the first time
-        UpdateModifers();
-    }
+
     protected void MineIfPlaced(){
         if(isPlaced && !isBroken){
             Mine();
-            if(linkedGameObject == null){
-                //later we can change it to just change to a sprite with the lights off
-                Destroy(gameObject);
-            }
         }
     }
     private void Mine()
@@ -67,14 +42,12 @@ public class AbstractExtractorMining : MonoBehaviour
 
         if (timer >= mineInterval)
         {
-            QueryTechLevel();
-            OnMineEvent.Raise(new packet.MiningPacket(linkedGameObject, GetCurrentMineAmt(), resourceToMine, true));
+            OnMineEvent.Raise(new packet.MiningPacket(this.gameObject, amountToMine, resourceToMine, true));
             timesMinedSinceBroken += 1;
             timer = 0f;
-
+ 
             if (RollForModuleBreak()){
                 isBroken = true;
-                QueryTechLevel();
                 ShowBrokeText();
                 timesMinedSinceBroken = 0;
             }else{
@@ -106,12 +79,9 @@ public class AbstractExtractorMining : MonoBehaviour
     private void ShowGainText(){
         Vector3 initPos = GetPositionTextAboveExtractor();
         currentExtractText = SpawnGainText(initPos);
-        currentExtractText.GetComponent<TMPro.TextMeshPro>().SetText("+" + GetCurrentMineAmt().ToString());
+        currentExtractText.GetComponent<TMPro.TextMeshPro>().SetText("+" + amountToMine.ToString());
         Vector3 newPos = new Vector3(-gravityBody.GravityDirection.x, -gravityBody.GravityDirection.y, 0f)/2;
         StartCoroutine(LerpTextPosition(currentExtractText.transform, initPos + newPos, displayDuration));
-    }
-    private int GetCurrentMineAmt(){
-        return (int)(amountToMine * mineAmtModifer);
     }
     GameObject SpawnBrokeText(Vector3 pos){
         return Instantiate(textPrefabExclamation, pos, transform.rotation);
@@ -146,25 +116,11 @@ public class AbstractExtractorMining : MonoBehaviour
     }
     public void LinkToResource(GameObject resourceObject){
         isPlaced = true;
-        linkedGameObject = resourceObject;
         resourceToMine = ConvertStrToResourceType(resourceObject.name);
     }
     private void OnDestroy(){
         isShowingText = false;
         DragAndDropExtractor.OnPlacementEvent -= LinkToResource;
-    }
-    private void UpdateModifers(){
-        switch(buildingType){
-            case BuildingType.Extractor:
-                    mineAmtModifer = ExtractorMineAmtModifiers[TechTier];
-            break;
-            case BuildingType.CommercialExtractor:
-                    mineAmtModifer = CommercialExtractorMineAmtModifiers[TechTier];
-            break;
-            case BuildingType.IndustrialExtractor:
-                    mineAmtModifer = IndustrialExtractorMineAmtModifiers[TechTier];
-            break;
-        }
     }
     private ResourceType ConvertStrToResourceType(string str){
         int underScoreIndex = str.IndexOf('_');
@@ -197,24 +153,14 @@ public class AbstractExtractorMining : MonoBehaviour
         }
     }
     private bool RollForModuleBreak(){
-        float breakChance = (baseBreakChance * breakChanceModifer) * timesMinedSinceBroken;
+        float breakChance = baseBreakChance * timesMinedSinceBroken;
         //float breakChance = 0.5f;
         //^Use this for debugging or testing the playerInteract feature
         return Random.value < breakChance;
     }
-    protected void QueryTechLevel(){
-        queryTechEvent.Raise(buildingType);
-    }
+
     //Events
     //------------------------------------------------------------------
-    public void OnQueryTechResponse(packet.TechUpPacket packet){
-        if(packet.building == buildingType){
-            TechTier = packet.TechToLevel;
-            UpdateModifers();
-        }else{
-            Debug.LogWarning("Recieved packet QueryTechResponse for a different buildingtype");
-        }
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
@@ -242,10 +188,10 @@ public class AbstractExtractorMining : MonoBehaviour
 
     public void fix(){
         if(playerInteracted){
-            isBroken = false;
-            ResetText(currentExtractText);
-            playerInteracted = false;
+             isBroken = false;
+             ResetText(currentExtractText);
 
+             playerInteracted = false;
         }
        
     }
