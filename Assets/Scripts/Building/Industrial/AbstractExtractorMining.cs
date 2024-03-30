@@ -10,7 +10,6 @@ public class AbstractExtractorMining : MonoBehaviour
 
     //Mining
     public MiningEvent OnMineEvent;
-    public VoidEvent OnMiniGameEvent;
     protected float mineInterval;
     protected int amountToMine;
     protected float timer = 0;
