@@ -7,6 +7,4 @@ public class Extractor : AbstractExtractor
         SetVarsFromJsonData(thisObject.IntervalMine, thisObject.AmountToMine, thisObject.baseBreakChance, thisObject.percentAsteroidReach);
         thisCosts = InitObjCost(thisObject);
     }
-
-
 }

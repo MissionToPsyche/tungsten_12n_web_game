@@ -1,8 +1,9 @@
-using UnityEngine;
 public class ExtractorMining : AbstractExtractorMining
 {
     Extractor ExtractorClass;
     void Start(){
+        buildingType = BuildingComponents.BuildingType.Extractor;
+        //QueryTechLevel(buildingType);
         DragAndDropExtractor.OnPlacementEvent += LinkToResource;
         gravityBody = GetComponent<GravityBody2D>();
         ExtractorClass = new();

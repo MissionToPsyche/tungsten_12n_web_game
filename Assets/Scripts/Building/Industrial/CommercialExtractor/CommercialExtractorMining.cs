@@ -1,3 +1,4 @@
+using BuildingComponents;
 public class CommercialExtractorMining : AbstractExtractorMining
 {
     CommercialExtractor CommercialExtractorClass;

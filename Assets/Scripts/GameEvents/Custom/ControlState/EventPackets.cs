@@ -20,17 +20,30 @@ namespace packet{
     }
 
     public class MiningPacket{
-        public GameObject objectThatSent;
+        public GameObject resourceGameObject;
         public int amountToChange;
         public ResourceType resourceToChange;
         public bool Add;
         public MiningPacket(GameObject obj, int amt, ResourceType resource, bool boolean){
-            objectThatSent = obj;
+            resourceGameObject = obj;
             amountToChange = amt;
             resourceToChange = resource;
             Add = boolean;
         }
     }
+
+    // public class MiningPacket{
+    //     public GameObject objectThatSent;
+    //     public int amountToChange;
+    //     public Resoure resourceToChange;
+    //     public bool Add;
+    //     public MiningPacket(GameObject obj, int amt, ResourceType resource, bool boolean){
+    //         objectThatSent = obj;
+    //         amountToChange = amt;
+    //         resourceToChange = resource;
+    //         Add = boolean;
+    //     }
+    // }
 
     public class UpdateButtonCostTextPacket{
         public GameObject objectThatSent;
@@ -46,6 +59,16 @@ namespace packet{
         public TechUpPacket(BuildingComponents.BuildingType building, int TechToLevel){
             this.building = building;
             this.TechToLevel = TechToLevel;
+        }
+    }
+
+    public class ResourceGameObjectPacket{
+        public GameObject GameObjectResource;
+        public Resource resource;
+
+        public ResourceGameObjectPacket(GameObject GameObjectResource, Resource resource){
+            this.GameObjectResource = GameObjectResource;
+            this.resource = resource;
         }
     }
 }
