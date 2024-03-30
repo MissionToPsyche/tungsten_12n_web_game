@@ -7,12 +7,14 @@ public class DragAndDropExtractor : DragAndDropSuper{
     public new delegate void placementEvent(GameObject resourceHit);
     public new static event placementEvent OnPlacementEvent;
     private GameObject resource;
+    private AbstractExtractorMining miningScript;
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectBody2D = GetComponent<Rigidbody2D>();
         gravityBody = GetComponent<GravityBody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         layerToUse = SetLayerToUse();
+        miningScript = GetComponent<AbstractExtractorMining>();
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -46,7 +48,11 @@ public class DragAndDropExtractor : DragAndDropSuper{
         if(spriteRenderer.color == Color.green){
             isPlaced = true;
             //Lets Object know that it is placed in its final location, may start working
-            OnPlacementEvent?.Invoke(resource);
+            
+            //change to raise
+            //OnPlacementEvent.?Invoke(resource);
+            miningScript.LinkToResource(resource);
+
             //Stops all possible movement
             objectBody2D.isKinematic = true;
             objectBody2D.bodyType = RigidbodyType2D.Static;
