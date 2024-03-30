@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Background
+  - VirtualPlayerCamera
+  - PlayerLastCoordinates
+  - PlayerManager
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -16,7 +20,7 @@ TagManager:
   - Asteroid
   - Resource
   - Industrial
-  - 
+  - MiniGame
   - 
   - 
   - 
@@ -62,6 +66,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 4006680503
+    locked: 0
+  - name: MiniGame
+    uniqueID: 4239968931
     locked: 0
   - name: Foreground
     uniqueID: 2974986321

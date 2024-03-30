@@ -1,5 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using BuildingComponents;
 using packet;
 public class InventoryManager : MonoBehaviour
@@ -8,7 +11,6 @@ public class InventoryManager : MonoBehaviour
     InventoryUIManager inventoryUI;
     [SerializeField] public BuildObjEvent buildObjEvent;
     [SerializeField] public TechUpEvent techUpEvent;
-    [SerializeField] public TechUpEvent techQueryResponse;
     [SerializeField] public UpdateButtonCostTextEvent updateBuildButtonsEvent;
     void Start(){
         //init resource dictionary and add their starting resources
@@ -73,9 +75,6 @@ public class InventoryManager : MonoBehaviour
     public void OnMineEvent(packet.MiningPacket packet){
         currentInventory.AddResource(packet.resourceToChange, packet.amountToChange);
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
-    }
-    public void OnTechQuery(BuildingType buildingType){
-        techQueryResponse.Raise(new TechUpPacket(buildingType, currentInventory.GetBuildingTechLevel(buildingType)));
     }
 
     public void OnDiscoverGeoPhenom(){

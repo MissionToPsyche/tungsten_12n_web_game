@@ -1,6 +1,9 @@
 using UnityEngine;
 using Cinemachine;
 using System;
+using System.Numerics;
+using UnityEngine.SceneManagement;
+using UnityEditor.Callbacks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,9 +22,16 @@ public class PlayerController : MonoBehaviour
     private float strafingSpeed = 5f;
     private float crawlingSpeed = 2.5f;
     private float idleSpeed = 0f;
+
+    // variables used for ladder movement
+    private float vertical; 
+    private bool isLadder; 
+    private bool isClimibing; 
+
+
     [SerializeField, ReadOnly] private float currentSpeed;
 
-    [SerializeField] private float jumpForce = 1f;
+    [SerializeField] private float jumpForce = 0f;
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
     // [SerializeField, ReadOnly] private float verticalInput = 0f;
 
@@ -48,9 +58,22 @@ public class PlayerController : MonoBehaviour
     private CharacterDatabase characterDatabase;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField, ReadOnly] private int selection = 0;
+    [SerializeField] private static PlayerController instance; 
+    private UnityEngine.Vector3 playerCoordinates; 
 
-    private void Start()
+    void Start()
     {
+        // // Singleton method
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else 
+        {
+            instance = this; 
+            DontDestroyOnLoad(gameObject);
+        }
+
         if (!PlayerPrefs.HasKey("selectedOption"))
         {
             selection = 0;
@@ -70,7 +93,6 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-
         LoadSelectedCharacter(selection);
     }
 
@@ -88,8 +110,19 @@ public class PlayerController : MonoBehaviour
 
     // -------------------------------------------------------------------
     // Handle events
+    // this method will set the player's last coordinates on the main asteroid scene
+    public void SetPlayerCoordinates() 
+    {
+        this.playerCoordinates = this.transform.position;
+    }
+    // this method will get the player's last coordinates on the main asteroid scene
+    public UnityEngine.Vector3 GetPlayerCoordinates() 
+    {
+        return this.playerCoordinates;
+    }
 
-    public void OnPlayerMove(Vector2 direction)
+
+    public void OnPlayerMove(UnityEngine.Vector2 direction)
     {
         horizontalInput = direction.x;
         isIdle = horizontalInput == 0;
@@ -268,9 +301,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Calculate the movement direction based on the player's current orientation and input
-        Vector2 direction = transform.right * horizontalInput;
+        UnityEngine.Vector2 direction = transform.right * horizontalInput;
         // Calculate the actual movement amount
-        Vector2 movement = direction * (currentSpeed * Time.fixedDeltaTime);
+        UnityEngine.Vector2 movement = direction * (currentSpeed * Time.fixedDeltaTime);
         // Move the player's rigidbody
         playerBody.position += movement;
     }
@@ -312,6 +345,14 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateAnimations();
+
+        // below is the code for climbing ladders
+        vertical = Input.GetAxis("Vertical");
+
+        if (isLadder && Mathf.Abs(vertical) > 0f)
+        {
+            isClimibing = true;
+        }
     }
 
     // Physics calculations, ridigbody movement, collision detection
@@ -325,6 +366,45 @@ public class PlayerController : MonoBehaviour
         Jump();
         Crouch();
         Interact();
+
+        // Handle ladder movement 
+        if (isClimibing && Input.GetKey(KeyCode.W))
+        {
+            this.playerBody.velocity = new UnityEngine.Vector2(playerBody.velocity.x, 4f);
+        }
+        else if (isClimibing && Input.GetKey(KeyCode.S))
+        {
+            this.playerBody.velocity = new UnityEngine.Vector2(playerBody.velocity.x, -4f);
+        }
+    }
+
+    public void UpdateJumpForce(float newJumpForce)
+    {
+        this.jumpForce = newJumpForce;
+    }
+
+    public float GetJumpForce()
+    {
+        return this.jumpForce;
+    }
+
+    // when in contact with objects 
+    private void OnTriggerEnter2D(Collider2D Collision)
+    {
+        if (Collision.CompareTag("Ladder"))
+        {
+            isLadder = true; 
+        }
+    }
+
+    // when not in contact with objects 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+            isLadder = false; 
+            isClimibing = false;
+        }
     }
 
     private void UpdateAnimations()
@@ -348,7 +428,7 @@ public class PlayerController : MonoBehaviour
         // Switch the way the player is labelled as facing
         isFacingRight = !isFacingRight;
 
-        Vector3 localScale = transform.localScale;
+        UnityEngine.Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
     }

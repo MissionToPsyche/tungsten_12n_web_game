@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GravityAreaCenter2D : GravityArea2D
 {
