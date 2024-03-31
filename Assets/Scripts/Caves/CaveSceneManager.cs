@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +11,11 @@ public class CaveSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("AsteroidScene");
     }
+    public void loadCaveScene(String caveScene)
+    {
+        SceneManager.LoadScene(caveScene);
+    }
+
     public void loadCaveScene1() {
         SceneManager.LoadScene("Cave_1");
     }

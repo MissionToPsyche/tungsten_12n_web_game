@@ -6,14 +6,15 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    public bool isInRange; 
-    public KeyCode interactKey; 
-    public UnityEvent interactAction; 
+    private bool isInRange; 
+    private KeyCode interactKey = KeyCode.E; 
     public TextMeshProUGUI reminderText;
+
+    private GameManager gameManager; 
 
     void Start()
     {
-        
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -24,9 +25,8 @@ public class Interactable : MonoBehaviour
             if (Input.GetKeyDown(interactKey)) 
             {
                 // dynamically locate the player manager and set the last position, then invoke the scene change
-                PlayerManager currPlayer = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerManager>();
-                currPlayer.setLastPosition();
-                interactAction.Invoke();
+                gameManager.GetComponent<PlayerManager>().setLastPosition();
+                gameManager.GetComponent<CaveSceneManager>().loadCaveScene(gameObject.name);
             }
         }
     }
