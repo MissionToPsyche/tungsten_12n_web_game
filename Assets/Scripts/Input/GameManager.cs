@@ -6,11 +6,25 @@ using UnityEngine.InputSystem.LowLevel;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-    // 03.13.24
-    void Start()
-    {
+    private static GameManager instance; 
+    
 
+    // 03.13.24
+    void Awake()
+    {
+        // // Singleton method
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else 
+        {
+            instance = this; 
+            DontDestroyOnLoad(gameObject);
+        }
     }
+
+
 
     // -------------------------------------------------------------------
 
