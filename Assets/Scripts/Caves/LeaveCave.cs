@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class LeaveCave : MonoBehaviour
 {
-    public bool isInRange; 
-    public KeyCode interactKey; 
-    public UnityEvent interactAction; 
+    private bool isInRange; 
+    private KeyCode interactKey = KeyCode.E; 
+    private GameManager gameManager; 
     public TextMeshProUGUI reminderText;
 
     void Start()
     {
-
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -23,7 +24,7 @@ public class LeaveCave : MonoBehaviour
         {
             if (Input.GetKeyDown(interactKey)) 
             {
-                interactAction.Invoke();
+                gameManager.GetComponent<CaveSceneManager>().loadAsteroidScene(SceneManager.GetActiveScene().name);
             }
         }
     }
