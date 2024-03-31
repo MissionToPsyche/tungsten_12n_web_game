@@ -1,11 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Xml;
-using TMPro;
 using BuildingComponents;
 using Unity.VisualScripting;
 public class UIBuildManager : MonoBehaviour
@@ -230,7 +223,8 @@ public class UIBuildManager : MonoBehaviour
     //<------------------------------------ <Industry Functions> ------------------------------------>
     public void TryBuildExtractor(){
         Extractor newExtractor = new();
-        checkInventory.Raise(new packet.CheckInventoryPacket(this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpExtractor(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -238,7 +232,8 @@ public class UIBuildManager : MonoBehaviour
     }
     public void TryBuildCommercialExtractor(){
         CommercialExtractor newExtractor = new();
-        checkInventory.Raise(new packet.CheckInventoryPacket(this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpCommercialExtractor(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -246,7 +241,8 @@ public class UIBuildManager : MonoBehaviour
     }
     public void TryBuildIndustrialExtractor(){
         IndustrialExtractor newExtractor = new();
-        checkInventory.Raise(new packet.CheckInventoryPacket(this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpIndustrialExtractor(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -295,8 +291,10 @@ public class UIBuildManager : MonoBehaviour
             this.gameObject, BuildingComponents.BuildingType.Satellite, techCost));
     }
     public void TryBuildLaunchPad(){
-        //Implementation needed
-        Debug.Log("Implementation needed");
+        LaunchPad tempLaunchPad = new();
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, BuildingType.LaunchPad, tempLaunchPad.GetCostDictionary()
+        ));
     }
     public void TryTechUpLaunchPad(){
         checkInventory.Raise(new packet.CheckInventoryPacket(

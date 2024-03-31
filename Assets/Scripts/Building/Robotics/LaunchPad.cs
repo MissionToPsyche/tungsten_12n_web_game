@@ -2,18 +2,24 @@ using UnityEngine;
 using BuildingComponents;
 using System.IO;
 using Newtonsoft.Json;
-public abstract class AbstractExtractor
-{
-    protected GameObject prefab;
-    protected BuildingData buildingData;
-    protected ObjectsCost thisCosts;
-    protected float mineInterval;
-    protected int amountToMine;
-    protected float baseBreakChance;
-    protected float AsteroidReach;
-    protected int currentTier = 0;
-    protected BuildingComponents.BuildingType buildingType;
+
+public class LaunchPad{
+    private BuildingData buildingData;
+    private ObjectsCost thisCosts;
+    private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.LaunchPad;
+
+    //Building focused vars
+    private bool hasBuiltEngines = false;
+    private bool hasBuiltChasis = false;
+    private bool hasBuiltCockpit = false;
+    private bool hasBuiltCompWire = false;
+
     // Abstract method to get the cost dictionary
+    public LaunchPad(){
+        buildingData = LoadBuildingData();
+        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("LaunchPad");
+        thisCosts = InitObjCost(thisObject);
+    }
     public BuildingData LoadBuildingData()
     {
         string filePath = "Assets/Resources/BuildingData.json";
@@ -22,6 +28,7 @@ public abstract class AbstractExtractor
 
         return buildingData;
     }
+
     protected BuildingObject FindBuildingObjectByID(string id)
     {
         foreach (var buildingObject in buildingData.BuildingObject)
@@ -47,30 +54,23 @@ public abstract class AbstractExtractor
             );
             return thisCosts;
     }
-    protected void SetVarsFromJsonData(float mineInterval, int amountToMine, float baseBreakChance, float AsteroidReach){
-        this.mineInterval = mineInterval;
-        this.amountToMine = amountToMine;
-        this.baseBreakChance = baseBreakChance;
-        this.AsteroidReach = AsteroidReach;
-    }
-
     public ObjectsCost GetCostDictionary(){
         return thisCosts;
     }
     public BuildingComponents.BuildingType GetBuildingType(){
         return buildingType;
     }
-    public float GetMineInterval(){
-        return mineInterval;
+    public bool isEngineBuilt(){
+        return hasBuiltEngines;
     }
-    public int GetAmountToMine(){
-        return amountToMine;
+    public bool isChasisBuilt(){
+        return hasBuiltChasis;
     }
-    public float GetBaseBreakChance(){
-        return baseBreakChance;
+    public bool isCockpitBuilt(){
+        return hasBuiltCockpit;
     }
-    public float GetAsteroidReach(){
-        return AsteroidReach;
+    public bool isCompWireBuilt(){
+        return hasBuiltCompWire;
     }
-}
 
+}

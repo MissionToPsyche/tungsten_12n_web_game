@@ -51,5 +51,4 @@ public abstract class DragAndDropSuper : MonoBehaviour, IDragHandler, IBeginDrag
         }
     }
 
-    protected abstract int SetLayerToUse();
 }

@@ -213,10 +213,10 @@
         },
         "Image": "",
         "TechUpTexts": [
-          "Can now build Rocket parts",
-          "Can now build Solar Panels",
+          "Can now build Rocket Engines",
           "Can now build Rocket Chasis",
-          "Can now build Cockpit",
+          "Can now build Rocket Cockpit",
+          "Can now build Rocket Computer Wiring",
           "Peak Technology Reached!!!"
         ]
     }

@@ -14,7 +14,9 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] public UpdateButtonCostTextEvent updateBuildButtonsEvent;
     void Start(){
         //init resource dictionary and add their starting resources
-        currentInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0, 20);
+        //currentInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0, 20);
+        //^ above is initial thought on starting resources, below is for testing the building
+        currentInventory = new Inventory(9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 25);
         inventoryUI = GetComponent<InventoryUIManager>();
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }

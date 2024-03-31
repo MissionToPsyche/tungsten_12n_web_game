@@ -1,18 +1,15 @@
 
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class DragAndDropExtractor : DragAndDropSuper{
+public class DragAndDropLaunchPad : DragAndDropSuper{
     
     private GravityBody2D gravityBody;
-    public new delegate void placementEvent(GameObject resourceHit);
     public new static event placementEvent OnPlacementEvent;
-    private GameObject resource;
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectBody2D = GetComponent<Rigidbody2D>();
         gravityBody = GetComponent<GravityBody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
-        layerToUse = SetLayerToUse();
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -22,12 +19,10 @@ public class DragAndDropExtractor : DragAndDropSuper{
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mousePosition.x, mousePosition.y, transform.position.z);
 
-            Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.size.y / 2f);
+            Vector2 Origin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.size.y / 2f);
             Vector2 direction = gravityBody.GravityDirection;
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, 20f, layerToUse);
             
-            if(IsValidPos(hit, rayOrigin, direction)){
-                resource = hit.collider.gameObject;
+            if(IsValidPos(Origin, direction)){
                 spriteRenderer.color = Color.green;
             }else{
                 spriteRenderer.color = Color.red;
@@ -45,19 +40,17 @@ public class DragAndDropExtractor : DragAndDropSuper{
     {
         if(spriteRenderer.color == Color.green){
             isPlaced = true;
-            //Lets Object know that it is placed in its final location, may start working
-            OnPlacementEvent?.Invoke(resource);
-            //Stops all possible movement
             objectBody2D.isKinematic = true;
             objectBody2D.bodyType = RigidbodyType2D.Static;
             //objectBody2D.simulated = false;
+            spriteRenderer.color = Color.white;
         }
     }
 
-    protected bool IsValidPos(RaycastHit2D hit, Vector2 origin, Vector2 dir)
+    protected bool IsValidPos(Vector2 origin, Vector2 dir)
     {
         float distToGround = GetDistanceToGround(origin, dir);
-        if (hit.collider != null && distToGround < .15f)
+        if (distToGround < .15f)
         {
             return true;
         }
@@ -78,11 +71,5 @@ public class DragAndDropExtractor : DragAndDropSuper{
             return maxGravityDistance;
         }
     }
-    protected int SetLayerToUse()
-    {
-        //Resource Layer
-        return 1 << 8;
-    }
-
 
 }

@@ -45,7 +45,6 @@ public class AbstractExtractorMining : MonoBehaviour
             OnMineEvent.Raise(new packet.MiningPacket(this.gameObject, amountToMine, resourceToMine, true));
             timesMinedSinceBroken += 1;
             timer = 0f;
- 
             if (RollForModuleBreak()){
                 isBroken = true;
                 ShowBrokeText();
@@ -188,11 +187,9 @@ public class AbstractExtractorMining : MonoBehaviour
 
     public void fix(){
         if(playerInteracted){
-             isBroken = false;
-             ResetText(currentExtractText);
-
-             playerInteracted = false;
+            isBroken = false;
+            ResetText(currentExtractText);
+            playerInteracted = false;
         }
-       
     }
 }

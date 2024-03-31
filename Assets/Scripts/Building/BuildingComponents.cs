@@ -28,7 +28,11 @@ namespace BuildingComponents
         JetPack,
         Cybernetics,
         LaunchPad,
-        RobotBuddy
+        RobotBuddy,
+        Engines,
+        Chasis,
+        Cockpit,
+        CompWire
     }
     
     //JSON Serialization

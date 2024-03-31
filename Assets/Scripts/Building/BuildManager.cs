@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-    [SerializeField ]public GameObject ExtractorPrefab;
-    [SerializeField ]public GameObject CommercialExtractorPrefab;
-    [SerializeField ]public GameObject IndustrialExtractorPrefab;
+    [SerializeField] public GameObject ExtractorPrefab;
+    [SerializeField] public GameObject CommercialExtractorPrefab;
+    [SerializeField] public GameObject IndustrialExtractorPrefab;
+
+    [SerializeField] public GameObject LaunchPadPrefab;
     private UIBuildManager buildUI;
     void Awake(){
         buildUI = GetComponent<UIBuildManager>();
@@ -16,20 +16,43 @@ public class BuildManager : MonoBehaviour
         buildUI.OnPlayerBuildOverlay();
         switch(type){
             case BuildingComponents.BuildingType.Extractor:
-                SpawnNewExtractor(ExtractorPrefab);
+                SpawnNewEntity(ExtractorPrefab);
                 return;
             case BuildingComponents.BuildingType.CommercialExtractor:
-                SpawnNewExtractor(CommercialExtractorPrefab);
+                SpawnNewEntity(CommercialExtractorPrefab);
                 return;
             case BuildingComponents.BuildingType.IndustrialExtractor:
-                SpawnNewExtractor(IndustrialExtractorPrefab);
+                SpawnNewEntity(IndustrialExtractorPrefab);
                 return;
+            case BuildingComponents.BuildingType.Exosuit:
+
+                return;
+            case BuildingComponents.BuildingType.JetPack:
+
+                return;
+            case BuildingComponents.BuildingType.Cybernetics:
+
+                return;
+            case BuildingComponents.BuildingType.RobotBuddy:
+
+                return;
+            case BuildingComponents.BuildingType.Satellite:
+
+                return;
+            case BuildingComponents.BuildingType.LaunchPad:
+                    SpawnNewEntity(LaunchPadPrefab);
+                return;
+                //Will need 4 more for Rocket parts
         }
     }
-    public void SpawnNewExtractor(GameObject prefab)
+    public void SpawnNewEntity(GameObject prefab)
     {
         Vector3 screenPos = new Vector3(375, 285, 10f);
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         Instantiate(prefab, worldPos, Quaternion.identity);
+    }
+
+    public void SpawnRocketPart(){
+        //makes the rocket part show up next to the launchpad
     }
 }
