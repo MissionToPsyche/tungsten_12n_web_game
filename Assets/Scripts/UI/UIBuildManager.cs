@@ -9,8 +9,10 @@ public class UIBuildManager : MonoBehaviour
     [SerializeField] private GameObject IndustryButtonOverlay;
     [SerializeField] private GameObject SuitButtonOverlay;
     [SerializeField] private GameObject RoboticsButtonOverlay;
+    [SerializeField] private TechUpEvent techEvent;
     private GameObject currentOverlay;
     [SerializeField] private Sprite filledStar;
+    private BuildingTierManager tierManager;
     private ObjectsCost techCost = new ObjectsCost(0,0,0,0,0,0,0,0,1);
     //<------------------------------------ <Industry Vars> ------------------------------------>
     //<---- <Extractor Text Fields> ---->
@@ -62,6 +64,7 @@ public class UIBuildManager : MonoBehaviour
     {
         isOverlayActive = false;
         buildChildOverlay.SetActive(false);
+        tierManager = new BuildingTierManager();
     }
 
 
@@ -131,6 +134,7 @@ public class UIBuildManager : MonoBehaviour
 
     }
     public void OnTechUpEvent(packet.TechUpPacket packet){
+        tierManager.UpdateBuildingTier(packet.building, packet.TechToLevel);
         //changes the stars
         switch(packet.building){
             case(BuildingComponents.BuildingType.Extractor):
@@ -220,6 +224,10 @@ public class UIBuildManager : MonoBehaviour
     }
 
     //----------< UIBuild/TechUp Button Functions >-----------//
+    public void OnTechQuery(BuildingType building){
+        Debug.Log("building: " + building + "\tteir: " + tierManager.GetTierOf(building));
+        techEvent.Raise(new packet.TechUpPacket(building, tierManager.GetTierOf(building)));
+    }
     //<------------------------------------ <Industry Functions> ------------------------------------>
     public void TryBuildExtractor(){
         Extractor newExtractor = new();
