@@ -25,7 +25,6 @@ public class PlayerManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
-        Debug.Log(this.lastCoordinates);
         playerInstance = GameObject.FindWithTag("Player");
         playerController = playerInstance.GetComponent<PlayerController>();  
         setScenePosition(); 
@@ -55,7 +54,6 @@ public class PlayerManager : MonoBehaviour
                     this.playerInstance.transform.position = this.lastCoordinates; 
                     this.playerInstance.transform.rotation = this.lastRotation;
                     this.playerController.UpdateJumpForce(1.5f);
-                    Debug.Log("1");
                 }
                 else 
                 {
@@ -64,7 +62,6 @@ public class PlayerManager : MonoBehaviour
                     this.playerInstance.transform.position = defaultSpawn.position;
                     this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
                     this.playerController.UpdateJumpForce(1.5f);
-                    Debug.Log("2");
                 }
                 break;
 
@@ -74,7 +71,6 @@ public class PlayerManager : MonoBehaviour
                 this.playerInstance.transform.position = defaultSpawn.position;
                 this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
                 this.playerController.UpdateJumpForce(0.5f);
-                Debug.Log("3");
                 break; 
         }
     }
