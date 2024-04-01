@@ -73,6 +73,8 @@ public class UIBuildManager : MonoBehaviour
 
     public void OnPlayerBuildOverlay()
     {
+        //Why is this function being called when the player interacts with the launchpad????????
+        //Debug.Log("Called???");
         isOverlayActive = !isOverlayActive;
         buildChildOverlay.SetActive(isOverlayActive);
 

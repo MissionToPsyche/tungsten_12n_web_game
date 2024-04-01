@@ -13,7 +13,11 @@ public class LaunchPadManager : MonoBehaviour{
     private ObjectsCost engineCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
     private ObjectsCost chasisCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
     private ObjectsCost cockpitCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
-    private ObjectsCost compWireCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
+    private ObjectsCost externalTank = new ObjectsCost(1,0,0,0,0,0,0,0,0);
+    [SerializeField] private GameObject enginesPrefab;
+    [SerializeField] private GameObject chasisPrefab;
+    [SerializeField] private GameObject cockpitPrefab;
+    [SerializeField] private GameObject externalTankPrefab;
     public void Awake(){
         launchpad = new();
     }
@@ -36,7 +40,6 @@ public class LaunchPadManager : MonoBehaviour{
         //Turn off current price
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
         {
-
             playerCanInteract = false;
         }
     }
@@ -48,11 +51,12 @@ public class LaunchPadManager : MonoBehaviour{
     }
 
     public void TryBuildNextRocketPart(){
+        
         if(launchpad.isEngineBuilt()){
             if(launchpad.isChasisBuilt()){
                 if(launchpad.isCockpitBuilt()){
-                    if(launchpad.isCompWireBuilt()){
-                        TryBuildCompWire();
+                    if(launchpad.isExternalTankBuilt()){
+                        TryBuildExternalTank();
                     }
                 }else{
                     TryBuildCockpit();
@@ -65,6 +69,55 @@ public class LaunchPadManager : MonoBehaviour{
         }
     }
 
+    public void OnBuildObjEvent(BuildingComponents.BuildingType type){
+        switch(type){
+            case(BuildingComponents.BuildingType.Engines):
+                SpawnEngines();
+            break;
+            case(BuildingComponents.BuildingType.Chasis):
+                SpawnChasis();
+            break;
+            case(BuildingComponents.BuildingType.Cockpit):
+                SpawnCockpit();
+            break;
+            case(BuildingComponents.BuildingType.CompWire):
+                SpawnExternalTank();
+            break;
+        }
+    }
+
+    private void SpawnEngines(){
+        Vector3 SpawnPos = transform.position;
+        SpawnPos.x -= 3;
+        SpawnPos.y -= 8;
+        GameObject engines = Instantiate(enginesPrefab, SpawnPos, transform.rotation);
+        engines.transform.parent = transform;
+        launchpad.SetEngineBuilt();
+    }
+    private void SpawnChasis(){
+        Vector3 SpawnPos = transform.position;
+        SpawnPos.x -= 3;
+        SpawnPos.y -= 4;
+        GameObject chasis = Instantiate(chasisPrefab, SpawnPos, transform.rotation);
+        chasis.transform.parent = transform;
+        launchpad.SetChasisBuilt();
+    }
+    private void SpawnCockpit(){
+        Vector3 SpawnPos = transform.position;
+        SpawnPos.x -= 3;
+        SpawnPos.y -= 2;
+        GameObject cockpit = Instantiate(cockpitPrefab, SpawnPos, transform.rotation);
+        cockpit.transform.parent = transform;
+        launchpad.SetCockpitBuilt();
+    }
+    private void SpawnExternalTank(){
+        Vector3 SpawnPos = transform.position;
+        SpawnPos.x -= 3;
+        SpawnPos.y += 3;
+        GameObject et = Instantiate(externalTankPrefab, SpawnPos, transform.rotation);
+        et.transform.parent = transform;
+        launchpad.SetExternalTankBuilt();
+    }
     private void TryBuildEngine(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
                 this.gameObject, BuildingType.Engines, engineCosts
@@ -72,6 +125,7 @@ public class LaunchPadManager : MonoBehaviour{
     }
     private void TryBuildChasis(){
         //if has techtier 2, else no checkInventory
+        Debug.Log("in here " +  TechTier);
         if(TechTier == 2){
             checkInventory.Raise(new packet.CheckInventoryPacket(
                 this.gameObject, BuildingType.Chasis, chasisCosts
@@ -85,10 +139,10 @@ public class LaunchPadManager : MonoBehaviour{
                 ));
         }
     }
-    private void TryBuildCompWire(){
+    private void TryBuildExternalTank(){
         if(TechTier == 4){
             checkInventory.Raise(new packet.CheckInventoryPacket(
-                this.gameObject, BuildingType.CompWire, compWireCosts
+                this.gameObject, BuildingType.CompWire, externalTank
                 ));
         }
     }

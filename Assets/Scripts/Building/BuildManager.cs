@@ -42,7 +42,6 @@ public class BuildManager : MonoBehaviour
             case BuildingComponents.BuildingType.LaunchPad:
                     SpawnNewEntity(LaunchPadPrefab);
                 return;
-                //Will need 4 more for Rocket parts
         }
     }
     public void SpawnNewEntity(GameObject prefab)

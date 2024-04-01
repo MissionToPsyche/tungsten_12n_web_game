@@ -53,13 +53,14 @@ public class PlayerController : MonoBehaviour
     private enum PlayerState { Idle, Walking, Sprinting, Strafing, Jumping, Crouching, Crawling, Interacting }
     [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
     [SerializeField] public BoolEvent playerInteract;
+    [SerializeField] public BoolEvent playerLaunchPadInteract;
     // Animation
     [SerializeField] private Animator animator;
     private CharacterDatabase characterDatabase;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField, ReadOnly] private int selection = 0;
-    [SerializeField] private static PlayerController instance; 
-    private UnityEngine.Vector3 playerCoordinates; 
+    [SerializeField] private static PlayerController instance;
+    private UnityEngine.Vector3 playerCoordinates;
 
     void Start()
     {
@@ -338,6 +339,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && currentState == PlayerState.Interacting)
         {
             playerInteract.Raise(true);
+            //playerLaunchPadInteract.Raise(true);
         }
     }
 

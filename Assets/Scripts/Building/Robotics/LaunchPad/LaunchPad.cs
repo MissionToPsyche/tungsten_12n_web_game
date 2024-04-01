@@ -12,7 +12,7 @@ public class LaunchPad{
     private bool hasBuiltEngines = false;
     private bool hasBuiltChasis = false;
     private bool hasBuiltCockpit = false;
-    private bool hasBuiltCompWire = false;
+    private bool hasBuiltExternalTank = false;
 
     // Abstract method to get the cost dictionary
     public LaunchPad(){
@@ -63,14 +63,26 @@ public class LaunchPad{
     public bool isEngineBuilt(){
         return hasBuiltEngines;
     }
+    public void SetEngineBuilt(){
+        hasBuiltEngines = true;
+    }
     public bool isChasisBuilt(){
         return hasBuiltChasis;
+    }
+    public void SetChasisBuilt(){
+        hasBuiltChasis = true;
     }
     public bool isCockpitBuilt(){
         return hasBuiltCockpit;
     }
-    public bool isCompWireBuilt(){
-        return hasBuiltCompWire;
+    public void SetCockpitBuilt(){
+        hasBuiltChasis = true;
+    }
+    public bool isExternalTankBuilt(){
+        return hasBuiltExternalTank;
+    }
+    public void SetExternalTankBuilt(){
+        hasBuiltExternalTank = true;
     }
 
 }
