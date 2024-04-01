@@ -10,11 +10,12 @@ public class LeaveCave : MonoBehaviour
     private bool isInRange; 
     private KeyCode interactKey = KeyCode.E; 
     private GameManager gameManager; 
-    public TextMeshProUGUI reminderText;
+    private TextMeshProUGUI reminderText;
 
     void Start()
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        reminderText = GameObject.FindWithTag("ReminderText").GetComponent<TextMeshProUGUI>(); 
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class LeaveCave : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) 
         {
             isInRange = true; 
-            reminderText.text = "Press E to leave cave.";
+            reminderText.text = "Press E to leave the cave";
         }
     }
 

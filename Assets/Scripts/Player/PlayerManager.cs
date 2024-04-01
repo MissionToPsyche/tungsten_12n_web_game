@@ -32,14 +32,12 @@ public class PlayerManager : MonoBehaviour
 
     void OnSceneUnloaded(Scene scene)
     {
-        Debug.Log("Unloaded");
         sceneChange(SceneManager.GetSceneByName("AsteroidScene"));
     }
 
     private void sceneChange(Scene scene)
     {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene.name));
-        Debug.Log(SceneManager.GetActiveScene().name);
         playerInstance = GameObject.FindWithTag("Player");
         playerController = playerInstance.GetComponent<PlayerController>();  
         setScenePosition(scene.name); 
@@ -69,10 +67,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     // set the players initial position and jump force
-    private void setScenePosition(String sceneName) 
+    public void setScenePosition(String sceneName) 
     {
         Transform defaultSpawn = findCorrectSpawn(sceneName); 
-        Debug.Log(defaultSpawn.position);
 
         // put the player but to their original position if they come back to the asteroid scene
         switch (sceneName)
@@ -83,7 +80,6 @@ public class PlayerManager : MonoBehaviour
                     this.playerInstance.transform.position = this.lastCoordinates; 
                     this.playerInstance.transform.rotation = this.lastRotation;
                     this.playerController.UpdateJumpForce(1.5f);
-                    Debug.Log("1");
                 }
                 else 
                 {
@@ -91,7 +87,6 @@ public class PlayerManager : MonoBehaviour
                     this.playerInstance.transform.position = defaultSpawn.position;
                     this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
                     this.playerController.UpdateJumpForce(1.5f);
-                    Debug.Log("2");
                 }
                 break;
 
@@ -100,7 +95,6 @@ public class PlayerManager : MonoBehaviour
                 this.playerInstance.transform.position = defaultSpawn.position;
                 this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
                 this.playerController.UpdateJumpForce(0.5f);
-                Debug.Log("3");
                 break; 
         }
     }

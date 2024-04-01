@@ -10,6 +10,8 @@ TagManager:
   - Ladder
   - GameManager
   - Caves
+  - BlackPit
+  - ReminderText
   layers:
   - Default
   - TransparentFX

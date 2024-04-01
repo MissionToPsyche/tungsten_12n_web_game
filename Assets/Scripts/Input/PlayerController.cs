@@ -4,6 +4,8 @@ using System;
 using System.Numerics;
 using UnityEngine.SceneManagement;
 using UnityEditor.Callbacks;
+using TMPro;
+using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private float vertical; 
     private bool isLadder; 
     private bool isClimibing; 
-
+    private bool isInPit; 
 
     [SerializeField, ReadOnly] private float currentSpeed;
 
@@ -60,6 +62,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnly] private int selection = 0;
     [SerializeField] private static PlayerController instance; 
     private UnityEngine.Vector3 playerCoordinates; 
+    private GameManager gameManager;
+    private TextMeshProUGUI reminderText; 
 
     void Start()
     {
@@ -93,6 +97,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>(); 
         LoadSelectedCharacter(selection);
     }
 
@@ -367,6 +372,12 @@ public class PlayerController : MonoBehaviour
         Crouch();
         Interact();
 
+        // Handle falling in the pit scenario
+        if (isInPit) 
+        {
+            gameManager.GetComponent<PlayerManager>().setScenePosition(SceneManager.GetActiveScene().name);
+        }
+
         // Handle ladder movement 
         if (isClimibing && Input.GetKey(KeyCode.W))
         {
@@ -391,20 +402,49 @@ public class PlayerController : MonoBehaviour
     // when in contact with objects 
     private void OnTriggerEnter2D(Collider2D Collision)
     {
-        if (Collision.CompareTag("Ladder"))
+        switch (Collision.gameObject.tag)
         {
-            isLadder = true; 
+            case "Ladder":
+                isLadder = true; 
+                break; 
+
+            case "BlackPit":
+                isInPit = true; 
+            break;
+
+            default:
+            break; 
         }
+        // if (Collision.gameObject.tag == "Ladder")
+        // {
+        //     isLadder = true; 
+        // }
     }
 
     // when not in contact with objects 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D Collision)
     {
-        if (collision.CompareTag("Ladder"))
+        switch (Collision.gameObject.tag)
         {
-            isLadder = false; 
-            isClimibing = false;
+            case "Ladder":
+                isLadder = false; 
+                isClimibing = false; 
+                break; 
+
+            case "BlackPit":
+                reminderText.text = ""; 
+                isInPit = false; 
+            break;
+
+            default:
+            break; 
         }
+
+        // if (Collision.gameObject.tag == "Ladder")
+        // {
+        //     isLadder = false; 
+        //     isClimibing = false;
+        // }
     }
 
     private void UpdateAnimations()
