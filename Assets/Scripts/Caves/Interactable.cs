@@ -36,7 +36,7 @@ public class Interactable : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) 
         {
             isInRange = true; 
-            reminderText.text = "Press E to enter cave.";
+            reminderText.text = "Press E to enter the cave\nRemember avoid the pits";
         }
     }
 
