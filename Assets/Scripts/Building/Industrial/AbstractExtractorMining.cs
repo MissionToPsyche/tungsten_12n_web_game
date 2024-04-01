@@ -66,7 +66,6 @@ public class AbstractExtractorMining : MonoBehaviour
         if (timer >= mineInterval)
         {
             QueryTechLevel();
-            Debug.Log("In Mine()");
             OnMineEvent.Raise(new packet.MiningPacket(linkedGameObject, GetCurrentMineAmt(), resourceToMine, true));
             timesMinedSinceBroken += 1;
             timer = 0f;

@@ -225,8 +225,8 @@ public class UIBuildManager : MonoBehaviour
 
     //----------< UIBuild/TechUp Button Functions >-----------//
     public void OnTechQuery(BuildingType building){
-        Debug.Log("building: " + building + "\tteir: " + tierManager.GetTierOf(building));
-        techEvent.Raise(new packet.TechUpPacket(building, tierManager.GetTierOf(building)));
+        //I beilieve this function is depracated
+        //techEvent.Raise(new packet.TechUpPacket(building, tierManager.GetTierOf(building)));
     }
     //<------------------------------------ <Industry Functions> ------------------------------------>
     public void TryBuildExtractor(){

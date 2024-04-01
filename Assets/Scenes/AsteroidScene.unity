@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!58 &13107447
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1139,6 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &87701844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &114249637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,6 +1884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &136922068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,6 +2404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &160952464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3514,7 +3519,7 @@ GameObject:
   - component: {fileID: 226683960}
   - component: {fileID: 226683962}
   m_Layer: 0
-  m_Name: AsteroidManager
+  m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3590,8 +3595,11 @@ GameObject:
   m_Component:
   - component: {fileID: 227657333}
   - component: {fileID: 227657334}
+  - component: {fileID: 227657336}
+  - component: {fileID: 227657335}
+  - component: {fileID: 227657337}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: AsteroidManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3644,6 +3652,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidsList: []
   prefab: {fileID: 2808150698371354760, guid: 352811f85e1794884b4e27d25dd80363, type: 3}
+--- !u!114 &227657335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227657332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b41af9082f6465cb8092d996cf96dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 227657336}
+        m_TargetAssemblyTypeName: AsteroidResourceManager, Assembly-CSharp
+        m_MethodName: OnResourceSpawnEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &227657336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227657332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16cd54877fe6e4b50ab528d6e189dafb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &227657337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227657332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d2d1e8711a442439e9eee5a3cc2a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4ce99701e330a433a914edb654c3a95a, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 227657336}
+        m_TargetAssemblyTypeName: AsteroidResourceManager, Assembly-CSharp
+        m_MethodName: OnMiningEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &237790010
 GameObject:
   m_ObjectHideFlags: 0
@@ -6048,6 +6124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &466474697
 GameObject:
   m_ObjectHideFlags: 0
@@ -8395,6 +8472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &567460339
 GameObject:
   m_ObjectHideFlags: 0
@@ -8929,6 +9007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &616282795
 GameObject:
   m_ObjectHideFlags: 0
@@ -11726,6 +11805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &836735198
 GameObject:
   m_ObjectHideFlags: 0
@@ -13939,6 +14019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &980371915
 GameObject:
   m_ObjectHideFlags: 0
@@ -15599,6 +15680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &1208288175
 GameObject:
   m_ObjectHideFlags: 0
@@ -17878,6 +17960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &1450284038
 GameObject:
   m_ObjectHideFlags: 0
@@ -18040,6 +18123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &1465592323
 GameObject:
   m_ObjectHideFlags: 0
@@ -18644,6 +18728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &1526203398
 GameObject:
   m_ObjectHideFlags: 0
@@ -20738,6 +20823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &1788745176
 GameObject:
   m_ObjectHideFlags: 0
@@ -22315,6 +22401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &1911188181
 GameObject:
   m_ObjectHideFlags: 0
@@ -22565,6 +22652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &1920537373
 GameObject:
   m_ObjectHideFlags: 0
@@ -22808,6 +22896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548528c9e2c2fc54ab18aed2cc09b158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
 --- !u!1 &1928577625
 GameObject:
   m_ObjectHideFlags: 0
