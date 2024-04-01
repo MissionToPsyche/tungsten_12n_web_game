@@ -432,7 +432,6 @@ public class PlayerController : MonoBehaviour
                 break; 
 
             case "BlackPit":
-                reminderText.text = ""; 
                 isInPit = false; 
             break;
 
