@@ -1,5 +1,6 @@
 using UnityEngine;
 using BuildingComponents;
+using TMPro;
 
 [DefaultExecutionOrder(100)]
 public class LaunchPadManager : MonoBehaviour{
@@ -8,6 +9,7 @@ public class LaunchPadManager : MonoBehaviour{
     private LaunchPad launchpad;
     private int TechTier = 0;
     [SerializeField] BoolEvent triggerRocketModuleUIOverlay;
+    [SerializeField] VoidEvent winningEvent;
     //building based vars
     [SerializeField] public InventoryCheckEvent checkInventory;
     private ObjectsCost engineCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
@@ -28,7 +30,7 @@ public class LaunchPadManager : MonoBehaviour{
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0 && isPlaced)
+        if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0 && isPlaced && !launchpad.isExternalTankBuilt())
         {
             triggerRocketModuleUIOverlay.Raise(true);
         }
@@ -87,36 +89,23 @@ public class LaunchPadManager : MonoBehaviour{
     }
 
     private void SpawnEngines(){
-        Vector3 SpawnPos = transform.position;
-        //SpawnPos.x -= 2.05f;
-        //SpawnPos.y -= 6f;
-        GameObject engines = Instantiate(enginesPrefab, SpawnPos, transform.rotation);
-        engines.transform.parent = transform;
+        enginesPrefab.SetActive(true);
         launchpad.SetEngineBuilt();
     }
     private void SpawnChasis(){
-        Vector3 SpawnPos = transform.position;
-        //SpawnPos.x -= 3;
-        //SpawnPos.y -= 4;
-        GameObject chasis = Instantiate(chasisPrefab, SpawnPos, transform.rotation);
-        chasis.transform.parent = transform;
+        chasisPrefab.SetActive(true);
         launchpad.SetChasisBuilt();
     }
     private void SpawnCockpit(){
-        Vector3 SpawnPos = transform.position;
-        //SpawnPos.x -= 1.5f;
-        //SpawnPos.y -= 1.5f;
-        GameObject cockpit = Instantiate(cockpitPrefab, SpawnPos, transform.rotation);
-        cockpit.transform.parent = transform;
+        cockpitPrefab.SetActive(true);
         launchpad.SetCockpitBuilt();
     }
     private void SpawnExternalTank(){
-        Vector3 SpawnPos = transform.position;
-        //SpawnPos.x -= 5f;
-        //SpawnPos.y -= 2;
-        GameObject et = Instantiate(externalTankPrefab, SpawnPos, transform.rotation);
-        et.transform.parent = transform;
+        externalTankPrefab.SetActive(true);
         launchpad.SetExternalTankBuilt();
+        //They have won the game
+        triggerRocketModuleUIOverlay.Raise(false);
+        winningEvent.Raise();
     }
     private void TryBuildEngine(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
