@@ -7,8 +7,11 @@ TagManager:
   - Background
   - VirtualPlayerCamera
   - PlayerLastCoordinates
-  - PlayerManager
   - Ladder
+  - GameManager
+  - Caves
+  - BlackPit
+  - ReminderText
   layers:
   - Default
   - TransparentFX
