@@ -15764,7 +15764,7 @@ Transform:
   m_GameObject: {fileID: 728220860}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -259.62, y: 331.46, z: 0}
+  m_LocalPosition: {x: -259.05, y: 329.13, z: 0}
   m_LocalScale: {x: 0.64648, y: 0.64648, z: 0.64648}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -15895,7 +15895,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728220860}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ccae3bc07eed174e8089f8100ab9cfe, type: 3}
   m_Name: 
@@ -16643,6 +16643,7 @@ GameObject:
   - component: {fileID: 815371163}
   - component: {fileID: 815371164}
   - component: {fileID: 815371165}
+  - component: {fileID: 815371166}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -16771,6 +16772,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 0}
+--- !u!114 &815371166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815371158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2128ee2caef983448957808be24f135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9549ec3d8b8941d4699b7bcc646d197b, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 815371159}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnAsteroidReached
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &828195719
 GameObject:
   m_ObjectHideFlags: 0
@@ -18033,6 +18062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityApplied: 1
+  asteroidReached: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -25382,7 +25412,7 @@ Transform:
   m_GameObject: {fileID: 1399560952}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -259.62, y: 331.46, z: -10}
+  m_LocalPosition: {x: -259.05, y: 329.13, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34754,7 +34784,6 @@ GameObject:
   - component: {fileID: 1848734170}
   - component: {fileID: 1848734169}
   - component: {fileID: 1848734168}
-  - component: {fileID: 1848734172}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -34845,18 +34874,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1848734172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848734167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed2c0018c4347346a2115a31b60de7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1857368742
 GameObject:
   m_ObjectHideFlags: 0

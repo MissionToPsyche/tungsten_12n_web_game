@@ -9,11 +9,21 @@ public class GravityBody2D : MonoBehaviour
     [SerializeField, ReadOnly] private const float GRAVITY_FORCE = 500;
     [SerializeField] private bool gravityApplied;
 
+    [SerializeField] private StringEvent asteroidReached;
+
     [SerializeField] private LayerMask groundLayer;
     private float maxGravityDistance = 10f;
     private float minRotationSpeed = 1f;
     private float maxRotationSpeed = 5f;
     [SerializeField, ReadOnly] private float currentRotationSpeed = 0f;
+
+    private void Awake()
+    {
+        if (asteroidReached == null)
+        {
+            asteroidReached = ScriptableObject.CreateInstance<StringEvent>();
+        }
+    }
 
     public Vector2 GravityDirection
     {
@@ -70,8 +80,20 @@ public class GravityBody2D : MonoBehaviour
     {
         gravityAreas.Add(gravityArea);
         OnEnterGravityArea?.Invoke(gravityArea);
-        Debug.Log("Entered a new gravity area");
+
+        string activeGravityAreaTag = GetActiveGravityAreaTag();
+        if (activeGravityAreaTag != null)
+        {
+            Debug.Log("[AddGravityArea] Active gravity area tag: " + activeGravityAreaTag);
+        }
+        else
+        {
+            Debug.Log("[AddGravityArea] No active gravity area tag found.");
+        }
+
+        asteroidReached.Raise(activeGravityAreaTag);
     }
+
 
     public void RemoveGravityArea(GravityArea2D gravityArea)
     {
@@ -82,4 +104,30 @@ public class GravityBody2D : MonoBehaviour
             OnExitGravityArea?.Invoke(gravityArea);
         }
     }
+
+    public string GetActiveGravityAreaTag()
+    {
+        if (gravityAreas.Count == 0)
+        {
+            Debug.Log("[GetActiveGravityAreaTag] No gravity areas in the list.");
+            return null;
+        }
+
+        gravityAreas.Sort((area1, area2) => area1.Priority.CompareTo(area2.Priority));
+        GravityArea2D activeArea = gravityAreas.Last();
+
+        // Check if the active area has a parent before accessing it
+        if (activeArea.gameObject.transform.parent != null)
+        {
+            GameObject parentGameObject = activeArea.gameObject.transform.parent.gameObject;
+            return parentGameObject.name;
+        }
+        else
+        {
+            Debug.Log("[GetActiveGravityAreaTag] Active area has no parent.");
+        }
+
+        return null;
+    }
+
 }
