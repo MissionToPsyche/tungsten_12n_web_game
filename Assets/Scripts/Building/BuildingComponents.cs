@@ -32,7 +32,7 @@ namespace BuildingComponents
         Engines,
         Chasis,
         Cockpit,
-        CompWire
+        ExternalTank
     }
     
     //JSON Serialization

@@ -70,6 +70,9 @@ TagManager:
   - name: MiniGame
     uniqueID: 4239968931
     locked: 0
+  - name: Caves
+    uniqueID: 3903332431
+    locked: 0
   - name: Foreground
     uniqueID: 2974986321
     locked: 0

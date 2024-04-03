@@ -4,12 +4,13 @@ using UnityEngine.EventSystems;
 public class DragAndDropLaunchPad : DragAndDropSuper{
     
     private GravityBody2D gravityBody;
-    public new static event placementEvent OnPlacementEvent;
+    private LaunchPadManager lpmanager;
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectBody2D = GetComponent<Rigidbody2D>();
         gravityBody = GetComponent<GravityBody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        lpmanager = GetComponent<LaunchPadManager>();
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -44,6 +45,7 @@ public class DragAndDropLaunchPad : DragAndDropSuper{
             objectBody2D.bodyType = RigidbodyType2D.Static;
             //objectBody2D.simulated = false;
             spriteRenderer.color = Color.white;
+            lpmanager.SetPlaced();
         }
     }
 

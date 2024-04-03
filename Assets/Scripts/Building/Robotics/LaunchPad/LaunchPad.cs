@@ -76,7 +76,7 @@ public class LaunchPad{
         return hasBuiltCockpit;
     }
     public void SetCockpitBuilt(){
-        hasBuiltChasis = true;
+        hasBuiltCockpit = true;
     }
     public bool isExternalTankBuilt(){
         return hasBuiltExternalTank;

@@ -205,14 +205,13 @@ public class AbstractExtractorMining : MonoBehaviour
     //Events
     //------------------------------------------------------------------
     public void OnQueryTechResponse(packet.TechUpPacket packet){
+        Debug.Log("Reached");
         if(packet.building == buildingType){
             TechTier = packet.TechToLevel;
             UpdateModifers();
-        }else{
-            Debug.LogWarning("Recieved packet QueryTechResponse for a different buildingtype");
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
         {
@@ -220,7 +219,7 @@ public class AbstractExtractorMining : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision){
+    private void OnTriggerExit2D(Collider2D collision){
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
         {
             playerCanInteract = false;

@@ -8,12 +8,16 @@ public class BuildManager : MonoBehaviour
 
     [SerializeField] public GameObject LaunchPadPrefab;
     private UIBuildManager buildUI;
+    private bool hasBuiltLaunchPad = false;
     void Awake(){
         buildUI = GetComponent<UIBuildManager>();
     }
     public void OnBuildObjEvent(BuildingComponents.BuildingType type){
         //Turns off Build overlay after an obj has been bought
-        buildUI.OnPlayerBuildOverlay();
+        if(buildUI.IsActive() == true){
+            buildUI.OnPlayerBuildOverlay();
+        }
+        
         switch(type){
             case BuildingComponents.BuildingType.Extractor:
                 SpawnNewEntity(ExtractorPrefab);
@@ -40,7 +44,10 @@ public class BuildManager : MonoBehaviour
 
                 return;
             case BuildingComponents.BuildingType.LaunchPad:
-                    SpawnNewEntity(LaunchPadPrefab);
+                    if(hasBuiltLaunchPad == false){
+                        SpawnNewEntity(LaunchPadPrefab);
+                    }
+                    hasBuiltLaunchPad = true;
                 return;
         }
     }
@@ -51,7 +58,4 @@ public class BuildManager : MonoBehaviour
         Instantiate(prefab, worldPos, Quaternion.identity);
     }
 
-    public void SpawnRocketPart(){
-        //makes the rocket part show up next to the launchpad
-    }
 }
