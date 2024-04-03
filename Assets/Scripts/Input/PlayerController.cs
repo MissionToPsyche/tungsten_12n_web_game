@@ -61,12 +61,11 @@ public class PlayerController : MonoBehaviour
     private CharacterDatabase characterDatabase;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField, ReadOnly] private int selection = 0;
-    [SerializeField] private static PlayerController instance; 
-    private UnityEngine.Vector3 playerCoordinates; 
-    private GameManager gameManager;
-    private TextMeshProUGUI reminderText; 
     [SerializeField] private static PlayerController instance;
     private UnityEngine.Vector3 playerCoordinates;
+    private GameManager gameManager;
+    private TextMeshProUGUI reminderText;
+
 
     void Start()
     {
@@ -75,9 +74,9 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else 
+        else
         {
-            instance = this; 
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -100,7 +99,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>(); 
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         LoadSelectedCharacter(selection);
     }
 
