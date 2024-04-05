@@ -7,6 +7,8 @@ namespace Control
     {
         Player,
         Satellite,
-        UI
+        UI,
+        RobotBuddyAlpha,
+        RobotBuddyBeta
     }
 }

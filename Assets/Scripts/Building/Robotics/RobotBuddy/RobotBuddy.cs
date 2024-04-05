@@ -2,19 +2,14 @@ using BuildingComponents;
 using System.IO;
 using Newtonsoft.Json;
 
-public class LaunchPad{
+public class RobotBuddy
+{
     private BuildingData buildingData;
     private ObjectsCost thisCosts;
-    private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.LaunchPad;
-
-    //Building focused vars
-    private bool hasBuiltEngines = false;
-    private bool hasBuiltChasis = false;
-    private bool hasBuiltCockpit = false;
-    private bool hasBuiltExternalTank = false;
+    private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.RobotBuddy;
 
     // Abstract method to get the cost dictionary
-    public LaunchPad(){
+    public RobotBuddy(){
         buildingData = LoadBuildingData();
         BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("LaunchPad");
         thisCosts = InitObjCost(thisObject);
@@ -59,29 +54,5 @@ public class LaunchPad{
     public BuildingComponents.BuildingType GetBuildingType(){
         return buildingType;
     }
-    public bool isEngineBuilt(){
-        return hasBuiltEngines;
-    }
-    public void SetEngineBuilt(){
-        hasBuiltEngines = true;
-    }
-    public bool isChasisBuilt(){
-        return hasBuiltChasis;
-    }
-    public void SetChasisBuilt(){
-        hasBuiltChasis = true;
-    }
-    public bool isCockpitBuilt(){
-        return hasBuiltCockpit;
-    }
-    public void SetCockpitBuilt(){
-        hasBuiltCockpit = true;
-    }
-    public bool isExternalTankBuilt(){
-        return hasBuiltExternalTank;
-    }
-    public void SetExternalTankBuilt(){
-        hasBuiltExternalTank = true;
-    }
-
+    
 }

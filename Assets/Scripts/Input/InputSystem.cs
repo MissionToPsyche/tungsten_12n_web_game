@@ -837,6 +837,120 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""RobotBuddy"",
+            ""id"": ""730e9276-14c7-42d4-8684-ddef97b83142"",
+            ""actions"": [
+                {
+                    ""name"": ""RobotBuddyMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""5881b792-9b59-4890-b323-b41c5e2ccd00"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RobotBuddyInteract"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c71db63-ede5-4e52-bdd8-2362757b2842"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""8c3f07ba-3459-480e-8108-0406526dda49"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotBuddyMove"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3fffde9c-0eec-4f16-b84f-dc4390d8d7c6"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotBuddyMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""91f1acb9-14da-4096-a25c-11c9ca7326fc"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotBuddyMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""544ed058-a7cf-43cc-ad89-01cdb0670aed"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotBuddyMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cdaa14ba-2010-4b10-814c-204f4ae1aa8a"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotBuddyMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b52c7b4e-de3b-485c-96e2-941c26a51a7b"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotBuddyMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""742e387d-13fe-43d7-8374-aaa2a1e16cd8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotBuddyInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1bfb85e-75cd-42ad-a8b6-111971cee5b4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotBuddyInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -876,6 +990,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_GenericScene = asset.FindActionMap("Generic Scene", throwIfNotFound: true);
         m_GenericScene_SwitchControlState = m_GenericScene.FindAction("SwitchControlState", throwIfNotFound: true);
         m_GenericScene_GamePause = m_GenericScene.FindAction("GamePause", throwIfNotFound: true);
+        // RobotBuddy
+        m_RobotBuddy = asset.FindActionMap("RobotBuddy", throwIfNotFound: true);
+        m_RobotBuddy_RobotBuddyMove = m_RobotBuddy.FindAction("RobotBuddyMove", throwIfNotFound: true);
+        m_RobotBuddy_RobotBuddyInteract = m_RobotBuddy.FindAction("RobotBuddyInteract", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1367,6 +1485,60 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     }
     public GenericSceneActions @GenericScene => new GenericSceneActions(this);
+
+    // RobotBuddy
+    private readonly InputActionMap m_RobotBuddy;
+    private List<IRobotBuddyActions> m_RobotBuddyActionsCallbackInterfaces = new List<IRobotBuddyActions>();
+    private readonly InputAction m_RobotBuddy_RobotBuddyMove;
+    private readonly InputAction m_RobotBuddy_RobotBuddyInteract;
+    public struct RobotBuddyActions
+    {
+        private @InputSystem m_Wrapper;
+        public RobotBuddyActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RobotBuddyMove => m_Wrapper.m_RobotBuddy_RobotBuddyMove;
+        public InputAction @RobotBuddyInteract => m_Wrapper.m_RobotBuddy_RobotBuddyInteract;
+        public InputActionMap Get() { return m_Wrapper.m_RobotBuddy; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(RobotBuddyActions set) { return set.Get(); }
+        public void AddCallbacks(IRobotBuddyActions instance)
+        {
+            if (instance == null || m_Wrapper.m_RobotBuddyActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_RobotBuddyActionsCallbackInterfaces.Add(instance);
+            @RobotBuddyMove.started += instance.OnRobotBuddyMove;
+            @RobotBuddyMove.performed += instance.OnRobotBuddyMove;
+            @RobotBuddyMove.canceled += instance.OnRobotBuddyMove;
+            @RobotBuddyInteract.started += instance.OnRobotBuddyInteract;
+            @RobotBuddyInteract.performed += instance.OnRobotBuddyInteract;
+            @RobotBuddyInteract.canceled += instance.OnRobotBuddyInteract;
+        }
+
+        private void UnregisterCallbacks(IRobotBuddyActions instance)
+        {
+            @RobotBuddyMove.started -= instance.OnRobotBuddyMove;
+            @RobotBuddyMove.performed -= instance.OnRobotBuddyMove;
+            @RobotBuddyMove.canceled -= instance.OnRobotBuddyMove;
+            @RobotBuddyInteract.started -= instance.OnRobotBuddyInteract;
+            @RobotBuddyInteract.performed -= instance.OnRobotBuddyInteract;
+            @RobotBuddyInteract.canceled -= instance.OnRobotBuddyInteract;
+        }
+
+        public void RemoveCallbacks(IRobotBuddyActions instance)
+        {
+            if (m_Wrapper.m_RobotBuddyActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IRobotBuddyActions instance)
+        {
+            foreach (var item in m_Wrapper.m_RobotBuddyActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_RobotBuddyActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public RobotBuddyActions @RobotBuddy => new RobotBuddyActions(this);
     public interface IGameplayActions
     {
         void OnSwitchControlState(InputAction.CallbackContext context);
@@ -1408,5 +1580,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     {
         void OnSwitchControlState(InputAction.CallbackContext context);
         void OnGamePause(InputAction.CallbackContext context);
+    }
+    public interface IRobotBuddyActions
+    {
+        void OnRobotBuddyMove(InputAction.CallbackContext context);
+        void OnRobotBuddyInteract(InputAction.CallbackContext context);
     }
 }

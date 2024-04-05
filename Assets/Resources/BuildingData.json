@@ -153,7 +153,7 @@
         "ID": "RobotBuddy",
         "Type": "Robotics",
         "ItemTitle": "Robo Buddy",
-        "ItemDescription": "A friendly interface in this lonely asteroid cloud... can repair modules",
+        "ItemDescription": "A friendly interface in this lonely asteroid cloud... can repair modules(Max 2)",
         "Costs": {
           "Iron": 35,
           "Nickel": 35,
