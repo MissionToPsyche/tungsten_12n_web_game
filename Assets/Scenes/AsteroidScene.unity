@@ -1177,6 +1177,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!1 &87420897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
+  m_PrefabInstance: {fileID: 1141374984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &87701844
 GameObject:
   m_ObjectHideFlags: 0
@@ -11361,7 +11366,9 @@ MonoBehaviour:
   ExtractorPrefab: {fileID: 8513086824239921780, guid: 31e93e3ca1ea44038b72ae6f1b567504, type: 3}
   CommercialExtractorPrefab: {fileID: 8513086824239921780, guid: 5e4c2d32c5522482aa28c0d3cb507740, type: 3}
   IndustrialExtractorPrefab: {fileID: 8513086824239921780, guid: 9e78861529b66435e88d6c9a2b021a89, type: 3}
-  RobotBuddyPrefab: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
+  RobotBuddyAlphaObject: {fileID: 1680418309}
+  RobotBuddyBetaObject: {fileID: 87420897}
+  alertPlayerController: {fileID: 11400000, guid: fbdd27f5aeee143ad8e844a6ec4f2dec, type: 2}
   LaunchPadPrefab: {fileID: 8513086824239921780, guid: 9c74d5ec0bb9b4b0e8fe3e264c5ca19e, type: 3}
 --- !u!114 &550765339
 MonoBehaviour:
@@ -15364,7 +15371,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -288286793
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6fb2ebebf6bec240827122504546b67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17484,6 +17491,7 @@ GameObject:
   - component: {fileID: 911276435}
   - component: {fileID: 911276436}
   - component: {fileID: 911276437}
+  - component: {fileID: 911276439}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -17530,7 +17538,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -288286793
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17823,6 +17831,34 @@ MonoBehaviour:
       - m_Target: {fileID: 911276433}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnPlayerMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &911276439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911276410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a07eef366126432f9ac6e65bfb7552c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: fbdd27f5aeee143ad8e844a6ec4f2dec, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 911276433}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnBuildRobotBuddyObject
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22027,7 +22063,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -391634865
-  m_SortingLayer: 9
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -30687,11 +30723,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObject: {fileID: 911276410}
   satelliteObject: {fileID: 728220860}
-  robotBuddyObject: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
+  robotBuddyAlphaObject: {fileID: 1680418309}
+  robotBuddyBetaObject: {fileID: 87420897}
   currentObject: {fileID: 0}
   playerCamera: {fileID: 546839581}
   satelliteCamera: {fileID: 1399560953}
-  robotBuddyCamera: {fileID: 2073616017}
+  robotBuddyAlphaCamera: {fileID: 2073616017}
+  robotBuddyBetaCamera: {fileID: 1072284253}
   currentCamera: {fileID: 0}
   cameraRotationSpeed: 90
 --- !u!114 &1548278937
@@ -31694,6 +31732,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677254123}
   m_CullTransparentMesh: 1
+--- !u!1 &1680418309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
+  m_PrefabInstance: {fileID: 589307882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1703005980
 GameObject:
   m_ObjectHideFlags: 0
