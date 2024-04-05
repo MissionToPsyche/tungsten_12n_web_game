@@ -285,8 +285,9 @@ public class UIBuildManager : MonoBehaviour
     }
     //<------------------------------------ <Robotics Functions> ------------------------------------>
     public void TryBuildRobotBuddy(){
-        //Implementation needed
-        Debug.Log("Implementation needed");
+        RobotBuddy tempRoboBuddy = new();
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, BuildingType.RobotBuddy, tempRoboBuddy.GetCostDictionary()));
     }
     public void TryTechUpRobotBuddy(){
         checkInventory.Raise(new packet.CheckInventoryPacket(

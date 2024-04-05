@@ -32,7 +32,9 @@ namespace BuildingComponents
         Engines,
         Chasis,
         Cockpit,
-        ExternalTank
+        ExternalTank,
+        RobotBuddyAlpha,
+        RobotBuddyBeta
     }
     
     //JSON Serialization
