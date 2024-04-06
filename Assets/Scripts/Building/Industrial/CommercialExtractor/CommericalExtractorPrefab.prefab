@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6473744850528406571}
   - component: {fileID: -3320008579766996007}
   - component: {fileID: 4800309846365389543}
+  - component: {fileID: 1982131736934851756}
   m_Layer: 9
   m_Name: CommericalExtractorPrefab
   m_TagString: Untagged
@@ -119,7 +120,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -203,11 +204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3466cd37b191c41999303ca15283bbcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnMiniGameEvent: {fileID: 0}
+  OnMiniGameEvent: {fileID: 11400000, guid: 4ef8aa52794c80344bf367b0095ecb80, type: 2}
   OnMineEvent: {fileID: 11400000, guid: 4ce99701e330a433a914edb654c3a95a, type: 2}
   textPrefabPlusOne: {fileID: 7402745957934915356, guid: 1582b7f0caa9d4aa6bc52df01478b0ce, type: 3}
   textPrefabExclamation: {fileID: 7402745957934915356, guid: 42c8678fc9cb94a2ba1502dfc5df1a25, type: 3}
   isPlaced: 0
+  queryTechEvent: {fileID: 11400000, guid: bf7ca6c4859be41a0891e429f150edcc, type: 2}
 --- !u!114 &4800309846365389543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +230,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
         m_MethodName: fix
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1982131736934851756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513086824239921780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf41782eb8e2946e4b682789f65b190b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ebb129fe3d513468bb6c82a0772056e9, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3320008579766996007}
+        m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
+        m_MethodName: OnQueryTechResponse
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -12,7 +12,7 @@ public class MiniGameCameraSwitcher : MonoBehaviour
     public void SwitchToMiniGameCamera()
     {
         // Store the current active camera and switch to mini game camera
-         playerCamera.Priority = 0;
+        playerCamera.Priority = 0;
         miniGameCamera.Priority = 100;
     }
 

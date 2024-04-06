@@ -78,7 +78,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
             return maxGravityDistance;
         }
     }
-    protected override int SetLayerToUse()
+    protected int SetLayerToUse()
     {
         //Resource Layer
         return 1 << 8;

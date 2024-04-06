@@ -10,6 +10,8 @@ TagManager:
   - Ladder
   - GameManager
   - Caves
+  - BlackPit
+  - ReminderText
   layers:
   - Default
   - TransparentFX
@@ -64,6 +66,9 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 227411197
+    locked: 0
+  - name: Caves
+    uniqueID: 3903332431
     locked: 0
   - name: Player
     uniqueID: 4006680503

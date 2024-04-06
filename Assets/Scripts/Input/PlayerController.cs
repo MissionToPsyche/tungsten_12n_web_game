@@ -4,6 +4,8 @@ using System;
 using System.Numerics;
 using UnityEngine.SceneManagement;
 using UnityEditor.Callbacks;
+using TMPro;
+using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,10 +26,10 @@ public class PlayerController : MonoBehaviour
     private float idleSpeed = 0f;
 
     // variables used for ladder movement
-    private float vertical; 
-    private bool isLadder; 
-    private bool isClimibing; 
-
+    private float vertical;
+    private bool isLadder;
+    private bool isClimibing;
+    private bool isInPit;
 
     [SerializeField, ReadOnly] private float currentSpeed;
 
@@ -53,24 +55,30 @@ public class PlayerController : MonoBehaviour
     private enum PlayerState { Idle, Walking, Sprinting, Strafing, Jumping, Crouching, Crawling, Interacting }
     [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
     [SerializeField] public BoolEvent playerInteract;
+    [SerializeField] public BoolEvent playerLaunchPadInteract;
     // Animation
     [SerializeField] private Animator animator;
     private CharacterDatabase characterDatabase;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField, ReadOnly] private int selection = 0;
-    [SerializeField] private static PlayerController instance; 
-    private UnityEngine.Vector3 playerCoordinates; 
+    [SerializeField] private static PlayerController instance;
+    private UnityEngine.Vector3 playerCoordinates;
+    private GameManager gameManager;
+    private TextMeshProUGUI reminderText;
+
 
     void Start()
     {
+        inputReader.SetRobotBuddyAlpha(false);
+        inputReader.SetRobotBuddyBeta(false);
         // // Singleton method
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
-        else 
+        else
         {
-            instance = this; 
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -93,6 +101,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         LoadSelectedCharacter(selection);
     }
 
@@ -338,6 +347,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && currentState == PlayerState.Interacting)
         {
             playerInteract.Raise(true);
+            //playerLaunchPadInteract.Raise(true);
         }
     }
 
@@ -367,7 +377,13 @@ public class PlayerController : MonoBehaviour
         Crouch();
         Interact();
 
-        // Handle ladder movement 
+        // Handle falling in the pit scenario
+        if (isInPit)
+        {
+            gameManager.GetComponent<PlayerManager>().setScenePosition(SceneManager.GetActiveScene().name);
+        }
+
+        // Handle ladder movement
         if (isClimibing && Input.GetKey(KeyCode.W))
         {
             this.playerBody.velocity = new UnityEngine.Vector2(playerBody.velocity.x, 4f);
@@ -388,23 +404,51 @@ public class PlayerController : MonoBehaviour
         return this.jumpForce;
     }
 
-    // when in contact with objects 
+    // when in contact with objects
     private void OnTriggerEnter2D(Collider2D Collision)
     {
-        if (Collision.CompareTag("Ladder"))
+        switch (Collision.gameObject.tag)
         {
-            isLadder = true; 
+            case "Ladder":
+                isLadder = true;
+                break;
+
+            case "BlackPit":
+                isInPit = true;
+            break;
+
+            default:
+            break;
         }
+        // if (Collision.gameObject.tag == "Ladder")
+        // {
+        //     isLadder = true;
+        // }
     }
 
-    // when not in contact with objects 
-    private void OnTriggerExit2D(Collider2D collision)
+    // when not in contact with objects
+    private void OnTriggerExit2D(Collider2D Collision)
     {
-        if (collision.CompareTag("Ladder"))
+        switch (Collision.gameObject.tag)
         {
-            isLadder = false; 
-            isClimibing = false;
+            case "Ladder":
+                isLadder = false;
+                isClimibing = false;
+                break;
+
+            case "BlackPit":
+                isInPit = false;
+            break;
+
+            default:
+            break;
         }
+
+        // if (Collision.gameObject.tag == "Ladder")
+        // {
+        //     isLadder = false;
+        //     isClimibing = false;
+        // }
     }
 
     private void UpdateAnimations()
@@ -437,5 +481,14 @@ public class PlayerController : MonoBehaviour
     {
         Character character = characterDatabase.GetSelectedCharacter(selection);
         spriteRenderer.sprite = character.characterSprite;
+    }
+
+    public void OnBuildRobotBuddyObject(BuildingComponents.BuildingType buildingType){
+        Debug.Log("In BuildingRobotBuddy playerController");
+        if(buildingType == BuildingComponents.BuildingType.RobotBuddyAlpha){
+            inputReader.SetRobotBuddyAlpha(true);
+        }else if (buildingType == BuildingComponents.BuildingType.RobotBuddyBeta){
+            inputReader.SetRobotBuddyBeta(true);
+        }
     }
 }

@@ -3,6 +3,7 @@ public class ExtractorMining : AbstractExtractorMining
 {
     Extractor ExtractorClass;
     void Start(){
+        buildingType = BuildingComponents.BuildingType.Extractor;
         DragAndDropExtractor.OnPlacementEvent += LinkToResource;
         gravityBody = GetComponent<GravityBody2D>();
         ExtractorClass = new();

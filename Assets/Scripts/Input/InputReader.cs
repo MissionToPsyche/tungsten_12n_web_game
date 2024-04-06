@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,8 @@ public class InputReader :
     InputSystem.IGameplayActions,
     InputSystem.IPlayerActions,
     InputSystem.ISatelliteActions,
-    InputSystem.IUIActions
+    InputSystem.IUIActions,
+    InputSystem.IRobotBuddyActions
 {
     private InputSystem inputSystem;
 
@@ -19,7 +21,9 @@ public class InputReader :
     private Control.State currentControlState;
 
     private Dictionary<Control.State, InputActionMap> stateToActionMap;
-
+    //This is really bad coupling and cohesion, rip, used to make sure we dont switch context to an "unbuilt" entity
+    private bool hasBuiltRobotBuddyAlpha = false;
+    private bool hasBuiltRobotBuddyBeta = false;
     private void OnEnable()
     {
         if (inputSystem == null)
@@ -29,13 +33,16 @@ public class InputReader :
             inputSystem.Player.SetCallbacks(this);
             inputSystem.Satellite.SetCallbacks(this);
             inputSystem.UI.SetCallbacks(this);
+            inputSystem.RobotBuddy.SetCallbacks(this);
         }
 
         stateToActionMap = new Dictionary<Control.State, InputActionMap>
         {
             { Control.State.Player, inputSystem.Player },
             { Control.State.Satellite, inputSystem.Satellite },
-            { Control.State.UI, inputSystem.UI }
+            { Control.State.UI, inputSystem.UI },
+            { Control.State.RobotBuddyAlpha, inputSystem.RobotBuddy},
+            { Control.State.RobotBuddyBeta, inputSystem.RobotBuddy}
         };
 
         SetControlState(Control.State.Player);
@@ -92,8 +99,6 @@ public class InputReader :
     [SerializeField] private VoidEvent PlayerBuildOverlayCycleRight;
     [SerializeField] private VoidEvent PlayerInventoryOverlay;
     [SerializeField] private VoidEvent PlayerObjectiveOverlay;
-
-
     [Header("Satellite Events")]
     [SerializeField] private Vector2Event SatelliteMove;
     [SerializeField] private BoolEvent SatelliteScan;
@@ -101,6 +106,9 @@ public class InputReader :
     [Header("UI Events")]
     [SerializeField] private VoidEvent GamePause;
     [SerializeField] private VoidEvent GameResume;
+    [Header("Robot Buddy")]
+    [SerializeField] private Vector2Event RobotBuddyMove;
+    [SerializeField] private BoolEvent RobotBuddyInteract;
 
     // -------------------------------------------------------------------
     // Gameplay action map
@@ -115,9 +123,22 @@ public class InputReader :
             }
             else if (currentControlState == Control.State.Satellite)
             {
+                if(hasBuiltRobotBuddyAlpha){
+                    SetControlState(Control.State.RobotBuddyAlpha);
+                }else{
+                    SetControlState(Control.State.Player);
+                }
+            }
+            else if(currentControlState == Control.State.RobotBuddyAlpha){
+                if(hasBuiltRobotBuddyBeta){
+                    SetControlState(Control.State.RobotBuddyBeta);
+                }else{
+                    SetControlState(Control.State.Player);
+                }
+            }
+            else if(currentControlState == Control.State.RobotBuddyBeta){
                 SetControlState(Control.State.Player);
             }
-
             ControlStateUpdate.Raise(currentControlState);
         }
     }
@@ -256,5 +277,30 @@ public class InputReader :
             SetControlState(lastControlState);
             GameResume.Raise();
         }
+    }
+
+    // -------------------------------------------------------------------
+    // RobotBuddy action map
+    public void OnRobotBuddyMove(InputAction.CallbackContext context){
+        RobotBuddyMove.Raise(context.ReadValue<Vector2>());
+    }
+    public void OnRobotBuddyInteract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            RobotBuddyInteract.Raise(true);
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            RobotBuddyInteract.Raise(false);
+        }
+    }
+    // -------------------------------------------------------------------
+
+    public void SetRobotBuddyAlpha(bool setTo){
+        hasBuiltRobotBuddyAlpha = setTo;
+    }
+    public void SetRobotBuddyBeta(bool setTo){
+        hasBuiltRobotBuddyBeta = setTo;
     }
 }

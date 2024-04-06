@@ -35,8 +35,8 @@ public abstract class AbstractExtractor
     }
     protected ObjectsCost InitObjCost(BuildingObject thisObject){
         thisCosts = new ObjectsCost(
-                thisObject.Costs["Iron"], 
-                thisObject.Costs["Nickel"], 
+                thisObject.Costs["Iron"],
+                thisObject.Costs["Nickel"],
                 thisObject.Costs["Cobalt"],
                 thisObject.Costs["Platinum"],
                 thisObject.Costs["Gold"],

@@ -20,12 +20,12 @@ namespace packet{
     }
 
     public class MiningPacket{
-        public GameObject objectThatSent;
+        public GameObject obj;
         public int amountToChange;
         public ResourceType resourceToChange;
         public bool Add;
         public MiningPacket(GameObject obj, int amt, ResourceType resource, bool boolean){
-            objectThatSent = obj;
+            this.obj = obj;
             amountToChange = amt;
             resourceToChange = resource;
             Add = boolean;
@@ -46,6 +46,15 @@ namespace packet{
         public TechUpPacket(BuildingComponents.BuildingType building, int TechToLevel){
             this.building = building;
             this.TechToLevel = TechToLevel;
+        }
+    }
+    public class ResourceGameObjectPacket{
+        public GameObject GameObjectResource;
+        public Resource resource;
+
+        public ResourceGameObjectPacket(GameObject GameObjectResource, Resource resource){
+            this.GameObjectResource = GameObjectResource;
+            this.resource = resource;
         }
     }
 }

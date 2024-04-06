@@ -1,11 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Xml;
-using TMPro;
 using BuildingComponents;
 using Unity.VisualScripting;
 public class UIBuildManager : MonoBehaviour
@@ -16,8 +9,10 @@ public class UIBuildManager : MonoBehaviour
     [SerializeField] private GameObject IndustryButtonOverlay;
     [SerializeField] private GameObject SuitButtonOverlay;
     [SerializeField] private GameObject RoboticsButtonOverlay;
+    [SerializeField] private TechUpEvent techEvent;
     private GameObject currentOverlay;
     [SerializeField] private Sprite filledStar;
+    private BuildingTierManager tierManager;
     private ObjectsCost techCost = new ObjectsCost(0,0,0,0,0,0,0,0,1);
     //<------------------------------------ <Industry Vars> ------------------------------------>
     //<---- <Extractor Text Fields> ---->
@@ -69,12 +64,15 @@ public class UIBuildManager : MonoBehaviour
     {
         isOverlayActive = false;
         buildChildOverlay.SetActive(false);
+        tierManager = new BuildingTierManager();
     }
 
 
     // -------------------------------------------------------------------
     // Handle events
-
+    public bool IsActive(){
+        return isOverlayActive;
+    }
     public void OnPlayerBuildOverlay()
     {
         isOverlayActive = !isOverlayActive;
@@ -138,6 +136,7 @@ public class UIBuildManager : MonoBehaviour
 
     }
     public void OnTechUpEvent(packet.TechUpPacket packet){
+        tierManager.UpdateBuildingTier(packet.building, packet.TechToLevel);
         //changes the stars
         switch(packet.building){
             case(BuildingComponents.BuildingType.Extractor):
@@ -227,10 +226,15 @@ public class UIBuildManager : MonoBehaviour
     }
 
     //----------< UIBuild/TechUp Button Functions >-----------//
+    public void OnTechQuery(BuildingType building){
+        //I beilieve this function is depracated
+        //techEvent.Raise(new packet.TechUpPacket(building, tierManager.GetTierOf(building)));
+    }
     //<------------------------------------ <Industry Functions> ------------------------------------>
     public void TryBuildExtractor(){
         Extractor newExtractor = new();
-        checkInventory.Raise(new packet.CheckInventoryPacket(this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpExtractor(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -238,7 +242,8 @@ public class UIBuildManager : MonoBehaviour
     }
     public void TryBuildCommercialExtractor(){
         CommercialExtractor newExtractor = new();
-        checkInventory.Raise(new packet.CheckInventoryPacket(this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpCommercialExtractor(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -246,7 +251,8 @@ public class UIBuildManager : MonoBehaviour
     }
     public void TryBuildIndustrialExtractor(){
         IndustrialExtractor newExtractor = new();
-        checkInventory.Raise(new packet.CheckInventoryPacket(this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpIndustrialExtractor(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -279,8 +285,9 @@ public class UIBuildManager : MonoBehaviour
     }
     //<------------------------------------ <Robotics Functions> ------------------------------------>
     public void TryBuildRobotBuddy(){
-        //Implementation needed
-        Debug.Log("Implementation needed");
+        RobotBuddy tempRoboBuddy = new();
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, BuildingType.RobotBuddy, tempRoboBuddy.GetCostDictionary()));
     }
     public void TryTechUpRobotBuddy(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -295,8 +302,10 @@ public class UIBuildManager : MonoBehaviour
             this.gameObject, BuildingComponents.BuildingType.Satellite, techCost));
     }
     public void TryBuildLaunchPad(){
-        //Implementation needed
-        Debug.Log("Implementation needed");
+        LaunchPad tempLaunchPad = new();
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, BuildingType.LaunchPad, tempLaunchPad.GetCostDictionary()
+        ));
     }
     public void TryTechUpLaunchPad(){
         checkInventory.Raise(new packet.CheckInventoryPacket(

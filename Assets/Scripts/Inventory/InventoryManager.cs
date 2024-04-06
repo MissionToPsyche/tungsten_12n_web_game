@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using BuildingComponents;
 using packet;
 public class InventoryManager : MonoBehaviour
@@ -11,18 +8,16 @@ public class InventoryManager : MonoBehaviour
     InventoryUIManager inventoryUI;
     [SerializeField] public BuildObjEvent buildObjEvent;
     [SerializeField] public TechUpEvent techUpEvent;
-    [SerializeField] public UpdateButtonCostTextEvent updateBuildButtonsEvent;
+    [SerializeField] public TechUpEvent techQueryResponse;
     void Start(){
         //init resource dictionary and add their starting resources
-        currentInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0, 20);
+        //currentInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0, 20);
+        //^ above is initial thought on starting resources, below is for testing the building
+        currentInventory = new Inventory(9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 25);
         inventoryUI = GetComponent<InventoryUIManager>();
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }
-    // void Update(){
-    //      Still unsure on how to update BuildUI, potentially just have a text at the bottom of card
-    //      that says not enough resources
-    //     updateBuildButtonsEvent.Raise(new packet.UpdateButtonCostTextPacket(currentInventory.GetInvDictionary()));
-    // }
+
     public void OnCheckInventoryEvent(packet.CheckInventoryPacket packet){
         BuildingType building = packet.building;
         if(CheckAvailResources(packet.objCost) == true){
@@ -75,6 +70,9 @@ public class InventoryManager : MonoBehaviour
     public void OnMineEvent(packet.MiningPacket packet){
         currentInventory.AddResource(packet.resourceToChange, packet.amountToChange);
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
+    }
+    public void OnTechQuery(BuildingType buildingType){
+        techQueryResponse.Raise(new TechUpPacket(buildingType, currentInventory.GetBuildingTechLevel(buildingType)));
     }
 
     public void OnDiscoverGeoPhenom(){

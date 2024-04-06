@@ -153,7 +153,7 @@
         "ID": "RobotBuddy",
         "Type": "Robotics",
         "ItemTitle": "Robo Buddy",
-        "ItemDescription": "A friendly interface in this lonely asteroid cloud... can repair modules",
+        "ItemDescription": "A friendly interface in this lonely asteroid cloud... can repair modules(Max 2)",
         "Costs": {
           "Iron": 35,
           "Nickel": 35,
@@ -213,10 +213,10 @@
         },
         "Image": "",
         "TechUpTexts": [
-          "Can now build Rocket parts",
-          "Can now build Solar Panels",
+          "Can now build Rocket Engines",
           "Can now build Rocket Chasis",
-          "Can now build Cockpit",
+          "Can now build Rocket Cockpit",
+          "Can now build Rocket Computer Wiring",
           "Peak Technology Reached!!!"
         ]
     }
