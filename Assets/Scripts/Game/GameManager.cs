@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         currentAsteroid = GameObject.Find(asteroidName);
         if (currentAsteroid == null)
         {
-            Debug.LogError("[GameManager]: Asteroid named '" + asteroidName + "' not found.");
+            // Debug.LogError("[GameManager]: Asteroid named '" + asteroidName + "' not found.");
             return; // Exit if the asteroid is not found
         }
 
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         Asteroid asteroidComponent = currentAsteroid.GetComponent<Asteroid>();
         if (asteroidComponent == null)
         {
-            Debug.LogError("[GameManager]: Asteroid component not found on '" + asteroidName + "'.");
+            // Debug.LogError("[GameManager]: Asteroid component not found on '" + asteroidName + "'.");
             return; // Exit if the asteroid component is not attached
         }
 
@@ -57,12 +57,12 @@ public class GameManager : MonoBehaviour
         if (currentSatellite != null)
         {
             // If the satellite exists, log its name
-            Debug.Log("[GameManager]: currentSatellite: " + currentSatellite.name);
+            // Debug.Log("[GameManager]: currentSatellite: " + currentSatellite.name);
         }
         else
         {
             // Log a message if the satellite does not exist
-            Debug.Log("[GameManager]: Satellite named '" + childSatelliteName + "' not found.");
+            // Debug.Log("[GameManager]: Satellite named '" + childSatelliteName + "' not found.");
         }
     }
 
