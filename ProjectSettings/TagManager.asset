@@ -12,6 +12,7 @@ TagManager:
   - Caves
   - BlackPit
   - ReminderText
+  - RobotBuddy
   layers:
   - Default
   - TransparentFX

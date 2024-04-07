@@ -11,7 +11,7 @@ public class RobotBuddy
     // Abstract method to get the cost dictionary
     public RobotBuddy(){
         buildingData = LoadBuildingData();
-        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("LaunchPad");
+        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("RobotBuddy");
         thisCosts = InitObjCost(thisObject);
     }
     public BuildingData LoadBuildingData()

@@ -120,12 +120,12 @@ public class PlayerController : MonoBehaviour
     // -------------------------------------------------------------------
     // Handle events
     // this method will set the player's last coordinates on the main asteroid scene
-    public void SetPlayerCoordinates() 
+    public void SetPlayerCoordinates()
     {
         this.playerCoordinates = this.transform.position;
     }
     // this method will get the player's last coordinates on the main asteroid scene
-    public UnityEngine.Vector3 GetPlayerCoordinates() 
+    public UnityEngine.Vector3 GetPlayerCoordinates()
     {
         return this.playerCoordinates;
     }

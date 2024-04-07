@@ -46,7 +46,7 @@ public class RobotBuddyController : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(999f, 999f, 0);
-        Debug.Log("setting transform");
+        
     }
 
 
