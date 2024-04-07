@@ -7,6 +7,7 @@ public class SatelliteController : MonoBehaviour
 {
     [Header("Objects")]
     [SerializeField] private Rigidbody2D satelliteBody;
+    [SerializeField, ReadOnly] private GameObject currentAsteroid;
 
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
     private float idleSpeed = 0f;
@@ -17,15 +18,10 @@ public class SatelliteController : MonoBehaviour
     private bool isMoving = false;
     private bool isFacingRight = false;
 
-    public GameObject asteroid;
+    public float spawnDistancePercentage = 0.9f; // Percentage of distance from surface to spawn the satellite
 
     private enum State { Idle, Moving, Scanning }
     [SerializeField, ReadOnly] private State currentState = State.Idle;
-
-    private void Start()
-    {
-
-    }
 
     public void OnSatelliteMove(Vector2 direction)
     {
@@ -106,8 +102,12 @@ public class SatelliteController : MonoBehaviour
         // Move the satellite's rigidbody
         satelliteBody.position += movement;
 
+        currentAsteroid = GameManager.instance.GetCurrentAsteroid();
+
+        Debug.Log("[SatelliteController]: currentAsteroid: " + currentAsteroid.name);
+
         // Aim the satellite's local 'up' away from the asteroid
-        Vector2 directionToCenter = (Vector2)asteroid.transform.position - (Vector2)satelliteBody.transform.position;
+        Vector2 directionToCenter = (Vector2)currentAsteroid.transform.position - (Vector2)satelliteBody.transform.position;
         float angle = Mathf.Atan2(directionToCenter.y, directionToCenter.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 90);
         satelliteBody.transform.rotation = targetRotation;

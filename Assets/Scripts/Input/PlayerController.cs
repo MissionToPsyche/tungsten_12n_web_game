@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     // Input
     [SerializeField] private InputReader inputReader;
 
+    [SerializeField] private StringEvent asteroidReached;
+    [SerializeField] private BoolEvent playerGroundedUpdated;
+    [SerializeField] private Vector2Event playerPositionUpdated;
+
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField, ReadOnly] private float groundCheckRadius = 0.3f;
@@ -47,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
 
     [Header("Movement")]
+    [SerializeField, ReadOnly] private bool wasGrounded = false;
     [SerializeField, ReadOnly] private bool isGrounded = false;
     [SerializeField, ReadOnly] private bool canSprint = false;
     [SerializeField, ReadOnly] private bool canDoubleJump = false;
@@ -66,6 +71,13 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     private TextMeshProUGUI reminderText;
 
+    private void Awake()
+    {
+        if (asteroidReached == null)
+        {
+            asteroidReached = ScriptableObject.CreateInstance<StringEvent>();
+        }
+    }
 
     void Start()
     {
@@ -120,12 +132,12 @@ public class PlayerController : MonoBehaviour
     // -------------------------------------------------------------------
     // Handle events
     // this method will set the player's last coordinates on the main asteroid scene
-    public void SetPlayerCoordinates() 
+    public void SetPlayerCoordinates()
     {
         this.playerCoordinates = this.transform.position;
     }
     // this method will get the player's last coordinates on the main asteroid scene
-    public UnityEngine.Vector3 GetPlayerCoordinates() 
+    public UnityEngine.Vector3 GetPlayerCoordinates()
     {
         return this.playerCoordinates;
     }
@@ -371,6 +383,13 @@ public class PlayerController : MonoBehaviour
         // First check to make sure the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
+        // Check if the grounded state has changed
+        if (isGrounded != wasGrounded)
+        {
+            playerGroundedUpdated.Raise(isGrounded);  // Raise event with the new state
+            wasGrounded = isGrounded;  // Update the wasGrounded to the current state
+        }
+
         // Handle possible inputs
         Move();
         Jump();
@@ -402,6 +421,16 @@ public class PlayerController : MonoBehaviour
     public float GetJumpForce()
     {
         return this.jumpForce;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Asteroid"))
+        {
+            string asteroidName = collision.gameObject.name;
+            asteroidReached.Raise(asteroidName);
+            playerPositionUpdated.Raise(transform.position);
+        }
     }
 
     // when in contact with objects

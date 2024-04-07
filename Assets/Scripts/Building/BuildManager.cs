@@ -7,6 +7,7 @@ public class BuildManager : MonoBehaviour
     [SerializeField] public GameObject ExtractorPrefab;
     [SerializeField] public GameObject CommercialExtractorPrefab;
     [SerializeField] public GameObject IndustrialExtractorPrefab;
+
     //<------------------------------------ <Robotic Vars> ------------------------------------>
     [SerializeField] public GameObject RobotBuddyAlphaObject;
     private bool hasBuiltRobotBuddyAlpha = false;
@@ -15,18 +16,25 @@ public class BuildManager : MonoBehaviour
     [SerializeField] public BuildObjEvent alertPlayerController;
     [SerializeField] public GameObject LaunchPadPrefab;
     private bool hasBuiltLaunchPad = false;
+    public VoidEvent satelliteSpawnTrigged;
 
     private UIBuildManager buildUI;
-    
-    void Awake(){
+
+    void Awake()
+    {
         buildUI = GetComponent<UIBuildManager>();
+
+        if (satelliteSpawnTrigged == null)
+        {
+            satelliteSpawnTrigged = ScriptableObject.CreateInstance<VoidEvent>();
+        }
     }
     public void OnBuildObjEvent(BuildingComponents.BuildingType type){
         //Turns off Build overlay after an obj has been bought
         if(buildUI.IsActive() == true){
             buildUI.OnPlayerBuildOverlay();
         }
-        
+
         switch(type){
             case BuildingComponents.BuildingType.Extractor:
                 SpawnNewEntity(ExtractorPrefab);
@@ -58,7 +66,8 @@ public class BuildManager : MonoBehaviour
                 }
                 return;
             case BuildingComponents.BuildingType.Satellite:
-
+                Debug.Log("[GameManager]: satelliteSpawnTrigged");
+                satelliteSpawnTrigged.Raise();
                 return;
             case BuildingComponents.BuildingType.LaunchPad:
                     if(hasBuiltLaunchPad == false){

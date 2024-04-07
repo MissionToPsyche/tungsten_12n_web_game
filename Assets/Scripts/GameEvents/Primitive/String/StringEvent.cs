@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "New String Event", menuName = "Game Events/String Event")]
+[CreateAssetMenu(fileName = "New String Event", menuName = "Game Events/Primitive/String Event")]
 
 public class StringEvent : BaseGameEvent<string>
 {

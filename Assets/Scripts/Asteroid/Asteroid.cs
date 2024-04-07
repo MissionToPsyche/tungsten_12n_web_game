@@ -16,6 +16,31 @@ public class Asteroid : MonoBehaviour
     public SpawnResources sr;
     public AsteroidClass asteroidClass { get; set; }
     [SerializeField] private SpawnResourceEvent spawnResourceEvent;
+    public string positionTag { get; private set; } // To store the position part from the name
+
+    private void Start()
+    {
+        // Debug.Log("[Asteroid]: Processing name: " + this.gameObject.name);
+        positionTag = ExtractPositionFromName(this.gameObject.name);
+        // Debug.Log("[Asteroid]: Extracted positionTag: " + positionTag);
+
+        if (string.IsNullOrEmpty(positionTag))
+        {
+            Debug.LogError("Asteroid name does not contain a valid position format: " + this.gameObject.name);
+        }
+    }
+
+
+    private string ExtractPositionFromName(string name)
+    {
+        int startIndex = name.IndexOf('(');
+        int endIndex = name.LastIndexOf(')');
+        if (startIndex != -1 && endIndex != -1 && endIndex > startIndex)
+        {
+            return name.Substring(startIndex, endIndex - startIndex + 1);
+        }
+        return null;
+    }
     public void InstantiateAsteroid(float Size, int numberOfResources, AsteroidClass asteroidClass, GameObject prefab)
     {
         // Set the size based on the average scale of the GameObject
@@ -53,7 +78,7 @@ public class Asteroid : MonoBehaviour
         newResourceObject.transform.localScale = addedResource.depositSize;
         newResourceObject.transform.parent = this.transform;
         newResourceObject.name = $"{addedResource.Name}_" + iter;
-        newResourceObject.layer = 8; //Resource Layer
+        newResourceObject.layer = 9; //Resource Layer
         spawnResourceEvent.Raise(new packet.ResourceGameObjectPacket(newResourceObject, addedResource));
         resourceList.Add(addedResource);
     }

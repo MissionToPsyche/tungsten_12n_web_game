@@ -1,17 +1,21 @@
 using BuildingComponents;
 using System.IO;
 using Newtonsoft.Json;
+using System.Linq;
+using UnityEngine;
 
-public class RobotBuddy
+public class Satellite
 {
+    public string satelliteName = "";
     private BuildingData buildingData;
     private ObjectsCost thisCosts;
-    private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.RobotBuddy;
+    private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.Satellite;
 
     // Abstract method to get the cost dictionary
-    public RobotBuddy(){
+    public Satellite()
+    {
         buildingData = LoadBuildingData();
-        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("RobotBuddy");
+        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("Satellite");
         thisCosts = InitObjCost(thisObject);
     }
     public BuildingData LoadBuildingData()
@@ -34,7 +38,8 @@ public class RobotBuddy
         }
         return null;
     }
-    protected ObjectsCost InitObjCost(BuildingObject thisObject){
+    protected ObjectsCost InitObjCost(BuildingObject thisObject)
+    {
         thisCosts = new ObjectsCost(
                 thisObject.Costs["Iron"],
                 thisObject.Costs["Nickel"],
@@ -46,13 +51,14 @@ public class RobotBuddy
                 thisObject.Costs["Iridium"],
                 0
             );
-            return thisCosts;
-    }
-    public ObjectsCost GetCostDictionary(){
         return thisCosts;
     }
-    public BuildingComponents.BuildingType GetBuildingType(){
+    public ObjectsCost GetCostDictionary()
+    {
+        return thisCosts;
+    }
+    public BuildingComponents.BuildingType GetBuildingType()
+    {
         return buildingType;
     }
-
 }

@@ -21,11 +21,11 @@ TagManager:
   - UI
   - Player
   - Asteroid
+  - GravityField
   - Resource
   - Industrial
   - MiniGame
-  - 
-  - 
+  - Satellite
   - 
   - 
   - Background
@@ -81,4 +81,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1724270631
+    locked: 0
+  - name: Satellite
+    uniqueID: 3626788549
     locked: 0
