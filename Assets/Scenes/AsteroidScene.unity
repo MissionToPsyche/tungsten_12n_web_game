@@ -12060,6 +12060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotBuddyAlpha
       objectReference: {fileID: 0}
+    - target: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
+      propertyPath: m_TagString
+      value: RobotBuddy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16460,6 +16464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655c1e060ad91b84b8c237c7bc941457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInstance: {fileID: 911276410}
 --- !u!114 &815371165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20965,6 +20970,10 @@ PrefabInstance:
     - target: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
       propertyPath: m_Name
       value: RobotBuddyBeta
+      objectReference: {fileID: 0}
+    - target: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
+      propertyPath: m_TagString
+      value: RobotBuddy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

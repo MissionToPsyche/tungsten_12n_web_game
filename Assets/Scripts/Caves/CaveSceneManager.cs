@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class CaveSceneManager : MonoBehaviour
 {
-    AsyncOperation async; 
-    public void loadAsteroidScene(String caveScene) 
+    AsyncOperation async;
+    public void loadAsteroidScene(String caveScene)
     {
         StartCoroutine(UnloadCaveSceneAsync(caveScene));
     }
@@ -20,10 +20,9 @@ public class CaveSceneManager : MonoBehaviour
     private IEnumerator LoadCaveSceneAsync(String caveScene)
     {
         async = SceneManager.LoadSceneAsync(caveScene, LoadSceneMode.Additive);
-        
         while (!async.isDone)
         {
-            yield return null; 
+            yield return null;
         }
     }
 
@@ -33,7 +32,7 @@ public class CaveSceneManager : MonoBehaviour
         
         while (!async.isDone)
         {
-            yield return null; 
+            yield return null;
         }
     }
 }

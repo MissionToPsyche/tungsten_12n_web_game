@@ -6,11 +6,11 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    private bool isInRange; 
-    private KeyCode interactKey = KeyCode.E; 
+    private bool isInRange;
+    private KeyCode interactKey = KeyCode.E;
     public TextMeshProUGUI reminderText;
 
-    private GameManager gameManager; 
+    private GameManager gameManager;
 
     void Start()
     {
@@ -20,9 +20,9 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInRange) 
+        if (isInRange)
         {
-            if (Input.GetKeyDown(interactKey)) 
+            if (Input.GetKeyDown(interactKey))
             {
                 // dynamically locate the player manager and set the last position, then invoke the scene change
                 gameManager.GetComponent<PlayerManager>().setLastPosition();
@@ -31,20 +31,20 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        if (collision.gameObject.CompareTag("Player"))
         {
-            isInRange = true; 
+            isInRange = true;
             reminderText.text = "Press E to enter the cave\nRemember avoid the pits";
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision) 
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        if (collision.gameObject.CompareTag("Player"))
         {
-            isInRange = false; 
+            isInRange = false;
             reminderText.text = "";
         }
     }
