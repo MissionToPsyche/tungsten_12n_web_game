@@ -21,9 +21,6 @@ public class InputReader :
     private Control.State currentControlState;
 
     private Dictionary<Control.State, InputActionMap> stateToActionMap;
-    //This is really bad coupling and cohesion, rip, used to make sure we dont switch context to an "unbuilt" entity
-    private bool hasBuiltRobotBuddyAlpha = false;
-    private bool hasBuiltRobotBuddyBeta = false;
     private void OnEnable()
     {
         if (inputSystem == null)
@@ -73,10 +70,12 @@ public class InputReader :
             inputSystem.Gameplay.Disable();
             // Debug.Log("Disabled action map: Gameplay");
         }
-
+        if(targetState == Control.State.RobotBuddyAlpha){
+            inputSystem.RobotBuddy.Enable();
+        }
         lastControlState = currentControlState;
         currentControlState = targetState;
-        // Debug.Log($"Current control state set to: {currentControlState}");
+        Debug.Log($"Current control state set to: {currentControlState}");
     }
 
     // -------------------------------------------------------------------
@@ -123,14 +122,14 @@ public class InputReader :
             }
             else if (currentControlState == Control.State.Satellite)
             {
-                if(hasBuiltRobotBuddyAlpha){
+                if(GameManager.instance.GetRobotBuddyAlphaBuilt()){
                     SetControlState(Control.State.RobotBuddyAlpha);
                 }else{
                     SetControlState(Control.State.Player);
                 }
             }
             else if(currentControlState == Control.State.RobotBuddyAlpha){
-                if(hasBuiltRobotBuddyBeta){
+                if(GameManager.instance.GetRobotBuddyBetaBuilt()){
                     SetControlState(Control.State.RobotBuddyBeta);
                 }else{
                     SetControlState(Control.State.Player);
@@ -294,13 +293,5 @@ public class InputReader :
         {
             RobotBuddyInteract.Raise(false);
         }
-    }
-    // -------------------------------------------------------------------
-
-    public void SetRobotBuddyAlpha(bool setTo){
-        hasBuiltRobotBuddyAlpha = setTo;
-    }
-    public void SetRobotBuddyBeta(bool setTo){
-        hasBuiltRobotBuddyBeta = setTo;
     }
 }

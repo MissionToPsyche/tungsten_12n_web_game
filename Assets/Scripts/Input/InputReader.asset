@@ -29,3 +29,5 @@ MonoBehaviour:
   SatelliteScan: {fileID: 11400000, guid: 36fa7ae261644ea44afd0f8a3f6fded8, type: 2}
   GamePause: {fileID: 11400000, guid: c09b3fa930dbafa4b88e2c8f6a8f8980, type: 2}
   GameResume: {fileID: 11400000, guid: bea6049e22647944688836eb5e257b11, type: 2}
+  RobotBuddyMove: {fileID: 11400000, guid: e2f6c75a4f1504fad91dcacff9ef0ad1, type: 2}
+  RobotBuddyInteract: {fileID: 11400000, guid: 785f1221415074d0284dcf6a994842d3, type: 2}

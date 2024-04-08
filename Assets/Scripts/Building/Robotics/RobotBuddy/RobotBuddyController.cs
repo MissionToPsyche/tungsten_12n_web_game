@@ -42,13 +42,11 @@ public class RobotBuddyController : MonoBehaviour
     private UnityEngine.Vector3 playerCoordinates;
     private GameManager gameManager;
     private bool isInPit;
-
+    [SerializeField, ReadOnly] private bool isActive;
     void Start()
     {
         transform.position = new Vector3(999f, 999f, 0);
-        
     }
-
 
     // -------------------------------------------------------------------
     // Handle events
@@ -62,14 +60,28 @@ public class RobotBuddyController : MonoBehaviour
     {
         return this.playerCoordinates;
     }
-
-
-
-    public void OnPlayerInteract(bool interacting)
+    public void OnRobotMove(Vector2 direction)
     {
+        if(!isActive)
+            return;
+        horizontalInput = direction.x;
+    }
+
+    public void OnControlStateUpdated(Control.State currentControlState)
+    {
+        if(currentControlState == Control.State.RobotBuddyAlpha){
+            isActive = this.gameObject.name ==  "RobotBuddyAlpha";
+        }else if(currentControlState == Control.State.RobotBuddyBeta){
+            isActive = this.gameObject.name ==  "RobotBuddyBeta";
+        }
+    }
+    public void OnRobotBuddyInteract(bool interacting)
+    {
+        if(!isActive)
+            return;
         //Fix Module, look how to call repairModule
     }
-    private void Move()
+    private void RobotMove()
     {
         currentSpeed = walkingSpeed;
 
@@ -95,11 +107,13 @@ public class RobotBuddyController : MonoBehaviour
     // Physics calculations, ridigbody movement, collision detection
     private void FixedUpdate()
     {
+        if(!isActive)
+            return;
         // First check to make sure the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         // Handle possible inputs
-        Move();
+        RobotMove();
         Interact();
 
         // Handle falling in the pit scenario

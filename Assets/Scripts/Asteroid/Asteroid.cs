@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class Asteroid : MonoBehaviour
     public SpawnResources sr;
     public AsteroidClass asteroidClass { get; set; }
     [SerializeField] private SpawnResourceEvent spawnResourceEvent;
+    private String undiscoveredResourceName = "UndiscoveredResource";
     public void InstantiateAsteroid(float Size, int numberOfResources, AsteroidClass asteroidClass, GameObject prefab)
     {
         // Set the size based on the average scale of the GameObject
@@ -39,7 +41,6 @@ public class Asteroid : MonoBehaviour
     {
         GameObject newResourceObject = Instantiate(prefab, addedResource.Position + (Vector2)transform.position, Quaternion.identity);
         setNewResourceObject(newResourceObject, addedResource, iter);
-
     }
 
     //Makes the resource the desired color
@@ -53,7 +54,10 @@ public class Asteroid : MonoBehaviour
         newResourceObject.transform.localScale = addedResource.depositSize;
         newResourceObject.transform.parent = this.transform;
         newResourceObject.name = $"{addedResource.Name}_" + iter;
-        newResourceObject.layer = 8; //Resource Layer
+        
+        //newResourceObject.layer = LayerMask.NameToLayer(undiscoveredResourceName);
+        newResourceObject.layer = LayerMask.NameToLayer("DiscoveredResource");
+
         spawnResourceEvent.Raise(new packet.ResourceGameObjectPacket(newResourceObject, addedResource));
         resourceList.Add(addedResource);
     }
@@ -72,7 +76,7 @@ public class Asteroid : MonoBehaviour
                 {
                     return false; // Position is too close to an existing resource
                 }
-                //Debug.Log($"Resource_{i} distance to {resource.name}: {distanceToResource}");
+                //Debug.Log($"Resource_{i} distance to {resource.resourceType}: {distanceToResource}");
             }
         }
 

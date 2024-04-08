@@ -22,12 +22,12 @@ TagManager:
   - UI
   - Player
   - Asteroid
-  - Resource
+  - RobotBuddy
   - Industrial
   - MiniGame
   - 
-  - 
-  - 
+  - DiscoveredResource
+  - UndiscoveredResource
   - 
   - Background
   - 
@@ -70,6 +70,9 @@ TagManager:
     locked: 0
   - name: Caves
     uniqueID: 3903332431
+    locked: 0
+  - name: RobotBuddy
+    uniqueID: 1869519183
     locked: 0
   - name: Player
     uniqueID: 4006680503
