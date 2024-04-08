@@ -131,6 +131,11 @@ public class GameManager : MonoBehaviour
         return currentAsteroid;
     }
 
+    public GameObject GetCurrentSatellite()
+    {
+        return currentSatellite;
+    }
+
     public bool GetRobotBuddyAlphaBuilt()
     {
         return hasBuiltRobotBuddyAlpha;

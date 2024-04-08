@@ -55,6 +55,9 @@ public class ContextEngine : MonoBehaviour
             SetCamerasLowPrio(playerCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
 
             satelliteCamera.Priority = 100;
+            Transform satelliteTransform = GameManager.instance.GetCurrentSatellite().transform;
+            satelliteCamera.Follow = satelliteTransform;
+            satelliteCamera.LookAt = satelliteTransform;
             currentCamera = satelliteCamera;
             currentObject = satelliteObject;
         }
