@@ -1042,6 +1042,7 @@ GameObject:
   - component: {fileID: 78490902}
   - component: {fileID: 78490901}
   - component: {fileID: 78490904}
+  - component: {fileID: 78490905}
   m_Layer: 7
   m_Name: Asteroid_14
   m_TagString: Untagged
@@ -1192,6 +1193,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &78490905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78490899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &87420897 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
@@ -1383,6 +1398,7 @@ GameObject:
   - component: {fileID: 113853199}
   - component: {fileID: 113853198}
   - component: {fileID: 113853201}
+  - component: {fileID: 113853202}
   m_Layer: 7
   m_Name: Asteroid_7
   m_TagString: Untagged
@@ -1533,6 +1549,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &113853202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113853196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &114249637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,6 +1821,7 @@ GameObject:
   - component: {fileID: 130051507}
   - component: {fileID: 130051506}
   - component: {fileID: 130051509}
+  - component: {fileID: 130051510}
   m_Layer: 7
   m_Name: Asteroid_13
   m_TagString: Untagged
@@ -1941,6 +1972,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &130051510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130051504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &136922068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2460,6 +2505,7 @@ GameObject:
   - component: {fileID: 158883400}
   - component: {fileID: 158883399}
   - component: {fileID: 158883402}
+  - component: {fileID: 158883403}
   m_Layer: 7
   m_Name: Asteroid_8
   m_TagString: Untagged
@@ -2610,6 +2656,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &158883403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158883397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &169797438
 GameObject:
   m_ObjectHideFlags: 0
@@ -8996,6 +9056,7 @@ GameObject:
   - component: {fileID: 464922636}
   - component: {fileID: 464922635}
   - component: {fileID: 464922638}
+  - component: {fileID: 464922639}
   m_Layer: 7
   m_Name: Asteroid_12
   m_TagString: Untagged
@@ -9146,6 +9207,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &464922639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464922633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &466474697
 GameObject:
   m_ObjectHideFlags: 0
@@ -11754,6 +11829,7 @@ GameObject:
   - component: {fileID: 555145232}
   - component: {fileID: 555145231}
   - component: {fileID: 555145234}
+  - component: {fileID: 555145235}
   m_Layer: 7
   m_Name: Asteroid_10
   m_TagString: Untagged
@@ -11904,6 +11980,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &555145235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555145229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &567460339
 GameObject:
   m_ObjectHideFlags: 0
@@ -16562,6 +16652,7 @@ GameObject:
   - component: {fileID: 834247598}
   - component: {fileID: 834247597}
   - component: {fileID: 834247600}
+  - component: {fileID: 834247601}
   m_Layer: 7
   m_Name: Asteroid_2
   m_TagString: Untagged
@@ -16712,6 +16803,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &834247601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834247595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &836735198
 GameObject:
   m_ObjectHideFlags: 0
@@ -20887,6 +20992,7 @@ GameObject:
   - component: {fileID: 1208179418}
   - component: {fileID: 1208179417}
   - component: {fileID: 1208179420}
+  - component: {fileID: 1208179421}
   m_Layer: 7
   m_Name: Asteroid_17
   m_TagString: Untagged
@@ -21037,6 +21143,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1208179421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208179415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1208288175
 GameObject:
   m_ObjectHideFlags: 0
@@ -28151,6 +28271,7 @@ GameObject:
   - component: {fileID: 1432494089}
   - component: {fileID: 1432494088}
   - component: {fileID: 1432494091}
+  - component: {fileID: 1432494092}
   m_Layer: 7
   m_Name: Asteroid_15
   m_TagString: Untagged
@@ -28301,6 +28422,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1432494092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432494086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1450284038
 GameObject:
   m_ObjectHideFlags: 0
@@ -28314,6 +28449,7 @@ GameObject:
   - component: {fileID: 1450284041}
   - component: {fileID: 1450284040}
   - component: {fileID: 1450284043}
+  - component: {fileID: 1450284044}
   m_Layer: 7
   m_Name: Asteroid_11
   m_TagString: Untagged
@@ -28464,6 +28600,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1450284044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450284038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1465592323
 GameObject:
   m_ObjectHideFlags: 0
@@ -30300,6 +30450,7 @@ GameObject:
   - component: {fileID: 1525405814}
   - component: {fileID: 1525405813}
   - component: {fileID: 1525405816}
+  - component: {fileID: 1525405817}
   m_Layer: 7
   m_Name: Asteroid_6
   m_TagString: Untagged
@@ -30450,6 +30601,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1525405817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525405811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1526203398
 GameObject:
   m_ObjectHideFlags: 0
@@ -32423,6 +32588,7 @@ GameObject:
   - component: {fileID: 1775143304}
   - component: {fileID: 1775143303}
   - component: {fileID: 1775143306}
+  - component: {fileID: 1775143307}
   m_Layer: 7
   m_Name: Asteroid_16
   m_TagString: Untagged
@@ -32573,6 +32739,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1775143307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775143301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1788745176
 GameObject:
   m_ObjectHideFlags: 0
@@ -35139,6 +35319,7 @@ GameObject:
   - component: {fileID: 1914321043}
   - component: {fileID: 1914321042}
   - component: {fileID: 1914321046}
+  - component: {fileID: 1914321047}
   m_Layer: 7
   m_Name: Asteroid_1
   m_TagString: Untagged
@@ -35289,6 +35470,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1914321047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914321041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1920537373
 GameObject:
   m_ObjectHideFlags: 0
@@ -35471,6 +35666,7 @@ GameObject:
   - component: {fileID: 1927361945}
   - component: {fileID: 1927361944}
   - component: {fileID: 1927361947}
+  - component: {fileID: 1927361948}
   m_Layer: 7
   m_Name: Asteroid_9
   m_TagString: Untagged
@@ -35621,6 +35817,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1927361948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927361942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1928577625
 GameObject:
   m_ObjectHideFlags: 0
