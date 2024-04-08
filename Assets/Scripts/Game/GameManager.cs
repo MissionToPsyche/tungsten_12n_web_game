@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private bool playerGrounded; // Current ground state of the player
     private Vector2 playerPosition; // Current position of the player in world space
     private Vector2 gravityFieldEdgePosition; // GravityField edge position relative to the player
+    private bool hasBuiltRobotBuddyAlpha = false;
+    private bool hasBuiltRobotBuddyBeta = false;
 
     private void Awake()
     {
@@ -84,6 +86,16 @@ public class GameManager : MonoBehaviour
         gravityFieldEdgePosition = position;
     }
 
+    public void OnBuildRobotBuddyAlpha()
+    {
+        hasBuiltRobotBuddyAlpha = true;
+    }
+
+    public void OnBuildRobotBuddyBeta()
+    {
+        hasBuiltRobotBuddyBeta = true;
+    }
+
     public void OnGamePause()
     {
         pauseMenu.SetActive(true);
@@ -117,5 +129,15 @@ public class GameManager : MonoBehaviour
     public GameObject GetCurrentAsteroid()
     {
         return currentAsteroid;
+    }
+
+    public bool GetRobotBuddyAlphaBuilt()
+    {
+        return hasBuiltRobotBuddyAlpha;
+    }
+
+    public bool GetRobotBuddyBetaBuilt()
+    {
+        return hasBuiltRobotBuddyBeta;
     }
 }

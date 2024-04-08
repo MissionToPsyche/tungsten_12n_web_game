@@ -31,17 +31,17 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-
     private string ExtractPositionFromName(string name)
     {
-        int startIndex = name.IndexOf('(');
-        int endIndex = name.LastIndexOf(')');
-        if (startIndex != -1 && endIndex != -1 && endIndex > startIndex)
+        int underscoreIndex = name.IndexOf('_');
+        if (underscoreIndex != -1 && underscoreIndex < name.Length - 1)
         {
-            return name.Substring(startIndex, endIndex - startIndex + 1);
+            // Return the substring starting just after the underscore
+            return name.Substring(underscoreIndex + 1);
         }
-        return null;
+        return null; // Return null if no underscore is found or it's at the end of the string
     }
+
     private string undiscoveredResourceName = "UndiscoveredResource";
 
     public void InstantiateAsteroid(float Size, int numberOfResources, AsteroidClass asteroidClass, GameObject prefab)

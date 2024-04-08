@@ -17,35 +17,35 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  -
+  - 
   - Water
   - UI
   - Player
   - Asteroid
-  - RobotBuddy
+  - GravityField
+  - Resource
   - Industrial
   - MiniGame
-  -
   - DiscoveredResource
   - UndiscoveredResource
-  -
+  - RobotBuddy
   - Background
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
-  -
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -72,10 +72,13 @@ TagManager:
     uniqueID: 3903332431
     locked: 0
   - name: RobotBuddy
-    uniqueID: 1869519183
+    uniqueID: 273207475
     locked: 0
   - name: Player
     uniqueID: 4006680503
+    locked: 0
+  - name: Satellite
+    uniqueID: 3626788549
     locked: 0
   - name: MiniGame
     uniqueID: 4239968931
@@ -85,7 +88,4 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1724270631
-    locked: 0
-  - name: Satellite
-    uniqueID: 3626788549
     locked: 0
