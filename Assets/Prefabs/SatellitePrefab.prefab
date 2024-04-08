@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 1069979113880443735}
   - component: {fileID: 5069326742663756522}
   - component: {fileID: 5000358783751187991}
+  - component: {fileID: -2957482519469520702}
+  - component: {fileID: -8614047798540860391}
+  - component: {fileID: -3783003881841581331}
   m_Layer: 12
   m_Name: SatellitePrefab
   m_TagString: Untagged
@@ -131,3 +134,74 @@ MonoBehaviour:
   currentSpeed: 0
   spawnDistancePercentage: 0.9
   currentState: 0
+--- !u!114 &-2957482519469520702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990642282803869721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11213214cd75ae14aa981a39223c3ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6fca2a4f2e0e4c34dbc24956048aa2ad, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5000358783751187991}
+        m_TargetAssemblyTypeName: SatelliteController, Assembly-CSharp
+        m_MethodName: OnSatelliteMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-8614047798540860391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990642282803869721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a0ba10e730b4b47964098f09b8f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 36fa7ae261644ea44afd0f8a3f6fded8, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5000358783751187991}
+        m_TargetAssemblyTypeName: SatelliteController, Assembly-CSharp
+        m_MethodName: OnSatelliteScan
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-3783003881841581331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990642282803869721}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccae3bc07eed174e8089f8100ab9cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  satellite: {fileID: 0}
+  asteroid: {fileID: 0}
+  orbitSpeed: 0.075
