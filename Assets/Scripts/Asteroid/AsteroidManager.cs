@@ -27,62 +27,61 @@ public class AsteroidManager : MonoBehaviour
         //Asteroid sizes are dependant on its transform
         float sizeToSend = child.transform.localScale.x + child.transform.localScale.y + child.transform.localScale.z;
         AsteroidClass asteroidClass;
-
         //Reserved for Unique settings
         switch (asteroid.name)
         {
-            case "Asteroid(0,0)":
+            case "Asteroid_0":
                 asteroidClass = AsteroidClass.D_Class;
                 break;
-            case "Asteroid(-1,-1)":
+            case "Asteroid_1":
+                asteroidClass = AsteroidClass.D_Class;
+                break;
+            case "Asteroid_2":
+                asteroidClass = AsteroidClass.A_Class;
+                break;
+            case "Asteroid_3":
                 asteroidClass = AsteroidClass.C_Class;
                 break;
-            case "Asteroid(-1,-2)":
+            case "Asteroid_4":
                 asteroidClass = AsteroidClass.F_Class;
                 break;
-            case "Asteroid(-3,-1)":
+            case "Asteroid_5":
                 asteroidClass = AsteroidClass.D_Class;
                 break;
-            case "Asteroid(-2,-2)":
+            case "Asteroid_6":
                 asteroidClass = AsteroidClass.D_Class;
                 break;
-            case "Asteroid(-2,-1)":
+            case "Asteroid_7":
                 asteroidClass = AsteroidClass.A_Class;
                 break;
-            case "Asteroid(-3,0)":
+            case "Asteroid_8":
                 asteroidClass = AsteroidClass.B_Class;
                 break;
-            case "Asteroid(-2,1)":
+            case "Asteroid_9":
                 asteroidClass = AsteroidClass.D_Class;
                 break;
-            case "Asteroid(-1,3)":
+            case "Asteroid_10":
                 asteroidClass = AsteroidClass.D_Class;
                 break;
-            case "Asteroid(-2,4)":
+            case "Asteroid_11":
                 asteroidClass = AsteroidClass.D_Class;
                 break;
-            case "Asteroid(-2,6)":
+            case "Asteroid_12":
                 asteroidClass = AsteroidClass.D_Class;
                 break;
-            case "Asteroid(-1,5)":
+            case "Asteroid_13":
                 asteroidClass = AsteroidClass.D_Class;
                 break;
-            case "Asteroid(-1,7)":
+            case "Asteroid_14":
                 asteroidClass = AsteroidClass.B_Class;
                 break;
-            case "Asteroid(1,1)":
-                asteroidClass = AsteroidClass.D_Class;
-                break;
-            case "Asteroid(2,2)":
-                asteroidClass = AsteroidClass.A_Class;
-                break;
-            case "Asteroid(0,3)":
+            case "Asteroid_15":
                 asteroidClass = AsteroidClass.F_Class;
                 break;
-            case "Asteroid(3,5)":
+            case "Asteroid_16":
                 asteroidClass = AsteroidClass.S_Class;
                 break;
-            case "Asteroid(-5,-2)":
+            case "Asteroid_17":
                 asteroidClass = AsteroidClass.S_Class;
                 break;
 

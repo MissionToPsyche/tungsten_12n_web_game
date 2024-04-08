@@ -17,35 +17,35 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  -
   - Water
   - UI
   - Player
   - Asteroid
-  - GravityField
-  - Resource
+  - RobotBuddy
   - Industrial
   - MiniGame
-  - Satellite
-  - 
-  - 
+  -
+  - DiscoveredResource
+  - UndiscoveredResource
+  -
   - Background
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -70,6 +70,9 @@ TagManager:
     locked: 0
   - name: Caves
     uniqueID: 3903332431
+    locked: 0
+  - name: RobotBuddy
+    uniqueID: 1869519183
     locked: 0
   - name: Player
     uniqueID: 4006680503

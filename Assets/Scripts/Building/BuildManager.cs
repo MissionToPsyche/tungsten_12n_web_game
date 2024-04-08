@@ -18,6 +18,8 @@ public class BuildManager : MonoBehaviour
     private bool hasBuiltLaunchPad = false;
     public VoidEvent satelliteSpawnTrigged;
 
+    [SerializeField] private VoidEvent buildRobotBuddyAlpha;
+    [SerializeField] private VoidEvent buildRobotBuddyBeta;
     private UIBuildManager buildUI;
 
     void Awake()
@@ -58,11 +60,11 @@ public class BuildManager : MonoBehaviour
                 if(hasBuiltRobotBuddyAlpha == false){
                     TeleportRobotBuddy(RobotBuddyAlphaObject);
                     hasBuiltRobotBuddyAlpha = true;
-                    alertPlayerController.Raise(BuildingComponents.BuildingType.RobotBuddyAlpha);
+                    buildRobotBuddyAlpha.Raise();
                 }else if(hasBuiltRobotBuddyBeta == false){
                     TeleportRobotBuddy(RobotBuddyBetaObject);
                     hasBuiltRobotBuddyBeta = true;
-                    alertPlayerController.Raise(BuildingComponents.BuildingType.RobotBuddyBeta);
+                    buildRobotBuddyBeta.Raise();
                 }
                 return;
             case BuildingComponents.BuildingType.Satellite:

@@ -81,8 +81,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        inputReader.SetRobotBuddyAlpha(false);
-        inputReader.SetRobotBuddyBeta(false);
         // // Singleton method
         if (instance != null && instance != this)
         {
@@ -510,14 +508,5 @@ public class PlayerController : MonoBehaviour
     {
         Character character = characterDatabase.GetSelectedCharacter(selection);
         spriteRenderer.sprite = character.characterSprite;
-    }
-
-    public void OnBuildRobotBuddyObject(BuildingComponents.BuildingType buildingType){
-        Debug.Log("In BuildingRobotBuddy playerController");
-        if(buildingType == BuildingComponents.BuildingType.RobotBuddyAlpha){
-            inputReader.SetRobotBuddyAlpha(true);
-        }else if (buildingType == BuildingComponents.BuildingType.RobotBuddyBeta){
-            inputReader.SetRobotBuddyBeta(true);
-        }
     }
 }

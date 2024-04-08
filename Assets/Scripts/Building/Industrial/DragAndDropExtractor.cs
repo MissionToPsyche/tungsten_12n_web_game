@@ -7,6 +7,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
     public new delegate void placementEvent(GameObject resourceHit);
     public new static event placementEvent OnPlacementEvent;
     private GameObject resource;
+    private string discoveredResourceName = "DiscoveredResource";
     void Awake(){
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectBody2D = GetComponent<Rigidbody2D>();
@@ -25,7 +26,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
             Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.size.y / 2f);
             Vector2 direction = gravityBody.GravityDirection;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, 20f, layerToUse);
-            
+
             if(IsValidPos(hit, rayOrigin, direction)){
                 resource = hit.collider.gameObject;
                 spriteRenderer.color = Color.green;
@@ -81,7 +82,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
     protected int SetLayerToUse()
     {
         //Resource Layer
-        return 1 << 8;
+        return 1 << LayerMask.NameToLayer(discoveredResourceName);
     }
 
 
