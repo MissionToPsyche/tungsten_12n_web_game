@@ -75,7 +75,7 @@ public class InputReader :
         }
         lastControlState = currentControlState;
         currentControlState = targetState;
-        Debug.Log($"Current control state set to: {currentControlState}");
+        //Debug.Log($"Current control state set to: {currentControlState}");
     }
 
     // -------------------------------------------------------------------
