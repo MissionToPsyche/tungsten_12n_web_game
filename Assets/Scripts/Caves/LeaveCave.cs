@@ -21,12 +21,9 @@ public class LeaveCave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInRange) 
+        if (isInRange && Input.GetKeyDown(interactKey)) 
         {
-            if (Input.GetKeyDown(interactKey)) 
-            {
-                gameManager.GetComponent<CaveSceneManager>().loadAsteroidScene(SceneManager.GetActiveScene().name);
-            }
+            gameManager.GetComponent<CaveSceneManager>().loadAsteroidScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -35,7 +32,7 @@ public class LeaveCave : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) 
         {
             isInRange = true; 
-            reminderText.text = "Press E to leave the cave";
+            reminderText.text = "Leave Cave";
         }
     }
 
