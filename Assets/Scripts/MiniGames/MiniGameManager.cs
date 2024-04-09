@@ -7,7 +7,7 @@ public class MiniGameManager : MonoBehaviour
     public List<GameObject> prefabsToChooseFrom;
     public GameObject parentObject; // Parent GameObject to contain the instantiated prefab
 
-    public Vector3 desiredScale = new Vector3(2f, 2f, 2f); 
+    public Vector3 desiredScale = new Vector3(2f, 2f, 2f);
 
     private GameObject instantiatedPrefab; // Hold reference to the instantiated prefab
     public MiniGameCameraSwitcher cameraSwitcher;

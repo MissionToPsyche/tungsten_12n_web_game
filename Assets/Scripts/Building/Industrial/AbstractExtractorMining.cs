@@ -19,6 +19,7 @@ public class AbstractExtractorMining : MonoBehaviour
     protected float baseBreakChance;
     protected bool playerCanInteract = false;
     protected bool playerInteracted = false;
+    protected bool robotBuddyCanInteract = false;
     protected bool isDepracted = false;
     //Mining UI
     public GameObject textPrefabPlusOne;
@@ -216,12 +217,18 @@ public class AbstractExtractorMining : MonoBehaviour
         {
             playerCanInteract = true;
         }
+        if(((1 << collision.gameObject.layer) & LayerMask.GetMask("RobotBuddy")) != 0){
+            robotBuddyCanInteract = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision){
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
         {
             playerCanInteract = false;
+        }
+        if(((1 << collision.gameObject.layer) & LayerMask.GetMask("RobotBuddy")) != 0){
+            robotBuddyCanInteract = false;
         }
     }
     public void OnPlayerInteract(){
@@ -231,7 +238,13 @@ public class AbstractExtractorMining : MonoBehaviour
             OnMiniGameEvent.Raise();
         }
     }
-
+    public void OnRobotBuddyInteract(){
+        if(robotBuddyCanInteract && isBroken){
+            //IMPLEMENT MINI GAME LOGIC HERE
+            playerInteracted = true;
+            OnMiniGameEvent.Raise();
+        }
+    }
     public void fix(){
         if(playerInteracted){
             isBroken = false;

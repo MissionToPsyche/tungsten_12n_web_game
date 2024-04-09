@@ -36,7 +36,7 @@ public class RobotBuddyController : MonoBehaviour
 
     private enum PlayerState { Idle, Walking, Interacting }
     [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
-    [SerializeField] public BoolEvent playerInteract;
+    [SerializeField] public BoolEvent robotBuddyInteract;
     // Animation
     [SerializeField] private static PlayerController instance;
     private UnityEngine.Vector3 playerCoordinates;
@@ -97,7 +97,7 @@ public class RobotBuddyController : MonoBehaviour
     {
         if (isGrounded && currentState == PlayerState.Interacting)
         {
-            playerInteract.Raise(true);
+            robotBuddyInteract.Raise(true);
         }
     }
 

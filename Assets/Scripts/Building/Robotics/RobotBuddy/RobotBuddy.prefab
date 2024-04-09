@@ -117,7 +117,7 @@ MonoBehaviour:
   isGrounded: 0
   isFacingRight: 0
   currentState: 0
-  playerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
+  robotBuddyInteract: {fileID: 11400000, guid: 785f1221415074d0284dcf6a994842d3, type: 2}
   isActive: 0
 --- !u!114 &1602785552444115735
 MonoBehaviour:
