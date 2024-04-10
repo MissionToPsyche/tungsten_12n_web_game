@@ -9,10 +9,6 @@ public class ContextEngine : MonoBehaviour
     [Header("Events")]
 
     [Header("Mutable")]
-    [SerializeField] private GameObject playerObject;
-    [SerializeField] private GameObject satelliteObject;
-    [SerializeField] private GameObject robotBuddyAlphaObject;
-    [SerializeField] private GameObject robotBuddyBetaObject;
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private CinemachineVirtualCamera satelliteCamera;
     [SerializeField] private CinemachineVirtualCamera robotBuddyAlphaCamera;
@@ -35,31 +31,34 @@ public class ContextEngine : MonoBehaviour
             SetCamerasLowPrio(satelliteCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
             playerCamera.Priority = 100;
             currentCamera = playerCamera;
-            currentObject = playerObject;
+            currentObject = PlayerManager.instance.GetPlayerObject();
         }
         else if (currentControlState == Control.State.Satellite)
         {
             SetCamerasLowPrio(playerCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
 
             satelliteCamera.Priority = 100;
-            Transform satelliteTransform = SatelliteManager.instance.GetCurrentSatellite().transform;
+            Transform satelliteTransform = SatelliteManager.instance.GetCurrentSatelliteObject().transform;
             satelliteCamera.Follow = satelliteTransform;
             satelliteCamera.LookAt = satelliteTransform;
             currentCamera = satelliteCamera;
-            currentObject = satelliteObject;
+            currentObject = SatelliteManager.instance.GetCurrentSatelliteObject();
         }
-        else if(currentControlState == Control.State.RobotBuddyAlpha){
+        else if(currentControlState == Control.State.RobotBuddyAlpha)
+        {
             SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyBetaCamera);
 
             robotBuddyAlphaCamera.Priority = 100;
             currentCamera = robotBuddyAlphaCamera;
-            currentObject = robotBuddyAlphaObject;
-        }else if(currentControlState == Control.State.RobotBuddyBeta){
+            currentObject = RobotManager.instance.GetRobotAlphaObject();
+        }
+        else if(currentControlState == Control.State.RobotBuddyBeta)
+        {
             SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyAlphaCamera);
 
             robotBuddyBetaCamera.Priority = 100;
             currentCamera = robotBuddyBetaCamera;
-            currentObject = robotBuddyBetaObject;
+            currentObject = RobotManager.instance.GetRobotBetaObject();
         }
     }
 
@@ -77,12 +76,9 @@ public class ContextEngine : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
 
-    private void Start()
-    {
         currentCamera = playerCamera;
-        currentObject = playerObject;
+        currentObject = PlayerManager.instance.GetPlayerObject();
     }
 
     // Physics calculations, ridigbody movement, collision detection

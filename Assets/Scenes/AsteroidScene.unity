@@ -6456,6 +6456,7 @@ GameObject:
   - component: {fileID: 443586156}
   - component: {fileID: 443586155}
   - component: {fileID: 443586154}
+  - component: {fileID: 443586157}
   m_Layer: 0
   m_Name: RobotManager
   m_TagString: Untagged
@@ -6496,7 +6497,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 443586156}
         m_TargetAssemblyTypeName: RobotManager, Assembly-CSharp
-        m_MethodName: OnBuildRobotBuddyBeta
+        m_MethodName: OnBuildRobotBeta
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6524,7 +6525,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 443586156}
         m_TargetAssemblyTypeName: RobotManager, Assembly-CSharp
-        m_MethodName: OnBuildRobotBuddyAlpha
+        m_MethodName: OnBuildRobotAlpha
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6546,12 +6547,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81cf64875e7cd464891355a3b9ab5922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robotAlphaInstance: {fileID: 0}
-  robotBetaInstance: {fileID: 0}
-  robotGrounded: 0
-  robotPosition: {x: 0, y: 0}
-  hasBuiltRobotBuddyAlpha: 0
-  hasBuiltRobotBuddyBeta: 0
+  hasBuiltAlpha: 0
+  hasBuiltBeta: 0
+  robotAlphaObject: {fileID: 0}
+  robotAlphaGrounded: 0
+  robotAlphaPosition: {x: 0, y: 0}
+  robotBetaObject: {fileID: 0}
+  robotBetaGrounded: 0
+  robotBetaPosition: {x: 0, y: 0}
+--- !u!114 &443586157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443586152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11213214cd75ae14aa981a39223c3ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 0}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &464922633
 GameObject:
   m_ObjectHideFlags: 0
@@ -6975,7 +6994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   satellitePrefab: {fileID: 990642282803869721, guid: 5134a8c086c901044ab4190365f31fa5, type: 3}
   numberOfSatellites: 0
-  currentSatellite: {fileID: 0}
+  currentSatelliteObject: {fileID: 0}
 --- !u!114 &475161552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11874,7 +11893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 655c1e060ad91b84b8c237c7bc941457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInstance: {fileID: 911276410}
+  playerObject: {fileID: 911276410}
   playerGrounded: 0
   playerPosition: {x: 0, y: 0}
 --- !u!114 &827782829
@@ -23686,10 +23705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb04c18aaaf3fb4fa2f877c0540cb22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 911276410}
-  satelliteObject: {fileID: 0}
-  robotBuddyAlphaObject: {fileID: 1680418309}
-  robotBuddyBetaObject: {fileID: 87420897}
   playerCamera: {fileID: 546839581}
   satelliteCamera: {fileID: 1399560953}
   robotBuddyAlphaCamera: {fileID: 2073616017}

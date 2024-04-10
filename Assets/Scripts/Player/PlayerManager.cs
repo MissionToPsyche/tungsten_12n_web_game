@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Events")]
 
     [Header("Mutable")]
-    [SerializeField] private GameObject playerInstance;
+    [SerializeField] private GameObject playerObject;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private bool playerGrounded;
@@ -55,6 +55,11 @@ public class PlayerManager : MonoBehaviour
 
     // -------------------------------------------------------------------
     // API
+
+    public GameObject GetPlayerObject()
+    {
+        return playerObject;
+    }
 
     public bool GetPlayerGrounded()
     {
@@ -98,13 +103,13 @@ public class PlayerManager : MonoBehaviour
     private void SceneChange(Scene scene)
     {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene.name));
-        // playerInstance = GameObject.FindWithTag("Player");
-        playerController = playerInstance.GetComponent<PlayerController>();
+        // playerObject = GameObject.FindWithTag("Player");
+        playerController = playerObject.GetComponent<PlayerController>();
         SetScenePosition(scene.name);
 
         virtualPlayerCamera = GameObject.FindWithTag("VirtualPlayerCamera").GetComponent<CinemachineVirtualCamera>();
-        virtualPlayerCamera.Follow = playerInstance.transform;
-        virtualPlayerCamera.LookAt = playerInstance.transform;
+        virtualPlayerCamera.Follow = playerObject.transform;
+        virtualPlayerCamera.LookAt = playerObject.transform;
 
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         cam.transform.position = virtualPlayerCamera.transform.position;
@@ -137,23 +142,23 @@ public class PlayerManager : MonoBehaviour
             case "AsteroidScene":
                 if (this.lastCoordinates != Vector3.zero && this.lastRotation != Quaternion.Euler(0,0,0))
                 {
-                    this.playerInstance.transform.position = this.lastCoordinates;
-                    this.playerInstance.transform.rotation = this.lastRotation;
+                    this.playerObject.transform.position = this.lastCoordinates;
+                    this.playerObject.transform.rotation = this.lastRotation;
                     this.playerController.UpdateJumpForce(1.5f);
                 }
                 else
                 {
                     // put the player to the default spawn position in the scene
-                    this.playerInstance.transform.position = defaultSpawn.position;
-                    this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
+                    this.playerObject.transform.position = defaultSpawn.position;
+                    this.playerObject.transform.rotation = Quaternion.Euler(0,0,0);
                     this.playerController.UpdateJumpForce(1.5f);
                 }
                 break;
 
             default:
                 // put the player to the default spawn position in the scene
-                this.playerInstance.transform.position = defaultSpawn.position;
-                this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
+                this.playerObject.transform.position = defaultSpawn.position;
+                this.playerObject.transform.rotation = Quaternion.Euler(0,0,0);
                 this.playerController.UpdateJumpForce(0.5f);
                 break;
         }
@@ -162,7 +167,7 @@ public class PlayerManager : MonoBehaviour
     // set the players last known coordinates
     public void setLastPosition()
     {
-        this.lastCoordinates = playerInstance.transform.position;
-        this.lastRotation = playerInstance.transform.rotation;
+        this.lastCoordinates = playerObject.transform.position;
+        this.lastRotation = playerObject.transform.rotation;
     }
 }

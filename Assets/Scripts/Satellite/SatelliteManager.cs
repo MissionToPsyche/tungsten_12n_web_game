@@ -12,7 +12,7 @@ public class SatelliteManager : MonoBehaviour
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private int numberOfSatellites = 0;
-    [SerializeField, ReadOnly] private GameObject currentSatellite;
+    [SerializeField, ReadOnly] private GameObject currentSatelliteObject;
 
     // Not for display
 
@@ -22,11 +22,10 @@ public class SatelliteManager : MonoBehaviour
 
     public void OnCurrentSatelliteChanged(string satelliteName)
     {
-        // Find the satellite GameObject by its constructed name
-        currentSatellite = GameObject.Find(satelliteName);
-        if (currentSatellite == null)
+        currentSatelliteObject = GameObject.Find(satelliteName);
+        if (currentSatelliteObject == null)
         {
-            Debug.Log("[GameManager]: Satellite named '" + currentSatellite + "' not found.");
+            Debug.Log("[GameManager]: Satellite named '" + currentSatelliteObject + "' not found.");
         }
     }
 
@@ -77,9 +76,9 @@ public class SatelliteManager : MonoBehaviour
         return numberOfSatellites;
     }
 
-    public GameObject GetCurrentSatellite()
+    public GameObject GetCurrentSatelliteObject()
     {
-        return currentSatellite;
+        return currentSatelliteObject;
     }
 
     // -------------------------------------------------------------------

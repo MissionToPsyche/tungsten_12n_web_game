@@ -15,14 +15,18 @@ public class RobotManager : MonoBehaviour
     [Header("Events")]
 
     [Header("Mutable")]
-    [SerializeField] private GameObject robotAlphaInstance;
-    [SerializeField] private GameObject robotBetaInstance;
 
     [Header("ReadOnly")]
-    [SerializeField, ReadOnly] private bool robotGrounded;
-    [SerializeField, ReadOnly] private Vector2 robotPosition;
-    [SerializeField, ReadOnly] private bool hasBuiltRobotBuddyAlpha = false;
-    [SerializeField, ReadOnly] private bool hasBuiltRobotBuddyBeta = false;
+    [SerializeField, ReadOnly] private bool hasBuiltAlpha = false;
+    [SerializeField, ReadOnly] private bool hasBuiltBeta = false;
+    // Alpha
+    [SerializeField, ReadOnly] private GameObject robotAlphaObject;
+    [SerializeField, ReadOnly] private bool robotAlphaGrounded;
+    [SerializeField, ReadOnly] private Vector2 robotAlphaPosition;
+    // Beta
+    [SerializeField, ReadOnly] private GameObject robotBetaObject;
+    [SerializeField, ReadOnly] private bool robotBetaGrounded;
+    [SerializeField, ReadOnly] private Vector2 robotBetaPosition;
 
     // Not for display
     private Camera cam;
@@ -34,26 +38,52 @@ public class RobotManager : MonoBehaviour
     // -------------------------------------------------------------------
     // Handle events
 
-    public void OnRobotGrounded(bool state)
+    // ALPHA
+    public void OnBuildRobotAlpha()
     {
-        robotGrounded = state;
-        // Debug.Log("[GameManager]: robotGrounded: " + state);
+        robotAlphaObject = GameObject.Find("RobotBuddyAlpha");
+        if (robotAlphaObject == null)
+        {
+            Debug.Log("[RobotManager]: robotAlpha not found in game");
+            return;
+        }
+        hasBuiltAlpha = true;
     }
 
-    public void OnRobotPositionUpdated(Vector2 position)
+    public void OnRobotAlphaGrounded(bool state)
     {
-        robotPosition = position;
-        // Debug.Log("[GameManager]: robotPosition: " + position);
+        robotAlphaGrounded = state;
+        // Debug.Log("[RobotManager]: robotAlphaGrounded: " + state);
     }
 
-    public void OnBuildRobotBuddyAlpha()
+    public void OnRobotAlphaPositionUpdated(Vector2 position)
     {
-        hasBuiltRobotBuddyAlpha = true;
+        robotAlphaPosition = position;
+        // Debug.Log("[GameManager]: robotAlphaPosition: " + position);
     }
 
-    public void OnBuildRobotBuddyBeta()
+    // BETA
+    public void OnBuildRobotBeta()
     {
-        hasBuiltRobotBuddyBeta = true;
+        robotBetaObject = GameObject.Find("RobotBuddyBeta");
+        if (robotBetaObject == null)
+        {
+            Debug.Log("[RobotManager]: robotBetaObject not found in game");
+            return;
+        }
+        hasBuiltBeta = true;
+    }
+
+    public void OnRobotBetaGrounded(bool state)
+    {
+        robotBetaGrounded = state;
+        // Debug.Log("[RobotManager]: robotBetaGrounded: " + state);
+    }
+
+    public void OnRobotBetaPositionUpdated(Vector2 position)
+    {
+        robotBetaPosition = position;
+        // Debug.Log("[GameManager]: robotBetaPosition: " + position);
     }
 
     // void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -69,24 +99,47 @@ public class RobotManager : MonoBehaviour
     // -------------------------------------------------------------------
     // API
 
-    public bool GetRobotGrounded()
+    // ALPHA
+
+    public bool GetRobotAlphaBuilt()
     {
-        return robotGrounded;
+        return hasBuiltAlpha;
     }
 
-    public Vector2 GetRobotPosition()
+    public GameObject GetRobotAlphaObject()
     {
-        return robotPosition;
+        return robotAlphaObject;
     }
 
-    public bool GetRobotBuddyAlphaBuilt()
+    public bool GetRobotAlphaGrounded()
     {
-        return hasBuiltRobotBuddyAlpha;
+        return robotAlphaGrounded;
     }
 
-    public bool GetRobotBuddyBetaBuilt()
+    public Vector2 GetRobotAlphaPosition()
     {
-        return hasBuiltRobotBuddyBeta;
+        return robotAlphaPosition;
+    }
+
+    // BETA
+    public bool GetRobotBetaBuilt()
+    {
+        return hasBuiltBeta;
+    }
+
+    public GameObject GetRobotBetaObject()
+    {
+        return robotBetaObject;
+    }
+
+    public bool GetRobotBetaGrounded()
+    {
+        return robotBetaGrounded;
+    }
+
+    public Vector2 GetRobotBetaPosition()
+    {
+        return robotBetaPosition;
     }
 
     // -------------------------------------------------------------------

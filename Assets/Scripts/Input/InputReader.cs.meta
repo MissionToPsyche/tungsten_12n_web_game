@@ -4,13 +4,25 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - GamePause: {fileID: 11400000, guid: c09b3fa930dbafa4b88e2c8f6a8f8980, type: 2}
+  - ControlStateUpdated: {instanceID: 0}
+  - ZoomIn: {instanceID: 0}
+  - ZoomOut: {instanceID: 0}
   - PlayerMove: {instanceID: 0}
-  - PlayerJump: {fileID: 11400000, guid: 789fc49fa1fc10440b8c1006f5ab6a6d, type: 2}
+  - PlayerJump: {instanceID: 0}
   - PlayerSprint: {instanceID: 0}
   - PlayerCrouch: {instanceID: 0}
   - PlayerInteract: {instanceID: 0}
+  - PlayerBuildOverlay: {instanceID: 0}
+  - PlayerBuildOverlayCycleLeft: {instanceID: 0}
+  - PlayerBuildOverlayCycleRight: {instanceID: 0}
+  - PlayerInventoryOverlay: {instanceID: 0}
+  - PlayerObjectiveOverlay: {instanceID: 0}
+  - SatelliteMove: {instanceID: 0}
+  - SatelliteScan: {instanceID: 0}
+  - GamePause: {instanceID: 0}
   - GameResume: {instanceID: 0}
+  - RobotBuddyMove: {instanceID: 0}
+  - RobotBuddyInteract: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
