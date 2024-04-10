@@ -4,7 +4,7 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
-    public static CameraManager instance { get; private set; }
+    public static CameraManager Instance { get; private set; }
 
     [Header("Events")]
 
@@ -31,18 +31,18 @@ public class CameraManager : MonoBehaviour
             SetCamerasLowPrio(satelliteCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
             playerCamera.Priority = 100;
             currentCamera = playerCamera;
-            currentObject = PlayerManager.instance.GetPlayerObject();
+            currentObject = PlayerManager.Instance.GetPlayerObject();
         }
         else if (controlState == Control.State.Satellite)
         {
             SetCamerasLowPrio(playerCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
 
             satelliteCamera.Priority = 100;
-            Transform satelliteTransform = SatelliteManager.instance.GetCurrentSatelliteObject().transform;
+            Transform satelliteTransform = SatelliteManager.Instance.GetCurrentSatelliteObject().transform;
             satelliteCamera.Follow = satelliteTransform;
             satelliteCamera.LookAt = satelliteTransform;
             currentCamera = satelliteCamera;
-            currentObject = SatelliteManager.instance.GetCurrentSatelliteObject();
+            currentObject = SatelliteManager.Instance.GetCurrentSatelliteObject();
         }
         else if(controlState == Control.State.RobotBuddyAlpha)
         {
@@ -50,7 +50,7 @@ public class CameraManager : MonoBehaviour
 
             robotBuddyAlphaCamera.Priority = 100;
             currentCamera = robotBuddyAlphaCamera;
-            currentObject = RobotManager.instance.GetRobotAlphaObject();
+            currentObject = RobotManager.Instance.GetRobotAlphaObject();
         }
         else if(controlState == Control.State.RobotBuddyBeta)
         {
@@ -58,7 +58,7 @@ public class CameraManager : MonoBehaviour
 
             robotBuddyBetaCamera.Priority = 100;
             currentCamera = robotBuddyBetaCamera;
-            currentObject = RobotManager.instance.GetRobotBetaObject();
+            currentObject = RobotManager.Instance.GetRobotBetaObject();
         }
     }
 
@@ -67,18 +67,18 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
         currentCamera = playerCamera;
-        currentObject = PlayerManager.instance.GetPlayerObject();
+        currentObject = PlayerManager.Instance.GetPlayerObject();
     }
 
     // Physics calculations, ridigbody movement, collision detection

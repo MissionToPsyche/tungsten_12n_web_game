@@ -47,7 +47,7 @@ public class GravityFieldEdgePoints : MonoBehaviour
     //     if (this.gameObject != null && gravityFieldCollider != null)
     //     {
     //         Vector2 fieldCenter = gravityFieldCollider.transform.position;
-    //         Vector2 playerPosition = GameManager.instance.GetPlayerPosition();
+    //         Vector2 playerPosition = GameManager.Instance.GetPlayerPosition();
     //         Vector2 direction = (playerPosition - fieldCenter).normalized;
     //         float fieldRadius = gravityFieldCollider.radius * Mathf.Max(gravityFieldCollider.transform.lossyScale.x, gravityFieldCollider.transform.lossyScale.y);
     //         Vector2 fieldEdgePoint = fieldCenter + direction * fieldRadius;

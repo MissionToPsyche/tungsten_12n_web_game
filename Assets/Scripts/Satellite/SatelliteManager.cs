@@ -1,8 +1,9 @@
+using System.Linq;
 using UnityEngine;
 
 public class SatelliteManager : MonoBehaviour
 {
-    public static SatelliteManager instance { get; private set; }
+    public static SatelliteManager Instance { get; private set; }
 
     [Header("Events")]
 
@@ -11,6 +12,7 @@ public class SatelliteManager : MonoBehaviour
     public GameObject satellitePrefab;
 
     [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private string[] activeSatellites;
     [SerializeField, ReadOnly] private int numberOfSatellites = 0;
     [SerializeField, ReadOnly] private GameObject currentSatelliteObject;
 
@@ -25,13 +27,13 @@ public class SatelliteManager : MonoBehaviour
         currentSatelliteObject = GameObject.Find(satelliteName);
         if (currentSatelliteObject == null)
         {
-            Debug.Log("[GameManager]: Satellite named '" + currentSatelliteObject + "' not found.");
+            Debug.Log("[SatelliteManager]: Satellite named '" + currentSatelliteObject + "' not found.");
         }
     }
 
     public void OnSatelliteSpawnTriggered()
     {
-        GameObject currentAsteroid = AsteroidManager.instance.GetCurrentAsteroid();
+        GameObject currentAsteroid = AsteroidManager.Instance.GetCurrentAsteroid();
         if (currentAsteroid == null)
         {
             Debug.LogError("[SatelliteManager]: Current asteroid is not set.");
@@ -45,7 +47,7 @@ public class SatelliteManager : MonoBehaviour
             return;
         }
 
-        Vector2 closestEdgePoint = FindClosestEdgePoint(gravityFieldEdgePoints.edgePoints, PlayerManager.instance.GetPlayerPosition());
+        Vector2 closestEdgePoint = FindClosestEdgePoint(gravityFieldEdgePoints.edgePoints, PlayerManager.Instance.GetPlayerPosition());
         Vector3 spawnPosition = new Vector3(closestEdgePoint.x, closestEdgePoint.y, 0);  // Assuming satellites are on the xy-plane
         GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, Quaternion.identity, currentAsteroid.transform);
 
@@ -53,6 +55,7 @@ public class SatelliteManager : MonoBehaviour
 
         // Setting a custom name for the satellite
         spawnedSatellite.name = "Satellite" + currentAsteroid.GetComponent<Asteroid>().positionTag;
+        activeSatellites.Append(spawnedSatellite.name);
 
         // Adjust the scale of the satellite to not inherit the asteroid's scale
         if (currentAsteroid.transform.lossyScale != Vector3.one) // Check if the asteroid's scale is not the default scale
@@ -86,13 +89,13 @@ public class SatelliteManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }

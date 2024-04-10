@@ -9,7 +9,7 @@ using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance { get; private set; }
+    public static PlayerController Instance { get; private set; }
 
     [Header("Events")]
     [SerializeField] public StringEvent asteroidReached;
@@ -183,13 +183,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -207,14 +207,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // // Singleton method
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -392,7 +391,7 @@ public class PlayerController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            PlayerManager.instance.SetScenePosition(SceneManager.GetActiveScene().name);
+            PlayerManager.Instance.SetScenePosition(SceneManager.GetActiveScene().name);
         }
 
         // Handle ladder movement

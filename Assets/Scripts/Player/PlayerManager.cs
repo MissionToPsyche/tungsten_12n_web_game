@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager instance { get; private set; }
+    public static PlayerManager Instance { get; private set; }
 
     [Header("Events")]
 
@@ -76,13 +76,13 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -144,14 +144,14 @@ public class PlayerManager : MonoBehaviour
                 {
                     this.playerObject.transform.position = this.lastCoordinates;
                     this.playerObject.transform.rotation = this.lastRotation;
-                    this.playerController.UpdateJumpForce(1.5f);
+                    this.playerController.UpdateJumpForce(3.0f);
                 }
                 else
                 {
                     // put the player to the default spawn position in the scene
                     this.playerObject.transform.position = defaultSpawn.position;
                     this.playerObject.transform.rotation = Quaternion.Euler(0,0,0);
-                    this.playerController.UpdateJumpForce(1.5f);
+                    this.playerController.UpdateJumpForce(3.0f);
                 }
                 break;
 

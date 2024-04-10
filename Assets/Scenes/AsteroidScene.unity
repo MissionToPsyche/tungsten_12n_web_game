@@ -6993,6 +6993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   satellitePrefab: {fileID: 990642282803869721, guid: 5134a8c086c901044ab4190365f31fa5, type: 3}
+  activeSatellites: []
   numberOfSatellites: 0
   currentSatelliteObject: {fileID: 0}
 --- !u!114 &475161552

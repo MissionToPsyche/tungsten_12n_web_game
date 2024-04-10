@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
-    public static AsteroidManager instance { get; private set; }
+    public static AsteroidManager Instance { get; private set; }
 
     [Header("Events")]
     [SerializeField] public StringEvent currentSatelliteChanged;
@@ -33,8 +33,7 @@ public class AsteroidManager : MonoBehaviour
         }
 
         // Construct the expected satellite name based on the asteroid's position tag
-        Asteroid asteroidComponent = currentAsteroid.GetComponent<Asteroid>();
-        if (asteroidComponent == null)
+        if (!currentAsteroid.TryGetComponent<Asteroid>(out var asteroidComponent))
         {
             // Debug.LogError("[GameManager]: Asteroid component not found on '" + asteroidName + "'.");
             return;
@@ -42,7 +41,7 @@ public class AsteroidManager : MonoBehaviour
 
         string childSatelliteName = "Satellite" + asteroidComponent.positionTag;
 
-        if(SatelliteManager.instance.GetNumberOfSatellites() > 0)
+        if(SatelliteManager.Instance.GetNumberOfSatellites() > 0)
         {
             currentSatelliteChanged.Raise(childSatelliteName);
         }
@@ -61,13 +60,13 @@ public class AsteroidManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }

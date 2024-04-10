@@ -17,14 +17,14 @@ public class Interactable : MonoBehaviour
         {
             if (Input.GetKeyDown(interactKey))
             {
-                CaveManager.instance.LoadCaveScene(gameObject.name);
+                CaveManager.Instance.LoadCaveScene(gameObject.name);
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
+        if (collision.gameObject == PlayerManager.Instance.GetPlayerObject())
         {
             isInRange = true;
             reminderText.text = "Enter Cave\nRemember to Avoid the Black Pits!";
@@ -33,7 +33,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
+        if (collision.gameObject == PlayerManager.Instance.GetPlayerObject())
         {
             isInRange = false;
             reminderText.text = "";
