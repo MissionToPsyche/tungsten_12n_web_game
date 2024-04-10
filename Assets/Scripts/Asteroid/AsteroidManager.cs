@@ -4,8 +4,73 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
-    public List<Asteroid> asteroidsList = new List<Asteroid>();
-    public GameObject prefab;
+    public static AsteroidManager instance { get; private set; }
+
+    [Header("Events")]
+    [SerializeField] public StringEvent currentSatelliteChanged;
+
+    [Header("Mutable")]
+    [SerializeField] public GameObject prefab;
+
+    [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private GameObject currentAsteroid;
+    [SerializeField, ReadOnly] public List<Asteroid> asteroidsList = new List<Asteroid>();
+
+    // Not for display
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    public void OnAsteroidReached(string asteroidName)
+    {
+        // Debug.Log("[AsteroidManager]: Asteroid reached: " + asteroidName);
+
+        currentAsteroid = GameObject.Find(asteroidName);
+        if (currentAsteroid == null)
+        {
+            // Debug.LogError("[GameManager]: Asteroid named '" + asteroidName + "' not found.");
+            return;
+        }
+
+        // Construct the expected satellite name based on the asteroid's position tag
+        Asteroid asteroidComponent = currentAsteroid.GetComponent<Asteroid>();
+        if (asteroidComponent == null)
+        {
+            // Debug.LogError("[GameManager]: Asteroid component not found on '" + asteroidName + "'.");
+            return;
+        }
+
+        string childSatelliteName = "Satellite" + asteroidComponent.positionTag;
+
+        if(SatelliteManager.instance.GetNumberOfSatellites() > 0)
+        {
+            currentSatelliteChanged.Raise(childSatelliteName);
+        }
+    }
+
+    // -------------------------------------------------------------------
+    // API
+
+    public GameObject GetCurrentAsteroid()
+    {
+        return currentAsteroid;
+    }
+
+    // -------------------------------------------------------------------
+    // Class
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     void Start()
     {

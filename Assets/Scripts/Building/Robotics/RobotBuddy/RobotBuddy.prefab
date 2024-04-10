@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7619713829698742960}
   - component: {fileID: -8436400139708018461}
   - component: {fileID: -5256694271781332552}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: RobotBuddy
   m_TagString: RobotBuddy
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1869519183
+  m_SortingLayerID: 273207475
   m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 91003faffaa214db2a7fdf521423bcd4, type: 3}
@@ -137,6 +137,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  distanceToGround: 0
+  gravityFieldLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currentRotationSpeed: 0
 --- !u!50 &3934493476514264842
 Rigidbody2D:
@@ -349,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 23051743585910141}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

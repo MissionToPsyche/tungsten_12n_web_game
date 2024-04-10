@@ -1,30 +1,33 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System;
 
 public class SatelliteController : MonoBehaviour
 {
-    [Header("Objects")]
+    public static SatelliteController instance { get; private set; }
+
+    [Header("Events")]
+
+    [Header("Mutable")]
     [SerializeField] private Rigidbody2D satelliteBody;
 
+    [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private GameObject currentAsteroid;
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
+    [SerializeField, ReadOnly] private float currentSpeed;
+    [SerializeField, ReadOnly] private State currentState = State.Idle;
+    [SerializeField, ReadOnly] private bool isIdle = false;
+    [SerializeField, ReadOnly] private bool isMoving = false;
+    [SerializeField, ReadOnly] private bool isFacingRight = false;
+
+    // Not for display
     private float idleSpeed = 0f;
     private float movingSpeed = 7.5f;
-
-    [SerializeField, ReadOnly] private float currentSpeed;
-    private bool isIdle = false;
-    private bool isMoving = false;
-    private bool isFacingRight = false;
-
-    public GameObject asteroid;
-
     private enum State { Idle, Moving, Scanning }
-    [SerializeField, ReadOnly] private State currentState = State.Idle;
 
-    private void Start()
-    {
-
-    }
+    // -------------------------------------------------------------------
+    // Handle events
 
     public void OnSatelliteMove(Vector2 direction)
     {
@@ -54,6 +57,22 @@ public class SatelliteController : MonoBehaviour
             {
                 UpdateState(State.Idle);
             }
+        }
+    }
+
+    // -------------------------------------------------------------------
+    // Class
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -105,8 +124,12 @@ public class SatelliteController : MonoBehaviour
         // Move the satellite's rigidbody
         satelliteBody.position += movement;
 
+        currentAsteroid = AsteroidManager.instance.GetCurrentAsteroid();
+
+        Debug.Log("[SatelliteController]: currentAsteroid: " + currentAsteroid.name);
+
         // Aim the satellite's local 'up' away from the asteroid
-        Vector2 directionToCenter = (Vector2)asteroid.transform.position - (Vector2)satelliteBody.transform.position;
+        Vector2 directionToCenter = (Vector2)currentAsteroid.transform.position - (Vector2)satelliteBody.transform.position;
         float angle = Mathf.Atan2(directionToCenter.y, directionToCenter.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 90);
         satelliteBody.transform.rotation = targetRotation;

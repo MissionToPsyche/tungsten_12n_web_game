@@ -17,7 +17,33 @@ public class Asteroid : MonoBehaviour
     public SpawnResources sr;
     public AsteroidClass asteroidClass { get; set; }
     [SerializeField] private SpawnResourceEvent spawnResourceEvent;
-    private String undiscoveredResourceName = "UndiscoveredResource";
+    public string positionTag { get; private set; } // To store the position part from the name
+
+    private void Start()
+    {
+        // Debug.Log("[Asteroid]: Processing name: " + this.gameObject.name);
+        positionTag = ExtractPositionFromName(this.gameObject.name);
+        // Debug.Log("[Asteroid]: Extracted positionTag: " + positionTag);
+
+        if (string.IsNullOrEmpty(positionTag))
+        {
+            Debug.LogError("Asteroid name does not contain a valid position format: " + this.gameObject.name);
+        }
+    }
+
+    private string ExtractPositionFromName(string name)
+    {
+        int underscoreIndex = name.IndexOf('_');
+        if (underscoreIndex != -1 && underscoreIndex < name.Length - 1)
+        {
+            // Return the substring starting just after the underscore
+            return name.Substring(underscoreIndex + 1);
+        }
+        return null; // Return null if no underscore is found or it's at the end of the string
+    }
+
+    private string undiscoveredResourceName = "UndiscoveredResource";
+
     public void InstantiateAsteroid(float Size, int numberOfResources, AsteroidClass asteroidClass, GameObject prefab)
     {
         // Set the size based on the average scale of the GameObject
@@ -54,7 +80,7 @@ public class Asteroid : MonoBehaviour
         newResourceObject.transform.localScale = addedResource.depositSize;
         newResourceObject.transform.parent = this.transform;
         newResourceObject.name = $"{addedResource.Name}_" + iter;
-        
+
         //newResourceObject.layer = LayerMask.NameToLayer(undiscoveredResourceName);
         newResourceObject.layer = LayerMask.NameToLayer("DiscoveredResource");
 

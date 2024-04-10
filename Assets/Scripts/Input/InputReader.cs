@@ -21,6 +21,7 @@ public class InputReader :
     private Control.State currentControlState;
 
     private Dictionary<Control.State, InputActionMap> stateToActionMap;
+
     private void OnEnable()
     {
         if (inputSystem == null)
@@ -70,9 +71,12 @@ public class InputReader :
             inputSystem.Gameplay.Disable();
             // Debug.Log("Disabled action map: Gameplay");
         }
-        if(targetState == Control.State.RobotBuddyAlpha){
+
+        if (targetState == Control.State.RobotBuddyAlpha)
+        {
             inputSystem.RobotBuddy.Enable();
         }
+
         lastControlState = currentControlState;
         currentControlState = targetState;
         //Debug.Log($"Current control state set to: {currentControlState}");
@@ -82,7 +86,7 @@ public class InputReader :
     // Define events
 
     // [Header("Gameplay Events")]
-    [SerializeField] private ControlStateEvent ControlStateUpdate;
+    [SerializeField] private ControlStateEvent ControlStateUpdated;
     [SerializeField] private VoidEvent ZoomIn;
     [SerializeField] private VoidEvent ZoomOut;
 
@@ -123,23 +127,31 @@ public class InputReader :
             }
             else if (currentControlState == Control.State.Satellite)
             {
-                if(GameManager.instance.GetRobotBuddyAlphaBuilt()){
+                if (RobotManager.instance.GetRobotAlphaBuilt())
+                {
                     SetControlState(Control.State.RobotBuddyAlpha);
-                }else{
+                }
+                else
+                {
                     SetControlState(Control.State.Player);
                 }
             }
-            else if(currentControlState == Control.State.RobotBuddyAlpha){
-                if(GameManager.instance.GetRobotBuddyBetaBuilt()){
+            else if (currentControlState == Control.State.RobotBuddyAlpha)
+            {
+                if (RobotManager.instance.GetRobotBetaBuilt())
+                {
                     SetControlState(Control.State.RobotBuddyBeta);
-                }else{
+                }
+                else
+                {
                     SetControlState(Control.State.Player);
                 }
             }
-            else if(currentControlState == Control.State.RobotBuddyBeta){
+            else if (currentControlState == Control.State.RobotBuddyBeta)
+            {
                 SetControlState(Control.State.Player);
             }
-            ControlStateUpdate.Raise(currentControlState);
+            ControlStateUpdated.Raise(currentControlState);
         }
     }
 
@@ -281,7 +293,9 @@ public class InputReader :
 
     // -------------------------------------------------------------------
     // RobotBuddy action map
-    public void OnRobotBuddyMove(InputAction.CallbackContext context){
+
+    public void OnRobotBuddyMove(InputAction.CallbackContext context)
+    {
         RobotBuddyMove.Raise(context.ReadValue<Vector2>());
     }
 

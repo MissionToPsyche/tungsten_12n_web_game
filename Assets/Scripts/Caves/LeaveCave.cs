@@ -7,43 +7,39 @@ using UnityEngine.SceneManagement;
 
 public class LeaveCave : MonoBehaviour
 {
-    private bool isInRange; 
-    private KeyCode interactKey = KeyCode.E; 
-    private GameManager gameManager; 
+    private bool isInRange;
+    private KeyCode interactKey = KeyCode.E;
+    private GameManager gameManager;
     private TextMeshProUGUI reminderText;
 
     void Start()
     {
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
-        reminderText = GameObject.FindWithTag("ReminderText").GetComponent<TextMeshProUGUI>(); 
+        reminderText = GameObject.FindWithTag("ReminderText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isInRange) 
+        if (isInRange && Input.GetKeyDown(interactKey))
         {
-            if (Input.GetKeyDown(interactKey)) 
-            {
-                gameManager.GetComponent<CaveSceneManager>().loadAsteroidScene(SceneManager.GetActiveScene().name);
-            }
+            CaveManager.instance.LoadAsteroidScene(SceneManager.GetActiveScene().name);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
         {
-            isInRange = true; 
-            reminderText.text = "Press E to leave the cave";
+            isInRange = true;
+            reminderText.text = "Leave Cave";
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision) 
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
         {
-            isInRange = false; 
+            isInRange = false;
             reminderText.text = "";
         }
     }

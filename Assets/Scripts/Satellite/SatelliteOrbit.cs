@@ -10,7 +10,7 @@ public class SatelliteOrbit : MonoBehaviour
 
     void Start()
     {
-        orbitCollider = asteroid.transform.Find("GravityOrbit").GetComponent<CircleCollider2D>();
+        orbitCollider = asteroid.transform.Find("GravityField").GetComponent<CircleCollider2D>();
     }
 
     void FixedUpdate()
