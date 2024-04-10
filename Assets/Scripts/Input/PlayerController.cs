@@ -93,12 +93,9 @@ public class PlayerController : MonoBehaviour
             {
                 case 0:
                     animator.SetBool("John", true);
-                    Debug.Log("John");
                     break;
 
                 case 1:
-                    Debug.Log("Joy");
-                    animator.SetBool("John", false);
                     animator.SetBool("Joy", true);
                     break;
             }
