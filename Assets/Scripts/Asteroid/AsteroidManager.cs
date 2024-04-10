@@ -17,6 +17,9 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField, ReadOnly] public List<Asteroid> asteroidsList = new List<Asteroid>();
 
     // Not for display
+    // Dictionary to keep track of satellites for each asteroid
+    public Dictionary<string, SatelliteData> satelliteMap = new Dictionary<string, SatelliteData>();
+
 
     // -------------------------------------------------------------------
     // Handle events
@@ -39,11 +42,9 @@ public class AsteroidManager : MonoBehaviour
             return;
         }
 
-        string childSatelliteName = "Satellite" + asteroidComponent.positionTag;
-
         if(SatelliteManager.Instance.GetNumberOfSatellites() > 0)
         {
-            currentSatelliteChanged.Raise(childSatelliteName);
+            currentSatelliteChanged.Raise(satelliteMap[asteroidName].satelliteName);
         }
     }
 
@@ -78,11 +79,11 @@ public class AsteroidManager : MonoBehaviour
             Asteroid asteroid = child.GetComponent<Asteroid>();
             if (asteroid != null && child != null)
             {
-                //use InstatiateAsteroid to
+                string satelliteTag = "Satellite" + "_" + asteroid.positionTag;
+                satelliteMap.Add(child.name, new SatelliteData(satelliteTag, false));
                 FillAsteroidList(asteroid, child);
             }
         }
-
         //DebugAsteroid();
     }
 

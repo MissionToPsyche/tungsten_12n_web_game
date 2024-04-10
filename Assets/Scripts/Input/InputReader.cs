@@ -120,37 +120,60 @@ public class InputReader :
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            if (currentControlState == Control.State.Player)
+            Control.State nextState = currentControlState;
+
+            switch (currentControlState)
             {
-                SetControlState(Control.State.Satellite);
+                case Control.State.Player:
+                    GameObject currentAsteroid = AsteroidManager.Instance.GetCurrentAsteroid();
+                    if (currentAsteroid != null)
+                    {
+                        // Check if the current asteroid has a built satellite
+                        SatelliteData satelliteData = AsteroidManager.Instance.satelliteMap[currentAsteroid.name];
+                        if (satelliteData != null && satelliteData.isBuilt)
+                        {
+                            nextState = Control.State.Satellite;
+                        }
+                        else if (RobotManager.Instance.GetRobotAlphaBuilt())
+                        {
+                            nextState = Control.State.RobotBuddyAlpha;
+                        }
+                        else
+                        {
+                            nextState = Control.State.Player; // If nothing else, stay in Player state
+                        }
+                    }
+                    break;
+                case Control.State.Satellite:
+                    if (RobotManager.Instance.GetRobotAlphaBuilt())
+                    {
+                        nextState = Control.State.RobotBuddyAlpha;
+                    }
+                    else
+                    {
+                        nextState = Control.State.Player;
+                    }
+                    break;
+                case Control.State.RobotBuddyAlpha:
+                    if (RobotManager.Instance.GetRobotBetaBuilt())
+                    {
+                        nextState = Control.State.RobotBuddyBeta;
+                    }
+                    else
+                    {
+                        nextState = Control.State.Player;
+                    }
+                    break;
+                case Control.State.RobotBuddyBeta:
+                    nextState = Control.State.Player;
+                    break;
             }
-            else if (currentControlState == Control.State.Satellite)
+
+            if (nextState != currentControlState) // Only change state if different
             {
-                if (RobotManager.Instance.GetRobotAlphaBuilt())
-                {
-                    SetControlState(Control.State.RobotBuddyAlpha);
-                }
-                else
-                {
-                    SetControlState(Control.State.Player);
-                }
+                SetControlState(nextState);
+                ControlStateUpdated.Raise(currentControlState);
             }
-            else if (currentControlState == Control.State.RobotBuddyAlpha)
-            {
-                if (RobotManager.Instance.GetRobotBetaBuilt())
-                {
-                    SetControlState(Control.State.RobotBuddyBeta);
-                }
-                else
-                {
-                    SetControlState(Control.State.Player);
-                }
-            }
-            else if (currentControlState == Control.State.RobotBuddyBeta)
-            {
-                SetControlState(Control.State.Player);
-            }
-            ControlStateUpdated.Raise(currentControlState);
         }
     }
 

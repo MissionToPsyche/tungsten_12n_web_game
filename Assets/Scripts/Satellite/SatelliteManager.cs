@@ -51,10 +51,12 @@ public class SatelliteManager : MonoBehaviour
         Vector3 spawnPosition = new Vector3(closestEdgePoint.x, closestEdgePoint.y, 0);  // Assuming satellites are on the xy-plane
         GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, Quaternion.identity, currentAsteroid.transform);
 
-        numberOfSatellites += 1;
+        // Update the satellite construction status
+        SatelliteData satelliteData = AsteroidManager.Instance.satelliteMap[currentAsteroid.name];
+        satelliteData.isBuilt = true;  // Mark as built
 
         // Setting a custom name for the satellite
-        spawnedSatellite.name = "Satellite" + currentAsteroid.GetComponent<Asteroid>().positionTag;
+        spawnedSatellite.name = satelliteData.satelliteName;
         activeSatellites.Append(spawnedSatellite.name);
 
         // Adjust the scale of the satellite to not inherit the asteroid's scale
@@ -67,6 +69,8 @@ public class SatelliteManager : MonoBehaviour
                 spawnedSatellite.transform.localScale.z / currentAsteroid.transform.lossyScale.z
             );
         }
+
+        numberOfSatellites++;
 
         Debug.Log("[SatelliteManager]: Spawned satellite at " + spawnPosition);
     }
