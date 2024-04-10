@@ -10,48 +10,113 @@ using UnityEngine.UIElements;
 
 public class PlayerManager : MonoBehaviour
 {
-    private static PlayerManager instance;
+    public static PlayerManager instance { get; private set; }
+
+    [Header("Events")]
+
+    [Header("Mutable")]
+    [SerializeField] private GameObject playerObject;
+
+    [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private bool playerGrounded;
+    [SerializeField, ReadOnly] private Vector2 playerPosition;
+
+    // Not for display
+    private Camera cam;
+    private CinemachineVirtualCamera virtualPlayerCamera;
+    private PlayerController playerController;
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero;
     private Quaternion lastRotation = Quaternion.Euler(0,0,0);
-    [SerializeField] private GameObject playerInstance;
-    private PlayerController playerController;
-    private CinemachineVirtualCamera virtualPlayerCamera;
-    private Camera cam;
 
-    //
+    // -------------------------------------------------------------------
+    // Handle events
+
+    public void OnPlayerGrounded(bool state)
+    {
+        playerGrounded = state;
+        // Debug.Log("[GameManager]: playerGrounded: " + state);
+    }
+
+    public void OnPlayerPositionUpdated(Vector2 position)
+    {
+        playerPosition = position;
+        // Debug.Log("[GameManager]: playerPosition: " + position);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneChange(scene);
+    }
+
+    void OnSceneUnloaded(Scene scene)
+    {
+        SceneChange(SceneManager.GetSceneByName("AsteroidScene"));
+    }
+
+    // -------------------------------------------------------------------
+    // API
+
+    public GameObject GetPlayerObject()
+    {
+        return playerObject;
+    }
+
+    public bool GetPlayerGrounded()
+    {
+        return playerGrounded;
+    }
+
+    public Vector2 GetPlayerPosition()
+    {
+        return playerPosition;
+    }
+
+    // -------------------------------------------------------------------
+    // Class
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+
+    void OnDisable()
     {
-        sceneChange(scene);
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
-    void OnSceneUnloaded(Scene scene)
-    {
-        sceneChange(SceneManager.GetSceneByName("AsteroidScene"));
-    }
-
-    private void sceneChange(Scene scene)
+    private void SceneChange(Scene scene)
     {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene.name));
-        // playerInstance = GameObject.FindWithTag("Player");
-        playerController = playerInstance.GetComponent<PlayerController>();
-        setScenePosition(scene.name);
+        // playerObject = GameObject.FindWithTag("Player");
+        playerController = playerObject.GetComponent<PlayerController>();
+        SetScenePosition(scene.name);
 
-        virtualPlayerCamera = GameObject.FindWithTag("VirtualPlayerCamera").GetComponent<CinemachineVirtualCamera>(); 
-        virtualPlayerCamera.Follow = playerInstance.transform;
-        virtualPlayerCamera.LookAt = playerInstance.transform;
+        virtualPlayerCamera = GameObject.FindWithTag("VirtualPlayerCamera").GetComponent<CinemachineVirtualCamera>();
+        virtualPlayerCamera.Follow = playerObject.transform;
+        virtualPlayerCamera.LookAt = playerObject.transform;
 
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         cam.transform.position = virtualPlayerCamera.transform.position;
         cam.transform.rotation = virtualPlayerCamera.transform.rotation;
     }
 
-    // finds the correct spawn for the newly loaded scene 
+    // finds the correct spawn for the newly loaded scene
     private Transform findCorrectSpawn(String sceneName)
     {
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("Respawn");
@@ -67,7 +132,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     // set the players initial position and jump force
-    public void setScenePosition(String sceneName)
+    public void SetScenePosition(String sceneName)
     {
         Transform defaultSpawn = findCorrectSpawn(sceneName);
 
@@ -75,25 +140,25 @@ public class PlayerManager : MonoBehaviour
         switch (sceneName)
         {
             case "AsteroidScene":
-                if (this.lastCoordinates != Vector3.zero && this.lastRotation != Quaternion.Euler(0,0,0)) 
+                if (this.lastCoordinates != Vector3.zero && this.lastRotation != Quaternion.Euler(0,0,0))
                 {
-                    this.playerInstance.transform.position = this.lastCoordinates; 
-                    this.playerInstance.transform.rotation = this.lastRotation;
+                    this.playerObject.transform.position = this.lastCoordinates;
+                    this.playerObject.transform.rotation = this.lastRotation;
                     this.playerController.UpdateJumpForce(1.5f);
                 }
                 else
                 {
                     // put the player to the default spawn position in the scene
-                    this.playerInstance.transform.position = defaultSpawn.position;
-                    this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
+                    this.playerObject.transform.position = defaultSpawn.position;
+                    this.playerObject.transform.rotation = Quaternion.Euler(0,0,0);
                     this.playerController.UpdateJumpForce(1.5f);
                 }
                 break;
 
             default:
                 // put the player to the default spawn position in the scene
-                this.playerInstance.transform.position = defaultSpawn.position;
-                this.playerInstance.transform.rotation = Quaternion.Euler(0,0,0);
+                this.playerObject.transform.position = defaultSpawn.position;
+                this.playerObject.transform.rotation = Quaternion.Euler(0,0,0);
                 this.playerController.UpdateJumpForce(0.5f);
                 break;
         }
@@ -102,13 +167,7 @@ public class PlayerManager : MonoBehaviour
     // set the players last known coordinates
     public void setLastPosition()
     {
-        this.lastCoordinates = playerInstance.transform.position;
-        this.lastRotation = playerInstance.transform.rotation;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        this.lastCoordinates = playerObject.transform.position;
+        this.lastRotation = playerObject.transform.rotation;
     }
 }

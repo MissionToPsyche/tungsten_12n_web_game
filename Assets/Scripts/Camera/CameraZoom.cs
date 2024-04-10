@@ -8,7 +8,7 @@ public class CameraZoom : MonoBehaviour
     private CinemachineVirtualCamera activeCamera;
 
     private float minZoom = 10f; // Minimum zoom level
-    private float maxZoom = 50f; // Maximum zoom level
+    private float maxZoom = 30f; // Maximum zoom level
     private float zoomSpeed = 2f; // Speed of zoom transition
     private float zoomIncrement = 1f; // Amount to zoom on each scroll
     private float targetZoom; // Target zoom level
