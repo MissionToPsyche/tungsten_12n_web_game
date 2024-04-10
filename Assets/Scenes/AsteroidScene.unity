@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 13107448}
   - component: {fileID: 13107447}
   - component: {fileID: 13107446}
+  - component: {fileID: 13107450}
   m_Layer: 7
   m_Name: Asteroid_4
   m_TagString: Untagged
@@ -333,6 +334,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &13107450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13107444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!114 &28019283 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1423805339868086579, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -636,6 +651,7 @@ GameObject:
   - component: {fileID: 78490902}
   - component: {fileID: 78490901}
   - component: {fileID: 78490904}
+  - component: {fileID: 78490905}
   m_Layer: 7
   m_Name: Asteroid_14
   m_TagString: Untagged
@@ -786,6 +802,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &78490905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78490899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &87420897 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7156260498347462317, guid: f980e81b5eaf34064ab671d2f8835549, type: 3}
@@ -854,6 +884,7 @@ GameObject:
   - component: {fileID: 113853199}
   - component: {fileID: 113853198}
   - component: {fileID: 113853201}
+  - component: {fileID: 113853202}
   m_Layer: 7
   m_Name: Asteroid_7
   m_TagString: Untagged
@@ -1004,6 +1035,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &113853202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113853196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &114249637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,8 +1136,8 @@ GameObject:
   - component: {fileID: 124065760}
   - component: {fileID: 124065762}
   - component: {fileID: 124065761}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1174,6 +1219,7 @@ GameObject:
   - component: {fileID: 130051507}
   - component: {fileID: 130051506}
   - component: {fileID: 130051509}
+  - component: {fileID: 130051510}
   m_Layer: 7
   m_Name: Asteroid_13
   m_TagString: Untagged
@@ -1324,6 +1370,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &130051510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130051504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &136922068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1685,7 @@ GameObject:
   - component: {fileID: 158883400}
   - component: {fileID: 158883399}
   - component: {fileID: 158883402}
+  - component: {fileID: 158883403}
   m_Layer: 7
   m_Name: Asteroid_8
   m_TagString: Untagged
@@ -1775,6 +1836,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &158883403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158883397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!224 &162174321 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7775075040901506777, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -2068,8 +2143,8 @@ GameObject:
   - component: {fileID: 225093861}
   - component: {fileID: 225093862}
   - component: {fileID: 225093863}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2305,6 +2380,7 @@ GameObject:
   - component: {fileID: 227657336}
   - component: {fileID: 227657335}
   - component: {fileID: 227657337}
+  - component: {fileID: 227657338}
   m_Layer: 0
   m_Name: AsteroidManager
   m_TagString: Untagged
@@ -2357,8 +2433,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e1302625cab4b838136f915869666d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidsList: []
+  currentSatelliteChanged: {fileID: 11400000, guid: 1b420af82c6422f4ba2b9eefa84fb052, type: 2}
   prefab: {fileID: 2808150698371354760, guid: 352811f85e1794884b4e27d25dd80363, type: 3}
+  currentAsteroid: {fileID: 0}
+  asteroidsList: []
 --- !u!114 &227657335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2418,6 +2496,34 @@ MonoBehaviour:
       - m_Target: {fileID: 227657336}
         m_TargetAssemblyTypeName: AsteroidResourceManager, Assembly-CSharp
         m_MethodName: OnMiningEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &227657338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227657332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2128ee2caef983448957808be24f135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9549ec3d8b8941d4699b7bcc646d197b, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 227657334}
+        m_TargetAssemblyTypeName: AsteroidManager, Assembly-CSharp
+        m_MethodName: OnAsteroidReached
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3831,8 +3937,8 @@ GameObject:
   - component: {fileID: 342668066}
   - component: {fileID: 342668068}
   - component: {fileID: 342668067}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5966,7 +6072,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1724270631
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cfc12f2a1e62d47b598dc858a517e8a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6338,6 +6444,114 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1653463701121086497, guid: 1e9682b5dc38b4ce7a116929c78cb391, type: 3}
   m_PrefabInstance: {fileID: 440414978}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &443586152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 443586153}
+  - component: {fileID: 443586156}
+  - component: {fileID: 443586155}
+  - component: {fileID: 443586154}
+  m_Layer: 0
+  m_Name: RobotManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &443586153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443586152}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443586154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443586152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: dbfe9535f1c9c4707804de67e3f01089, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 443586156}
+        m_TargetAssemblyTypeName: RobotManager, Assembly-CSharp
+        m_MethodName: OnBuildRobotBuddyBeta
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &443586155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443586152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9e82d6ae773fc4ad5976eb0b8400e4de, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 443586156}
+        m_TargetAssemblyTypeName: RobotManager, Assembly-CSharp
+        m_MethodName: OnBuildRobotBuddyAlpha
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &443586156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443586152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cf64875e7cd464891355a3b9ab5922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotAlphaInstance: {fileID: 0}
+  robotBetaInstance: {fileID: 0}
+  robotGrounded: 0
+  robotPosition: {x: 0, y: 0}
+  hasBuiltRobotBuddyAlpha: 0
+  hasBuiltRobotBuddyBeta: 0
 --- !u!1 &464922633
 GameObject:
   m_ObjectHideFlags: 0
@@ -6351,6 +6565,7 @@ GameObject:
   - component: {fileID: 464922636}
   - component: {fileID: 464922635}
   - component: {fileID: 464922638}
+  - component: {fileID: 464922639}
   m_Layer: 7
   m_Name: Asteroid_12
   m_TagString: Untagged
@@ -6501,6 +6716,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &464922639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464922633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &466474697
 GameObject:
   m_ObjectHideFlags: 0
@@ -6512,8 +6741,8 @@ GameObject:
   - component: {fileID: 466474698}
   - component: {fileID: 466474700}
   - component: {fileID: 466474699}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6670,6 +6899,111 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &475161548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 475161549}
+  - component: {fileID: 475161551}
+  - component: {fileID: 475161550}
+  - component: {fileID: 475161552}
+  m_Layer: 0
+  m_Name: SatelliteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &475161549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475161548}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &475161550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475161548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 475161551}
+        m_TargetAssemblyTypeName: SatelliteManager, Assembly-CSharp
+        m_MethodName: OnSatelliteSpawnTriggered
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &475161551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475161548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90529292c8d0fb448bd81dbd43feaae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  satellitePrefab: {fileID: 990642282803869721, guid: 5134a8c086c901044ab4190365f31fa5, type: 3}
+  numberOfSatellites: 0
+  currentSatellite: {fileID: 0}
+--- !u!114 &475161552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475161548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2128ee2caef983448957808be24f135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1b420af82c6422f4ba2b9eefa84fb052, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 475161551}
+        m_TargetAssemblyTypeName: SatelliteManager, Assembly-CSharp
+        m_MethodName: OnCurrentSatelliteChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &476990578 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3551378416522246457, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -6692,8 +7026,8 @@ GameObject:
   - component: {fileID: 508406189}
   - component: {fileID: 508406191}
   - component: {fileID: 508406190}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6861,8 +7195,8 @@ GameObject:
   - component: {fileID: 515451696}
   - component: {fileID: 515451698}
   - component: {fileID: 515451697}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7880,7 +8214,7 @@ MonoBehaviour:
   IndustryButtonOverlay: {fileID: 98572863}
   SuitButtonOverlay: {fileID: 2040502512}
   RoboticsButtonOverlay: {fileID: 603346565}
-  techEvent: {fileID: 0}
+  techEvent: {fileID: 11400000, guid: e9511a8a222d34218a2c459ae78d35ba, type: 2}
   filledStar: {fileID: 21300000, guid: def1d2a43b20647f9a314fc20ba501d4, type: 3}
   Extractor_Tier1Star: {fileID: 142498207}
   Extractor_Tier2Star: {fileID: 1058327255}
@@ -7958,6 +8292,7 @@ MonoBehaviour:
   RobotBuddyBetaObject: {fileID: 87420897}
   alertPlayerController: {fileID: 11400000, guid: fbdd27f5aeee143ad8e844a6ec4f2dec, type: 2}
   LaunchPadPrefab: {fileID: 8513086824239921780, guid: 9c74d5ec0bb9b4b0e8fe3e264c5ca19e, type: 3}
+  satelliteSpawnTrigged: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
   buildRobotBuddyAlpha: {fileID: 11400000, guid: 9e82d6ae773fc4ad5976eb0b8400e4de, type: 2}
   buildRobotBuddyBeta: {fileID: 11400000, guid: dbfe9535f1c9c4707804de67e3f01089, type: 2}
 --- !u!114 &550765339
@@ -8326,6 +8661,7 @@ GameObject:
   - component: {fileID: 555145232}
   - component: {fileID: 555145231}
   - component: {fileID: 555145234}
+  - component: {fileID: 555145235}
   m_Layer: 7
   m_Name: Asteroid_10
   m_TagString: Untagged
@@ -8476,6 +8812,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &555145235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555145229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!114 &586272182 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1423805339868086579, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -8572,8 +8922,8 @@ GameObject:
   - component: {fileID: 593042862}
   - component: {fileID: 593042864}
   - component: {fileID: 593042863}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8835,6 +9185,7 @@ GameObject:
   - component: {fileID: 605567324}
   - component: {fileID: 605567323}
   - component: {fileID: 605567326}
+  - component: {fileID: 605567327}
   m_Layer: 7
   m_Name: Asteroid_3
   m_TagString: Untagged
@@ -8985,6 +9336,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &605567327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605567321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &606997819 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1293165165462646011, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -10846,246 +11211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
---- !u!1 &728220860
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 728220862}
-  - component: {fileID: 728220861}
-  - component: {fileID: 728220864}
-  - component: {fileID: 728220865}
-  - component: {fileID: 728220867}
-  - component: {fileID: 728220866}
-  - component: {fileID: 728220869}
-  - component: {fileID: 728220868}
-  m_Layer: 7
-  m_Name: Satellite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &728220861
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728220860}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -288286793
-  m_SortingLayer: 9
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d6fb2ebebf6bec240827122504546b67, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &728220862
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728220860}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -259.62, y: 331.46, z: 0}
-  m_LocalScale: {x: 0.64648, y: 0.64648, z: 0.64648}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &728220864
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728220860}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!50 &728220865
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728220860}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &728220866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728220860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a0ba10e730b4b47964098f09b8f35c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 36fa7ae261644ea44afd0f8a3f6fded8, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 728220869}
-        m_TargetAssemblyTypeName: SatelliteController, Assembly-CSharp
-        m_MethodName: OnSatelliteScan
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &728220867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728220860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11213214cd75ae14aa981a39223c3ba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 6fca2a4f2e0e4c34dbc24956048aa2ad, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 728220869}
-        m_TargetAssemblyTypeName: SatelliteController, Assembly-CSharp
-        m_MethodName: OnSatelliteMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &728220868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728220860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ccae3bc07eed174e8089f8100ab9cfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  satellite: {fileID: 728220860}
-  asteroid: {fileID: 972182554}
-  orbitSpeed: 0.075
---- !u!114 &728220869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728220860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a610bf777caf74341ac0afb2ea828f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  satelliteBody: {fileID: 728220865}
-  horizontalInput: 0
-  currentSpeed: 0
-  asteroid: {fileID: 972182554}
-  currentState: 0
 --- !u!224 &732791603 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7775075040901506777, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -11572,10 +11697,7 @@ GameObject:
   - component: {fileID: 815371161}
   - component: {fileID: 815371162}
   - component: {fileID: 815371163}
-  - component: {fileID: 815371164}
   - component: {fileID: 815371165}
-  - component: {fileID: 815371167}
-  - component: {fileID: 815371166}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -11595,7 +11717,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080483728291125449cc8cf57682dd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  playerGrounded: 0
+  playerPosition: {x: 0, y: 0}
+  gravityFieldEdgePosition: {x: 0, y: 0}
+  hasBuiltRobotBuddyAlpha: 0
+  hasBuiltRobotBuddyBeta: 0
 --- !u!4 &815371160
 Transform:
   m_ObjectHideFlags: 0
@@ -11605,7 +11731,7 @@ Transform:
   m_GameObject: {fileID: 815371158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -261.0646, y: 318.94876, z: -0.099783644}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11618,7 +11744,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815371158}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
   m_Name: 
@@ -11646,7 +11772,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815371158}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
   m_Name: 
@@ -11679,19 +11805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6043a3b2613814ea9ac933abaf50e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &815371164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815371158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 655c1e060ad91b84b8c237c7bc941457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInstance: {fileID: 911276410}
 --- !u!114 &815371165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11705,62 +11818,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 0}
---- !u!114 &815371166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815371158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: dbfe9535f1c9c4707804de67e3f01089, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 815371159}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnBuildRobotBuddyBeta
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &815371167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815371158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 9e82d6ae773fc4ad5976eb0b8400e4de, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 815371159}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnBuildRobotBuddyAlpha
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &817866817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9092308698191608503, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -11771,6 +11828,111 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1293165165462646011, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
   m_PrefabInstance: {fileID: 1172237512}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &827782826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 827782827}
+  - component: {fileID: 827782828}
+  - component: {fileID: 827782830}
+  - component: {fileID: 827782829}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &827782827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827782826}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &827782828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827782826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 655c1e060ad91b84b8c237c7bc941457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInstance: {fileID: 911276410}
+  playerGrounded: 0
+  playerPosition: {x: 0, y: 0}
+--- !u!114 &827782829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827782826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11213214cd75ae14aa981a39223c3ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a83a9c4ae9f067e468b68edf0bce127f, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 827782828}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: OnPlayerPositionUpdated
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &827782830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827782826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a0ba10e730b4b47964098f09b8f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 113103892a5bc5c46bf7ce7e9b8803a9, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 827782828}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: OnPlayerGrounded
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &828195719
 GameObject:
   m_ObjectHideFlags: 0
@@ -11918,6 +12080,7 @@ GameObject:
   - component: {fileID: 834247598}
   - component: {fileID: 834247597}
   - component: {fileID: 834247600}
+  - component: {fileID: 834247601}
   m_Layer: 7
   m_Name: Asteroid_2
   m_TagString: Untagged
@@ -12068,6 +12231,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &834247601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834247595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &836735198
 GameObject:
   m_ObjectHideFlags: 0
@@ -12578,6 +12755,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  distanceToGround: 0
+  gravityFieldLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currentRotationSpeed: 0
 --- !u!114 &911276433
 MonoBehaviour:
@@ -12592,26 +12773,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 9dca135c79fee004ab7ac8b3f7ee53ec, type: 2}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  groundCheck: {fileID: 1870327768}
-  groundCheckRadius: 1
-  playerBody: {fileID: 911276414}
-  gravityBody: {fileID: 911276432}
-  currentSpeed: 0
-  jumpForce: 0
-  horizontalInput: 0
-  isGrounded: 0
-  canSprint: 0
-  canDoubleJump: 0
-  isFacingRight: 0
-  currentState: 0
+  asteroidReached: {fileID: 11400000, guid: 9549ec3d8b8941d4699b7bcc646d197b, type: 2}
+  playerGroundedUpdated: {fileID: 11400000, guid: 113103892a5bc5c46bf7ce7e9b8803a9, type: 2}
+  playerPositionUpdated: {fileID: 11400000, guid: a83a9c4ae9f067e468b68edf0bce127f, type: 2}
   playerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
   playerLaunchPadInteract: {fileID: 11400000, guid: e13e01f59d8ec4281ade5e2d7655c082, type: 2}
   animator: {fileID: 911276413}
   spriteRenderer: {fileID: 911276411}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  groundCheck: {fileID: 1870327768}
+  playerBody: {fileID: 911276414}
+  gravityBody: {fileID: 911276432}
+  currentState: 0
+  jumpForce: 0
   selection: 0
+  horizontalInput: 0
+  currentSpeed: 0
+  wasGrounded: 0
+  isGrounded: 0
+  canSprint: 0
+  canDoubleJump: 0
+  isFacingRight: 0
 --- !u!114 &911276434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13209,8 +13393,8 @@ GameObject:
   - component: {fileID: 965152078}
   - component: {fileID: 965152080}
   - component: {fileID: 965152079}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13376,6 +13560,7 @@ GameObject:
   - component: {fileID: 972182559}
   - component: {fileID: 972182561}
   - component: {fileID: 972182562}
+  - component: {fileID: 972182563}
   m_Layer: 7
   m_Name: Asteroid_0
   m_TagString: Untagged
@@ -13527,6 +13712,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &972182563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972182554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &980371915
 GameObject:
   m_ObjectHideFlags: 0
@@ -14610,6 +14809,7 @@ GameObject:
   - component: {fileID: 1208179418}
   - component: {fileID: 1208179417}
   - component: {fileID: 1208179420}
+  - component: {fileID: 1208179421}
   m_Layer: 7
   m_Name: Asteroid_17
   m_TagString: Untagged
@@ -14760,6 +14960,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1208179421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208179415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1208288175
 GameObject:
   m_ObjectHideFlags: 0
@@ -15092,7 +15306,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1724270631
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cfc12f2a1e62d47b598dc858a517e8a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15218,8 +15432,8 @@ GameObject:
   - component: {fileID: 1350032949}
   - component: {fileID: 1350032951}
   - component: {fileID: 1350032950}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15485,7 +15699,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1724270631
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -17957,8 +18171,8 @@ GameObject:
   - component: {fileID: 1389940225}
   - component: {fileID: 1389940227}
   - component: {fileID: 1389940226}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18064,8 +18278,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 0
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 728220862}
-  m_Follow: {fileID: 728220862}
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 20
@@ -18207,8 +18421,8 @@ GameObject:
   - component: {fileID: 1410249347}
   - component: {fileID: 1410249349}
   - component: {fileID: 1410249348}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21151,6 +21365,7 @@ GameObject:
   - component: {fileID: 1432494089}
   - component: {fileID: 1432494088}
   - component: {fileID: 1432494091}
+  - component: {fileID: 1432494092}
   m_Layer: 7
   m_Name: Asteroid_15
   m_TagString: Untagged
@@ -21301,6 +21516,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1432494092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432494086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!114 &1432766769 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7424626220950589526, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -21325,6 +21554,7 @@ GameObject:
   - component: {fileID: 1450284041}
   - component: {fileID: 1450284040}
   - component: {fileID: 1450284043}
+  - component: {fileID: 1450284044}
   m_Layer: 7
   m_Name: Asteroid_11
   m_TagString: Untagged
@@ -21475,6 +21705,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1450284044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450284038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!114 &1465880148 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1423805339868086579, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -22889,8 +23133,8 @@ GameObject:
   - component: {fileID: 1507241026}
   - component: {fileID: 1507241028}
   - component: {fileID: 1507241027}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22972,6 +23216,7 @@ GameObject:
   - component: {fileID: 1525405814}
   - component: {fileID: 1525405813}
   - component: {fileID: 1525405816}
+  - component: {fileID: 1525405817}
   m_Layer: 7
   m_Name: Asteroid_6
   m_TagString: Untagged
@@ -23122,6 +23367,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1525405817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525405811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1526203398
 GameObject:
   m_ObjectHideFlags: 0
@@ -23428,14 +23687,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 911276410}
-  satelliteObject: {fileID: 728220860}
+  satelliteObject: {fileID: 0}
   robotBuddyAlphaObject: {fileID: 1680418309}
   robotBuddyBetaObject: {fileID: 87420897}
-  currentObject: {fileID: 0}
   playerCamera: {fileID: 546839581}
   satelliteCamera: {fileID: 1399560953}
   robotBuddyAlphaCamera: {fileID: 2073616017}
   robotBuddyBetaCamera: {fileID: 1072284253}
+  currentObject: {fileID: 0}
   currentCamera: {fileID: 0}
   cameraRotationSpeed: 90
 --- !u!114 &1548278937
@@ -23585,8 +23844,8 @@ GameObject:
   - component: {fileID: 1704959952}
   - component: {fileID: 1704959954}
   - component: {fileID: 1704959953}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23779,6 +24038,7 @@ GameObject:
   - component: {fileID: 1775143304}
   - component: {fileID: 1775143303}
   - component: {fileID: 1775143306}
+  - component: {fileID: 1775143307}
   m_Layer: 7
   m_Name: Asteroid_16
   m_TagString: Untagged
@@ -23929,6 +24189,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1775143307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775143301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1811317084
 GameObject:
   m_ObjectHideFlags: 0
@@ -24079,8 +24353,8 @@ GameObject:
   - component: {fileID: 1824124130}
   - component: {fileID: 1824124132}
   - component: {fileID: 1824124131}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24996,7 +25270,6 @@ GameObject:
   - component: {fileID: 1848734170}
   - component: {fileID: 1848734169}
   - component: {fileID: 1848734168}
-  - component: {fileID: 1848734172}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -25087,18 +25360,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1848734172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848734167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed2c0018c4347346a2115a31b60de7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1864396546 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1293165165462646011, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -25148,6 +25409,7 @@ GameObject:
   - component: {fileID: 1897327671}
   - component: {fileID: 1897327670}
   - component: {fileID: 1897327673}
+  - component: {fileID: 1897327674}
   m_Layer: 7
   m_Name: Asteroid_5
   m_TagString: Untagged
@@ -25298,6 +25560,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1897327674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897327668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1907312638
 GameObject:
   m_ObjectHideFlags: 0
@@ -25450,6 +25726,7 @@ GameObject:
   - component: {fileID: 1914321043}
   - component: {fileID: 1914321042}
   - component: {fileID: 1914321046}
+  - component: {fileID: 1914321047}
   m_Layer: 7
   m_Name: Asteroid_1
   m_TagString: Untagged
@@ -25600,6 +25877,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1914321047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914321041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1920537373
 GameObject:
   m_ObjectHideFlags: 0
@@ -25611,8 +25902,8 @@ GameObject:
   - component: {fileID: 1920537374}
   - component: {fileID: 1920537376}
   - component: {fileID: 1920537375}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25782,6 +26073,7 @@ GameObject:
   - component: {fileID: 1927361945}
   - component: {fileID: 1927361944}
   - component: {fileID: 1927361947}
+  - component: {fileID: 1927361948}
   m_Layer: 7
   m_Name: Asteroid_9
   m_TagString: Untagged
@@ -25932,6 +26224,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!114 &1927361948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927361942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba3938ae05017d4d9927edcba92b758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityFieldEdgeUpdated: {fileID: 11400000, guid: 7f677dfc1bf855646a1a1bf74f89f4a0, type: 2}
+  edgePoints: []
 --- !u!1 &1945620334 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6080911646858180528, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -28254,8 +28560,8 @@ GameObject:
   - component: {fileID: 1975159473}
   - component: {fileID: 1975159475}
   - component: {fileID: 1975159474}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28807,8 +29113,8 @@ GameObject:
   - component: {fileID: 2068904719}
   - component: {fileID: 2068904721}
   - component: {fileID: 2068904720}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29492,8 +29798,8 @@ GameObject:
   - component: {fileID: 2096540222}
   - component: {fileID: 2096540224}
   - component: {fileID: 2096540223}
-  m_Layer: 0
-  m_Name: GravityOrbit
+  m_Layer: 8
+  m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29973,12 +30279,14 @@ SceneRoots:
   - {fileID: 2073616018}
   - {fileID: 1072284254}
   - {fileID: 815371160}
+  - {fileID: 227657333}
+  - {fileID: 827782827}
+  - {fileID: 475161549}
+  - {fileID: 443586153}
   - {fileID: 543868673}
   - {fileID: 1548278935}
   - {fileID: 911276412}
-  - {fileID: 728220862}
   - {fileID: 525358973}
-  - {fileID: 227657333}
   - {fileID: 11110646}
   - {fileID: 413541835}
   - {fileID: 596975492}

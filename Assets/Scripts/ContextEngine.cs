@@ -4,39 +4,26 @@ using Cinemachine;
 
 public class ContextEngine : MonoBehaviour
 {
-    // Objects
+    public static ContextEngine instance { get; private set; }
+
+    [Header("Events")]
+
+    [Header("Mutable")]
     [SerializeField] private GameObject playerObject;
     [SerializeField] private GameObject satelliteObject;
     [SerializeField] private GameObject robotBuddyAlphaObject;
     [SerializeField] private GameObject robotBuddyBetaObject;
-    [SerializeField, ReadOnly] private GameObject currentObject;
-
-    // Camera
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private CinemachineVirtualCamera satelliteCamera;
     [SerializeField] private CinemachineVirtualCamera robotBuddyAlphaCamera;
     [SerializeField] private CinemachineVirtualCamera robotBuddyBetaCamera;
+
+    [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private GameObject currentObject;
     [SerializeField, ReadOnly] private CinemachineVirtualCamera currentCamera;
     [SerializeField, ReadOnly] private float cameraRotationSpeed = 2.5f;
 
-
-    private void Start()
-    {
-        currentCamera = playerCamera;
-        currentObject = playerObject;
-    }
-
-    // -------------------------------------------------------------------
-
-    private void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-
-    }
+    // Not for display
 
     // -------------------------------------------------------------------
     // Handle events
@@ -55,7 +42,7 @@ public class ContextEngine : MonoBehaviour
             SetCamerasLowPrio(playerCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
 
             satelliteCamera.Priority = 100;
-            Transform satelliteTransform = GameManager.instance.GetCurrentSatellite().transform;
+            Transform satelliteTransform = SatelliteManager.instance.GetCurrentSatellite().transform;
             satelliteCamera.Follow = satelliteTransform;
             satelliteCamera.LookAt = satelliteTransform;
             currentCamera = satelliteCamera;
@@ -77,6 +64,26 @@ public class ContextEngine : MonoBehaviour
     }
 
     // -------------------------------------------------------------------
+    // Class
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        currentCamera = playerCamera;
+        currentObject = playerObject;
+    }
 
     // Physics calculations, ridigbody movement, collision detection
     private void FixedUpdate()

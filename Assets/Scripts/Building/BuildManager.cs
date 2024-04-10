@@ -68,7 +68,6 @@ public class BuildManager : MonoBehaviour
                 }
                 return;
             case BuildingComponents.BuildingType.Satellite:
-                Debug.Log("[GameManager]: satelliteSpawnTrigged");
                 satelliteSpawnTrigged.Raise();
                 return;
             case BuildingComponents.BuildingType.LaunchPad:

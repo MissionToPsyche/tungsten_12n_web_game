@@ -2,12 +2,37 @@ using UnityEngine;
 
 public class SatelliteManager : MonoBehaviour
 {
+    public static SatelliteManager instance { get; private set; }
+
+    [Header("Events")]
+
+
+    [Header("Mutable")]
     public GameObject satellitePrefab;
-    private int numberOfActiveSatellites = 0;
+
+    [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private int numberOfSatellites = 0;
+    [SerializeField, ReadOnly] private GameObject currentSatellite;
+
+    // Not for display
+
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+    public void OnCurrentSatelliteChanged(string satelliteName)
+    {
+        // Find the satellite GameObject by its constructed name
+        currentSatellite = GameObject.Find(satelliteName);
+        if (currentSatellite == null)
+        {
+            Debug.Log("[GameManager]: Satellite named '" + currentSatellite + "' not found.");
+        }
+    }
 
     public void OnSatelliteSpawnTriggered()
     {
-        GameObject currentAsteroid = GameManager.instance.GetCurrentAsteroid();
+        GameObject currentAsteroid = AsteroidManager.instance.GetCurrentAsteroid();
         if (currentAsteroid == null)
         {
             Debug.LogError("[SatelliteManager]: Current asteroid is not set.");
@@ -21,9 +46,11 @@ public class SatelliteManager : MonoBehaviour
             return;
         }
 
-        Vector2 closestEdgePoint = FindClosestEdgePoint(gravityFieldEdgePoints.edgePoints, GameManager.instance.GetPlayerPosition());
+        Vector2 closestEdgePoint = FindClosestEdgePoint(gravityFieldEdgePoints.edgePoints, PlayerManager.instance.GetPlayerPosition());
         Vector3 spawnPosition = new Vector3(closestEdgePoint.x, closestEdgePoint.y, 0);  // Assuming satellites are on the xy-plane
         GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, Quaternion.identity, currentAsteroid.transform);
+
+        numberOfSatellites += 1;
 
         // Setting a custom name for the satellite
         spawnedSatellite.name = "Satellite" + currentAsteroid.GetComponent<Asteroid>().positionTag;
@@ -42,6 +69,34 @@ public class SatelliteManager : MonoBehaviour
         Debug.Log("[SatelliteManager]: Spawned satellite at " + spawnPosition);
     }
 
+    // -------------------------------------------------------------------
+    // API
+
+    public int GetNumberOfSatellites()
+    {
+        return numberOfSatellites;
+    }
+
+    public GameObject GetCurrentSatellite()
+    {
+        return currentSatellite;
+    }
+
+    // -------------------------------------------------------------------
+    // Class
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     private Vector2 FindClosestEdgePoint(Vector2[] edgePoints, Vector2 playerPosition)
     {
