@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public BoolEvent playerLaunchPadInteract;
 
     [Header("Mutable")]
+    [SerializeField] private CharacterDatabase characterDatabase;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private LayerMask groundLayer;
@@ -60,10 +61,8 @@ public class PlayerController : MonoBehaviour
     private bool isStrafing = false;
     private bool isJumping = false;
     private bool isCrouching = false;
-    private CharacterDatabase characterDatabase;
     private TextMeshProUGUI reminderText;
     private UnityEngine.Vector3 playerCoordinates;
-    private GameManager gameManager;
 
     // -------------------------------------------------------------------
     // Handle events
@@ -187,11 +186,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (asteroidReached == null)
-        {
-            asteroidReached = ScriptableObject.CreateInstance<StringEvent>();
-        }
-
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -200,6 +194,17 @@ public class PlayerController : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        if (asteroidReached == null)
+        {
+            asteroidReached = ScriptableObject.CreateInstance<StringEvent>();
+        }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer not found on the object!");
         }
     }
 
@@ -224,7 +229,6 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
         LoadSelectedCharacter(selection);
     }
 
@@ -380,7 +384,7 @@ public class PlayerController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            gameManager.GetComponent<PlayerManager>().SetScenePosition(SceneManager.GetActiveScene().name);
+            PlayerManager.instance.SetScenePosition(SceneManager.GetActiveScene().name);
         }
 
         // Handle ladder movement
@@ -489,7 +493,32 @@ public class PlayerController : MonoBehaviour
 
     private void LoadSelectedCharacter(int selection)
     {
+        if (characterDatabase == null)
+        {
+            Debug.LogError("Character Database is not assigned!");
+            return;
+        }
+
+        if (selection < 0 || selection >= characterDatabase.CharacterCount)
+        {
+            Debug.LogError("Selection index out of range!");
+            return;
+        }
+
         Character character = characterDatabase.GetSelectedCharacter(selection);
+        if (character == null)
+        {
+            Debug.LogError("No character found at the selected index!");
+            return;
+        }
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer not found!");
+            return;
+        }
+
         spriteRenderer.sprite = character.characterSprite;
     }
+
 }

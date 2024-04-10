@@ -12793,6 +12793,7 @@ MonoBehaviour:
   playerPositionUpdated: {fileID: 11400000, guid: a83a9c4ae9f067e468b68edf0bce127f, type: 2}
   playerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
   playerLaunchPadInteract: {fileID: 11400000, guid: e13e01f59d8ec4281ade5e2d7655c082, type: 2}
+  characterDatabase: {fileID: 11400000, guid: 0ffa1d2925c3c7d4fa18116d97de770a, type: 2}
   animator: {fileID: 911276413}
   spriteRenderer: {fileID: 911276411}
   groundLayer:
@@ -24353,6 +24354,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9092308698191608503, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
   m_PrefabInstance: {fileID: 325794880}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1816426148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1816426149}
+  - component: {fileID: 1816426150}
+  m_Layer: 0
+  m_Name: CaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1816426149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816426148}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1816426150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816426148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dbef6f30a8edfd4a97d47300443a41a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1824124129
 GameObject:
   m_ObjectHideFlags: 0
@@ -30292,6 +30337,7 @@ SceneRoots:
   - {fileID: 815371160}
   - {fileID: 1548278935}
   - {fileID: 227657333}
+  - {fileID: 1816426149}
   - {fileID: 827782827}
   - {fileID: 475161549}
   - {fileID: 443586153}
