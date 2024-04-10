@@ -207,6 +207,17 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // // Singleton method
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
         if (!PlayerPrefs.HasKey("selectedOption"))
         {
             selection = 0;
@@ -226,7 +237,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-        LoadSelectedCharacter(selection);
+        //LoadSelectedCharacter(selection);
     }
 
     private void UpdatePlayerState(PlayerState newState)
