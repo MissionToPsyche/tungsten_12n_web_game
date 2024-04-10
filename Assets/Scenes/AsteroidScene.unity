@@ -11736,11 +11736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080483728291125449cc8cf57682dd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGrounded: 0
-  playerPosition: {x: 0, y: 0}
   gravityFieldEdgePosition: {x: 0, y: 0}
-  hasBuiltRobotBuddyAlpha: 0
-  hasBuiltRobotBuddyBeta: 0
 --- !u!4 &815371160
 Transform:
   m_ObjectHideFlags: 0
@@ -23672,7 +23668,7 @@ GameObject:
   - component: {fileID: 1548278936}
   - component: {fileID: 1548278937}
   m_Layer: 0
-  m_Name: ContextEngine
+  m_Name: CameraManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23687,7 +23683,7 @@ Transform:
   m_GameObject: {fileID: 1548278934}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -259.5, y: 280.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30294,12 +30290,12 @@ SceneRoots:
   - {fileID: 2073616018}
   - {fileID: 1072284254}
   - {fileID: 815371160}
+  - {fileID: 1548278935}
   - {fileID: 227657333}
   - {fileID: 827782827}
   - {fileID: 475161549}
   - {fileID: 443586153}
   - {fileID: 543868673}
-  - {fileID: 1548278935}
   - {fileID: 911276412}
   - {fileID: 525358973}
   - {fileID: 11110646}

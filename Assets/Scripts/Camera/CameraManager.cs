@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using Cinemachine;
 
-public class ContextEngine : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
-    public static ContextEngine instance { get; private set; }
+    public static CameraManager instance { get; private set; }
 
     [Header("Events")]
 
