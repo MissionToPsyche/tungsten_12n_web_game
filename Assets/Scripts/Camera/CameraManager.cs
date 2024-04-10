@@ -24,16 +24,16 @@ public class CameraManager : MonoBehaviour
     // -------------------------------------------------------------------
     // Handle events
 
-    public void OnControlStateUpdated(Control.State currentControlState)
+    public void OnControlStateUpdated(Control.State controlState)
     {
-        if (currentControlState == Control.State.Player)
+        if (controlState == Control.State.Player)
         {
             SetCamerasLowPrio(satelliteCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
             playerCamera.Priority = 100;
             currentCamera = playerCamera;
             currentObject = PlayerManager.instance.GetPlayerObject();
         }
-        else if (currentControlState == Control.State.Satellite)
+        else if (controlState == Control.State.Satellite)
         {
             SetCamerasLowPrio(playerCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
 
@@ -44,7 +44,7 @@ public class CameraManager : MonoBehaviour
             currentCamera = satelliteCamera;
             currentObject = SatelliteManager.instance.GetCurrentSatelliteObject();
         }
-        else if(currentControlState == Control.State.RobotBuddyAlpha)
+        else if(controlState == Control.State.RobotBuddyAlpha)
         {
             SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyBetaCamera);
 
@@ -52,7 +52,7 @@ public class CameraManager : MonoBehaviour
             currentCamera = robotBuddyAlphaCamera;
             currentObject = RobotManager.instance.GetRobotAlphaObject();
         }
-        else if(currentControlState == Control.State.RobotBuddyBeta)
+        else if(controlState == Control.State.RobotBuddyBeta)
         {
             SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyAlphaCamera);
 

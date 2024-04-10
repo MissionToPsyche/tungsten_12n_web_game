@@ -7,22 +7,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
-    [Header("Events")]
+    // [Header("Events")]
 
-    [Header("Mutable")]
+    // [Header("Mutable")]
 
     [Header("ReadOnly")]
-    [SerializeField, ReadOnly] private Vector2 gravityFieldEdgePosition;
+    [SerializeField, ReadOnly] private Control.State currentControlState;
 
     // Not for display
 
     // -------------------------------------------------------------------
     // Handle events
 
-    public void OnGravityFieldEdgeUpdated(Vector2 position)
+    public void OnControlStateUpdated(Control.State controlState)
     {
-        // Debug.Log("[GameManager]: gravityFieldEdgePosition: " + position);
-        gravityFieldEdgePosition = position;
+        currentControlState = controlState;
     }
 
     public void OnGamePause()
@@ -40,12 +39,12 @@ public class GameManager : MonoBehaviour
     // -------------------------------------------------------------------
     // API
 
-    public Vector2 GetGravityFieldEdgePosition()
+    public Control.State GetCurrentControlState()
     {
-        return gravityFieldEdgePosition;
+        return currentControlState;
     }
 
-     // -------------------------------------------------------------------
+    // -------------------------------------------------------------------
     // Class
 
     private void Awake()

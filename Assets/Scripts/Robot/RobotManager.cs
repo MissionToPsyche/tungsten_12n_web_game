@@ -94,7 +94,6 @@ public class RobotManager : MonoBehaviour
     // API
 
     // ALPHA
-
     public bool GetRobotAlphaBuilt()
     {
         return hasBuiltAlpha;
