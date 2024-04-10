@@ -28,7 +28,7 @@ public class Interactable : MonoBehaviour
         if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
         {
             isInRange = true;
-            reminderText.text = "Press E to enter the cave\nRemember avoid the pits";
+            reminderText.text = "Enter Cave\nRemember to Avoid the Black Pits!";
         }
     }
 

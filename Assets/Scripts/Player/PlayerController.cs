@@ -517,5 +517,4 @@ public class PlayerController : MonoBehaviour
 
         spriteRenderer.sprite = character.characterSprite;
     }
-
 }
