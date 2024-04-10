@@ -2,34 +2,45 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-
-    //<------------------------------------ <Industry Vars> ------------------------------------>
+    public static BuildManager Instance { get; private set; }
+    [Header("Industry")]
     [SerializeField] public GameObject ExtractorPrefab;
     [SerializeField] public GameObject CommercialExtractorPrefab;
     [SerializeField] public GameObject IndustrialExtractorPrefab;
 
-    //<------------------------------------ <Robotic Vars> ------------------------------------>
+    [Header("Robotics")]
     [SerializeField] public GameObject RobotBuddyAlphaObject;
     private bool hasBuiltRobotBuddyAlpha = false;
     [SerializeField] public GameObject RobotBuddyBetaObject;
     private bool hasBuiltRobotBuddyBeta = false;
-    [SerializeField] public BuildObjEvent alertPlayerController;
     [SerializeField] public GameObject LaunchPadPrefab;
     private bool hasBuiltLaunchPad = false;
-    public VoidEvent satelliteSpawnTrigged;
 
+    [Header("Events")]
+    public VoidEvent satelliteSpawnTrigged;
     [SerializeField] private VoidEvent buildRobotBuddyAlpha;
     [SerializeField] private VoidEvent buildRobotBuddyBeta;
+
+    [Header("Mutable")]
+    [SerializeField] private GameObject buildUIObject;
     private UIBuildManager buildUI;
 
     void Awake()
     {
-        buildUI = GetComponent<UIBuildManager>();
-
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         if (satelliteSpawnTrigged == null)
         {
             satelliteSpawnTrigged = ScriptableObject.CreateInstance<VoidEvent>();
         }
+        buildUI = buildUIObject.GetComponent<UIBuildManager>();
     }
     public void OnBuildObjEvent(BuildingComponents.BuildingType type){
         //Turns off Build overlay after an obj has been bought

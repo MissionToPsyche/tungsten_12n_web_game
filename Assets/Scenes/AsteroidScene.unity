@@ -453,10 +453,6 @@ GameObject:
   m_Component:
   - component: {fileID: 40169396}
   - component: {fileID: 40169399}
-  - component: {fileID: 40169398}
-  - component: {fileID: 40169397}
-  - component: {fileID: 40169400}
-  - component: {fileID: 40169401}
   m_Layer: 5
   m_Name: InvetoryOverlay
   m_TagString: Untagged
@@ -485,49 +481,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &40169397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40169395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ffd38a2247ba42ee9982360aa4e6490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: a80825e802994450dbb00142e34cee2e, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 40169398}
-        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnCheckInventoryEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &40169398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40169395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb3b099e6b5e4439a999814c7e9593a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildObjEvent: {fileID: 11400000, guid: 58818d4ae94bd4b5e93ceeba8a58d276, type: 2}
-  techUpEvent: {fileID: 11400000, guid: e9511a8a222d34218a2c459ae78d35ba, type: 2}
-  techQueryResponse: {fileID: 11400000, guid: ebb129fe3d513468bb6c82a0772056e9, type: 2}
 --- !u!114 &40169399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6df3eacfd9847cb8b626ed46743ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryOverlay: {fileID: 206971930}
   IronInvText: {fileID: 929391572}
   NickelInvText: {fileID: 555108200}
   CobaltInvText: {fileID: 2078141391}
@@ -550,62 +502,7 @@ MonoBehaviour:
   TungestenInvText: {fileID: 237790012}
   IridiumInvText: {fileID: 1811317086}
   TechPointsInvText: {fileID: 2055569189}
---- !u!114 &40169400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40169395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d2d1e8711a442439e9eee5a3cc2a07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 4ce99701e330a433a914edb654c3a95a, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 40169398}
-        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnMineEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &40169401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40169395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a07eef366126432f9ac6e65bfb7552c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: bf7ca6c4859be41a0891e429f150edcc, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 40169398}
-        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnTechQuery
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  inventoryOverlay: {fileID: 206971930}
 --- !u!114 &52890747 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7424626220950589526, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -1084,7 +981,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 343, y: 199.9998}
+  m_AnchoredPosition: {x: 343, y: 265}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114249639
@@ -2129,7 +2026,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &225093860
@@ -2248,7 +2145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220, y: 200}
+  m_AnchoredPosition: {x: -160, y: 200}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &225567478
@@ -3744,7 +3641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 200}
+  m_AnchoredPosition: {x: 110, y: 200}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321529932
@@ -6659,6 +6556,42 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1653463701121086497, guid: 1e9682b5dc38b4ce7a116929c78cb391, type: 3}
   m_PrefabInstance: {fileID: 440414978}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &441603572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 441603573}
+  m_Layer: 5
+  m_Name: AlphaOverlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &441603573
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441603572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 405242923}
+  m_Father: {fileID: 1014095640}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &443586152
 GameObject:
   m_ObjectHideFlags: 0
@@ -6786,42 +6719,6 @@ MonoBehaviour:
   unityEventResponse:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &441603572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 441603573}
-  m_Layer: 5
-  m_Name: AlphaOverlay
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &441603573
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441603572}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 405242923}
-  m_Father: {fileID: 1014095640}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &464922633
 GameObject:
   m_ObjectHideFlags: 0
@@ -7917,7 +7814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -170, y: 200}
+  m_AnchoredPosition: {x: -100, y: 200}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &527864134
@@ -8423,14 +8320,11 @@ GameObject:
   - component: {fileID: 550765333}
   - component: {fileID: 550765336}
   - component: {fileID: 550765337}
-  - component: {fileID: 550765338}
-  - component: {fileID: 550765339}
   - component: {fileID: 550765340}
   - component: {fileID: 550765342}
   - component: {fileID: 550765341}
   - component: {fileID: 550765343}
   - component: {fileID: 550765344}
-  - component: {fileID: 550765345}
   m_Layer: 5
   m_Name: BuildOverlay
   m_TagString: Untagged
@@ -8565,56 +8459,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: BuildUIManager, Assembly-CSharp
         m_MethodName: OnPlayerBuildOverlay
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &550765338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550765332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2482be23678e54156953fd4764428901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExtractorPrefab: {fileID: 8513086824239921780, guid: 31e93e3ca1ea44038b72ae6f1b567504, type: 3}
-  CommercialExtractorPrefab: {fileID: 8513086824239921780, guid: 5e4c2d32c5522482aa28c0d3cb507740, type: 3}
-  IndustrialExtractorPrefab: {fileID: 8513086824239921780, guid: 9e78861529b66435e88d6c9a2b021a89, type: 3}
-  RobotBuddyAlphaObject: {fileID: 1680418309}
-  RobotBuddyBetaObject: {fileID: 87420897}
-  alertPlayerController: {fileID: 11400000, guid: fbdd27f5aeee143ad8e844a6ec4f2dec, type: 2}
-  LaunchPadPrefab: {fileID: 8513086824239921780, guid: 9c74d5ec0bb9b4b0e8fe3e264c5ca19e, type: 3}
-  satelliteSpawnTrigged: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
-  buildRobotBuddyAlpha: {fileID: 11400000, guid: 9e82d6ae773fc4ad5976eb0b8400e4de, type: 2}
-  buildRobotBuddyBeta: {fileID: 11400000, guid: dbfe9535f1c9c4707804de67e3f01089, type: 2}
---- !u!114 &550765339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550765332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a07eef366126432f9ac6e65bfb7552c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 58818d4ae94bd4b5e93ceeba8a58d276, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 550765338}
-        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
-        m_MethodName: OnBuildObjEvent
-        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8777,34 +8621,6 @@ MonoBehaviour:
       - m_Target: {fileID: 550765336}
         m_TargetAssemblyTypeName: UIBuildManager, Assembly-CSharp
         m_MethodName: OnTechUpEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &550765345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550765332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a07eef366126432f9ac6e65bfb7552c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: bf7ca6c4859be41a0891e429f150edcc, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 550765336}
-        m_TargetAssemblyTypeName: UIBuildManager, Assembly-CSharp
-        m_MethodName: OnTechQuery
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9327,7 +9143,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320, y: 200}
+  m_AnchoredPosition: {x: -300, y: 200}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &594704372
@@ -12835,6 +12651,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &845377160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845377163}
+  - component: {fileID: 845377162}
+  - component: {fileID: 845377161}
+  m_Layer: 0
+  m_Name: BuildManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &845377161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845377160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a07eef366126432f9ac6e65bfb7552c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 58818d4ae94bd4b5e93ceeba8a58d276, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 845377162}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: OnBuildObjEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &845377162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845377160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2482be23678e54156953fd4764428901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExtractorPrefab: {fileID: 8513086824239921780, guid: 31e93e3ca1ea44038b72ae6f1b567504, type: 3}
+  CommercialExtractorPrefab: {fileID: 8513086824239921780, guid: 5e4c2d32c5522482aa28c0d3cb507740, type: 3}
+  IndustrialExtractorPrefab: {fileID: 8513086824239921780, guid: 9e78861529b66435e88d6c9a2b021a89, type: 3}
+  RobotBuddyAlphaObject: {fileID: 1680418309}
+  RobotBuddyBetaObject: {fileID: 87420897}
+  LaunchPadPrefab: {fileID: 8513086824239921780, guid: 9c74d5ec0bb9b4b0e8fe3e264c5ca19e, type: 3}
+  satelliteSpawnTrigged: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
+  buildRobotBuddyAlpha: {fileID: 11400000, guid: 9e82d6ae773fc4ad5976eb0b8400e4de, type: 2}
+  buildRobotBuddyBeta: {fileID: 11400000, guid: dbfe9535f1c9c4707804de67e3f01089, type: 2}
+  buildUIObject: {fileID: 550765332}
+--- !u!4 &845377163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845377160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -258.99167, y: 312.95056, z: -24.30009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &849628433
 GameObject:
   m_ObjectHideFlags: 0
@@ -14872,6 +14771,111 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1128577885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1128577889}
+  - component: {fileID: 1128577888}
+  - component: {fileID: 1128577887}
+  - component: {fileID: 1128577886}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1128577886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128577885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d2d1e8711a442439e9eee5a3cc2a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4ce99701e330a433a914edb654c3a95a, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1128577888}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: OnMineEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1128577887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128577885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ffd38a2247ba42ee9982360aa4e6490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a80825e802994450dbb00142e34cee2e, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1128577888}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: OnCheckInventoryEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1128577888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128577885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb3b099e6b5e4439a999814c7e9593a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildObjEvent: {fileID: 11400000, guid: 58818d4ae94bd4b5e93ceeba8a58d276, type: 2}
+  techUpEvent: {fileID: 11400000, guid: e9511a8a222d34218a2c459ae78d35ba, type: 2}
+  UIInvManagerObject: {fileID: 40169395}
+--- !u!4 &1128577889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128577885}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1141374984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15993,7 +15997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -270, y: 200}
+  m_AnchoredPosition: {x: -230, y: 200}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351264581
@@ -24212,7 +24216,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 200}
+  m_AnchoredPosition: {x: 40, y: 200}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633547567
@@ -30242,7 +30246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -120, y: 200}
+  m_AnchoredPosition: {x: -30, y: 200}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094293960
@@ -30818,6 +30822,8 @@ SceneRoots:
   - {fileID: 475161549}
   - {fileID: 443586153}
   - {fileID: 543868673}
+  - {fileID: 1128577889}
+  - {fileID: 845377163}
   - {fileID: 911276412}
   - {fileID: 525358973}
   - {fileID: 11110646}

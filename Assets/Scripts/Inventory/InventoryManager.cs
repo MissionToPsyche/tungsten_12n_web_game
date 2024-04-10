@@ -4,29 +4,50 @@ using BuildingComponents;
 using packet;
 public class InventoryManager : MonoBehaviour
 {
-    Inventory currentInventory;
-    InventoryUIManager inventoryUI;
+    public static InventoryManager Instance { get; private set; }
+
+    [Header("Events")]
     [SerializeField] public BuildObjEvent buildObjEvent;
     [SerializeField] public TechUpEvent techUpEvent;
-    [SerializeField] public TechUpEvent techQueryResponse;
+    [Header("Mutable")]
+
+    [Header("ReadOnly")]
+
+    // Not for display
+    Inventory currentInventory;
+    [SerializeField] GameObject UIInvManagerObject;
+    UIInventoryManager inventoryUI;
+
     void Start(){
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         //init resource dictionary and add their starting resources
         //currentInventory = new Inventory(35, 35, 15, 0, 0, 0, 0, 0, 20);
         //^ above is initial thought on starting resources, below is for testing the building
-        currentInventory = new Inventory(9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 25);
-        inventoryUI = GetComponent<InventoryUIManager>();
+        currentInventory = new Inventory(999, 999, 999, 999, 999, 999, 999, 999, 25);
+        inventoryUI = UIInvManagerObject.GetComponent<UIInventoryManager>();
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }
+    // -------------------------------------------------------------------
+    // Handle events
 
     public void OnCheckInventoryEvent(packet.CheckInventoryPacket packet){
         BuildingType building = packet.building;
         if(CheckAvailResources(packet.objCost) == true){
             if(packet.objCost.hasTechCost() == false){
-                if(packet.building == BuildingType.CommercialExtractor || packet.building == BuildingType.CommercialExtractor){
+                if(packet.building == BuildingType.CommercialExtractor || packet.building == BuildingType.IndustrialExtractor){
                     if(currentInventory.GetBuildingTechLevel(packet.building) > 0){
                         buildObjEvent.Raise(building);
                         return;
-                    }else return;
+                    }
+                    else return;
                 }
                 PayForObject(packet.objCost);
                 buildObjEvent.Raise(building);
@@ -36,6 +57,21 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void OnMineEvent(packet.MiningPacket packet){
+        currentInventory.AddResource(packet.resourceToChange, packet.amountToChange);
+        inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
+    }
+
+    public void OnDiscoverGeoPhenom(){
+        currentInventory.GainTechPoint();
+        inventoryUI.UpdateInventoryFromDictionary(GetCurrentInventory());
+    }
+    public void OnResourceCollect(ResourceType resource, int amount){
+        currentInventory.AddResource(resource, amount);
+        inventoryUI.UpdateInventoryFromDictionary(GetCurrentInventory());
+    }
+    // -------------------------------------------------------------------
+    // Class Specific
     private void CheckInvTechCase(packet.CheckInventoryPacket packet){
 
         int newLevel = currentInventory.GetBuildingTechLevel(packet.building) + 1;
@@ -66,16 +102,9 @@ public class InventoryManager : MonoBehaviour
     private bool CheckAvailResources(ObjectsCost costDictionary){
         return currentInventory.CheckCost(costDictionary);
     }
-
-    public void OnMineEvent(packet.MiningPacket packet){
-        currentInventory.AddResource(packet.resourceToChange, packet.amountToChange);
-        inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
-    }
-    public void OnTechQuery(BuildingType buildingType){
-        techQueryResponse.Raise(new TechUpPacket(buildingType, currentInventory.GetBuildingTechLevel(buildingType)));
-    }
-
-    public void OnDiscoverGeoPhenom(){
-
+    // -------------------------------------------------------------------
+    // API
+    public int GetTechTier(BuildingComponents.BuildingType buildingType){
+        return currentInventory.GetBuildingTechLevel(buildingType);
     }
 }

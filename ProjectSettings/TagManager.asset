@@ -15,6 +15,7 @@ TagManager:
   - RobotBuddy
   - Rock
   - GeologicalPhenomena
+  - RobotTriggerCollider
   layers:
   - Default
   - TransparentFX

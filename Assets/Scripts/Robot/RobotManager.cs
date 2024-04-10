@@ -4,7 +4,7 @@ using Cinemachine;
 
 public class RobotManager : MonoBehaviour
 {
-    public static RobotManager instance { get; private set; }
+    public static RobotManager Instance { get; private set; }
 
     [Header("Events")]
 
@@ -140,13 +140,13 @@ public class RobotManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }

@@ -50,7 +50,7 @@ public class CameraManager : MonoBehaviour
 
             robotBuddyAlphaCamera.Priority = 100;
             currentCamera = robotBuddyAlphaCamera;
-            currentObject = RobotManager.instance.GetRobotAlphaObject();
+            currentObject = RobotManager.Instance.GetRobotAlphaObject();
         }
         else if(controlState == Control.State.RobotBuddyBeta)
         {
@@ -58,7 +58,7 @@ public class CameraManager : MonoBehaviour
 
             robotBuddyBetaCamera.Priority = 100;
             currentCamera = robotBuddyBetaCamera;
-            currentObject = RobotManager.instance.GetRobotBetaObject();
+            currentObject = RobotManager.Instance.GetRobotBetaObject();
         }
     }
 

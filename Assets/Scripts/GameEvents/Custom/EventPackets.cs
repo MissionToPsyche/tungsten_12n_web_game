@@ -20,6 +20,7 @@ namespace packet{
     }
 
     public class MiningPacket{
+        //Obj is the sender, used purely for debugging
         public GameObject obj;
         public int amountToChange;
         public ResourceType resourceToChange;

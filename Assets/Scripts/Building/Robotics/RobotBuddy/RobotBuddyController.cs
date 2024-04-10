@@ -31,12 +31,15 @@ public class RobotBuddyController : MonoBehaviour
     private bool isInPit;
     private bool playerCanInteract = false;
     [SerializeField, ReadOnly] private bool isActive;
+    [SerializeField, ReadOnly] private int TechTier = 0;
     RobotBuddy robotBuddy;
-    private bool controlStateOnRobotBuddy;
+    CapsuleCollider2D chargeCollider;
     void Awake()
     {
         transform.position = new Vector3(999f, 999f, 0);
         robotBuddy = new();
+        chargeCollider = gameObject.AddComponent<CapsuleCollider2D>();
+        chargeCollider.isTrigger = true;
     }
 
     IEnumerator DecreaseCharge()
@@ -86,8 +89,7 @@ public class RobotBuddyController : MonoBehaviour
     public void OnRobotJump(bool jumping)
     {
         //Debug.Log($"Player controller - OnPlayerJump: {jumping}");
-        //actually reduces charge by 10 becuase this function is called twice per jump, 5
-        adjustRobotUI.Raise(robotBuddy.ReduceCharge(20.0f));
+        adjustRobotUI.Raise(robotBuddy.ReduceCharge(5.0f));
         if (jumping)
         {
             if (isGrounded)
@@ -155,7 +157,6 @@ public class RobotBuddyController : MonoBehaviour
     // when in contact with objects
     private void OnTriggerEnter2D(Collider2D Collision)
     {
-        Debug.Log("collided with " + Collision.gameObject.tag);
         switch (Collision.gameObject.tag)
         {
             case "BlackPit":

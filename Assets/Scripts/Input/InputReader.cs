@@ -127,7 +127,7 @@ public class InputReader :
             }
             else if (currentControlState == Control.State.Satellite)
             {
-                if (RobotManager.instance.GetRobotAlphaBuilt())
+                if (RobotManager.Instance.GetRobotAlphaBuilt())
                 {
                     SetControlState(Control.State.RobotBuddyAlpha);
                 }
@@ -138,7 +138,7 @@ public class InputReader :
             }
             else if (currentControlState == Control.State.RobotBuddyAlpha)
             {
-                if (RobotManager.instance.GetRobotBetaBuilt())
+                if (RobotManager.Instance.GetRobotBetaBuilt())
                 {
                     SetControlState(Control.State.RobotBuddyBeta);
                 }

@@ -122,6 +122,9 @@ public class Inventory
     }
 
     //Dictionary<BuildingType, int> currentTechLevels = new Dictionary<BuildingType, int>();
+    public void GainTechPoint(){
+        inv[ResourceType.TechPoint] += 1;
+    }
     public void TechUpBuilding(BuildingType building, int level){
         currentTechLevels[building] = level;
     }

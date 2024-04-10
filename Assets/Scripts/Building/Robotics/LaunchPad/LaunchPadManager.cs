@@ -20,7 +20,6 @@ public class LaunchPadManager : MonoBehaviour{
     [SerializeField] private GameObject chasisPrefab;
     [SerializeField] private GameObject cockpitPrefab;
     [SerializeField] private GameObject externalTankPrefab;
-    [SerializeField] protected BuildObjEvent queryTechEvent;
     public void Awake(){
         launchpad = new();
         QueryTechLevel();
@@ -135,13 +134,9 @@ public class LaunchPadManager : MonoBehaviour{
         }
     }
     protected void QueryTechLevel(){
-        queryTechEvent.Raise(BuildingType.LaunchPad);
+        TechTier = InventoryManager.Instance.GetTechTier(launchpad.GetBuildingType());
     }
     //Events
     //------------------------------------------------------------------
-    public void OnQueryTechResponse(packet.TechUpPacket packet){
-        if(packet.building == BuildingType.LaunchPad){
-            TechTier = packet.TechToLevel;
-        }
-    }
+
 }

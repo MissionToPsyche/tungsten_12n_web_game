@@ -5,9 +5,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using BuildingComponents;
-public class InventoryUIManager : MonoBehaviour
+public class UIInventoryManager : MonoBehaviour
 {
-    [SerializeField] GameObject inventoryOverlay;
+
+    [Header("Events")]
+
+    [Header("Mutable")]
     [SerializeField] private TextMeshProUGUI IronInvText;
     [SerializeField] private TextMeshProUGUI NickelInvText;
     [SerializeField] private TextMeshProUGUI CobaltInvText;
@@ -17,6 +20,14 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TungestenInvText;
     [SerializeField] private TextMeshProUGUI IridiumInvText;
     [SerializeField] private TextMeshProUGUI TechPointsInvText;
+
+    [Header("ReadOnly")]
+
+    // Not for display
+    [SerializeField] GameObject inventoryOverlay;
+    // -------------------------------------------------------------------
+    // Handle events
+    
     
     public void UpdateInventoryFromDictionary(Dictionary<ResourceType, int> dict){
         foreach(var entry in dict)
