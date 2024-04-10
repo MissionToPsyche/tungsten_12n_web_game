@@ -27,7 +27,7 @@ public class SatelliteManager : MonoBehaviour
         currentSatelliteObject = GameObject.Find(satelliteName);
         if (currentSatelliteObject == null)
         {
-            Debug.Log("[SatelliteManager]: Satellite named '" + currentSatelliteObject + "' not found.");
+            Debug.Log("[SatelliteManager]: Satellite named: " + currentSatelliteObject + " not found.");
         }
     }
 
@@ -40,39 +40,51 @@ public class SatelliteManager : MonoBehaviour
             return;
         }
 
-        GravityFieldEdgePoints gravityFieldEdgePoints = currentAsteroid.GetComponent<GravityFieldEdgePoints>();
-        if (gravityFieldEdgePoints == null || gravityFieldEdgePoints.edgePoints == null)
+        // Retrieve satellite data to check if it's already been built
+        if (AsteroidManager.Instance.satelliteMap.TryGetValue(currentAsteroid.name, out SatelliteData satelliteData))
         {
-            Debug.LogError("[SatelliteManager]: No GravityFieldEdge component found or edgePoints are not initialized.");
-            return;
+            if (satelliteData.isBuilt)
+            {
+                Debug.Log("[SatelliteManager]: Satellite already built for " + currentAsteroid.name);
+                return; // Stop the method if the satellite has already been built
+            }
+
+            GravityFieldEdgePoints gravityFieldEdgePoints = currentAsteroid.GetComponent<GravityFieldEdgePoints>();
+            if (gravityFieldEdgePoints == null || gravityFieldEdgePoints.edgePoints == null)
+            {
+                Debug.LogError("[SatelliteManager]: No GravityFieldEdge component found or edgePoints are not initialized.");
+                return;
+            }
+
+            Vector2 closestEdgePoint = FindClosestEdgePoint(gravityFieldEdgePoints.edgePoints, PlayerManager.Instance.GetPlayerPosition());
+            Vector3 spawnPosition = new Vector3(closestEdgePoint.x, closestEdgePoint.y, 0); // Assuming satellites are on the xy-plane
+            GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, Quaternion.identity, currentAsteroid.transform);
+
+            // Update the satellite construction status
+            satelliteData.isBuilt = true;  // Mark as built
+
+            // Setting a custom name for the satellite
+            spawnedSatellite.name = satelliteData.satelliteName;
+            activeSatellites.Append(spawnedSatellite.name);
+
+            // Adjust the scale of the satellite to not inherit the asteroid's scale
+            if (currentAsteroid.transform.lossyScale != Vector3.one) // Check if the asteroid's scale is not the default scale
+            {
+                Vector3 worldScale = spawnedSatellite.transform.lossyScale;
+                spawnedSatellite.transform.localScale = new Vector3(
+                    spawnedSatellite.transform.localScale.x / currentAsteroid.transform.lossyScale.x,
+                    spawnedSatellite.transform.localScale.y / currentAsteroid.transform.lossyScale.y,
+                    spawnedSatellite.transform.localScale.z / currentAsteroid.transform.lossyScale.z
+                );
+            }
+
+            numberOfSatellites++;
+            Debug.Log("[SatelliteManager]: Spawned satellite at " + spawnPosition);
         }
-
-        Vector2 closestEdgePoint = FindClosestEdgePoint(gravityFieldEdgePoints.edgePoints, PlayerManager.Instance.GetPlayerPosition());
-        Vector3 spawnPosition = new Vector3(closestEdgePoint.x, closestEdgePoint.y, 0);  // Assuming satellites are on the xy-plane
-        GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, Quaternion.identity, currentAsteroid.transform);
-
-        // Update the satellite construction status
-        SatelliteData satelliteData = AsteroidManager.Instance.satelliteMap[currentAsteroid.name];
-        satelliteData.isBuilt = true;  // Mark as built
-
-        // Setting a custom name for the satellite
-        spawnedSatellite.name = satelliteData.satelliteName;
-        activeSatellites.Append(spawnedSatellite.name);
-
-        // Adjust the scale of the satellite to not inherit the asteroid's scale
-        if (currentAsteroid.transform.lossyScale != Vector3.one) // Check if the asteroid's scale is not the default scale
+        else
         {
-            Vector3 worldScale = spawnedSatellite.transform.lossyScale;
-            spawnedSatellite.transform.localScale = new Vector3(
-                spawnedSatellite.transform.localScale.x / currentAsteroid.transform.lossyScale.x,
-                spawnedSatellite.transform.localScale.y / currentAsteroid.transform.lossyScale.y,
-                spawnedSatellite.transform.localScale.z / currentAsteroid.transform.lossyScale.z
-            );
+            Debug.LogError("[SatelliteManager]: No satellite data found for " + currentAsteroid.name);
         }
-
-        numberOfSatellites++;
-
-        Debug.Log("[SatelliteManager]: Spawned satellite at " + spawnPosition);
     }
 
     // -------------------------------------------------------------------

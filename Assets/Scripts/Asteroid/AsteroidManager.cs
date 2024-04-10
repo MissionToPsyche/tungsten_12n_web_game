@@ -26,25 +26,38 @@ public class AsteroidManager : MonoBehaviour
 
     public void OnAsteroidReached(string asteroidName)
     {
-        // Debug.Log("[AsteroidManager]: Asteroid reached: " + asteroidName);
-
+        // Find the asteroid GameObject
         currentAsteroid = GameObject.Find(asteroidName);
         if (currentAsteroid == null)
         {
-            // Debug.LogError("[GameManager]: Asteroid named '" + asteroidName + "' not found.");
+            Debug.LogError("[AsteroidManager]: Asteroid named '" + asteroidName + "' not found.");
             return;
         }
 
-        // Construct the expected satellite name based on the asteroid's position tag
+        // Attempt to get the asteroid component to retrieve the position tag
         if (!currentAsteroid.TryGetComponent<Asteroid>(out var asteroidComponent))
         {
-            // Debug.LogError("[GameManager]: Asteroid component not found on '" + asteroidName + "'.");
+            Debug.LogError("[AsteroidManager]: Asteroid component not found on '" + asteroidName + "'.");
             return;
         }
 
-        if(SatelliteManager.Instance.GetNumberOfSatellites() > 0)
+        // Retrieve the satellite data associated with the asteroid
+        if (satelliteMap.TryGetValue(asteroidName, out SatelliteData satelliteData))
         {
-            currentSatelliteChanged.Raise(satelliteMap[asteroidName].satelliteName);
+            if (satelliteData != null && satelliteData.isBuilt)
+            {
+                // Only raise the event if the satellite has been built
+                currentSatelliteChanged.Raise(satelliteData.satelliteName);
+            }
+            else
+            {
+                // Optionally log that the satellite is not built or not available
+                // Debug.Log($"[AsteroidManager]: No built satellite for '{asteroidName}'.");
+            }
+        }
+        else
+        {
+            Debug.LogError("[AsteroidManager]: No satellite data found for '" + asteroidName + "'.");
         }
     }
 

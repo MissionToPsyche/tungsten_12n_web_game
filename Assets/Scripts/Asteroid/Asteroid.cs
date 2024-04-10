@@ -19,12 +19,12 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private SpawnResourceEvent spawnResourceEvent;
     public string positionTag { get; private set; } // To store the position part from the name
 
-    private void Start()
-    {
-        // Debug.Log("[Asteroid]: Processing name: " + this.gameObject.name);
-        positionTag = ExtractPositionFromName(this.gameObject.name);
-        // Debug.Log("[Asteroid]: Extracted positionTag: " + positionTag);
+    // -------------------------------------------------------------------
+    // Class
 
+    private void Awake()
+    {
+        positionTag = ExtractPositionFromName(this.gameObject.name);
         if (string.IsNullOrEmpty(positionTag))
         {
             Debug.LogError("Asteroid name does not contain a valid position format: " + this.gameObject.name);
@@ -66,11 +66,11 @@ public class Asteroid : MonoBehaviour
     public void SpawnResource(Resource addedResource, int iter)
     {
         GameObject newResourceObject = Instantiate(prefab, addedResource.Position + (Vector2)transform.position, Quaternion.identity);
-        setNewResourceObject(newResourceObject, addedResource, iter);
+        SetNewResourceObject(newResourceObject, addedResource, iter);
     }
 
     //Makes the resource the desired color
-    public void setNewResourceObject(GameObject newResourceObject, Resource addedResource, int iter)
+    public void SetNewResourceObject(GameObject newResourceObject, Resource addedResource, int iter)
     {
         SpriteRenderer spriteRenderer = newResourceObject.GetComponent<SpriteRenderer>();
         spriteRenderer.color = addedResource.Color;
