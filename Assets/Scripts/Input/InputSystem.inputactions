@@ -830,6 +830,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "RobotJump",
+                    "type": "Button",
+                    "id": "d78a56af-8d08-40a8-aff3-d9997f0e7078",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RobotBuddyInteract",
                     "type": "Button",
                     "id": "4c71db63-ede5-4e52-bdd8-2362757b2842",
@@ -925,6 +934,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RobotBuddyInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "244a9f20-6635-4e29-a8ad-5fcda6c24367",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RobotJump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c5ea2ad-c2a4-434b-b74d-84e77b7ffe30",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RobotJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -108,6 +108,7 @@ public class InputReader :
     [Header("Robot Buddy")]
     [SerializeField] private Vector2Event RobotBuddyMove;
     [SerializeField] private BoolEvent RobotBuddyInteract;
+    [SerializeField] private BoolEvent RobotJump;
 
     // -------------------------------------------------------------------
     // Gameplay action map
@@ -283,6 +284,7 @@ public class InputReader :
     public void OnRobotBuddyMove(InputAction.CallbackContext context){
         RobotBuddyMove.Raise(context.ReadValue<Vector2>());
     }
+
     public void OnRobotBuddyInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -292,6 +294,18 @@ public class InputReader :
         if (context.phase == InputActionPhase.Canceled)
         {
             RobotBuddyInteract.Raise(false);
+        }
+    }
+    
+    public void OnRobotJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            RobotJump.Raise(true);
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            RobotJump.Raise(false);
         }
     }
 }

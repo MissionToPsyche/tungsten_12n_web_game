@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 5157833276266331825}
   - component: {fileID: 8139770717393876645}
   - component: {fileID: 7619713829698742960}
+  - component: {fileID: -8436400139708018461}
+  - component: {fileID: -5256694271781332552}
   m_Layer: 8
   m_Name: RobotBuddy
   m_TagString: RobotBuddy
@@ -104,20 +106,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ac41f3f42ae45218a32ca18c56b34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputReader: {fileID: 11400000, guid: 9dca135c79fee004ab7ac8b3f7ee53ec, type: 2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   groundCheck: {fileID: 23051743585910141}
   groundCheckRadius: 0.3
-  RoboBody: {fileID: 3934493476514264842}
+  robotBody: {fileID: 3934493476514264842}
   gravityBody: {fileID: 1602785552444115735}
   currentSpeed: 0
   horizontalInput: 0
+  jumpForce: 1
   isGrounded: 0
-  isFacingRight: 0
   currentState: 0
   robotBuddyInteract: {fileID: 11400000, guid: 785f1221415074d0284dcf6a994842d3, type: 2}
+  adjustRobotUI: {fileID: 11400000, guid: d0e2210c3c9d64353848a8c7bc1916c0, type: 2}
   isActive: 0
 --- !u!114 &1602785552444115735
 MonoBehaviour:
@@ -274,6 +276,62 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: RobotBuddyController, Assembly-CSharp
         m_MethodName: OnControlStateUpdated
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-8436400139708018461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156260498347462317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a0ba10e730b4b47964098f09b8f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 921b302f9cf4648bebaafcf9604fa8d7, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 984206101396499892}
+        m_TargetAssemblyTypeName: RobotBuddyController, Assembly-CSharp
+        m_MethodName: OnRobotJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-5256694271781332552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156260498347462317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a0ba10e730b4b47964098f09b8f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 984206101396499892}
+        m_TargetAssemblyTypeName: RobotBuddyController, Assembly-CSharp
+        m_MethodName: OnPlayerInteract
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -1,12 +1,17 @@
 using BuildingComponents;
 using System.IO;
 using Newtonsoft.Json;
-
+using UnityEngine;
 public class RobotBuddy
 {
     private BuildingData buildingData;
     private ObjectsCost thisCosts;
     private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.RobotBuddy;
+
+    //Gameplay related member vars
+    private float currentCharge = 600;
+    //Changing the maxCharge value requires you to change the maxCharge value in RobotBuddyUIManager as well
+    private readonly float maxCharge = 600;
 
     // Abstract method to get the cost dictionary
     public RobotBuddy(){
@@ -46,7 +51,7 @@ public class RobotBuddy
                 thisObject.Costs["Iridium"],
                 0
             );
-            return thisCosts;
+        return thisCosts;
     }
     public ObjectsCost GetCostDictionary(){
         return thisCosts;
@@ -54,5 +59,16 @@ public class RobotBuddy
     public BuildingComponents.BuildingType GetBuildingType(){
         return buildingType;
     }
-    
+    public float ReduceCharge(float reduceBy){
+        currentCharge -= reduceBy;
+        return currentCharge;
+    }
+
+    public void GiveFullCharge(){
+        currentCharge = maxCharge;
+    }
+
+    public float GetCurrentCharge(){
+        return currentCharge;
+    }
 }
