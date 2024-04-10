@@ -36,7 +36,7 @@ public class CharacterManager : MonoBehaviour
         {
             selection = 0; 
         }
-
+        
         UpdateCharacter(selection);
         SaveSelection();
     }

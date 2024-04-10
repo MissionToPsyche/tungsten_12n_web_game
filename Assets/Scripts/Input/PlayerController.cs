@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("selectedOption"))
         {
+            Debug.Log(PlayerPrefs.HasKey("selectedOption"));
             selection = 0;
             animator.SetBool("John", true);
         }
@@ -92,15 +93,18 @@ public class PlayerController : MonoBehaviour
             {
                 case 0:
                     animator.SetBool("John", true);
+                    Debug.Log("John");
                     break;
 
                 case 1:
+                    Debug.Log("Joy");
+                    animator.SetBool("John", false);
                     animator.SetBool("Joy", true);
                     break;
             }
         }
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
-        LoadSelectedCharacter(selection);
+        //LoadSelectedCharacter(selection);
     }
 
     // -------------------------------------------------------------------
@@ -478,6 +482,7 @@ public class PlayerController : MonoBehaviour
     private void LoadSelectedCharacter(int selection)
     {
         Character character = characterDatabase.GetSelectedCharacter(selection);
+
         spriteRenderer.sprite = character.characterSprite;
     }
 }
