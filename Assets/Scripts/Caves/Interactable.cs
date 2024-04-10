@@ -10,7 +10,6 @@ public class Interactable : MonoBehaviour
     private KeyCode interactKey = KeyCode.E;
     public TextMeshProUGUI reminderText;
 
-
     // Update is called once per frame
     void Update()
     {
@@ -18,7 +17,7 @@ public class Interactable : MonoBehaviour
         {
             if (Input.GetKeyDown(interactKey))
             {
-                this.gameObject.GetComponent<CaveSceneManager>().loadCaveScene(gameObject.name);
+                CaveManager.instance.LoadCaveScene(gameObject.name);
             }
         }
     }

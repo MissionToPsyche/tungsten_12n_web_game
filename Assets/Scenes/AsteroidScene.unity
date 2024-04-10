@@ -24365,8 +24365,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1816426149}
   - component: {fileID: 1816426150}
-  - component: {fileID: 1816426151}
-  - component: {fileID: 1816426152}
   m_Layer: 0
   m_Name: CaveManager
   m_TagString: Untagged
@@ -24401,31 +24399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbef6f30a8edfd4a97d47300443a41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1816426151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816426148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6043a3b2613814ea9ac933abaf50e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1816426152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816426148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21192cd51cb1e714887d1361420397d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reminderText: {fileID: 0}
 --- !u!1 &1824124129
 GameObject:
   m_ObjectHideFlags: 0
