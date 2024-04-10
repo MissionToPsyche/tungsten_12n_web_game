@@ -9,126 +9,72 @@ using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
-    // Input
-    [SerializeField] private InputReader inputReader;
+    public static PlayerController instance { get; private set; }
 
+    [Header("Events")]
+    [SerializeField] public StringEvent asteroidReached;
+    [SerializeField] public BoolEvent playerGroundedUpdated;
+    [SerializeField] public Vector2Event playerPositionUpdated;
+    [SerializeField] public BoolEvent playerInteract;
+    [SerializeField] public BoolEvent playerLaunchPadInteract;
+
+    [Header("Mutable")]
+    [SerializeField] private CharacterDatabase characterDatabase;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
-    [SerializeField, ReadOnly] private float groundCheckRadius = 0.3f;
-    [Header("Objects")]
     [SerializeField] private Rigidbody2D playerBody;
     [SerializeField] private GravityBody2D gravityBody;
-
-    private float sprintingSpeed = 10f;
-    private float walkingSpeed = 7.5f;
-    private float strafingSpeed = 5f;
-    private float crawlingSpeed = 2.5f;
-    private float idleSpeed = 0f;
-
-    // variables used for ladder movement
-    private float vertical;
-    private bool isLadder;
-    private bool isClimibing;
-    private bool isInPit;
-
-    [SerializeField, ReadOnly] private float currentSpeed;
-
+    [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
     [SerializeField] private float jumpForce = 0f;
+
+    [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private int selection = 0;
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
-    // [SerializeField, ReadOnly] private float verticalInput = 0f;
-
-    private bool isIdle = false;
-    private bool isSprinting = false;
-    private bool isWalking = false;
-    private bool isCrawling = false;
-    private bool isStrafing = false;
-
-    private bool isJumping = false;
-    private bool isCrouching = false;
-
-    [Header("Movement")]
+    [SerializeField, ReadOnly] private float currentSpeed;
+    [SerializeField, ReadOnly] private bool wasGrounded = false;
     [SerializeField, ReadOnly] private bool isGrounded = false;
     [SerializeField, ReadOnly] private bool canSprint = false;
     [SerializeField, ReadOnly] private bool canDoubleJump = false;
     [SerializeField, ReadOnly] private bool isFacingRight = false;
 
+    // Not for display
     private enum PlayerState { Idle, Walking, Sprinting, Strafing, Jumping, Crouching, Crawling, Interacting }
-    [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
-    [SerializeField] public BoolEvent playerInteract;
-    [SerializeField] public BoolEvent playerLaunchPadInteract;
-    // Animation
-    [SerializeField] private Animator animator;
-    private CharacterDatabase characterDatabase;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField, ReadOnly] private int selection = 0;
-    [SerializeField] private static PlayerController instance;
-    private UnityEngine.Vector3 playerCoordinates;
-    private GameManager gameManager;
+    private float groundCheckRadius = 0.3f;
+    private float sprintingSpeed = 10f;
+    private float walkingSpeed = 7.5f;
+    private float strafingSpeed = 5f;
+    private float crawlingSpeed = 2.5f;
+    private float idleSpeed = 0f;
+    private float vertical;
+    private bool isLadder;
+    private bool isClimibing;
+    private bool isInPit;
+    private bool isIdle = false;
+    private bool isSprinting = false;
+    private bool isWalking = false;
+    private bool isCrawling = false;
+    private bool isStrafing = false;
+    private bool isJumping = false;
+    private bool isCrouching = false;
     private TextMeshProUGUI reminderText;
-
-
-    void Start()
-    {
-        // // Singleton method
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
-        if (!PlayerPrefs.HasKey("selectedOption"))
-        {
-            Debug.Log(PlayerPrefs.HasKey("selectedOption"));
-            selection = 0;
-            animator.SetBool("John", true);
-        }
-        else
-        {
-            selection = PlayerPrefs.GetInt("selectedOption");
-            switch (selection)
-            {
-                case 0:
-                    animator.SetBool("John", true);
-                    break;
-
-                case 1:
-                    animator.SetBool("Joy", true);
-                    break;
-            }
-        }
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
-        //LoadSelectedCharacter(selection);
-    }
-
-    // -------------------------------------------------------------------
-
-    private void OnEnable()
-    {
-
-    }
-
-    private void OnDisable()
-    {
-
-    }
+    private UnityEngine.Vector3 playerCoordinates;
 
     // -------------------------------------------------------------------
     // Handle events
+
     // this method will set the player's last coordinates on the main asteroid scene
     public void SetPlayerCoordinates()
     {
         this.playerCoordinates = this.transform.position;
     }
+
     // this method will get the player's last coordinates on the main asteroid scene
     public UnityEngine.Vector3 GetPlayerCoordinates()
     {
         return this.playerCoordinates;
     }
-
 
     public void OnPlayerMove(UnityEngine.Vector2 direction)
     {
@@ -233,6 +179,66 @@ public class PlayerController : MonoBehaviour
     }
 
     // -------------------------------------------------------------------
+    // Class
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        if (asteroidReached == null)
+        {
+            asteroidReached = ScriptableObject.CreateInstance<StringEvent>();
+        }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer not found on the object!");
+        }
+    }
+
+    void Start()
+    {
+        // // Singleton method
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        if (!PlayerPrefs.HasKey("selectedOption"))
+        {
+            selection = 0;
+            animator.SetBool("John", true);
+        }
+        else
+        {
+            selection = PlayerPrefs.GetInt("selectedOption");
+            switch (selection)
+            {
+                case 0:
+                    animator.SetBool("John", true);
+                    break;
+
+                case 1:
+                    animator.SetBool("Joy", true);
+                    break;
+            }
+        }
+        //LoadSelectedCharacter(selection);
+    }
 
     private void UpdatePlayerState(PlayerState newState)
     {
@@ -370,6 +376,13 @@ public class PlayerController : MonoBehaviour
         // First check to make sure the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
+        // Check if the grounded state has changed
+        if (isGrounded != wasGrounded)
+        {
+            playerGroundedUpdated.Raise(isGrounded);  // Raise event with the new state
+            wasGrounded = isGrounded;  // Update the wasGrounded to the current state
+        }
+
         // Handle possible inputs
         Move();
         Jump();
@@ -379,7 +392,7 @@ public class PlayerController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            gameManager.GetComponent<PlayerManager>().setScenePosition(SceneManager.GetActiveScene().name);
+            PlayerManager.instance.SetScenePosition(SceneManager.GetActiveScene().name);
         }
 
         // Handle ladder movement
@@ -401,6 +414,16 @@ public class PlayerController : MonoBehaviour
     public float GetJumpForce()
     {
         return this.jumpForce;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Asteroid"))
+        {
+            string asteroidName = collision.gameObject.name;
+            asteroidReached.Raise(asteroidName);
+            playerPositionUpdated.Raise(transform.position);
+        }
     }
 
     // when in contact with objects
@@ -478,7 +501,30 @@ public class PlayerController : MonoBehaviour
 
     private void LoadSelectedCharacter(int selection)
     {
+        if (characterDatabase == null)
+        {
+            Debug.LogError("Character Database is not assigned!");
+            return;
+        }
+
+        if (selection < 0 || selection >= characterDatabase.CharacterCount)
+        {
+            Debug.LogError("Selection index out of range!");
+            return;
+        }
+
         Character character = characterDatabase.GetSelectedCharacter(selection);
+        if (character == null)
+        {
+            Debug.LogError("No character found at the selected index!");
+            return;
+        }
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer not found!");
+            return;
+        }
 
         spriteRenderer.sprite = character.characterSprite;
     }

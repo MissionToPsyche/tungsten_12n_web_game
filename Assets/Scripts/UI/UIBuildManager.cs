@@ -58,7 +58,7 @@ public class UIBuildManager : MonoBehaviour
     [SerializeField] private GameObject LaunchPad_Tier2Star;
     [SerializeField] private GameObject LaunchPad_Tier3Star;
     [SerializeField] private GameObject LaunchPad_Tier4Star;
-    
+
     //<------------------- <========<>========> ------------------->
     private void Start()
     {
@@ -294,8 +294,9 @@ public class UIBuildManager : MonoBehaviour
             this.gameObject, BuildingComponents.BuildingType.RobotBuddy, techCost));
     }
     public void TryBuildSatellite(){
-        //Implementation needed
-        Debug.Log("Implementation needed");
+        Satellite tempSatellite = new();
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, BuildingType.Satellite, tempSatellite.GetCostDictionary()));
     }
     public void TryTechUpSatellite(){
         checkInventory.Raise(new packet.CheckInventoryPacket(

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "New Void Event", menuName = "Game Events/Void Event")]
+[CreateAssetMenu(fileName = "New Void Event", menuName = "Game Events/Primitive/Void Event")]
 
 public class VoidEvent : BaseGameEvent<Void>
 {

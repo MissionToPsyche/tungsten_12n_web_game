@@ -54,5 +54,5 @@ public class RobotBuddy
     public BuildingComponents.BuildingType GetBuildingType(){
         return buildingType;
     }
-    
+
 }

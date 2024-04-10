@@ -32,6 +32,7 @@ public abstract class BaseGameEventListener<T, E, UER> : MonoBehaviour, IGameEve
 
     public void OnEventRaised(T item)
     {
+        // Debug.Log($"Event raised with payload: {item}");
         unityEventResponse?.Invoke(item);
     }
 }
