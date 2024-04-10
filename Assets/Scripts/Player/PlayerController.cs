@@ -11,9 +11,6 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance { get; private set; }
 
-    // Input
-    [SerializeField] private InputReader inputReader;
-
     [Header("Events")]
     [SerializeField] public StringEvent asteroidReached;
     [SerializeField] public BoolEvent playerGroundedUpdated;

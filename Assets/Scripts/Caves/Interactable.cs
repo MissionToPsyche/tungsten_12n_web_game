@@ -10,12 +10,6 @@ public class Interactable : MonoBehaviour
     private KeyCode interactKey = KeyCode.E;
     public TextMeshProUGUI reminderText;
 
-    private GameManager gameManager;
-
-    void Start()
-    {
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -24,16 +18,14 @@ public class Interactable : MonoBehaviour
         {
             if (Input.GetKeyDown(interactKey))
             {
-                // dynamically locate the player manager and set the last position, then invoke the scene change
-                gameManager.GetComponent<PlayerManager>().setLastPosition();
-                gameManager.GetComponent<CaveSceneManager>().loadCaveScene(gameObject.name);
+                this.gameObject.GetComponent<CaveSceneManager>().loadCaveScene(gameObject.name);
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
         {
             isInRange = true;
             reminderText.text = "Press E to enter the cave\nRemember avoid the pits";
@@ -42,7 +34,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
         {
             isInRange = false;
             reminderText.text = "";
