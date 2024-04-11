@@ -187,7 +187,7 @@ public class RobotBuddyController : MonoBehaviour
     }
     
     public void OnPlayerInteract(){
-        if(playerCanInteract){
+        if(playerCanInteract && PlayerManager.instance.HasCyberneticCharge()){
             robotBuddy.GiveFullCharge();
             adjustRobotUI.Raise(robotBuddy.GetCurrentCharge());
         }

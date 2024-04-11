@@ -17,8 +17,8 @@ public class InventoryManager : MonoBehaviour
     Inventory currentInventory;
     [SerializeField] GameObject UIInvManagerObject;
     UIInventoryManager inventoryUI;
-
-    void Start(){
+    private void Awake()
+    {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

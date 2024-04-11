@@ -27,7 +27,9 @@ public class PlayerManager : MonoBehaviour
     private PlayerController playerController;
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero;
     private Quaternion lastRotation = Quaternion.Euler(0,0,0);
-
+    [SerializeField] private GameObject playerUIObject;
+    //private PlayerUIManager playerUIManager;
+    private Cybernetics cybernetics;
     // -------------------------------------------------------------------
     // Handle events
 
@@ -53,6 +55,14 @@ public class PlayerManager : MonoBehaviour
         SceneChange(SceneManager.GetSceneByName("AsteroidScene"));
     }
 
+    public void OnTechUpEvent(packet.TechUpPacket packet){
+        if(packet.building == BuildingComponents.BuildingType.Cybernetics){
+            cybernetics.UpdateTechTier();
+        }
+    }
+    public void SetCyberneticsBuilt(){
+        cybernetics.SetBuilt();
+    }
     // -------------------------------------------------------------------
     // API
 
@@ -71,6 +81,14 @@ public class PlayerManager : MonoBehaviour
         return playerPosition;
     }
 
+    public bool HasCyberneticCharge(){
+        if(cybernetics.IsBuilt()){
+            return cybernetics.HasCharge();
+        }else{
+            return false;
+        }
+    }
+
     // -------------------------------------------------------------------
     // Class
 
@@ -85,6 +103,10 @@ public class PlayerManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        //passes in the monobehaviour so the coroutine has an in game object to clamp to
+        cybernetics = new(this);
+        //Debug.Log("cybernetics: " + cybernetics.IsBuilt());
+        //playerUIManager = playerUIObject.GetComponent<PlayerUIManager>();
     }
 
     void OnEnable()

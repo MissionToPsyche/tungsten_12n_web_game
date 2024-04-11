@@ -130,7 +130,7 @@
         "ID": "Cybernetics",
         "Type": "Suit",
         "ItemTitle": "Suit Cybernetics",
-        "ItemDescription": "Gain a charge every 5 minutes that can instantly repair a module",
+        "ItemDescription": "Gain a charge every 7 minutes that can charge your Robot Friends :)",
         "Costs": {
           "Iron": 75,
           "Nickel": 75,
@@ -144,7 +144,7 @@
         "Image": "",
         "TechUpTexts": [
           "Gain a charge every 5 minutes, can hold 3 at a time",
-          "Can now use a charge to fully charge RobotBuddy",
+          "Can now use a charge to instantly repair a module",
           "Hold up to 6 charges with a 3.5 minute charge time",
           "Peak Technology Reached!!!"
         ]
