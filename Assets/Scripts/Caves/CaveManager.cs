@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class CaveManager : MonoBehaviour
 {
-    public static CaveManager instance { get; private set; }
+    public static CaveManager Instance { get; private set; }
 
     // [Header("Events")]
 
@@ -41,13 +41,13 @@ public class CaveManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
