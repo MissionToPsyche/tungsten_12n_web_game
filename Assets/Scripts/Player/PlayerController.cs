@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
 
     [Header("Events")]
-    [SerializeField] public StringEvent asteroidReached;
+    [SerializeField] public StringEvent currentAsteroidChanged;
     [SerializeField] public BoolEvent playerGroundedUpdated;
     [SerializeField] public Vector2Event playerPositionUpdated;
     [SerializeField] public BoolEvent playerInteract;
@@ -193,9 +193,9 @@ public class PlayerController : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        if (asteroidReached == null)
+        if (currentAsteroidChanged == null)
         {
-            asteroidReached = ScriptableObject.CreateInstance<StringEvent>();
+            currentAsteroidChanged = ScriptableObject.CreateInstance<StringEvent>();
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -420,7 +420,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Asteroid"))
         {
             string asteroidName = collision.gameObject.name;
-            asteroidReached.Raise(asteroidName);
+            currentAsteroidChanged.Raise(asteroidName);
             playerPositionUpdated.Raise(transform.position);
         }
     }

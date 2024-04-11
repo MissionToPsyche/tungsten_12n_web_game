@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class SatelliteManager : MonoBehaviour
     public GameObject satellitePrefab;
 
     [Header("ReadOnly")]
-    [SerializeField, ReadOnly] private string[] activeSatellites;
+    [SerializeField, ReadOnly] private List<string> activeSatellites = new();
     [SerializeField, ReadOnly] private int numberOfSatellites = 0;
     [SerializeField, ReadOnly] private GameObject currentSatelliteObject;
 
@@ -57,15 +58,31 @@ public class SatelliteManager : MonoBehaviour
             }
 
             Vector2 closestEdgePoint = FindClosestEdgePoint(gravityFieldEdgePoints.edgePoints, PlayerManager.Instance.GetPlayerPosition());
-            Vector3 spawnPosition = new Vector3(closestEdgePoint.x, closestEdgePoint.y, 0); // Assuming satellites are on the xy-plane
+            Vector3 spawnPosition = new Vector3(closestEdgePoint.x, closestEdgePoint.y, 0);
+
+            if (satellitePrefab == null)
+            {
+                Debug.LogError("[SatelliteManager]: The satellite prefab is not assigned.");
+                return;
+            }
+
+            Debug.Log($"[SatelliteManager]: Instantiating satellite at {spawnPosition} with prefab {satellitePrefab.name}");
             GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, Quaternion.identity, currentAsteroid.transform);
+            if (spawnedSatellite == null)
+            {
+                Debug.LogError("[SatelliteManager]: Failed to instantiate the satellite prefab.");
+                return;
+            }
+            Debug.Log("[SatelliteManager]: Satellite instantiated successfully.");
 
             // Update the satellite construction status
             satelliteData.isBuilt = true;  // Mark as built
 
             // Setting a custom name for the satellite
             spawnedSatellite.name = satelliteData.satelliteName;
-            activeSatellites.Append(spawnedSatellite.name);
+            activeSatellites.Add(spawnedSatellite.name);
+
+            Debug.Log("trying to build satellite: " + spawnedSatellite.name + " on: " + currentAsteroid.name);
 
             // Adjust the scale of the satellite to not inherit the asteroid's scale
             if (currentAsteroid.transform.lossyScale != Vector3.one) // Check if the asteroid's scale is not the default scale
@@ -79,6 +96,7 @@ public class SatelliteManager : MonoBehaviour
             }
 
             numberOfSatellites++;
+            currentSatelliteObject = spawnedSatellite;
             Debug.Log("[SatelliteManager]: Spawned satellite at " + spawnPosition);
         }
         else

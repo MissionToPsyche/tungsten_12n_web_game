@@ -24,7 +24,7 @@ public class AsteroidManager : MonoBehaviour
     // -------------------------------------------------------------------
     // Handle events
 
-    public void OnAsteroidReached(string asteroidName)
+    public void OnCurrentAsteroidChanged(string asteroidName)
     {
         // Find the asteroid GameObject
         currentAsteroid = GameObject.Find(asteroidName);

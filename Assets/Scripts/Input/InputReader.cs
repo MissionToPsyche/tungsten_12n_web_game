@@ -126,10 +126,12 @@ public class InputReader :
             {
                 case Control.State.Player:
                     GameObject currentAsteroid = AsteroidManager.Instance.GetCurrentAsteroid();
+                    // Debug.Log("[InputReader]: Current Asteroid" + currentAsteroid.name);
                     if (currentAsteroid != null)
                     {
                         // Check if the current asteroid has a built satellite
                         SatelliteData satelliteData = AsteroidManager.Instance.satelliteMap[currentAsteroid.name];
+                        // Debug.Log("[InputReader]: Current Satellite" + satelliteData.satelliteName);
                         if (satelliteData != null && satelliteData.isBuilt)
                         {
                             nextState = Control.State.Satellite;
