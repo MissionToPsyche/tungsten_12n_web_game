@@ -17,12 +17,49 @@ public class CameraManager : MonoBehaviour
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private GameObject currentObject;
     [SerializeField, ReadOnly] private CinemachineVirtualCamera currentCamera;
-    [SerializeField, ReadOnly] private float cameraRotationSpeed = 2.5f;
+    [SerializeField, ReadOnly] private bool rotateCameraWithPlayer = true;
 
     // Not for display
+    private float cameraRotationSpeed = 2.5f;
+    private float minZoom = 10f; // Minimum zoom level
+    private float maxZoom = 30f; // Maximum zoom level
+    private float zoomSpeed = 2f; // Speed of zoom transition
+    private float zoomIncrement = 1f; // Amount to zoom on each scroll
+    private float targetZoom; // Target zoom level
+    private Quaternion targetRotation;
 
     // -------------------------------------------------------------------
     // Handle events
+
+    public void OnRotateCameraWithPlayer()
+    {
+        rotateCameraWithPlayer = !rotateCameraWithPlayer;
+
+        // Set the target rotation based on the new state
+        if (rotateCameraWithPlayer)
+        {
+            // Target the player's rotation
+            if (currentObject != null)
+            {
+                targetRotation = currentObject.transform.rotation;
+            }
+        }
+        else
+        {
+            // Target the upright rotation (world up)
+            targetRotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
+    public void OnZoomIn()
+    {
+        Zoom(-zoomIncrement);
+    }
+
+    public void OnZoomOut()
+    {
+        Zoom(+zoomIncrement);
+    }
 
     public void OnControlStateUpdated(Control.State controlState)
     {
@@ -44,7 +81,7 @@ public class CameraManager : MonoBehaviour
             currentCamera = satelliteCamera;
             currentObject = SatelliteManager.Instance.GetCurrentSatelliteObject();
         }
-        else if(controlState == Control.State.RobotBuddyAlpha)
+        else if (controlState == Control.State.RobotBuddyAlpha)
         {
             SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyBetaCamera);
 
@@ -52,7 +89,7 @@ public class CameraManager : MonoBehaviour
             currentCamera = robotBuddyAlphaCamera;
             currentObject = RobotManager.Instance.GetRobotAlphaObject();
         }
-        else if(controlState == Control.State.RobotBuddyBeta)
+        else if (controlState == Control.State.RobotBuddyBeta)
         {
             SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyAlphaCamera);
 
@@ -79,23 +116,54 @@ public class CameraManager : MonoBehaviour
 
         currentCamera = playerCamera;
         currentObject = PlayerManager.Instance.GetPlayerObject();
+
+        SetInitialZoomLevel(10f);
     }
 
-    // Physics calculations, ridigbody movement, collision detection
+    void Update()
+    {
+        playerCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(playerCamera.m_Lens.OrthographicSize, targetZoom, ref zoomSpeed, 0.1f);
+    }
+
+    void Zoom(float increment)
+    {
+
+        playerCamera.m_Lens.OrthographicSize = Mathf.Clamp(playerCamera.m_Lens.OrthographicSize + increment, minZoom, maxZoom);
+        targetZoom = Mathf.Clamp(playerCamera.m_Lens.OrthographicSize + increment, minZoom, maxZoom);
+    }
+
+    public void SetInitialZoomLevel(float initialZoom)
+    {
+        if (initialZoom >= minZoom && initialZoom <= maxZoom)
+        {
+            if (playerCamera != null)
+            {
+                playerCamera.m_Lens.OrthographicSize = initialZoom;
+                targetZoom = initialZoom;
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (currentCamera != null && currentObject != null)
+        if (currentCamera != null)
         {
+            if (rotateCameraWithPlayer && currentObject != null)
+            {
+                // Slerp to the player's rotation
+                targetRotation = currentObject.transform.rotation;
+            }
+
+            // Always Slerp towards the target rotation whether it's the player's or upright
             Quaternion currentRotation = currentCamera.transform.rotation;
-            Quaternion targetRotation = currentObject.transform.rotation;
             Quaternion smoothRotation = Quaternion.Slerp(currentRotation, targetRotation, cameraRotationSpeed * Time.deltaTime);
 
-            // Apply the smooth rotation to the camera
             currentCamera.transform.rotation = smoothRotation;
         }
     }
 
-    private void SetCamerasLowPrio(CinemachineVirtualCamera cam1, CinemachineVirtualCamera cam2, CinemachineVirtualCamera cam3){
+    private void SetCamerasLowPrio(CinemachineVirtualCamera cam1, CinemachineVirtualCamera cam2, CinemachineVirtualCamera cam3)
+    {
         cam1.Priority = 0;
         cam2.Priority = 0;
         cam3.Priority = 0;

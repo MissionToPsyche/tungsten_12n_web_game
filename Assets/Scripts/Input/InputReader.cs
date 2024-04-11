@@ -89,6 +89,7 @@ public class InputReader :
     [SerializeField] private ControlStateEvent ControlStateUpdated;
     [SerializeField] private VoidEvent ZoomIn;
     [SerializeField] private VoidEvent ZoomOut;
+    [SerializeField] private VoidEvent RotateCameraWithPlayer;
 
     [Header("Movement Events")]
     [SerializeField] private Vector2Event PlayerMove;
@@ -190,17 +191,40 @@ public class InputReader :
 
     public void OnZoomIn(InputAction.CallbackContext context)
     {
+        if (currentControlState != Control.State.Player)
+        {
+            return;
+        }
+
         if (context.phase == InputActionPhase.Performed)
         {
-            // ZoomIn.Raise();
+            ZoomIn.Raise();
         }
     }
 
     public void OnZoomOut(InputAction.CallbackContext context)
     {
+        if (currentControlState != Control.State.Player)
+        {
+            return;
+        }
+
         if (context.phase == InputActionPhase.Performed)
         {
-            // ZoomOut.Raise();
+            ZoomOut.Raise();
+        }
+    }
+
+    public void OnRotateCameraWithPlayer(InputAction.CallbackContext context)
+    {
+        if (currentControlState == Control.State.Satellite)
+        {
+            return;
+        }
+
+        if (context.phase == InputActionPhase.Performed)
+        {
+            RotateCameraWithPlayer.Raise();
         }
     }
 

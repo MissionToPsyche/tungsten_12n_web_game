@@ -12,7 +12,7 @@ public class GravityBody2D : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField, ReadOnly] private float distanceToGround = 0;
     [SerializeField] private LayerMask gravityFieldLayer;
-    private float maxGravityDistance = 10f;
+    private float maxGravityDistance = 100f;
     private float minRotationSpeed = 1f;
     private float maxRotationSpeed = 5f;
     [SerializeField, ReadOnly] private float currentRotationSpeed = 0f;
