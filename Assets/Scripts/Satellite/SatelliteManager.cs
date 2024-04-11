@@ -50,7 +50,8 @@ public class SatelliteManager : MonoBehaviour
                 return; // Stop the method if the satellite has already been built
             }
 
-            GravityFieldEdgePoints gravityFieldEdgePoints = currentAsteroid.GetComponent<GravityFieldEdgePoints>();
+            // Attempt to find the GravityField child within the current asteroid
+            GravityFieldEdgePoints gravityFieldEdgePoints = currentAsteroid.GetComponentInChildren<GravityFieldEdgePoints>();
             if (gravityFieldEdgePoints == null || gravityFieldEdgePoints.edgePoints == null)
             {
                 Debug.LogError("[SatelliteManager]: No GravityFieldEdge component found or edgePoints are not initialized.");
@@ -66,7 +67,6 @@ public class SatelliteManager : MonoBehaviour
                 return;
             }
 
-            Debug.Log($"[SatelliteManager]: Instantiating satellite at {spawnPosition} with prefab {satellitePrefab.name}");
             GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, Quaternion.identity, currentAsteroid.transform);
             if (spawnedSatellite == null)
             {
@@ -82,7 +82,6 @@ public class SatelliteManager : MonoBehaviour
             spawnedSatellite.name = satelliteData.satelliteName;
             activeSatellites.Add(spawnedSatellite.name);
 
-            Debug.Log("trying to build satellite: " + spawnedSatellite.name + " on: " + currentAsteroid.name);
 
             // Adjust the scale of the satellite to not inherit the asteroid's scale
             if (currentAsteroid.transform.lossyScale != Vector3.one) // Check if the asteroid's scale is not the default scale

@@ -415,20 +415,17 @@ public class PlayerController : MonoBehaviour
         return this.jumpForce;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collison)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Asteroid"))
+        if (collison.gameObject.layer == LayerMask.NameToLayer("GravityField"))
         {
-            string asteroidName = collision.gameObject.name;
+            string asteroidName = collison.transform.parent.name;  // Assuming the parent of the gravity field is the asteroid
             currentAsteroidChanged.Raise(asteroidName);
             playerPositionUpdated.Raise(transform.position);
+            Debug.Log("Entered gravity field of: " + asteroidName);
         }
-    }
 
-    // when in contact with objects
-    private void OnTriggerEnter2D(Collider2D Collision)
-    {
-        switch (Collision.gameObject.tag)
+        switch (collison.gameObject.tag)
         {
             case "Ladder":
                 isLadder = true;
@@ -441,10 +438,7 @@ public class PlayerController : MonoBehaviour
             default:
             break;
         }
-        // if (Collision.gameObject.tag == "Ladder")
-        // {
-        //     isLadder = true;
-        // }
+
     }
 
     // when not in contact with objects

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -8614047798540860391}
   - component: {fileID: -3783003881841581331}
   m_Layer: 16
-  m_Name: SatellitePrefab
+  m_Name: Satellite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

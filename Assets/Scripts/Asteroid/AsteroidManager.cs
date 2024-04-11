@@ -10,7 +10,8 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField] public StringEvent currentSatelliteChanged;
 
     [Header("Mutable")]
-    [SerializeField] public GameObject prefab;
+    [SerializeField] public GameObject asteroidPrefab;
+    [SerializeField] public GameObject gravityFieldPrefab;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private GameObject currentAsteroid;
@@ -92,8 +93,21 @@ public class AsteroidManager : MonoBehaviour
             Asteroid asteroid = child.GetComponent<Asteroid>();
             if (asteroid != null && child != null)
             {
-                string satelliteTag = "Satellite" + "_" + asteroid.positionTag;
+                // Add satellite data to the map
+                string satelliteTag = "Satellite_" + asteroid.positionTag;
                 satelliteMap.Add(child.name, new SatelliteData(satelliteTag, false));
+
+                // Instantiate the GravityField prefab as a child of the asteroid
+                GameObject gravityField = Instantiate(gravityFieldPrefab, child.position, Quaternion.identity, child);
+                gravityField.name = "GravityField";
+
+                // After instantiation, initialize the edge points
+                GravityFieldEdgePoints edgePointsScript = gravityField.GetComponent<GravityFieldEdgePoints>();
+                if (edgePointsScript != null)
+                {
+                    edgePointsScript.InitializeEdgePoints();
+                }
+
                 FillAsteroidList(asteroid, child);
             }
         }
@@ -168,7 +182,7 @@ public class AsteroidManager : MonoBehaviour
                 asteroidClass = AsteroidClass.F_Class;
                 break;
         }
-        asteroid.InstantiateAsteroid(sizeToSend * 2.5f, (int)sizeToSend, asteroidClass, prefab);
+        asteroid.InstantiateAsteroid(sizeToSend * 2.5f, (int)sizeToSend, asteroidClass, asteroidPrefab);
         asteroidsList.Add(asteroid);
     }
 
