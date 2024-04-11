@@ -4,61 +4,25 @@ using UnityEngine;
 public class GravityFieldEdgePoints : MonoBehaviour
 {
     private CircleCollider2D gravityFieldCollider;
-    public Vector2Event gravityFieldEdgeUpdated;
     public Vector2[] edgePoints;  // Array to store edge points
     private int numberOfEdgePoints = 64;  // Number of points around the edge (adjustable for granularity)
     private bool edgePointsCalculated = false;  // Flag to ensure edge points are calculated only once
 
-    private void Awake()
+    public void InitializeEdgePoints()
     {
-        if (gravityFieldEdgeUpdated == null)
-        {
-            gravityFieldEdgeUpdated = ScriptableObject.CreateInstance<Vector2Event>();
-        }
-    }
-
-    private void Start()
-    {
-        Transform gravityField = this.transform.Find("GravityField");
-        if (gravityField == null)
-        {
-            Debug.LogError("GravityField object not found as a child of: " + this.gameObject.name);
-            return;
-        }
-
-        if (!gravityField.TryGetComponent(out gravityFieldCollider))
-        {
-            Debug.LogError("Gravity Field Collider not found on GravityField object");
-            return;
-        }
-
         if (!edgePointsCalculated)
         {
-            // CalculateGravityFieldEdge();
+            gravityFieldCollider = GetComponent<CircleCollider2D>(); // Directly get the component on this GameObject
+            if (gravityFieldCollider == null)
+            {
+                Debug.LogError("Gravity Field Collider not found on: " + this.gameObject.name);
+                return;
+            }
+
             GenerateEdgePoints();
-            edgePointsCalculated = true;  // Set the flag so this only happens once
-            // Debug.Log("Edge points calculated for the first time.");
+            edgePointsCalculated = true;
         }
     }
-
-    // private void CalculateGravityFieldEdge()
-    // {
-    //     Debug.Log("CalculateGravityFieldEdge called.");
-    //     if (this.gameObject != null && gravityFieldCollider != null)
-    //     {
-    //         Vector2 fieldCenter = gravityFieldCollider.transform.position;
-    //         Vector2 playerPosition = GameManager.instance.GetPlayerPosition();
-    //         Vector2 direction = (playerPosition - fieldCenter).normalized;
-    //         float fieldRadius = gravityFieldCollider.radius * Mathf.Max(gravityFieldCollider.transform.lossyScale.x, gravityFieldCollider.transform.lossyScale.y);
-    //         Vector2 fieldEdgePoint = fieldCenter + direction * fieldRadius;
-
-    //         gravityFieldEdgeUpdated.Raise(fieldEdgePoint);
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError("Asteroid or Player not set properly for calculation.");
-    //     }
-    // }
 
     private void GenerateEdgePoints()
     {

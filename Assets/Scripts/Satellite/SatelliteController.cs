@@ -5,7 +5,7 @@ using System;
 
 public class SatelliteController : MonoBehaviour
 {
-    public static SatelliteController instance { get; private set; }
+    public static SatelliteController Instance { get; private set; }
 
     [Header("Events")]
 
@@ -65,13 +65,13 @@ public class SatelliteController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -124,7 +124,7 @@ public class SatelliteController : MonoBehaviour
         // Move the satellite's rigidbody
         satelliteBody.position += movement;
 
-        currentAsteroid = AsteroidManager.instance.GetCurrentAsteroid();
+        currentAsteroid = AsteroidManager.Instance.GetCurrentAsteroid();
 
         Debug.Log("[SatelliteController]: currentAsteroid: " + currentAsteroid.name);
 

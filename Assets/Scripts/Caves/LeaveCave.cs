@@ -22,13 +22,13 @@ public class LeaveCave : MonoBehaviour
     {
         if (isInRange && Input.GetKeyDown(interactKey))
         {
-            CaveManager.instance.LoadAsteroidScene(SceneManager.GetActiveScene().name);
+            CaveManager.Instance.LoadAsteroidScene(SceneManager.GetActiveScene().name);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
+        if (collision.gameObject == PlayerManager.Instance.GetPlayerObject())
         {
             isInRange = true;
             reminderText.text = "Leave Cave";
@@ -37,7 +37,7 @@ public class LeaveCave : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
+        if (collision.gameObject == PlayerManager.Instance.GetPlayerObject())
         {
             isInRange = false;
             reminderText.text = "";
