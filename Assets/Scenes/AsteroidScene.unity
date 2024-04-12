@@ -3303,6 +3303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!114 &261024770 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1423805339868086579, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -5472,6 +5473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!1 &394382395
 GameObject:
   m_ObjectHideFlags: 0
@@ -10189,6 +10191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!224 &732791603 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7775075040901506777, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -10652,11 +10655,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815371158}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 080483728291125449cc8cf57682dd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
   currentControlState: 0
 --- !u!4 &815371160
 Transform:
@@ -11616,6 +11620,7 @@ MonoBehaviour:
   playerPositionUpdated: {fileID: 11400000, guid: a83a9c4ae9f067e468b68edf0bce127f, type: 2}
   playerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
   playerLaunchPadInteract: {fileID: 11400000, guid: e13e01f59d8ec4281ade5e2d7655c082, type: 2}
+  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
   characterDatabase: {fileID: 11400000, guid: 0ffa1d2925c3c7d4fa18116d97de770a, type: 2}
   animator: {fileID: 911276413}
   spriteRenderer: {fileID: 911276411}
@@ -12300,6 +12305,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnResourceEvent: {fileID: 11400000, guid: da80eff2aae13448e91fe17586bcdab1, type: 2}
+--- !u!1 &1005749788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1005749789}
+  - component: {fileID: 1005749791}
+  - component: {fileID: 1005749790}
+  m_Layer: 0
+  m_Name: SoundEffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1005749789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005749788}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1005749790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005749788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c97cd361bbc42b49a77d4c9b8bc05b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1005749791}
+        m_TargetAssemblyTypeName: SoundEffectManager, Assembly-CSharp
+        m_MethodName: OnSoundEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1005749791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005749788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206a6ebd97b7c19469c0a75727eed3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1009827812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15161,6 +15239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!1 &1382314285
 GameObject:
   m_ObjectHideFlags: 0
@@ -16620,6 +16699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!114 &1388968537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7424626220950589526, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -16927,6 +17007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
 --- !u!19719996 &1424476090
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -19661,6 +19742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!1 &1432494086
 GameObject:
   m_ObjectHideFlags: 0
@@ -21399,6 +21481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!1 &1525405811
 GameObject:
   m_ObjectHideFlags: 0
@@ -23276,6 +23359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!1 &1848734167
 GameObject:
   m_ObjectHideFlags: 0
@@ -27064,6 +27148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
+  soundEffectEvent: {fileID: 0}
 --- !u!1001 &1974387627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28425,6 +28510,7 @@ SceneRoots:
   - {fileID: 1399560954}
   - {fileID: 2073616018}
   - {fileID: 1072284254}
+  - {fileID: 1005749789}
   - {fileID: 815371160}
   - {fileID: 1548278935}
   - {fileID: 227657333}

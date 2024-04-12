@@ -150,7 +150,7 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B9EF3D21-DC2E-5682-5847-E20C99A11BA8}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{6B60E18B-543C-6763-51E1-CB6D0B43A166}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -189,7 +189,7 @@
 				<File Id="309141344" Language="SFX" Streaming="true" Location="Loose">
 					<ShortName>player_walk.wav</ShortName>
 					<Path>Media/309141344.wem</Path>
-					<CachePath>SFX/player_walk_D85EDE1B.wem</CachePath>
+					<CachePath>SFX/player_walk_D4AA8008.wem</CachePath>
 				</File>
 				<File Id="434168179" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>satellite_lost.wav</ShortName>
@@ -346,7 +346,7 @@
 						<MediaRef Id="620298758"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="2147561130" Name="player_walk" DurationType="OneShot" DurationMin="0.8240833" DurationMax="0.8240833">
+				<Event Id="2147561130" Name="player_walk" DurationType="OneShot" DurationMin="0.41204166" DurationMax="0.41204166">
 					<MediaRefs>
 						<MediaRef Id="309141344"/>
 					</MediaRefs>
@@ -394,5 +394,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{DA5F9EEF-C8CB-673E-9944-DCF8707C169C}</FileHash>
+	<FileHash>{8A0596B9-F1F7-0228-6051-8F226FCA3DD0}</FileHash>
 </SoundBanksInfo>

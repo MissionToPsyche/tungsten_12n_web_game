@@ -22,6 +22,8 @@ public class InputReader :
 
     private Dictionary<Control.State, InputActionMap> stateToActionMap;
 
+    [SerializeField] public SoundEffectEvent soundEffectEvent;
+
     private void OnEnable()
     {
         if (inputSystem == null)
