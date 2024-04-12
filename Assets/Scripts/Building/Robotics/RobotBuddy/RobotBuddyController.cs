@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+//!!! IMPLEMENTATION OF TECHTIER, lights and to charge while outside
 public class RobotBuddyController : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
@@ -47,7 +48,10 @@ public class RobotBuddyController : MonoBehaviour
         while(isActive)
         {
             //reduces 1 tick per 1 second
-            adjustRobotUI.Raise(robotBuddy.ReduceCharge(1.0f));
+            adjustRobotUI.Raise(robotBuddy.ReduceCharge(2.0f));
+            if(robotBuddy.UpdateTechTier() == 3){
+                adjustRobotUI.Raise(robotBuddy.GainCharge(0.5f));
+            }
             yield return new WaitForSeconds(1.0f);
         }
     }
@@ -74,10 +78,12 @@ public class RobotBuddyController : MonoBehaviour
     {
         if(currentControlState == Control.State.RobotBuddyAlpha){
             isActive = this.gameObject.name ==  "RobotBuddyAlpha";
-            StartCoroutine(DecreaseCharge());
+            if(robotBuddy.UpdateTechTier() != 4)
+                StartCoroutine(DecreaseCharge());
         }else if(currentControlState == Control.State.RobotBuddyBeta){
             isActive = this.gameObject.name ==  "RobotBuddyBeta";
-            StartCoroutine(DecreaseCharge());
+            if(robotBuddy.UpdateTechTier() != 4)
+                StartCoroutine(DecreaseCharge());
         }
     }
     public void OnRobotBuddyInteract(bool interacting)
@@ -118,7 +124,7 @@ public class RobotBuddyController : MonoBehaviour
     {
         if (isGrounded && currentState == RobotState.Interacting)
         {
-            adjustRobotUI.Raise(robotBuddy.ReduceCharge(1.0f));
+            adjustRobotUI.Raise(robotBuddy.ReduceCharge(5.0f));
             robotBuddyInteract.Raise(true);
         }
     }

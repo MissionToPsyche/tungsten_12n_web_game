@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+
+//!!! IMPLEMENTATION OF TECHTIER, being able to skip mini games
 public class Cybernetics : BaseBuilding
 {
     private MonoBehaviour monoBehaviour;
