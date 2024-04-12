@@ -12,6 +12,10 @@ public class Collectable : MonoBehaviour
     private int itemValue; 
     private string collectableItem;
 
+    private bool playerInteracted;
+
+    public VoidEvent OnCaveMiniGameEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,11 +72,12 @@ public class Collectable : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void OnPlayerInteract()
     {
         if (isInRange && Input.GetKeyDown(interactKey))
         {
-            StartCoroutine(reminderTextCoroutine());
+            playerInteracted = true;
+            OnCaveMiniGameEvent.Raise();
         }
     }
 
@@ -122,6 +127,13 @@ public class Collectable : MonoBehaviour
     // update the UI
     void OnPlayerCollect()
     {
+        
+    }
+
+    public void OnCaveMiniGameWin(){
+       if(playerInteracted){
+         StartCoroutine(reminderTextCoroutine());
+       } 
         
     }
 }
