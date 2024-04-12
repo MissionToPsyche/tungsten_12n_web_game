@@ -16,6 +16,8 @@ public class MiniGameManager : MonoBehaviour
 
     public VoidEvent isFixedEvent;
 
+    public VoidEvent isCollected;
+
     // Method to generate and place a prefab inside another object
     public void GenerateAndPlacePrefab()
     {
@@ -79,5 +81,26 @@ public class MiniGameManager : MonoBehaviour
 
         // Switch camera to mini game camera
         cameraSwitcher.SwitchToMiniGameCamera();
+    }
+
+    public void DestroyInstantiatedCaveMiniGamePrefab()
+    {
+        if (instantiatedPrefab != null)
+        {
+            // Switch back to the player camera
+            isCollected.Raise();
+            
+            cameraSwitcher.SwitchBackFromMiniGameCamera();
+
+            // Destroy the instantiated prefab
+            Destroy(instantiatedPrefab);
+
+            // Set the reference to null since the prefab is destroyed
+            instantiatedPrefab = null;
+        }
+        else
+        {
+            Debug.LogWarning("No instantiated prefab to destroy.");
+        }
     }
 }

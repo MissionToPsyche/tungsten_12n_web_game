@@ -523,7 +523,7 @@ MonoBehaviour:
   - {fileID: 822251523005628712}
   - {fileID: 812150792246555746}
   - {fileID: 8776552450099777583}
-  WinConditionEvent: {fileID: 11400000, guid: 0853274632d8ce44188ba9a31f1055ca, type: 2}
+  WinConditionEvent: {fileID: 11400000, guid: b7cc5ccbbb2b4ae429cf76aaf1c226ba, type: 2}
 --- !u!1 &8776552450099777583
 GameObject:
   m_ObjectHideFlags: 0
