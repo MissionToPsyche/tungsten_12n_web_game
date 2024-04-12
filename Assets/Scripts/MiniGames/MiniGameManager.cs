@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class MiniGameManager : MonoBehaviour
 {
     public List<GameObject> prefabsToChooseFrom;
+
+    public GameObject caveMiniGame;
     public GameObject parentObject; // Parent GameObject to contain the instantiated prefab
 
     public Vector3 desiredScale = new Vector3(2f, 2f, 2f);
@@ -63,5 +65,19 @@ public class MiniGameManager : MonoBehaviour
         {
             Debug.LogWarning("No instantiated prefab to destroy.");
         }
+    }
+
+    public void GenerateAndPlaceCaveMiniGamePrefab(){
+         // Randomly choose a prefab from the list
+        GameObject prefabToInstantiate = caveMiniGame;
+        
+        // Instantiate the chosen prefab inside the parent GameObject
+        instantiatedPrefab = Instantiate(prefabToInstantiate, parentObject.transform);
+
+        // Set the scale of the instantiated prefab
+        instantiatedPrefab.transform.localScale = desiredScale;
+
+        // Switch camera to mini game camera
+        cameraSwitcher.SwitchToMiniGameCamera();
     }
 }

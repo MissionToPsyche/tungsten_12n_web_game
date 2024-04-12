@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1660be0f702de7c43b8ba92ee98ea99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCaveMiniGameEvent: {fileID: 11400000, guid: 003f8ce28eea1834ca16178705a6d011, type: 2}
 --- !u!1 &394626405
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1660be0f702de7c43b8ba92ee98ea99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCaveMiniGameEvent: {fileID: 11400000, guid: 003f8ce28eea1834ca16178705a6d011, type: 2}
 --- !u!212 &560454912
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1123,6 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1660be0f702de7c43b8ba92ee98ea99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCaveMiniGameEvent: {fileID: 11400000, guid: 003f8ce28eea1834ca16178705a6d011, type: 2}
 --- !u!212 &913607064
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1319,6 +1322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1660be0f702de7c43b8ba92ee98ea99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCaveMiniGameEvent: {fileID: 11400000, guid: 003f8ce28eea1834ca16178705a6d011, type: 2}
 --- !u!1 &1194135250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,6 +1895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1660be0f702de7c43b8ba92ee98ea99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCaveMiniGameEvent: {fileID: 11400000, guid: 003f8ce28eea1834ca16178705a6d011, type: 2}
 --- !u!212 &1572542300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2079,6 +2084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1660be0f702de7c43b8ba92ee98ea99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCaveMiniGameEvent: {fileID: 11400000, guid: 003f8ce28eea1834ca16178705a6d011, type: 2}
 --- !u!212 &1614870018
 SpriteRenderer:
   m_ObjectHideFlags: 0
