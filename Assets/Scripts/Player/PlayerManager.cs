@@ -93,7 +93,7 @@ public class PlayerManager : MonoBehaviour
             case "AsteroidScene":
                 if (this.lastCoordinates != Vector3.zero && this.lastRotation != Quaternion.Euler(0,0,0))
                 {
-                    Debug.Log(1);
+                    //Debug.Log(1);
                     this.playerObject.transform.position = this.lastCoordinates;
                     this.playerObject.transform.rotation = this.lastRotation;
                     this.playerController.UpdateJumpForce(3.0f);
@@ -101,7 +101,7 @@ public class PlayerManager : MonoBehaviour
                 else
                 {
                     // put the player to the default spawn position in the scene
-                    Debug.Log(2);
+                    //Debug.Log(2);
                     this.playerObject.transform.position = MainSpawn.transform.position;
                     this.playerObject.transform.rotation = Quaternion.Euler(0,0,0);
                     this.playerController.UpdateJumpForce(3.0f);
@@ -112,7 +112,7 @@ public class PlayerManager : MonoBehaviour
                 // put the player to the default spawn position in the scene
                 if (SpawnLocation != null)
                 {
-                    Debug.Log(3);
+                    //Debug.Log(3);
                     this.playerObject.transform.position = SpawnLocation.position;
                     this.playerObject.transform.rotation = Quaternion.Euler(0,0,0);
                     this.playerController.UpdateJumpForce(0.5f);
