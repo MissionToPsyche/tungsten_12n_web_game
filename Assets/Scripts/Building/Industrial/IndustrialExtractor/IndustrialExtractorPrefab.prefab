@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1167572162938859552}
   - component: {fileID: 1422273109692160702}
   - component: {fileID: 7185643901240020566}
+  - component: {fileID: 2245592374331507889}
   m_Layer: 9
   m_Name: IndustrialExtractorPrefab
   m_TagString: Untagged
@@ -120,7 +121,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -179,6 +180,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  distanceToGround: 0
+  gravityFieldLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currentRotationSpeed: 0
 --- !u!114 &6473744850528406571
 MonoBehaviour:
@@ -258,6 +263,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
         m_MethodName: OnQueryTechResponse
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2245592374331507889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513086824239921780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a0ba10e730b4b47964098f09b8f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1167572162938859552}
+        m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
+        m_MethodName: OnPlayerInteract
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
