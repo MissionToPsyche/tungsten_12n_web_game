@@ -15,33 +15,33 @@ EditorBuildSettings:
     path: Assets/Scenes/AsteroidScene.unity
     guid: ebf1ab7c3b679a54396d68b3f4eaea7d
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 1.unity
+    path: Assets/Scenes/CaveScenes/Cave_1.unity
     guid: 40c97177fd07f9644adcbf669ac7a274
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 2.unity
+    path: Assets/Scenes/CaveScenes/Cave_2.unity
     guid: ca6b6c9926c4fc945ad0a603a5750ab8
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 3.unity
+    path: Assets/Scenes/CaveScenes/Cave_3.unity
     guid: ab2ecf138ece4b342a1046b33a58f30a
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 4.unity
+    path: Assets/Scenes/CaveScenes/Cave_4.unity
     guid: c565d93c60fce4d4bbe5f4a4341134d2
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 5.unity
+    path: Assets/Scenes/CaveScenes/Cave_5.unity
     guid: 4c8e30778503f2846932894732a507af
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 6.unity
+    path: Assets/Scenes/CaveScenes/Cave_6.unity
     guid: 3c76271a305ef9f4d97ad80d27e9972a
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 7.unity
+    path: Assets/Scenes/CaveScenes/Cave_7.unity
     guid: 48c69c688aea07541b40f9a05d3c874e
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 8.unity
+    path: Assets/Scenes/CaveScenes/Cave_8.unity
     guid: f57a7624e73c7a04a898c6e485fb41f5
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 9.unity
+    path: Assets/Scenes/CaveScenes/Cave_9.unity
     guid: 286ccf9aa8bb3a449afee6af4650cd18
   - enabled: 1
-    path: Assets/Scenes/CaveScenes/Cave 10.unity
+    path: Assets/Scenes/CaveScenes/Cave_10.unity
     guid: 21a843c9a53ef174cab2622c6b67d7eb
   m_configObjects: {}

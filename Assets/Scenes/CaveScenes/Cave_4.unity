@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.382
@@ -255,10 +259,9 @@ GameObject:
   m_Component:
   - component: {fileID: 136878900}
   - component: {fileID: 136878899}
-  - component: {fileID: 136878901}
   m_Layer: 0
-  m_Name: Grid
-  m_TagString: GeologicalPhenomena
+  m_Name: Cave_4_Grid
+  m_TagString: MainGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 136878898}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1000, y: 100, z: 0}
   m_LocalScale: {x: 1.75, y: 1.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -299,18 +302,6 @@ Transform:
   - {fileID: 1077093393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &136878901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136878898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6043a3b2613814ea9ac933abaf50e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &150983678
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.44
@@ -656,6 +651,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.91
@@ -778,6 +777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.4
@@ -17263,8 +17266,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.17975003, y: 0.110550046, z: 0}
-    m_Extent: {x: 1.18385, y: 1.11315, z: 0}
+    m_Center: {x: 0.18309999, y: 0.11225, z: 0}
+    m_Extent: {x: 1.1903, y: 1.11185, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -17332,6 +17335,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -17418,6 +17425,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.036
@@ -21423,8 +21434,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.004999995, y: 0.0015500188, z: 0}
-    m_Extent: {x: 1.0015, y: 1.00775, z: 0}
+    m_Center: {x: -0.000050008297, y: 0.00059998035, z: 0}
+    m_Extent: {x: 1.0076499, y: 1.0042, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -21600,6 +21611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6330b4aad0278a4187cf817438bc8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reminderText: {fileID: 1247721369}
 --- !u!61 &1130607289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21697,6 +21709,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -21782,6 +21798,7 @@ GameObject:
   - component: {fileID: 1247721371}
   - component: {fileID: 1247721370}
   - component: {fileID: 1247721369}
+  - component: {fileID: 1247721372}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: ReminderText
@@ -21811,8 +21828,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
+  m_sharedMaterial: {fileID: -6969445821730098892, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21836,8 +21853,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -21852,7 +21869,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -21905,6 +21922,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1247721372
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247721368}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88c6bcb79a453c143a1b469ec8ab5b60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1260932492
 GameObject:
   m_ObjectHideFlags: 0
@@ -22129,6 +22167,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -23124,6 +23166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.88
@@ -23410,6 +23456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1247721369}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.1
@@ -23586,8 +23636,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.007000029, y: 0.0022500157, z: 0}
-    m_Extent: {x: 1.0018001, y: 1.0064499, z: 0}
+    m_Center: {x: 0.0037500262, y: 0.00014996529, z: 0}
+    m_Extent: {x: 1.00505, y: 1.00675, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -23811,7 +23861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1951922526
 MonoBehaviour:
   m_ObjectHideFlags: 0

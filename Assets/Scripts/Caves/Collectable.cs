@@ -1,25 +1,43 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 
 public class Collectable : MonoBehaviour
 {
+    [Header("Events")]
+
+    [Header("Mutable")]
+    [SerializeField] private TextMeshProUGUI reminderText;  
+
+    [Header("ReadOnly")] 
     private bool isInRange;
-    private KeyCode interactKey = KeyCode.E;
-    private TextMeshProUGUI reminderText;
     private int itemValue; 
     private string collectableItem;
 
+    // Not for display
+    public static Collectable Instance {get; private set;}
+    private KeyCode interactKey = KeyCode.E;
     private bool playerInteracted;
-
     public VoidEvent OnCaveMiniGameEvent;
 
+    // -------------------------------------------------------------------
+    // Class
     // Start is called before the first frame update
+    // void Start()
+    // {
+    //     if (Instance != null && Instance != this)
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    //     else 
+    //     {
+    //         Instance = this;
+    //         DontDestroyOnLoad(gameObject);
+    //     }
+    // }
+
     void Start()
     {
-        reminderText = GameObject.FindWithTag("ReminderText").GetComponent<TextMeshProUGUI>();
         collectableItem = this.gameObject.tag;
         
         switch (collectableItem)
@@ -101,7 +119,7 @@ public class Collectable : MonoBehaviour
         yield return new WaitForSeconds(1);
         
         reminderText.text = "";
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     // delete the object once it comes into contact with the player

@@ -119,7 +119,7 @@ public class RobotBuddyController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            gameManager.GetComponent<PlayerManager>().SetScenePosition(SceneManager.GetActiveScene().name);
+            //gameManager.GetComponent<PlayerManager>().SetScenePosition(SceneManager.GetActiveScene().name);
         }
 
     }
