@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1194135251}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -257,6 +261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1194135251}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.103
@@ -599,6 +607,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1194135251}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -753,6 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6330b4aad0278a4187cf817438bc8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reminderText: {fileID: 1194135251}
 --- !u!61 &571888087
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -808,10 +821,9 @@ GameObject:
   m_Component:
   - component: {fileID: 720185703}
   - component: {fileID: 720185702}
-  - component: {fileID: 720185704}
   m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
+  m_Name: Cave_1_Grid
+  m_TagString: MainGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -837,7 +849,7 @@ Transform:
   m_GameObject: {fileID: 720185701}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1000, y: -5000, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -853,18 +865,6 @@ Transform:
   - {fileID: 1954651907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &720185704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720185701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6043a3b2613814ea9ac933abaf50e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &768010554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1252719803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1485,6 +1485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1194135251}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.603
@@ -1925,6 +1929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1194135251}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.5347795
@@ -2047,6 +2055,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 1194135251}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.44

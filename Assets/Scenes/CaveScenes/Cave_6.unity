@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -343,6 +347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.641
@@ -23027,6 +23035,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.737
@@ -23189,6 +23201,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -35074,6 +35090,7 @@ GameObject:
   - component: {fileID: 780137842}
   - component: {fileID: 780137841}
   - component: {fileID: 780137840}
+  - component: {fileID: 780137843}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: ReminderText
@@ -35103,8 +35120,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
+  m_sharedMaterial: {fileID: -6969445821730098892, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -35128,8 +35145,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -35144,7 +35161,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -35197,6 +35214,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &780137843
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780137839}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88c6bcb79a453c143a1b469ec8ab5b60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &817392321
 GameObject:
   m_ObjectHideFlags: 0
@@ -35447,8 +35485,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0014999807, y: 0.0068499744, z: 0}
-    m_Extent: {x: 1.0012, y: 1.00145, z: 0}
+    m_Center: {x: 0.005349964, y: -0.00024998188, z: 0}
+    m_Extent: {x: 1.00445, y: 0.99675, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -35475,6 +35513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.76
@@ -35683,7 +35725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &980287021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35761,6 +35803,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -29.27
@@ -36038,6 +36084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.316
@@ -36193,6 +36243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6330b4aad0278a4187cf817438bc8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reminderText: {fileID: 780137840}
 --- !u!61 &1150466087
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36618,6 +36669,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -36913,10 +36968,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1649377364}
   - component: {fileID: 1649377363}
-  - component: {fileID: 1649377365}
   m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
+  m_Name: Cave_6_Grid
+  m_TagString: MainGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36942,7 +36996,7 @@ Transform:
   m_GameObject: {fileID: 1649377362}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1250, y: -300, z: 0}
   m_LocalScale: {x: 1.75, y: 1.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36957,18 +37011,6 @@ Transform:
   - {fileID: 1857873623}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1649377365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649377362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6043a3b2613814ea9ac933abaf50e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1857873622
 GameObject:
   m_ObjectHideFlags: 0
@@ -37423,6 +37465,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.72
@@ -37545,6 +37591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9
@@ -37722,8 +37772,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00330019, y: 0.0034999847, z: 0}
-    m_Extent: {x: 6.5046, y: 6.4988, z: 0}
+    m_Center: {x: 0.0014500618, y: -0.0046498775, z: 0}
+    m_Extent: {x: 6.50375, y: 6.50045, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -37790,6 +37840,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 780137840}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree

@@ -7,22 +7,27 @@ using UnityEngine.SceneManagement;
 
 public class LeaveCave : MonoBehaviour
 {
+    [Header("Events")]
+
+    [Header("Mutable")]
+    [SerializeField] private TextMeshProUGUI reminderText;  
+
+    [Header("ReadOnly")]
+
+
     private bool isInRange;
     private KeyCode interactKey = KeyCode.E;
     private GameManager gameManager;
-    private TextMeshProUGUI reminderText;
-
-    void Start()
-    {
-        reminderText = GameObject.FindWithTag("ReminderText").GetComponent<TextMeshProUGUI>();
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (isInRange && Input.GetKeyDown(interactKey))
         {
-            CaveManager.Instance.LoadAsteroidScene(SceneManager.GetActiveScene().name);
+            //Debug.Log(gameObject.scene.name);
+            string CaveScene = gameObject.scene.name;
+            CaveManager.Instance.LeaveCaveScene(CaveScene);
+            PlayerManager.Instance.SetScenePosition("AsteroidScene");
         }
     }
 

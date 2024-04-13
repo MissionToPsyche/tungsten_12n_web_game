@@ -13,12 +13,12 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInRange)
+        if (isInRange && Input.GetKeyDown(interactKey))
         {
-            if (Input.GetKeyDown(interactKey))
-            {
-                CaveManager.Instance.LoadCaveScene(gameObject.name);
-            }
+            string CaveScene = gameObject.tag;
+            Transform CaveSpawn = CaveManager.Instance.EnterCaveScene(CaveScene);
+            PlayerManager.Instance.SetLastPosition();
+            PlayerManager.Instance.SetScenePosition(CaveScene, CaveSpawn);
         }
     }
 

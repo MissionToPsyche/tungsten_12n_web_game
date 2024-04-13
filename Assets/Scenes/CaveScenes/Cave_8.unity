@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -265,6 +269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -428,6 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6330b4aad0278a4187cf817438bc8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reminderText: {fileID: 986422120}
 --- !u!61 &133708758
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -485,6 +494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -655,6 +668,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -739,11 +756,9 @@ GameObject:
   m_Component:
   - component: {fileID: 249734377}
   - component: {fileID: 249734376}
-  - component: {fileID: 249734378}
-  - component: {fileID: 249734379}
   m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
+  m_Name: Cave_8_Grid
+  m_TagString: MainGrid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -769,7 +784,7 @@ Transform:
   m_GameObject: {fileID: 249734375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1250, y: 100, z: 0}
   m_LocalScale: {x: 1.75, y: 1.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -784,32 +799,6 @@ Transform:
   - {fileID: 818594385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &249734378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249734375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e003d7ce9126c4cab887fde288b475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  defaultSpawn: {x: 0, y: 0, z: 0}
---- !u!114 &249734379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249734375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6043a3b2613814ea9ac933abaf50e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &274783236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -822,6 +811,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -952,6 +945,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1082,6 +1079,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1252,6 +1253,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -1342,7 +1347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &339176852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,8 +1480,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.005549997, y: 0.23355001, z: 0}
-    m_Extent: {x: 1.00235, y: 1.2425499, z: 0}
+    m_Center: {x: -0.002300024, y: 0.23675, z: 0}
+    m_Extent: {x: 1.0063, y: 1.24215, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1586,6 +1591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2372,6 +2381,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -2458,6 +2471,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2588,6 +2605,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3027,8 +3048,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.017649949, y: 0.01820004, z: 0}
-    m_Extent: {x: 1.22985, y: 1.2853, z: 0}
+    m_Center: {x: -0.025349975, y: 0.011599958, z: 0}
+    m_Extent: {x: 1.22505, y: 1.2818999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3058,6 +3079,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 1620413532791663197, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 7263539334065937491, guid: 74f94191165a31045bdc4365c658ca69, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3187,6 +3212,7 @@ GameObject:
   - component: {fileID: 986422122}
   - component: {fileID: 986422121}
   - component: {fileID: 986422120}
+  - component: {fileID: 986422123}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: ReminderText
@@ -3216,8 +3242,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
+  m_sharedMaterial: {fileID: -6969445821730098892, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3241,8 +3267,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3257,7 +3283,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -3310,6 +3336,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &986422123
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986422119}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88c6bcb79a453c143a1b469ec8ab5b60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1130080850
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,8 +3423,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.02275002, y: -0.12764996, z: 0}
-    m_Extent: {x: 1.23795, y: 1.13655, z: 0}
+    m_Center: {x: -0.0176, y: -0.13055003, z: 0}
+    m_Extent: {x: 1.2324, y: 1.13775, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3947,6 +3994,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810107421565429404, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
+      propertyPath: reminderText
+      value: 
+      objectReference: {fileID: 986422120}
     - target: {fileID: 8012691956581599873, guid: 5f580ea3e225b5a458a109c784c01d72, type: 3}
       propertyPath: m_Name
       value: Tree
@@ -28635,8 +28686,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0056000054, y: 0.00040000677, z: 0}
-    m_Extent: {x: 0.9994, y: 1.0051, z: 0}
+    m_Center: {x: -0.00095003843, y: 0.002750039, z: 0}
+    m_Extent: {x: 1.0065501, y: 1.00395, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
