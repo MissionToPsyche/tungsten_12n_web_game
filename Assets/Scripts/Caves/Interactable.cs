@@ -14,16 +14,17 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInRange)
+        if (isInRange && Input.GetKeyDown(interactKey))
         {
-            if (Input.GetKeyDown(interactKey))
-            {
-                packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(gameObject, SFX.Cave.Enter);
-                soundEffectEvent.Raise(sfxpacket);
-                packet.SoundEffectPacket sfxpacket2 = new packet.SoundEffectPacket(gameObject, SFX.Cave.Ambience);
-                soundEffectEvent.Raise(sfxpacket2);
-                CaveManager.Instance.LoadCaveScene(gameObject.name);
-            }
+            string CaveScene = gameObject.tag;
+            Transform CaveSpawn = CaveManager.Instance.EnterCaveScene(CaveScene);
+            PlayerManager.Instance.SetLastPosition();
+            PlayerManager.Instance.SetScenePosition(CaveScene, CaveSpawn);
+
+            packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(gameObject, SFX.Cave.Enter);
+            soundEffectEvent.Raise(sfxpacket);
+            packet.SoundEffectPacket sfxpacket2 = new packet.SoundEffectPacket(gameObject, SFX.Cave.Ambience);
+            soundEffectEvent.Raise(sfxpacket2);
         }
     }
 

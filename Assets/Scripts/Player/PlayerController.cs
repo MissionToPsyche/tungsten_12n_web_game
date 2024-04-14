@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public BoolEvent playerLaunchPadInteract;
     [SerializeField] public SoundEffectEvent soundEffectEvent;
 
+    [SerializeField] public VoidEvent playerInPit;
 
     [Header("Mutable")]
     [SerializeField] private CharacterDatabase characterDatabase;
@@ -396,7 +397,7 @@ public class PlayerController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            PlayerManager.Instance.SetScenePosition(SceneManager.GetActiveScene().name);
+            playerInPit.Raise();
         }
 
         // Handle ladder movement
@@ -427,7 +428,7 @@ public class PlayerController : MonoBehaviour
             string asteroidName = collison.transform.parent.name;  // Assuming the parent of the gravity field is the asteroid
             currentAsteroidChanged.Raise(asteroidName);
             playerPositionUpdated.Raise(transform.position);
-            Debug.Log("Entered gravity field of: " + asteroidName);
+            //Debug.Log("Entered gravity field of: " + asteroidName);
         }
 
         switch (collison.gameObject.tag)

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -3320008579766996007}
   - component: {fileID: 4800309846365389543}
   - component: {fileID: 1982131736934851756}
+  - component: {fileID: -8775929138349216777}
   m_Layer: 9
   m_Name: CommericalExtractorPrefab
   m_TagString: Untagged
@@ -179,6 +180,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  distanceToGround: 0
+  gravityFieldLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currentRotationSpeed: 0
 --- !u!114 &6473744850528406571
 MonoBehaviour:
@@ -258,6 +263,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
         m_MethodName: OnQueryTechResponse
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-8775929138349216777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513086824239921780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a0ba10e730b4b47964098f09b8f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3320008579766996007}
+        m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
+        m_MethodName: OnPlayerInteract
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9135846624055368274}
   - component: {fileID: 1174249053487954768}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 'Layer 2 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 592994271529944422}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.65, z: 9.961316}
+  m_LocalPosition: {x: 0, y: -0.65, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1129582259
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aa26fbec93b74c04d97dc6a14e2d76c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5499589138570104087}
   - component: {fileID: 6251927346446105362}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 'Layer 5 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 812150792246555746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -0.65, z: 9.961316}
+  m_LocalPosition: {x: 0.02, y: -0.65, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -154,8 +154,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1129582259
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 16bb2288b394eb542a92e53b291ba98a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2798362562782195435}
   - component: {fileID: 7566848784876379112}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 'Layer 4 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 822251523005628712}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -0.65, z: 9.961316}
+  m_LocalPosition: {x: -0.05, y: -0.65, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -238,8 +238,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1129582259
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6dce8301a40f85b4c965cfd523eb3db7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4187850864365686017}
   - component: {fileID: 4527698305593771572}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Base Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 5509734012441127626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -322,8 +322,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1129582259
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0c9330b978318ca44a7df5354ed8ab70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8591459595268238647}
   - component: {fileID: 4244784194460637146}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 'Layer 3 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 6369087483293273350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.65, z: 9.961316}
+  m_LocalPosition: {x: -0.03, y: -0.65, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -406,8 +406,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1129582259
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a19324849eddf9043922cc95688b7c8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 4900347190415668542}
   - component: {fileID: 2666426926945784418}
   - component: {fileID: 6941189830159347886}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CaveMiniGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,6 +523,7 @@ MonoBehaviour:
   - {fileID: 822251523005628712}
   - {fileID: 812150792246555746}
   - {fileID: 8776552450099777583}
+  WinConditionEvent: {fileID: 11400000, guid: b7cc5ccbbb2b4ae429cf76aaf1c226ba, type: 2}
 --- !u!1 &8776552450099777583
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5238121035273132475}
   - component: {fileID: 3511326402856590226}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 'Final Layer '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +550,7 @@ Transform:
   m_GameObject: {fileID: 8776552450099777583}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -0.65, z: 9.961316}
+  m_LocalPosition: {x: -0.05, y: -0.65, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -593,8 +594,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1129582259
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9367a41a75f53f24c85fd13972981032, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
