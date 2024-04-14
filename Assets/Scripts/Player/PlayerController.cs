@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Vector2Event playerPositionUpdated;
     [SerializeField] public BoolEvent playerInteract;
     [SerializeField] public BoolEvent playerLaunchPadInteract;
+    [SerializeField] public VoidEvent playerInPit; 
 
     [Header("Mutable")]
     [SerializeField] private CharacterDatabase characterDatabase;
@@ -391,7 +392,7 @@ public class PlayerController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            
+            playerInPit.Raise(); 
         }
 
         // Handle ladder movement

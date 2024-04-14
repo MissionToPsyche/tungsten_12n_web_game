@@ -82,6 +82,7 @@ public class PlayerManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        playerController = playerObject.GetComponent<PlayerController>(); 
     }
 
     // set the players initial position and jump force
