@@ -65,7 +65,7 @@ public class BuildManager : MonoBehaviour
 
                 return;
             case BuildingComponents.BuildingType.Cybernetics:
-                    PlayerManager.instance.SetCyberneticsBuilt();
+                    CyberneticsManager.Instance.SetCyberneticsBuilt();
                 return;
             case BuildingComponents.BuildingType.RobotBuddy:
                 if(hasBuiltRobotBuddyAlpha == false){

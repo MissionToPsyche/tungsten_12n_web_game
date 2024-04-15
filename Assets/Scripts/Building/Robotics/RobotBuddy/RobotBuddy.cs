@@ -26,8 +26,9 @@ public class RobotBuddy : BaseBuilding
         currentCharge += gain;
         return currentCharge;
     }
-    public void GiveFullCharge(){
+    public float GiveFullCharge(){
         currentCharge = maxCharge;
+        return currentCharge;
     }
 
     public float GetCurrentCharge(){

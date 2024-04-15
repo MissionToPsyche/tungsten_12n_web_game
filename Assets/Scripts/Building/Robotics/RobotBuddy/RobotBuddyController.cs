@@ -94,8 +94,9 @@ public class RobotBuddyController : MonoBehaviour
     }
     public void OnRobotJump(bool jumping)
     {
-        //Debug.Log($"Player controller - OnPlayerJump: {jumping}");
         adjustRobotUI.Raise(robotBuddy.ReduceCharge(5.0f));
+        //Debug.Log($"Robot controller - OnRobotJump: {robotBuddy.GetCurrentCharge()}");
+        Debug.Log($"Robot controller - jumping: {jumping}\tisGrounded: {isGrounded}");
         if (jumping)
         {
             if (isGrounded)
@@ -131,7 +132,6 @@ public class RobotBuddyController : MonoBehaviour
     private void Jump()
     {
         if (!isGrounded) return;
-
         if (currentState == RobotState.Jumping)
         {
             robotBody.AddForce(-gravityBody.GravityDirection * jumpForce, ForceMode2D.Impulse);
@@ -145,7 +145,7 @@ public class RobotBuddyController : MonoBehaviour
     {
         if(!isActive)
             return;
-        // First check to make sure the player is grounded
+        // First check to make sure the Robot is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         // Handle possible inputs
@@ -193,9 +193,9 @@ public class RobotBuddyController : MonoBehaviour
     }
     
     public void OnPlayerInteract(){
-        if(playerCanInteract && PlayerManager.instance.HasCyberneticCharge()){
-            robotBuddy.GiveFullCharge();
-            adjustRobotUI.Raise(robotBuddy.GetCurrentCharge());
+        if(playerCanInteract && CyberneticsManager.Instance.HasCyberneticCharge()){
+            CyberneticsManager.Instance.UseCharge();
+            adjustRobotUI.Raise(robotBuddy.GiveFullCharge());
         }
     }
     private void UpdateRobotState(RobotState newState)

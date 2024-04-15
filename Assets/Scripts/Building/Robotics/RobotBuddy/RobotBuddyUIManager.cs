@@ -15,8 +15,8 @@ public class RobotUIBuddyManager: MonoBehaviour
     private float alphaFillAmt = 1;
     private float betaFillAmt = 1;
     public void Start(){
-        alphaUIOverlay.SetActive(false);
-        betaUIOverlay.SetActive(false);
+        chargeFillAlphaMeter.enabled = false;
+        chargeFillBetaMeter.enabled = false;
     }
 
     public void OnControlStateUpdated(Control.State newState){
@@ -24,7 +24,8 @@ public class RobotUIBuddyManager: MonoBehaviour
         UpdateUIOnState();
     }
     public void OnAdjustRobotUI(float charge){
-        float clampVal = Clamp01(charge);
+        float clampVal = Mathf.Clamp(charge / maxChargeAmt, 0f, 1f);
+        //Debug.Log($"setting UI to: {charge}\tclamped: {clampVal}");
         if(currentState == Control.State.RobotBuddyAlpha){
             chargeFillAlphaMeter.fillAmount = clampVal;
         }else if(currentState == Control.State.RobotBuddyBeta){
@@ -41,11 +42,17 @@ public class RobotUIBuddyManager: MonoBehaviour
             betaUIOverlay.SetActive(true);
             alphaUIOverlay.SetActive(false);
         }else{
-            alphaUIOverlay.SetActive(false);
-            betaUIOverlay.SetActive(false);
+            alphaUIOverlay.SetActive(true);
+            betaUIOverlay.SetActive(true);
         }
     }
 
+    public void OnBuildRobotAlpha(){
+        chargeFillAlphaMeter.enabled = true;
+    }
+    public void OnBuildRobotBeta(){
+        chargeFillBetaMeter.enabled = true;
+    }
     private float Clamp01(float val){
         return val / maxChargeAmt;
     }

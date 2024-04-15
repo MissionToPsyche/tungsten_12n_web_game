@@ -1,11 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 
 //!!! IMPLEMENTATION OF TECHTIER, being able to skip mini games
 public class Cybernetics : BaseBuilding
 {
-    private MonoBehaviour monoBehaviour;
     private int numCharges;
     private int currentMaxCharge;
     private int initMaxCharge = 1;
@@ -17,25 +15,27 @@ public class Cybernetics : BaseBuilding
     private float tier1WaitAmount = 300;
     private float tier2WaitAmount = 210;
     private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.Cybernetics;
-    public Cybernetics(MonoBehaviour monoBehaviour){
+    public Cybernetics(){
         currentTier = 0;
-        this.monoBehaviour = monoBehaviour;
         buildingData = LoadBuildingData();
         BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("LaunchPad");
         thisCosts = InitObjCost(thisObject);
     }
     
-    
-    public void StartCyberneticCoroutine(){
-        monoBehaviour.StartCoroutine(ChargeCoroutine());
+    public int GetCurrentCharge(){
+        return numCharges;
     }
-    private IEnumerator ChargeCoroutine(){
+    public int GetCurrentMaxCharge(){
+        return currentMaxCharge;
+    }
+    public void IncrementCharge(){
         if(numCharges < currentMaxCharge){
             numCharges += 1;
         }
-        yield return new WaitForSeconds(currentWaitAmount);
     }
-
+    public float GetCurrentWaitAmount(){
+        return currentWaitAmount;
+    }
     public bool HasCharge(){
         return numCharges > 0;
     }

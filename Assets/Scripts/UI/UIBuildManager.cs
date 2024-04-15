@@ -272,9 +272,11 @@ public class UIBuildManager : MonoBehaviour
             this.gameObject, BuildingComponents.BuildingType.JetPack, techCost));
     }
     public void TryBuildCybernetics(){
-        Cybernetics tempCyber = new(this);
-        checkInventory.Raise(new packet.CheckInventoryPacket(
-            this.gameObject, BuildingComponents.BuildingType.Cybernetics, tempCyber.GetCostDictionary()));
+        if(CyberneticsManager.Instance.IsBuilt() == false){
+            Cybernetics tempCyber = new();
+            checkInventory.Raise(new packet.CheckInventoryPacket(
+                this.gameObject, BuildingComponents.BuildingType.Cybernetics, tempCyber.GetCostDictionary()));
+        }
     }
     public void TryTechUpCybernetics(){
         checkInventory.Raise(new packet.CheckInventoryPacket(

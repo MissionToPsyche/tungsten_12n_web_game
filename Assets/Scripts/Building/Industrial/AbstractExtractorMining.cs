@@ -230,6 +230,11 @@ public class AbstractExtractorMining : MonoBehaviour
         if(playerCanInteract && isBroken){
             //IMPLEMENT MINI GAME LOGIC HERE
             playerInteracted = true;
+            if(CyberneticsManager.Instance.HasCyberneticCharge()){
+                CyberneticsManager.Instance.UseCharge();
+                fix();
+                return;
+            }
             OnMiniGameEvent.Raise();
         }
     }
