@@ -23,8 +23,8 @@ public class Interactable : MonoBehaviour
 
             packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(gameObject, SFX.Cave.Enter);
             soundEffectEvent.Raise(sfxpacket);
-            packet.SoundEffectPacket sfxpacket2 = new packet.SoundEffectPacket(gameObject, SFX.Cave.Ambience);
-            soundEffectEvent.Raise(sfxpacket2);
+            // packet.SoundEffectPacket sfxpacket2 = new packet.SoundEffectPacket(gameObject, SFX.Cave.Ambience);
+            // soundEffectEvent.Raise(sfxpacket2);
         }
     }
 
