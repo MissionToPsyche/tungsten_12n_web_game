@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "RotateCameraWithPlayer",
+                    "type": "Button",
+                    "id": "9a31156e-db94-487b-9fea-3e1e88cc827c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -90,7 +99,7 @@
                 {
                     "name": "",
                     "id": "dd35ca22-2737-4b72-8e1a-f8722d91c62a",
-                    "path": "<Mouse>/scroll/y",
+                    "path": "<Mouse>/scroll/up",
                     "interactions": "",
                     "processors": "Invert",
                     "groups": "",
@@ -112,7 +121,7 @@
                 {
                     "name": "",
                     "id": "6d014f1d-fe42-42d2-a3c9-c0cb3a917d5e",
-                    "path": "<Mouse>/scroll/y",
+                    "path": "<Mouse>/scroll/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ZoomOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb777133-b2da-4e75-8156-b03e631ee6fc",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateCameraWithPlayer",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

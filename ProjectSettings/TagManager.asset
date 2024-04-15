@@ -16,6 +16,18 @@ TagManager:
   - Rock
   - GeologicalPhenomena
   - RobotTriggerCollider
+  - Cave_1
+  - Cave_2
+  - Cave_3
+  - Cave_4
+  - Cave_5
+  - Cave_6
+  - Cave_7
+  - Cave_8
+  - Cave_9
+  - Cave_10
+  - MainGrid
+  - MainSpawn
   layers:
   - Default
   - TransparentFX

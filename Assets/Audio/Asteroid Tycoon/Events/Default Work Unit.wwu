@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Music" ID="{67B55BB3-A862-424C-A145-7F2A65DBB471}" ShortID="712459342">
+					<ChildrenList>
+						<Event Name="big_j" ID="{F39D7751-ADB4-496F-B0E2-FBE6295423DB}">
+							<ChildrenList>
+								<Action Name="" ID="{45FEB091-1376-477F-AE31-0B040C575BF8}" ShortID="183819025">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BigJsFaceInSpace" ID="{EF7FCD37-B29B-429A-853E-5C9F5501D04C}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="spacchurch" ID="{41643D04-1FE6-465E-AEC4-6197A0D7BA7F}">
+							<ChildrenList>
+								<Action Name="" ID="{3F616B52-FF4F-49EE-8C01-A13CCC86A3DA}" ShortID="70637603">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="space_church" ID="{0365FAE9-3CBD-4561-9F27-8BE0D5DA2271}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="play_cavebraver" ID="{CF80B494-B44E-4C6C-82B2-44E020B5D91B}">
+							<ChildrenList>
+								<Action Name="" ID="{A9A2973B-8ABC-4510-8576-321AFC979721}" ShortID="1065947704">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Cave Braver" ID="{5046F131-71BB-4820-BA38-C3778A12A537}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="play_menu_music" ID="{5AAF15F2-ADA8-4905-B9CC-A6431CF2070C}">
+							<ChildrenList>
+								<Action Name="" ID="{E6D068B7-7C84-46EE-AF00-E7EB8C740D43}" ShortID="688210211">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Menu Music V1" ID="{C813E42B-875A-453A-BF1C-E5650A41C9AC}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="SFX" ID="{D3009CF7-2CEB-43E8-870D-C3F7841F86CA}" ShortID="479687018">
+					<ChildrenList>
+						<Event Name="connection_made" ID="{117A90A5-0071-447A-BCF8-AA956B0E0A20}">
+							<ChildrenList>
+								<Action Name="" ID="{FCF0108F-3880-4602-AB77-A8ABC07821C7}" ShortID="37891881">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="connection_made" ID="{1AA2CF4E-E9AD-4B86-AC82-CB09EFAEBE2E}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cave_enter" ID="{B7B8675C-AE28-40C4-BB4B-550656747C9C}">
+							<ChildrenList>
+								<Action Name="" ID="{AA7FF777-6E64-4AF6-9FAC-7126E267CC42}" ShortID="926351123">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cave_enter" ID="{291551F6-76E2-4E9B-BC5F-6D98681248CE}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="error" ID="{F06534D4-8E4C-4160-8198-509958905BAF}">
+							<ChildrenList>
+								<Action Name="" ID="{024FF48E-A4CA-4E8A-8B71-BC803E19A7EA}" ShortID="190267362">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="error" ID="{A3AAFB18-8F08-4ECC-B7BB-E48A18E9A5BE}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="camera_zoom_in" ID="{1F72E79B-57C6-41A1-B8C3-4584C84DDE5C}">
+							<ChildrenList>
+								<Action Name="" ID="{314D2F6C-5ACF-47A6-8509-73D693D7D1E5}" ShortID="1000511108">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="camera_zoom_in" ID="{0092E033-2891-483C-AFF4-DB1E6B7B850C}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="lightswitch_on" ID="{33EEBED6-9C3E-4702-A637-F4F56BCC86F4}">
+							<ChildrenList>
+								<Action Name="" ID="{3F7FEBC7-C272-4AAD-9FD3-8EDC6FA81F85}" ShortID="531700330">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="lightswitch_on" ID="{23864B9C-1071-4B8F-96C5-8AB584A5A494}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="satellite_control" ID="{78F77D8E-4336-4983-9893-3257C830CFAE}">
+							<ChildrenList>
+								<Action Name="" ID="{F47C4CEC-21C0-4BCD-B8E9-02089868E569}" ShortID="484496293">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="satellite_control" ID="{51E6F9A1-53E1-47CA-817F-E712EEB28994}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="satellite_found" ID="{27DF2BCE-9187-4143-BC8A-BA075D526838}">
+							<ChildrenList>
+								<Action Name="" ID="{49A7F218-BE15-4151-AB25-D14441DA2DA2}" ShortID="902972650">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="satellite_found" ID="{110A2996-C623-4694-92B7-778B717F3C55}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="camera_zoom_out" ID="{7783E667-3FB6-49A0-B54F-23B6002652B2}">
+							<ChildrenList>
+								<Action Name="" ID="{AD8F2B76-2DF9-4D06-9392-D20A903FC412}" ShortID="159243278">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="camera_zoom_out" ID="{00E13D93-CB63-4F05-83BC-1D24D1892BBD}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cave_exit" ID="{236D6E2E-94CF-4396-80C5-E0096FE7C2D1}">
+							<ChildrenList>
+								<Action Name="" ID="{EF778607-ED1A-4DE7-8956-78E7368E281C}" ShortID="255014938">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cave_exit" ID="{0ADCABE1-0AF3-440E-9D2D-DD394B8D4A66}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="player_building" ID="{034D1986-D13F-41A0-93C8-68CE3D00C645}">
+							<ChildrenList>
+								<Action Name="" ID="{34F0F8AA-5CB3-4947-A04B-8F15E49825AA}" ShortID="475914436">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="player_building" ID="{D271D19E-BD65-4252-ACD6-1B705536EA83}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="miner" ID="{C38533B3-BB84-4B9C-A2B8-DF84406FC44B}">
+							<ChildrenList>
+								<Action Name="" ID="{8E1316F0-9213-4270-BE38-6153E4E622A1}" ShortID="733120349">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="miner" ID="{A374D6B5-3813-48A5-B537-634C76328604}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="player_jump" ID="{F875821D-8DF9-462A-A4C5-F75B4C4D61A4}">
+							<ChildrenList>
+								<Action Name="" ID="{878D0641-8B7A-4896-BB1B-27F648E4642F}" ShortID="841653692">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="player_jump" ID="{AC92B3B1-83D3-43B9-A6BC-A9B9F32CE292}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cave_ambience" ID="{58B084AF-4039-426E-AC7B-7DFCB5EA4E3F}">
+							<ChildrenList>
+								<Action Name="" ID="{0D2AF0D2-09DC-4B2D-A1A7-D1C684207F99}" ShortID="875944142">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cave_ambience" ID="{B82DC4E6-4F46-42DC-BE9B-EA714C5A8C44}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="resource_replenished" ID="{54DE4087-10E6-4DC1-B071-FB18A98A62B1}">
+							<ChildrenList>
+								<Action Name="" ID="{55D44D5D-78E3-4994-B6F2-2077B4FBD5EA}" ShortID="963497672">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="resource_replenished" ID="{9BEAF752-615C-45C8-8B8B-2E9991B2D02E}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="resource_exhausted" ID="{69C1582E-A73D-49DF-8144-C8D8F577F28B}">
+							<ChildrenList>
+								<Action Name="" ID="{1B2469AC-67F6-4564-AF86-2ADCB8817F54}" ShortID="482090894">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="resource_exhausted" ID="{A3DB168D-5AA7-4EF1-8D4D-2B002755C8FC}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="player_propulsion" ID="{3AD90236-0D34-4FEA-BCB3-CB7206E6F976}">
+							<ChildrenList>
+								<Action Name="" ID="{D8BC1868-3ACD-4421-B791-30C4AE637709}" ShortID="916919622">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="player_propulsion" ID="{4C11F465-51A2-476B-ACEC-0F8E4234ED92}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="rocket_launch" ID="{194A99C7-CD8E-4787-B537-49EE14F4CC1C}">
+							<ChildrenList>
+								<Action Name="" ID="{3EDB3CB6-8A63-4F59-B36F-45939220D0B6}" ShortID="564143095">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="rocket_launch" ID="{C783CCC2-11A4-4BF8-B13A-B9FAF1CA647D}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="radar_ping" ID="{0D3C2C8A-596B-40BE-822B-5F58E221BEC1}">
+							<ChildrenList>
+								<Action Name="" ID="{6D64098E-EA42-4A9F-9A3F-0301E53E8877}" ShortID="1064790082">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="radar_ping" ID="{DFB8B317-DB0E-49C1-B90B-640F1B98DB02}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="orbiter" ID="{2B364974-2806-4854-BC50-DAF7B75C8C3E}">
+							<ChildrenList>
+								<Action Name="" ID="{3871C247-D577-4D0B-86EB-D06BA7E95D68}" ShortID="424548667">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="orbiter" ID="{D2F44401-5060-452D-A909-2A949C0FB9E1}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="satellite_lost" ID="{D358B308-F4F9-4E66-A629-73E355DB74B8}">
+							<ChildrenList>
+								<Action Name="" ID="{F846ADDF-EF00-44B4-99BA-71EEB846AF84}" ShortID="650740453">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="satellite_lost" ID="{90693503-60EA-467F-A63F-6DAF96D9FB9E}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="player_walk" ID="{407D8BF9-4318-4DB4-98C8-A67AC2670149}">
+							<ChildrenList>
+								<Action Name="" ID="{892FB531-DB50-44B7-A1B5-69036F4EF15F}" ShortID="98426845">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="player_walk" ID="{F499EA15-8AF2-42AB-BB0A-B73B4E13D392}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="player_types" ID="{DA828AC8-44B5-4542-A0F1-C03044271CBB}">
+							<ChildrenList>
+								<Action Name="" ID="{497FE51C-FD57-4B07-ADB2-040F40F778D5}" ShortID="714158367">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="player_types" ID="{08EBD196-176C-4176-B866-5724C6009D19}" WorkUnitID="{36711DB6-808B-422D-B6EE-799477C0C1A3}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

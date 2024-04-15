@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrackLayers : MonoBehaviour
 {
     public GameObject[] crackLayers;
-
+    public BoolEvent WinConditionEvent;
     int index;
 
     int clickTarget;
@@ -31,7 +31,7 @@ public class CrackLayers : MonoBehaviour
             if(index < crackLayers.Length-1){
                 index += 1;
                 if(index == crackLayers.Length-1){
-                    
+                    WinConditionEvent.Raise(true);
                 }
             }
 

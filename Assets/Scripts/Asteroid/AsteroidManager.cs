@@ -4,47 +4,61 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
-    public static AsteroidManager instance { get; private set; }
+    public static AsteroidManager Instance { get; private set; }
 
     [Header("Events")]
     [SerializeField] public StringEvent currentSatelliteChanged;
 
     [Header("Mutable")]
-    [SerializeField] public GameObject prefab;
+    [SerializeField] public GameObject asteroidPrefab;
+    [SerializeField] public GameObject gravityFieldPrefab;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private GameObject currentAsteroid;
     [SerializeField, ReadOnly] public List<Asteroid> asteroidsList = new List<Asteroid>();
 
     // Not for display
+    // Dictionary to keep track of satellites for each asteroid
+    public Dictionary<string, SatelliteData> satelliteMap = new Dictionary<string, SatelliteData>();
+
 
     // -------------------------------------------------------------------
     // Handle events
 
-    public void OnAsteroidReached(string asteroidName)
+    public void OnCurrentAsteroidChanged(string asteroidName)
     {
-        // Debug.Log("[AsteroidManager]: Asteroid reached: " + asteroidName);
-
+        // Find the asteroid GameObject
         currentAsteroid = GameObject.Find(asteroidName);
         if (currentAsteroid == null)
         {
-            // Debug.LogError("[GameManager]: Asteroid named '" + asteroidName + "' not found.");
+            Debug.LogError("[AsteroidManager]: Asteroid named '" + asteroidName + "' not found.");
             return;
         }
 
-        // Construct the expected satellite name based on the asteroid's position tag
-        Asteroid asteroidComponent = currentAsteroid.GetComponent<Asteroid>();
-        if (asteroidComponent == null)
+        // Attempt to get the asteroid component to retrieve the position tag
+        if (!currentAsteroid.TryGetComponent<Asteroid>(out var asteroidComponent))
         {
-            // Debug.LogError("[GameManager]: Asteroid component not found on '" + asteroidName + "'.");
+            Debug.LogError("[AsteroidManager]: Asteroid component not found on '" + asteroidName + "'.");
             return;
         }
 
-        string childSatelliteName = "Satellite" + asteroidComponent.positionTag;
-
-        if(SatelliteManager.instance.GetNumberOfSatellites() > 0)
+        // Retrieve the satellite data associated with the asteroid
+        if (satelliteMap.TryGetValue(asteroidName, out SatelliteData satelliteData))
         {
-            currentSatelliteChanged.Raise(childSatelliteName);
+            if (satelliteData != null && satelliteData.isBuilt)
+            {
+                // Only raise the event if the satellite has been built
+                currentSatelliteChanged.Raise(satelliteData.satelliteName);
+            }
+            else
+            {
+                // Optionally log that the satellite is not built or not available
+                // Debug.Log($"[AsteroidManager]: No built satellite for '{asteroidName}'.");
+            }
+        }
+        else
+        {
+            Debug.LogError("[AsteroidManager]: No satellite data found for '" + asteroidName + "'.");
         }
     }
 
@@ -61,13 +75,13 @@ public class AsteroidManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -79,11 +93,24 @@ public class AsteroidManager : MonoBehaviour
             Asteroid asteroid = child.GetComponent<Asteroid>();
             if (asteroid != null && child != null)
             {
-                //use InstatiateAsteroid to
+                // Add satellite data to the map
+                string satelliteTag = "Satellite_" + asteroid.positionTag;
+                satelliteMap.Add(child.name, new SatelliteData(satelliteTag, false));
+
+                // Instantiate the GravityField prefab as a child of the asteroid
+                GameObject gravityField = Instantiate(gravityFieldPrefab, child.position, Quaternion.identity, child);
+                gravityField.name = "GravityField";
+
+                // After instantiation, initialize the edge points
+                GravityFieldEdgePoints edgePointsScript = gravityField.GetComponent<GravityFieldEdgePoints>();
+                if (edgePointsScript != null)
+                {
+                    edgePointsScript.InitializeEdgePoints();
+                }
+
                 FillAsteroidList(asteroid, child);
             }
         }
-
         //DebugAsteroid();
     }
 
@@ -155,7 +182,7 @@ public class AsteroidManager : MonoBehaviour
                 asteroidClass = AsteroidClass.F_Class;
                 break;
         }
-        asteroid.InstantiateAsteroid(sizeToSend * 2.5f, (int)sizeToSend, asteroidClass, prefab);
+        asteroid.InstantiateAsteroid(sizeToSend * 2.5f, (int)sizeToSend, asteroidClass, asteroidPrefab);
         asteroidsList.Add(asteroid);
     }
 

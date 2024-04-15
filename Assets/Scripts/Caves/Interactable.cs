@@ -9,22 +9,28 @@ public class Interactable : MonoBehaviour
     private bool isInRange;
     private KeyCode interactKey = KeyCode.E;
     public TextMeshProUGUI reminderText;
+    [SerializeField] public SoundEffectEvent soundEffectEvent;
 
     // Update is called once per frame
     void Update()
     {
-        if (isInRange)
+        if (isInRange && Input.GetKeyDown(interactKey))
         {
-            if (Input.GetKeyDown(interactKey))
-            {
-                CaveManager.instance.LoadCaveScene(gameObject.name);
-            }
+            string CaveScene = gameObject.tag;
+            Transform CaveSpawn = CaveManager.Instance.EnterCaveScene(CaveScene);
+            PlayerManager.Instance.SetLastPosition();
+            PlayerManager.Instance.SetScenePosition(CaveScene, CaveSpawn);
+
+            packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(gameObject, SFX.Cave.Enter);
+            soundEffectEvent.Raise(sfxpacket);
+            // packet.SoundEffectPacket sfxpacket2 = new packet.SoundEffectPacket(gameObject, SFX.Cave.Ambience);
+            // soundEffectEvent.Raise(sfxpacket2);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
+        if (collision.gameObject == PlayerManager.Instance.GetPlayerObject())
         {
             isInRange = true;
             reminderText.text = "Enter Cave\nRemember to Avoid the Black Pits!";
@@ -33,7 +39,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == PlayerManager.instance.GetPlayerObject())
+        if (collision.gameObject == PlayerManager.Instance.GetPlayerObject())
         {
             isInRange = false;
             reminderText.text = "";

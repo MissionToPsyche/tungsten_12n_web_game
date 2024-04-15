@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{05BC63E4-9893-4F4B-84D1-C955285FBAD7}" SchemaVersion="119">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{05BC63E4-9893-4F4B-84D1-C955285FBAD7}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Main" ID="{BAFB5B80-FB8D-42EA-8079-7AB67A8F3006}">
+					<ObjectInclusionList>
+						<ObjectRef Name="radar_ping" ID="{0D3C2C8A-596B-40BE-822B-5F58E221BEC1}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="cave_enter" ID="{B7B8675C-AE28-40C4-BB4B-550656747C9C}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="satellite_found" ID="{27DF2BCE-9187-4143-BC8A-BA075D526838}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="error" ID="{F06534D4-8E4C-4160-8198-509958905BAF}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="player_building" ID="{034D1986-D13F-41A0-93C8-68CE3D00C645}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="camera_zoom_in" ID="{1F72E79B-57C6-41A1-B8C3-4584C84DDE5C}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="cave_ambience" ID="{58B084AF-4039-426E-AC7B-7DFCB5EA4E3F}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="cave_exit" ID="{236D6E2E-94CF-4396-80C5-E0096FE7C2D1}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="connection_made" ID="{117A90A5-0071-447A-BCF8-AA956B0E0A20}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="player_types" ID="{DA828AC8-44B5-4542-A0F1-C03044271CBB}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="player_jump" ID="{F875821D-8DF9-462A-A4C5-F75B4C4D61A4}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="spacchurch" ID="{41643D04-1FE6-465E-AEC4-6197A0D7BA7F}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="lightswitch_on" ID="{33EEBED6-9C3E-4702-A637-F4F56BCC86F4}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="rocket_launch" ID="{194A99C7-CD8E-4787-B537-49EE14F4CC1C}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="orbiter" ID="{2B364974-2806-4854-BC50-DAF7B75C8C3E}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_menu_music" ID="{5AAF15F2-ADA8-4905-B9CC-A6431CF2070C}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="big_j" ID="{F39D7751-ADB4-496F-B0E2-FBE6295423DB}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="satellite_control" ID="{78F77D8E-4336-4983-9893-3257C830CFAE}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="camera_zoom_out" ID="{7783E667-3FB6-49A0-B54F-23B6002652B2}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="resource_exhausted" ID="{69C1582E-A73D-49DF-8144-C8D8F577F28B}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="miner" ID="{C38533B3-BB84-4B9C-A2B8-DF84406FC44B}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="play_cavebraver" ID="{CF80B494-B44E-4C6C-82B2-44E020B5D91B}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="player_walk" ID="{407D8BF9-4318-4DB4-98C8-A67AC2670149}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="resource_replenished" ID="{54DE4087-10E6-4DC1-B071-FB18A98A62B1}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="satellite_lost" ID="{D358B308-F4F9-4E66-A629-73E355DB74B8}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="player_propulsion" ID="{3AD90236-0D34-4FEA-BCB3-CB7206E6F976}" WorkUnitID="{A0C887EA-9A4B-4D75-A59A-512AA03CB315}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

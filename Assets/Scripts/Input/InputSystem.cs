@@ -62,6 +62,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateCameraWithPlayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a31156e-db94-487b-9fea-3e1e88cc827c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,7 +121,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dd35ca22-2737-4b72-8e1a-f8722d91c62a"",
-                    ""path"": ""<Mouse>/scroll/y"",
+                    ""path"": ""<Mouse>/scroll/up"",
                     ""interactions"": """",
                     ""processors"": ""Invert"",
                     ""groups"": """",
@@ -134,7 +143,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6d014f1d-fe42-42d2-a3c9-c0cb3a917d5e"",
-                    ""path"": ""<Mouse>/scroll/y"",
+                    ""path"": ""<Mouse>/scroll/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -150,6 +159,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ZoomOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb777133-b2da-4e75-8156-b03e631ee6fc"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCameraWithPlayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -992,6 +1012,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Gameplay_GamePause = m_Gameplay.FindAction("GamePause", throwIfNotFound: true);
         m_Gameplay_ZoomIn = m_Gameplay.FindAction("ZoomIn", throwIfNotFound: true);
         m_Gameplay_ZoomOut = m_Gameplay.FindAction("ZoomOut", throwIfNotFound: true);
+        m_Gameplay_RotateCameraWithPlayer = m_Gameplay.FindAction("RotateCameraWithPlayer", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_PlayerMove = m_Player.FindAction("PlayerMove", throwIfNotFound: true);
@@ -1091,6 +1112,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_GamePause;
     private readonly InputAction m_Gameplay_ZoomIn;
     private readonly InputAction m_Gameplay_ZoomOut;
+    private readonly InputAction m_Gameplay_RotateCameraWithPlayer;
     public struct GameplayActions
     {
         private @InputSystem m_Wrapper;
@@ -1099,6 +1121,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @GamePause => m_Wrapper.m_Gameplay_GamePause;
         public InputAction @ZoomIn => m_Wrapper.m_Gameplay_ZoomIn;
         public InputAction @ZoomOut => m_Wrapper.m_Gameplay_ZoomOut;
+        public InputAction @RotateCameraWithPlayer => m_Wrapper.m_Gameplay_RotateCameraWithPlayer;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1120,6 +1143,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @ZoomOut.started += instance.OnZoomOut;
             @ZoomOut.performed += instance.OnZoomOut;
             @ZoomOut.canceled += instance.OnZoomOut;
+            @RotateCameraWithPlayer.started += instance.OnRotateCameraWithPlayer;
+            @RotateCameraWithPlayer.performed += instance.OnRotateCameraWithPlayer;
+            @RotateCameraWithPlayer.canceled += instance.OnRotateCameraWithPlayer;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1136,6 +1162,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @ZoomOut.started -= instance.OnZoomOut;
             @ZoomOut.performed -= instance.OnZoomOut;
             @ZoomOut.canceled -= instance.OnZoomOut;
+            @RotateCameraWithPlayer.started -= instance.OnRotateCameraWithPlayer;
+            @RotateCameraWithPlayer.performed -= instance.OnRotateCameraWithPlayer;
+            @RotateCameraWithPlayer.canceled -= instance.OnRotateCameraWithPlayer;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1585,6 +1614,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnGamePause(InputAction.CallbackContext context);
         void OnZoomIn(InputAction.CallbackContext context);
         void OnZoomOut(InputAction.CallbackContext context);
+        void OnRotateCameraWithPlayer(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {

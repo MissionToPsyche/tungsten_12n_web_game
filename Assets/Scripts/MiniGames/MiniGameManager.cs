@@ -5,14 +5,22 @@ using System.Collections.Generic;
 public class MiniGameManager : MonoBehaviour
 {
     public List<GameObject> prefabsToChooseFrom;
+
+    public GameObject caveMiniGame;
     public GameObject parentObject; // Parent GameObject to contain the instantiated prefab
 
-    public Vector3 desiredScale = new Vector3(2f, 2f, 2f);
+    //private Vector3 desiredScale = new Vector3(2f, 2f, 2f);
 
     private GameObject instantiatedPrefab; // Hold reference to the instantiated prefab
     public MiniGameCameraSwitcher cameraSwitcher;
 
     public VoidEvent isFixedEvent;
+
+    public VoidEvent isCollected;
+
+    public GameObject ExtractorTaskBG;
+
+    public GameObject CaveTaskBG;
 
     // Method to generate and place a prefab inside another object
     public void GenerateAndPlacePrefab()
@@ -30,6 +38,8 @@ public class MiniGameManager : MonoBehaviour
             return;
         }
 
+        ExtractorTaskBG.SetActive(true);
+
         // Randomly choose a prefab from the list
         GameObject prefabToInstantiate = prefabsToChooseFrom[Random.Range(0, prefabsToChooseFrom.Count)];
 
@@ -37,7 +47,7 @@ public class MiniGameManager : MonoBehaviour
         instantiatedPrefab = Instantiate(prefabToInstantiate, parentObject.transform);
 
         // Set the scale of the instantiated prefab
-        instantiatedPrefab.transform.localScale = desiredScale;
+       //instantiatedPrefab.transform.localScale = desiredScale;
 
         // Switch camera to mini game camera
         cameraSwitcher.SwitchToMiniGameCamera();
@@ -55,6 +65,47 @@ public class MiniGameManager : MonoBehaviour
 
             // Destroy the instantiated prefab
             Destroy(instantiatedPrefab);
+            ExtractorTaskBG.SetActive(false);
+            // Set the reference to null since the prefab is destroyed
+            instantiatedPrefab = null;
+        }
+        else
+        {
+            Debug.LogWarning("No instantiated prefab to destroy.");
+        }
+    }
+
+    public void GenerateAndPlaceCaveMiniGamePrefab(){
+
+        CaveTaskBG.SetActive(true);
+
+         // Randomly choose a prefab from the list
+        GameObject prefabToInstantiate = caveMiniGame;
+        
+        // Instantiate the chosen prefab inside the parent GameObject
+        instantiatedPrefab = Instantiate(prefabToInstantiate, parentObject.transform);
+
+        // Set the scale of the instantiated prefab
+        //instantiatedPrefab.transform.localScale = desiredScale;
+
+        // Switch camera to mini game camera
+        cameraSwitcher.SwitchToMiniGameCamera();
+    }
+
+    public void DestroyInstantiatedCaveMiniGamePrefab()
+    {
+        if (instantiatedPrefab != null)
+        {
+            
+
+            // Switch back to the player camera
+            isCollected.Raise();
+            
+            cameraSwitcher.SwitchBackFromMiniGameCamera();
+
+            // Destroy the instantiated prefab
+            Destroy(instantiatedPrefab);
+            CaveTaskBG.SetActive(false);
 
             // Set the reference to null since the prefab is destroyed
             instantiatedPrefab = null;

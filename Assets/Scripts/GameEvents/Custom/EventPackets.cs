@@ -3,11 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using BuildingComponents;
+using System;
+using Unity.VisualScripting;
 
 namespace packet{
     /// <summary>
     /// Instantiate by using the object calling this event, the amount to change the Inventory by, the resource to change and true for addition, false for subtraction
     /// </summary>
+    public class SoundEffectPacket
+    {
+        public GameObject obj;
+        public Enum sound;
+
+        public SoundEffectPacket(GameObject obj, Enum sound)
+        {
+            this.obj = obj;
+            this.sound = sound;
+        }
+    }
     public class CheckInventoryPacket{
         public GameObject objectThatSent;
         public BuildingType building;

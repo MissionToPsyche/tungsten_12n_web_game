@@ -32,7 +32,7 @@ ExportedObj/
 *.VC.db
 *UpgradedLog.*
 *.DS_Store
-
+Assets/Wwise/API/Runtime/Plugins/**/*.meta
 # ---------------------------------------------
 # Editor(s)
 *.vscode

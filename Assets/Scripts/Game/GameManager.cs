@@ -5,11 +5,12 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     // [Header("Events")]
 
     // [Header("Mutable")]
+    [SerializeField] public SoundEffectEvent soundEffectEvent;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private Control.State currentControlState;
@@ -49,14 +50,19 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void Start()
+    {
+
     }
 }

@@ -3,20 +3,22 @@ using Cinemachine;
 using System;
 using System.Numerics;
 using UnityEngine.SceneManagement;
-using UnityEditor.Callbacks;
 using TMPro;
 using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance { get; private set; }
+    public static PlayerController Instance { get; private set; }
 
     [Header("Events")]
-    [SerializeField] public StringEvent asteroidReached;
+    [SerializeField] public StringEvent currentAsteroidChanged;
     [SerializeField] public BoolEvent playerGroundedUpdated;
     [SerializeField] public Vector2Event playerPositionUpdated;
     [SerializeField] public BoolEvent playerInteract;
     [SerializeField] public BoolEvent playerLaunchPadInteract;
+    [SerializeField] public SoundEffectEvent soundEffectEvent;
+
+    [SerializeField] public VoidEvent playerInPit;
 
     [Header("Mutable")]
     [SerializeField] private CharacterDatabase characterDatabase;
@@ -98,6 +100,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Player.Walk);
+            // soundEffectEvent.Raise(sfxpacket);
             UpdatePlayerState(PlayerState.Walking);
         }
     }
@@ -134,6 +138,8 @@ public class PlayerController : MonoBehaviour
             {
                 isJumping = true;
                 UpdatePlayerState(PlayerState.Jumping);
+                packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Player.Jump);
+                soundEffectEvent.Raise(sfxpacket);
             }
         }
         else
@@ -182,19 +188,19 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
-        if (asteroidReached == null)
+        if (currentAsteroidChanged == null)
         {
-            asteroidReached = ScriptableObject.CreateInstance<StringEvent>();
+            currentAsteroidChanged = ScriptableObject.CreateInstance<StringEvent>();
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -207,14 +213,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // // Singleton method
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -343,6 +348,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded)
         {
+
             // do something
         }
     }
@@ -392,7 +398,7 @@ public class PlayerController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            PlayerManager.instance.SetScenePosition(SceneManager.GetActiveScene().name);
+            playerInPit.Raise();
         }
 
         // Handle ladder movement
@@ -416,20 +422,17 @@ public class PlayerController : MonoBehaviour
         return this.jumpForce;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collison)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Asteroid"))
+        if (collison.gameObject.layer == LayerMask.NameToLayer("GravityField"))
         {
-            string asteroidName = collision.gameObject.name;
-            asteroidReached.Raise(asteroidName);
+            string asteroidName = collison.transform.parent.name;  // Assuming the parent of the gravity field is the asteroid
+            currentAsteroidChanged.Raise(asteroidName);
             playerPositionUpdated.Raise(transform.position);
+            //Debug.Log("Entered gravity field of: " + asteroidName);
         }
-    }
 
-    // when in contact with objects
-    private void OnTriggerEnter2D(Collider2D Collision)
-    {
-        switch (Collision.gameObject.tag)
+        switch (collison.gameObject.tag)
         {
             case "Ladder":
                 isLadder = true;
@@ -437,15 +440,12 @@ public class PlayerController : MonoBehaviour
 
             case "BlackPit":
                 isInPit = true;
-            break;
+                break;
 
             default:
-            break;
+                break;
         }
-        // if (Collision.gameObject.tag == "Ladder")
-        // {
-        //     isLadder = true;
-        // }
+
     }
 
     // when not in contact with objects
@@ -460,10 +460,10 @@ public class PlayerController : MonoBehaviour
 
             case "BlackPit":
                 isInPit = false;
-            break;
+                break;
 
             default:
-            break;
+                break;
         }
 
         // if (Collision.gameObject.tag == "Ladder")
