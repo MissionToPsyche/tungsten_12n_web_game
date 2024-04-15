@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = direction.x;
         isIdle = horizontalInput == 0;
-
         if (isIdle)
         {
             UpdatePlayerState(isCrouching ? PlayerState.Crouching : PlayerState.Idle);
@@ -132,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPlayerJump(bool jumping)
     {
-        // Debug.Log($"Player controller - OnPlayerJump: {jumping}");
+        //Debug.Log($"Player controller - OnPlayerJump: {jumping}");
         if (jumping)
         {
             if (isGrounded)
@@ -209,6 +208,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("SpriteRenderer not found on the object!");
         }
+
     }
 
     void Start()
@@ -366,7 +366,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateAnimations();
-
+        //cybernetics.StartCorRoutine();
         // below is the code for climbing ladders
         vertical = Input.GetAxis("Vertical");
 

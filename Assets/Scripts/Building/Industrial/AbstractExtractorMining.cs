@@ -42,7 +42,6 @@ public class AbstractExtractorMining : MonoBehaviour
     protected float[] IndustrialExtractorMineAmtModifiers = {0f, 1.3f, 1.8f};
     protected float[] IndustrialExtractorBCModifiers = {0f, 1, 0f};
     [SerializeField] protected bool isPlaced = false;
-    [SerializeField] protected BuildObjEvent queryTechEvent;
     void Awake(){
         if(buildingType == BuildingType.Extractor){
             TechTier = 1;
@@ -200,16 +199,12 @@ public class AbstractExtractorMining : MonoBehaviour
         //^Use this for debugging or testing the playerInteract feature
         return Random.value < breakChance;
     }
-    protected void QueryTechLevel(){
-        queryTechEvent.Raise(buildingType);
-    }
+
     //Events
     //------------------------------------------------------------------
-    public void OnQueryTechResponse(packet.TechUpPacket packet){
-        if(packet.building == buildingType){
-            TechTier = packet.TechToLevel;
-            UpdateModifers();
-        }
+    public void QueryTechLevel(){
+        TechTier = InventoryManager.Instance.GetTechTier(buildingType);
+        UpdateModifers();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -235,6 +230,11 @@ public class AbstractExtractorMining : MonoBehaviour
         if(playerCanInteract && isBroken){
             //IMPLEMENT MINI GAME LOGIC HERE
             playerInteracted = true;
+            if(CyberneticsManager.Instance.HasCyberneticCharge()){
+                CyberneticsManager.Instance.UseCharge();
+                fix();
+                return;
+            }
             OnMiniGameEvent.Raise();
         }
     }

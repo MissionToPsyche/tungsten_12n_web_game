@@ -872,6 +872,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""RobotJump"",
+                    ""type"": ""Button"",
+                    ""id"": ""d78a56af-8d08-40a8-aff3-d9997f0e7078"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""RobotBuddyInteract"",
                     ""type"": ""Button"",
                     ""id"": ""4c71db63-ede5-4e52-bdd8-2362757b2842"",
@@ -969,6 +978,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""RobotBuddyInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""244a9f20-6635-4e29-a8ad-5fcda6c24367"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c5ea2ad-c2a4-434b-b74d-84e77b7ffe30"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RobotJump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1014,6 +1045,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         // RobotBuddy
         m_RobotBuddy = asset.FindActionMap("RobotBuddy", throwIfNotFound: true);
         m_RobotBuddy_RobotBuddyMove = m_RobotBuddy.FindAction("RobotBuddyMove", throwIfNotFound: true);
+        m_RobotBuddy_RobotJump = m_RobotBuddy.FindAction("RobotJump", throwIfNotFound: true);
         m_RobotBuddy_RobotBuddyInteract = m_RobotBuddy.FindAction("RobotBuddyInteract", throwIfNotFound: true);
     }
 
@@ -1519,12 +1551,14 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_RobotBuddy;
     private List<IRobotBuddyActions> m_RobotBuddyActionsCallbackInterfaces = new List<IRobotBuddyActions>();
     private readonly InputAction m_RobotBuddy_RobotBuddyMove;
+    private readonly InputAction m_RobotBuddy_RobotJump;
     private readonly InputAction m_RobotBuddy_RobotBuddyInteract;
     public struct RobotBuddyActions
     {
         private @InputSystem m_Wrapper;
         public RobotBuddyActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @RobotBuddyMove => m_Wrapper.m_RobotBuddy_RobotBuddyMove;
+        public InputAction @RobotJump => m_Wrapper.m_RobotBuddy_RobotJump;
         public InputAction @RobotBuddyInteract => m_Wrapper.m_RobotBuddy_RobotBuddyInteract;
         public InputActionMap Get() { return m_Wrapper.m_RobotBuddy; }
         public void Enable() { Get().Enable(); }
@@ -1538,6 +1572,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @RobotBuddyMove.started += instance.OnRobotBuddyMove;
             @RobotBuddyMove.performed += instance.OnRobotBuddyMove;
             @RobotBuddyMove.canceled += instance.OnRobotBuddyMove;
+            @RobotJump.started += instance.OnRobotJump;
+            @RobotJump.performed += instance.OnRobotJump;
+            @RobotJump.canceled += instance.OnRobotJump;
             @RobotBuddyInteract.started += instance.OnRobotBuddyInteract;
             @RobotBuddyInteract.performed += instance.OnRobotBuddyInteract;
             @RobotBuddyInteract.canceled += instance.OnRobotBuddyInteract;
@@ -1548,6 +1585,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @RobotBuddyMove.started -= instance.OnRobotBuddyMove;
             @RobotBuddyMove.performed -= instance.OnRobotBuddyMove;
             @RobotBuddyMove.canceled -= instance.OnRobotBuddyMove;
+            @RobotJump.started -= instance.OnRobotJump;
+            @RobotJump.performed -= instance.OnRobotJump;
+            @RobotJump.canceled -= instance.OnRobotJump;
             @RobotBuddyInteract.started -= instance.OnRobotBuddyInteract;
             @RobotBuddyInteract.performed -= instance.OnRobotBuddyInteract;
             @RobotBuddyInteract.canceled -= instance.OnRobotBuddyInteract;
@@ -1614,6 +1654,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     public interface IRobotBuddyActions
     {
         void OnRobotBuddyMove(InputAction.CallbackContext context);
+        void OnRobotJump(InputAction.CallbackContext context);
         void OnRobotBuddyInteract(InputAction.CallbackContext context);
     }
 }

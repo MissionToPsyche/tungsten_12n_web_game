@@ -1,53 +1,60 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
+//!!! IMPLEMENTATION OF TECHTIER, lights and to charge while outside
 public class RobotBuddyController : MonoBehaviour
 {
-    // Input
-    [SerializeField] private InputReader inputReader;
-
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
     private bool FocusedOn;
     [SerializeField, ReadOnly] private float groundCheckRadius = 0.3f;
     [Header("Objects")]
-    [SerializeField] private Rigidbody2D RoboBody;
+    [SerializeField] private Rigidbody2D robotBody;
     [SerializeField] private GravityBody2D gravityBody;
 
     private float walkingSpeed = 5.5f;
-    private float idleSpeed = 0f;
-
-    // variables used for ladder movement
-    private float vertical;
-
     [SerializeField, ReadOnly] private float currentSpeed;
-
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
-
     private bool isIdle = false;
-    private bool isWalking = false;
-
-    private bool isJumping = false;
-    private bool isCrouching = false;
+    [SerializeField] private float jumpForce = 1f;
 
     [Header("Movement")]
     [SerializeField, ReadOnly] private bool isGrounded = false;
-    [SerializeField, ReadOnly] private bool isFacingRight = false;
 
-    private enum PlayerState { Idle, Walking, Interacting }
-    [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
+    private enum RobotState { Idle, Walking, Interacting , Jumping}
+    [SerializeField, ReadOnly] private RobotState currentState = RobotState.Idle;
     [SerializeField] public BoolEvent robotBuddyInteract;
+    [SerializeField] private FloatEvent adjustRobotUI;
     // Animation
-    [SerializeField] private static PlayerController instance;
-    private UnityEngine.Vector3 playerCoordinates;
+    private Vector3 playerCoordinates;
     private GameManager gameManager;
     private bool isInPit;
+    private bool playerCanInteract = false;
     [SerializeField, ReadOnly] private bool isActive;
-    void Start()
+    [SerializeField, ReadOnly] private int TechTier = 0;
+    RobotBuddy robotBuddy;
+    CapsuleCollider2D chargeCollider;
+    void Awake()
     {
         transform.position = new Vector3(999f, 999f, 0);
+        robotBuddy = new();
+        chargeCollider = gameObject.AddComponent<CapsuleCollider2D>();
+        chargeCollider.isTrigger = true;
     }
 
+    IEnumerator DecreaseCharge()
+    {
+        while(isActive)
+        {
+            //reduces 1 tick per 1 second
+            adjustRobotUI.Raise(robotBuddy.ReduceCharge(2.0f));
+            if(robotBuddy.UpdateTechTier() == 3){
+                adjustRobotUI.Raise(robotBuddy.GainCharge(0.5f));
+            }
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
     // -------------------------------------------------------------------
     // Handle events
     // this method will set the player's last coordinates on the main asteroid scene
@@ -71,8 +78,12 @@ public class RobotBuddyController : MonoBehaviour
     {
         if(currentControlState == Control.State.RobotBuddyAlpha){
             isActive = this.gameObject.name ==  "RobotBuddyAlpha";
+            if(robotBuddy.UpdateTechTier() != 4)
+                StartCoroutine(DecreaseCharge());
         }else if(currentControlState == Control.State.RobotBuddyBeta){
             isActive = this.gameObject.name ==  "RobotBuddyBeta";
+            if(robotBuddy.UpdateTechTier() != 4)
+                StartCoroutine(DecreaseCharge());
         }
     }
     public void OnRobotBuddyInteract(bool interacting)
@@ -80,6 +91,23 @@ public class RobotBuddyController : MonoBehaviour
         if(!isActive)
             return;
         //Fix Module, look how to call repairModule
+    }
+    public void OnRobotJump(bool jumping)
+    {
+        adjustRobotUI.Raise(robotBuddy.ReduceCharge(5.0f));
+        //Debug.Log($"Robot controller - OnRobotJump: {robotBuddy.GetCurrentCharge()}");
+        Debug.Log($"Robot controller - jumping: {jumping}\tisGrounded: {isGrounded}");
+        if (jumping)
+        {
+            if (isGrounded)
+            {
+                UpdateRobotState(RobotState.Jumping);
+            }
+        }
+        else
+        {
+            UpdateRobotState(isIdle ? RobotState.Idle : RobotState.Walking);
+        }
     }
     private void RobotMove()
     {
@@ -90,17 +118,25 @@ public class RobotBuddyController : MonoBehaviour
         // Calculate the actual movement amount
         UnityEngine.Vector2 movement = direction * (currentSpeed * Time.fixedDeltaTime);
         // Move the player's rigidbody
-        RoboBody.position += movement;
+        robotBody.position += movement;
     }
 
     private void Interact()
     {
-        if (isGrounded && currentState == PlayerState.Interacting)
+        if (isGrounded && currentState == RobotState.Interacting)
         {
+            adjustRobotUI.Raise(robotBuddy.ReduceCharge(5.0f));
             robotBuddyInteract.Raise(true);
         }
     }
-
+    private void Jump()
+    {
+        if (!isGrounded) return;
+        if (currentState == RobotState.Jumping)
+        {
+            robotBody.AddForce(-gravityBody.GravityDirection * jumpForce, ForceMode2D.Impulse);
+        }
+    }
     // User input, animations, moving non-physics objects, game logic
 
 
@@ -109,13 +145,13 @@ public class RobotBuddyController : MonoBehaviour
     {
         if(!isActive)
             return;
-        // First check to make sure the player is grounded
+        // First check to make sure the Robot is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         // Handle possible inputs
         RobotMove();
+        Jump();
         Interact();
-
         // Handle falling in the pit scenario
         if (isInPit)
         {
@@ -132,7 +168,9 @@ public class RobotBuddyController : MonoBehaviour
             case "BlackPit":
                 isInPit = true;
             break;
-
+            case "Player":
+                playerCanInteract = true;
+            break;
             default:
             break;
         }
@@ -146,9 +184,22 @@ public class RobotBuddyController : MonoBehaviour
             case "BlackPit":
                 isInPit = false;
             break;
+            case "Player":
+                playerCanInteract = false;
+            break;
             default:
             break;
         }
-
+    }
+    
+    public void OnPlayerInteract(){
+        if(playerCanInteract && CyberneticsManager.Instance.HasCyberneticCharge()){
+            CyberneticsManager.Instance.UseCharge();
+            adjustRobotUI.Raise(robotBuddy.GiveFullCharge());
+        }
+    }
+    private void UpdateRobotState(RobotState newState)
+    {
+        currentState = newState;
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainCamera Blends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: Virtual Player Camera
+  - m_From: '**ANY CAMERA**'
     m_To: Virtual MiniGame Camera
     m_Blend:
       m_Style: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: Virtual MiniGame Camera
-    m_To: Virtual Player Camera
+    m_To: '**ANY CAMERA**'
     m_Blend:
       m_Style: 0
       m_Time: 2

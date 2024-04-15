@@ -87,7 +87,7 @@ public class UIBuildManager : MonoBehaviour
     //  <Suit> | <Industry> | <Robotics>
     //Always Starts Industry, cylce left continuously
     public void OnPlayerBuildOverlayCycleLeft(){
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V) && isOverlayActive)
         {
             // Hide the current overlay
             currentOverlay.SetActive(false);
@@ -109,7 +109,7 @@ public class UIBuildManager : MonoBehaviour
     }
     //  <Suit> | <Industry> | <Robotics>
     public void OnPlayerBuildOverlayCycleRight(){
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N) && isOverlayActive)
         {
             // Hide the current overlay
             currentOverlay.SetActive(false);
@@ -131,10 +131,6 @@ public class UIBuildManager : MonoBehaviour
     }
 
     // -------------------------------------------------------------------
-
-    public void UpdateAllTextObjects(packet.UpdateButtonCostTextPacket packet){
-
-    }
     public void OnTechUpEvent(packet.TechUpPacket packet){
         tierManager.UpdateBuildingTier(packet.building, packet.TechToLevel);
         //changes the stars
@@ -276,8 +272,11 @@ public class UIBuildManager : MonoBehaviour
             this.gameObject, BuildingComponents.BuildingType.JetPack, techCost));
     }
     public void TryBuildCybernetics(){
-        //Implementation needed
-        Debug.Log("Implementation needed");
+        if(CyberneticsManager.Instance.IsBuilt() == false){
+            Cybernetics tempCyber = new();
+            checkInventory.Raise(new packet.CheckInventoryPacket(
+                this.gameObject, BuildingComponents.BuildingType.Cybernetics, tempCyber.GetCostDictionary()));
+        }
     }
     public void TryTechUpCybernetics(){
         checkInventory.Raise(new packet.CheckInventoryPacket(

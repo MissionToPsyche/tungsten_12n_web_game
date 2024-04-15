@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Mutable")]
     [SerializeField] private GameObject playerObject;
+    [SerializeField] private GameObject CyberneticToolObject;
     [SerializeField] private GameObject MainSpawn; 
 
     [Header("ReadOnly")]
@@ -29,7 +30,9 @@ public class PlayerManager : MonoBehaviour
     private PlayerController playerController;
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero;
     private Quaternion lastRotation = Quaternion.Euler(0,0,0);
-
+    [SerializeField] private GameObject playerUIObject;
+    //private PlayerUIManager playerUIManager;
+    
     // -------------------------------------------------------------------
     // Handle events
 

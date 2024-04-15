@@ -5,6 +5,7 @@ public class Extractor : AbstractExtractor
         buildingData = LoadBuildingData();
         BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("Extractor");
         SetVarsFromJsonData(thisObject.IntervalMine, thisObject.AmountToMine, thisObject.baseBreakChance, thisObject.percentAsteroidReach);
+        currentTier = 1;
         thisCosts = InitObjCost(thisObject);
     }
 

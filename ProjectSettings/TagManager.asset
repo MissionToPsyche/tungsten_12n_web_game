@@ -15,6 +15,7 @@ TagManager:
   - RobotBuddy
   - Rock
   - GeologicalPhenomena
+  - RobotTriggerCollider
   - Cave_1
   - Cave_2
   - Cave_3
