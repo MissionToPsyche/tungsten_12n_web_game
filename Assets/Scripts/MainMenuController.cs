@@ -6,38 +6,45 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     public CanvasGroup HelpOption;
-    public CanvasGroup AboutOption;  
+    public CanvasGroup AboutOption;
+    [SerializeField] public SoundEffectEvent soundEffectEvent;
 
-    public void PlayGame() 
+    public void Start()
+    {
+        packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(this.gameObject, SFX.Music.MainMenu);
+        soundEffectEvent.Raise(sfxpacket);
+    }
+
+    public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void Help() 
+    public void Help()
     {
-        AboutOption.alpha = 0; 
-        AboutOption.blocksRaycasts = false; 
-        HelpOption.alpha = 1; 
-        HelpOption.blocksRaycasts = true; 
+        AboutOption.alpha = 0;
+        AboutOption.blocksRaycasts = false;
+        HelpOption.alpha = 1;
+        HelpOption.blocksRaycasts = true;
     }
 
     public void About() {
-        HelpOption.alpha = 0; 
-        HelpOption.blocksRaycasts = false; 
+        HelpOption.alpha = 0;
+        HelpOption.blocksRaycasts = false;
         AboutOption.alpha = 1;
-        AboutOption.blocksRaycasts = true;  
+        AboutOption.blocksRaycasts = true;
     }
 
-    public void Back() 
+    public void Back()
     {
-        HelpOption.alpha = 0; 
-        HelpOption.blocksRaycasts = false; 
-        AboutOption.alpha = 0; 
+        HelpOption.alpha = 0;
+        HelpOption.blocksRaycasts = false;
+        AboutOption.alpha = 0;
         AboutOption.blocksRaycasts = false;
     }
 
-    public void QuitGame() 
+    public void QuitGame()
     {
-        Application.Quit(); 
+        Application.Quit();
     }
 }

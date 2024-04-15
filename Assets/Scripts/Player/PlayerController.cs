@@ -3,7 +3,6 @@ using Cinemachine;
 using System;
 using System.Numerics;
 using UnityEngine.SceneManagement;
-using UnityEditor.Callbacks;
 using TMPro;
 using System.Threading;
 
@@ -17,7 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Vector2Event playerPositionUpdated;
     [SerializeField] public BoolEvent playerInteract;
     [SerializeField] public BoolEvent playerLaunchPadInteract;
-    [SerializeField] public VoidEvent playerInPit; 
+    [SerializeField] public SoundEffectEvent soundEffectEvent;
+
+    [SerializeField] public VoidEvent playerInPit;
 
     [Header("Mutable")]
     [SerializeField] private CharacterDatabase characterDatabase;
@@ -100,6 +101,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Player.Walk);
+            // soundEffectEvent.Raise(sfxpacket);
             UpdatePlayerState(PlayerState.Walking);
         }
     }
@@ -136,6 +139,8 @@ public class PlayerController : MonoBehaviour
             {
                 isJumping = true;
                 UpdatePlayerState(PlayerState.Jumping);
+                packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Player.Jump);
+                soundEffectEvent.Raise(sfxpacket);
             }
         }
         else
@@ -343,6 +348,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded)
         {
+
             // do something
         }
     }
@@ -392,7 +398,7 @@ public class PlayerController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            playerInPit.Raise(); 
+            playerInPit.Raise();
         }
 
         // Handle ladder movement
@@ -434,10 +440,10 @@ public class PlayerController : MonoBehaviour
 
             case "BlackPit":
                 isInPit = true;
-            break;
+                break;
 
             default:
-            break;
+                break;
         }
 
     }
@@ -454,10 +460,10 @@ public class PlayerController : MonoBehaviour
 
             case "BlackPit":
                 isInPit = false;
-            break;
+                break;
 
             default:
-            break;
+                break;
         }
 
         // if (Collision.gameObject.tag == "Ladder")
