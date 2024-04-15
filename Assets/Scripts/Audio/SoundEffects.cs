@@ -24,5 +24,6 @@ namespace SFX
     public enum Music
     {
         MainMenu,
+        BigJ
     }
 }

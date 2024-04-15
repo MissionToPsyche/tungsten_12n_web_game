@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // [Header("Events")]
 
     // [Header("Mutable")]
+    [SerializeField] public SoundEffectEvent soundEffectEvent;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private Control.State currentControlState;
@@ -60,7 +61,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Start()
     {
 
     }

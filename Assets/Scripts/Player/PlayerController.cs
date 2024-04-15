@@ -101,8 +101,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Player.Walk);
-            soundEffectEvent.Raise(sfxpacket);
+            // packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Player.Walk);
+            // soundEffectEvent.Raise(sfxpacket);
             UpdatePlayerState(PlayerState.Walking);
         }
     }
@@ -348,6 +348,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded)
         {
+
             // do something
         }
     }

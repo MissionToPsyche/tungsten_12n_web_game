@@ -48,7 +48,12 @@ public class SoundEffectManager : MonoBehaviour
             { SFX.Satellite.Orbit, "satellite_orbit" },
             { SFX.Cave.Enter, "cave_enter" },
             { SFX.Cave.Exit, "cave_exit" },
-            { SFX.Music.MainMenu, "Menu Music V1" }
+            { SFX.Cave.Ambience, "cave_ambience" },
+            { SFX.Music.MainMenu, "play_menu_music" },
+            { SFX.Music.BigJ, "big_j" }
         };
+
+        packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(this.gameObject, SFX.Music.BigJ);
+        OnSoundEffect(sfxpacket);
     }
 }

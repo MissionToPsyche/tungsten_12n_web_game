@@ -11,7 +11,7 @@ public class MainMenuController : MonoBehaviour
 
     public void Start()
     {
-        packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Music.MainMenu);
+        packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(this.gameObject, SFX.Music.MainMenu);
         soundEffectEvent.Raise(sfxpacket);
     }
 
