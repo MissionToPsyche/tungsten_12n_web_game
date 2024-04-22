@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(menuName = "InputReader")]
 
-public class InputReader :
-    ScriptableObject,
+public class InputReader : ScriptableObject,
     InputSystem.IGameplayActions,
     InputSystem.IPlayerActions,
     InputSystem.ISatelliteActions,
@@ -24,6 +21,20 @@ public class InputReader :
 
     [SerializeField] public SoundEffectEvent soundEffectEvent;
 
+    public static InputReader Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     private void OnEnable()
     {
         if (inputSystem == null)
@@ -34,18 +45,35 @@ public class InputReader :
             inputSystem.Satellite.SetCallbacks(this);
             inputSystem.UI.SetCallbacks(this);
             inputSystem.RobotBuddy.SetCallbacks(this);
+            Debug.Log("Input System initialized and callbacks set.");
         }
 
+        InitializeActionMaps();
+        SetControlState(Control.State.Player);
+    }
+
+    private void InitializeActionMaps()
+    {
         stateToActionMap = new Dictionary<Control.State, InputActionMap>
         {
             { Control.State.Player, inputSystem.Player },
             { Control.State.Satellite, inputSystem.Satellite },
             { Control.State.UI, inputSystem.UI },
-            { Control.State.RobotBuddyAlpha, inputSystem.RobotBuddy},
-            { Control.State.RobotBuddyBeta, inputSystem.RobotBuddy}
+            { Control.State.RobotBuddyAlpha, inputSystem.RobotBuddy },
+            { Control.State.RobotBuddyBeta, inputSystem.RobotBuddy }
         };
 
-        SetControlState(Control.State.Player);
+        EnableAllActionMaps();
+    }
+
+    private void EnableAllActionMaps()
+    {
+        inputSystem.Gameplay.Enable();
+        inputSystem.Player.Enable();
+        inputSystem.Satellite.Enable();
+        inputSystem.UI.Enable();
+        inputSystem.RobotBuddy.Enable();
+        Debug.Log("All action maps have been enabled.");
     }
 
     public void SetControlState(Control.State targetState)
@@ -62,16 +90,13 @@ public class InputReader :
             }
         }
 
-        // Directly control the state of the Gameplay action map depending on the UI context
         if (targetState != Control.State.UI)
         {
             inputSystem.Gameplay.Enable();
-            // Debug.Log("Enabled action map: Gameplay");
         }
         else
         {
             inputSystem.Gameplay.Disable();
-            // Debug.Log("Disabled action map: Gameplay");
         }
 
         if (targetState == Control.State.RobotBuddyAlpha)
@@ -81,7 +106,7 @@ public class InputReader :
 
         lastControlState = currentControlState;
         currentControlState = targetState;
-        //Debug.Log($"Current control state set to: {currentControlState}");
+        Debug.Log($"Control state changed to: {currentControlState}");
     }
 
     // -------------------------------------------------------------------
@@ -361,7 +386,7 @@ public class InputReader :
             RobotBuddyInteract.Raise(false);
         }
     }
-    
+
     public void OnRobotJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)

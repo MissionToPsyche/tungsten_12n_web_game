@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Web" BasePlatform="Web" SchemaVersion="16" SoundBankVersion="150">
+	<RootPaths>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache/Web</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>.</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{49C43671-1E6B-3F9D-6C77-E93189C81F56}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+			<AcousticTextures>
+				<AcousticTexture Id="504532776" Name="Brick">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="12"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="18"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="23"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="513139656" Name="Mountain">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="0"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="841620460" Name="Concrete">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="6"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="14"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1755085759" Name="Wood_Deep">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="1"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="8"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="20"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1873957695" Name="Anechoic">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="1970351858" Name="Fabric">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="3"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="13"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="48"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="72"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2058049674" Name="Wood">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="32"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="25"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="20"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="35"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2412606308" Name="Carpet">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="46"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="45"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="76"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2637588553" Name="Tile">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="67"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="41"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="12"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="0"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="2928161104" Name="Curtains">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="7"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="60"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="0"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="84"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="3195498748" Name="Cork_Tiles">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="14"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="30"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="73"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="3670307564" Name="Drywall">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="2"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="2"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="4168643977" Name="Acoustic_Banner">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="37"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="100"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="100"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+				<AcousticTexture Id="4262522749" Name="Wood_Bright">
+					<Properties>
+						<Property Name="AbsorptionLow" Type="Real32" Value="32"/>
+						<Property Name="AbsorptionMidLow" Type="Real32" Value="25"/>
+						<Property Name="AbsorptionMidHigh" Type="Real32" Value="10"/>
+						<Property Name="AbsorptionHigh" Type="Real32" Value="9"/>
+						<Property Name="Scattering" Type="Real32" Value="0"/>
+					</Properties>
+				</AcousticTexture>
+			</AcousticTextures>
+		</SoundBank>
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{21950323-D9BC-8EDA-02DF-3D1B614A3E52}">
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<Media>
+				<File Id="6497718" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>BigJsFaceInSpace.wav</ShortName>
+					<CachePath>SFX/BigJsFaceInSpace_818F3B66.wem</CachePath>
+				</File>
+				<File Id="12712304" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Cave Braver.wav</ShortName>
+					<CachePath>SFX/Cave Braver_818F3B66.wem</CachePath>
+				</File>
+				<File Id="49355698" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Miner .wav</ShortName>
+					<CachePath>SFX/Miner _818F3B66.wem</CachePath>
+				</File>
+				<File Id="64531843" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_building.wav</ShortName>
+					<CachePath>SFX/player_building_818F3B66.wem</CachePath>
+				</File>
+				<File Id="96139402" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>cave_ambience.wav</ShortName>
+					<CachePath>SFX/cave_ambience_818F3B66.wem</CachePath>
+				</File>
+				<File Id="124301441" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>error.wav</ShortName>
+					<CachePath>SFX/error_818F3B66.wem</CachePath>
+				</File>
+				<File Id="203576867" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>orbiter.wav</ShortName>
+					<CachePath>SFX/orbiter_818F3B66.wem</CachePath>
+				</File>
+				<File Id="268395029" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>satellite_found.wav</ShortName>
+					<CachePath>SFX/satellite_found_818F3B66.wem</CachePath>
+				</File>
+				<File Id="309141344" Language="SFX" Streaming="true" Location="Loose">
+					<ShortName>player_walk.wav</ShortName>
+					<Path>Media/309141344.wem</Path>
+					<CachePath>SFX/player_walk_D4AA8008.wem</CachePath>
+				</File>
+				<File Id="434168179" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>satellite_lost.wav</ShortName>
+					<CachePath>SFX/satellite_lost_818F3B66.wem</CachePath>
+				</File>
+				<File Id="443562725" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>propulsion.wav</ShortName>
+					<CachePath>SFX/propulsion_818F3B66.wem</CachePath>
+				</File>
+				<File Id="451349757" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>cave_enter.wav</ShortName>
+					<CachePath>SFX/cave_enter_818F3B66.wem</CachePath>
+				</File>
+				<File Id="493497779" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>resource_exhausted.wav</ShortName>
+					<CachePath>SFX/resource_exhausted_818F3B66.wem</CachePath>
+				</File>
+				<File Id="524521247" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>satellite_control.wav</ShortName>
+					<CachePath>SFX/satellite_control_818F3B66.wem</CachePath>
+				</File>
+				<File Id="557669634" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>lightswitch_on.wav</ShortName>
+					<CachePath>SFX/lightswitch_on_818F3B66.wem</CachePath>
+				</File>
+				<File Id="576082170" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Menu Music Ver.1.wav</ShortName>
+					<CachePath>SFX/Menu Music Ver.1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="579211174" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>resource_replenish.wav</ShortName>
+					<CachePath>SFX/resource_replenish_818F3B66.wem</CachePath>
+				</File>
+				<File Id="582143499" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>radar_ping.wav</ShortName>
+					<CachePath>SFX/radar_ping_818F3B66.wem</CachePath>
+				</File>
+				<File Id="597019812" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>camera_zoom_out.wav</ShortName>
+					<CachePath>SFX/camera_zoom_out_818F3B66.wem</CachePath>
+				</File>
+				<File Id="620298758" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_types.wav</ShortName>
+					<CachePath>SFX/player_types_818F3B66.wem</CachePath>
+				</File>
+				<File Id="769773032" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rocket_launch.wav</ShortName>
+					<CachePath>SFX/rocket_launch_818F3B66.wem</CachePath>
+				</File>
+				<File Id="849895687" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>connection_made.wav</ShortName>
+					<CachePath>SFX/connection_made_818F3B66.wem</CachePath>
+				</File>
+				<File Id="851280803" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_jump.wav</ShortName>
+					<CachePath>SFX/player_jump_818F3B66.wem</CachePath>
+				</File>
+				<File Id="917426919" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>camera_zoom_in.wav</ShortName>
+					<CachePath>SFX/camera_zoom_in_818F3B66.wem</CachePath>
+				</File>
+				<File Id="987407633" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>cave_exit.wav</ShortName>
+					<CachePath>SFX/cave_exit_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1072976016" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>space church.wav</ShortName>
+					<CachePath>SFX/space church_818F3B66.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="1071743250" Name="big_j" DurationType="OneShot" DurationMin="172.88138" DurationMax="172.88138">
+					<MediaRefs>
+						<MediaRef Id="6497718"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2766569724" Name="camera_zoom_in" DurationType="OneShot" DurationMin="1.8313959" DurationMax="1.8313959">
+					<MediaRefs>
+						<MediaRef Id="917426919"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2043534011" Name="camera_zoom_out" DurationType="OneShot" DurationMin="2" DurationMax="2">
+					<MediaRefs>
+						<MediaRef Id="597019812"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1455232537" Name="cave_ambience" DurationType="OneShot" DurationMin="96.79869" DurationMax="96.79869">
+					<MediaRefs>
+						<MediaRef Id="96139402"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3790365641" Name="cave_enter" DurationType="OneShot" DurationMin="2.25" DurationMax="2.25">
+					<MediaRefs>
+						<MediaRef Id="451349757"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="180886821" Name="cave_exit" DurationType="OneShot" DurationMin="2.5" DurationMax="2.5">
+					<MediaRefs>
+						<MediaRef Id="987407633"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1351093455" Name="connection_made" DurationType="OneShot" DurationMin="1.8041875" DurationMax="1.8041875">
+					<MediaRefs>
+						<MediaRef Id="849895687"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1880695829" Name="error" DurationType="OneShot" DurationMin="0.37535417" DurationMax="0.37535417">
+					<MediaRefs>
+						<MediaRef Id="124301441"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2253880733" Name="lightswitch_on" DurationType="OneShot" DurationMin="0.7876875" DurationMax="0.7876875">
+					<MediaRefs>
+						<MediaRef Id="557669634"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3600472774" Name="miner" DurationType="OneShot" DurationMin="4.0122914" DurationMax="4.0122914">
+					<MediaRefs>
+						<MediaRef Id="49355698"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4147866574" Name="orbiter" DurationType="OneShot" DurationMin="18.94802" DurationMax="18.94802">
+					<MediaRefs>
+						<MediaRef Id="203576867"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="861717421" Name="play_cavebraver" DurationType="OneShot" DurationMin="115.2" DurationMax="115.2">
+					<MediaRefs>
+						<MediaRef Id="12712304"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2228153899" Name="play_menu_music" DurationType="OneShot" DurationMin="125.324936" DurationMax="125.324936">
+					<MediaRefs>
+						<MediaRef Id="576082170"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1188158269" Name="player_building" DurationType="OneShot" DurationMin="4" DurationMax="4">
+					<MediaRefs>
+						<MediaRef Id="64531843"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1305133589" Name="player_jump" DurationType="OneShot" DurationMin="0.17816667" DurationMax="0.17816667">
+					<MediaRefs>
+						<MediaRef Id="851280803"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1725973038" Name="player_propulsion" DurationType="OneShot" DurationMin="3.49125" DurationMax="3.49125">
+					<MediaRefs>
+						<MediaRef Id="443562725"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1296533592" Name="player_types" DurationType="OneShot" DurationMin="0.74397916" DurationMax="0.74397916">
+					<MediaRefs>
+						<MediaRef Id="620298758"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2147561130" Name="player_walk" DurationType="OneShot" DurationMin="0.41204166" DurationMax="0.41204166">
+					<MediaRefs>
+						<MediaRef Id="309141344"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="878640966" Name="radar_ping" DurationType="OneShot" DurationMin="1.2578125" DurationMax="1.2578125">
+					<MediaRefs>
+						<MediaRef Id="582143499"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4091286405" Name="resource_exhausted" DurationType="OneShot" DurationMin="2.6220207" DurationMax="2.6220207">
+					<MediaRefs>
+						<MediaRef Id="493497779"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="25889933" Name="resource_replenished" DurationType="OneShot" DurationMin="0.46875" DurationMax="0.46875">
+					<MediaRefs>
+						<MediaRef Id="579211174"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2984764225" Name="rocket_launch" DurationType="OneShot" DurationMin="27.509813" DurationMax="27.509813">
+					<MediaRefs>
+						<MediaRef Id="769773032"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="887189070" Name="satellite_control" DurationType="OneShot" DurationMin="4.625" DurationMax="4.625">
+					<MediaRefs>
+						<MediaRef Id="524521247"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3725418217" Name="satellite_found" DurationType="OneShot" DurationMin="5" DurationMax="5">
+					<MediaRefs>
+						<MediaRef Id="268395029"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1403283989" Name="satellite_lost" DurationType="OneShot" DurationMin="4" DurationMax="4">
+					<MediaRefs>
+						<MediaRef Id="434168179"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3891229501" Name="spacchurch" DurationType="OneShot" DurationMin="115.121956" DurationMax="115.121956">
+					<MediaRefs>
+						<MediaRef Id="1072976016"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{A540BEA8-B5CA-D8BF-E2A9-F33A2DBFD8F1}</FileHash>
+</SoundBanksInfo>

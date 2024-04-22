@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // [Header("Events")]
 
     // [Header("Mutable")]
+    [SerializeField] public InputReader inputReader;
     [SerializeField] public SoundEffectEvent soundEffectEvent;
 
     [Header("ReadOnly")]
@@ -58,6 +59,15 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        if (inputReader != null)
+        {
+            Debug.Log("InputReader has been loaded.");
+        }
+        else
+        {
+            Debug.LogError("InputReader is not assigned in the GameManager.");
         }
     }
 

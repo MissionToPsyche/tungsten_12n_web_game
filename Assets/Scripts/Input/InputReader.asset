@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4d9a6097324e345864a14cff49d7ba, type: 3}
   m_Name: InputReader
   m_EditorClassIdentifier: 
+  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
   ControlStateUpdated: {fileID: 11400000, guid: 8e2fb6dd0e2ee9a46be69cec3253465d, type: 2}
   ZoomIn: {fileID: 11400000, guid: 167d15a813801274dbc1eb761163d610, type: 2}
   ZoomOut: {fileID: 11400000, guid: 4f111cf133a3ea14db11c9019b203d78, type: 2}
