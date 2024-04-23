@@ -8,7 +8,7 @@ public class AbstractExtractorMining : MonoBehaviour
     public VoidEvent OnMiniGameEvent;
 
     //Mining
-    public MiningEvent OnMineEvent;
+    public ResourceToInventoryEvent OnMineEvent;
     protected float mineInterval;
     protected int amountToMine;
     protected float timer = 0;
@@ -66,7 +66,7 @@ public class AbstractExtractorMining : MonoBehaviour
         if (timer >= mineInterval)
         {
             QueryTechLevel();
-            OnMineEvent.Raise(new packet.MiningPacket(linkedGameObject, GetCurrentMineAmt(), resourceToMine, true));
+            OnMineEvent.Raise(new packet.ResourceToInventory(linkedGameObject, GetCurrentMineAmt(), resourceToMine, true));
             timesMinedSinceBroken += 1;
             timer = 0f;
             if (RollForModuleBreak()){

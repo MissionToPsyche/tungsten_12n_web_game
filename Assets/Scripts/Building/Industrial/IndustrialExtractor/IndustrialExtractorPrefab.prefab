@@ -210,11 +210,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnMiniGameEvent: {fileID: 11400000, guid: 4ef8aa52794c80344bf367b0095ecb80, type: 2}
-  OnMineEvent: {fileID: 11400000, guid: 4ce99701e330a433a914edb654c3a95a, type: 2}
+  OnMineEvent: {fileID: 11400000, guid: 36ea3a6d9efb64529b1652eadc632db5, type: 2}
   textPrefabPlusOne: {fileID: 7402745957934915356, guid: 1582b7f0caa9d4aa6bc52df01478b0ce, type: 3}
   textPrefabExclamation: {fileID: 7402745957934915356, guid: 42c8678fc9cb94a2ba1502dfc5df1a25, type: 3}
   isPlaced: 0
-  queryTechEvent: {fileID: 11400000, guid: bf7ca6c4859be41a0891e429f150edcc, type: 2}
 --- !u!114 &1422273109692160702
 MonoBehaviour:
   m_ObjectHideFlags: 0

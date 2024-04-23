@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7619713829698742960}
   - component: {fileID: -8436400139708018461}
   - component: {fileID: -5256694271781332552}
+  - component: {fileID: 8321464320918911399}
   m_Layer: 14
   m_Name: RobotBuddy
   m_TagString: RobotBuddy
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 273207475
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 91003faffaa214db2a7fdf521423bcd4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd917abe1b9e456c84cf5976b6662e43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,9 +120,12 @@ MonoBehaviour:
   isGrounded: 0
   currentState: 0
   robotBuddyInteract: {fileID: 11400000, guid: 785f1221415074d0284dcf6a994842d3, type: 2}
-  adjustRobotUI: {fileID: 11400000, guid: d0e2210c3c9d64353848a8c7bc1916c0, type: 2}
+  adjustRobotUI: {fileID: 11400000, guid: 13cdeee4f1cab48788867feff46adde5, type: 2}
   isActive: 0
   TechTier: 0
+  controllingRobotAlpha: 0
+  controllingRobotBeta: 0
+  beingCarried: 0
 --- !u!114 &1602785552444115735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +349,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8321464320918911399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156260498347462317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8e260297b9887444b83a446ae76b6da7, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 984206101396499892}
+        m_TargetAssemblyTypeName: RobotBuddyController, Assembly-CSharp
+        m_MethodName: OnPlayerPickup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7729926467811810245
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 23051743585910141}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +402,7 @@ Transform:
   m_GameObject: {fileID: 7729926467811810245}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.028, y: 0.075, z: 0}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []

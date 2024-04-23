@@ -7,8 +7,6 @@ public class MiniGameCameraSwitcher : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera SatelliteCamera;
     [SerializeField] private CinemachineVirtualCamera RobotBuddyAlphaCamera;
     [SerializeField] private CinemachineVirtualCamera RobotBuddyBetaCamera;
-
-    private Control.State currentState = Control.State.Player;
     [SerializeField] private CinemachineVirtualCamera miniGameCamera; // Variable to store the mini game camera
 
     // Method to switch to mini game camera
@@ -27,17 +25,17 @@ public class MiniGameCameraSwitcher : MonoBehaviour
     public void SwitchBackFromMiniGameCamera()
     {
         // Switch back to the previously active camera
-        switch(currentState){
-            case(Control.State.Player):
+        switch(GameManager.Instance.GetCurrentControlState()){
+            case Control.State.Player:
                 playerCamera.Priority = 100;
             break;
-            case(Control.State.Satellite):
+            case Control.State.Satellite:
                 SatelliteCamera.Priority = 100;
             break;
-            case(Control.State.RobotBuddyAlpha):
+            case Control.State.RobotBuddyAlpha:
                 RobotBuddyAlphaCamera.Priority = 100;
             break;
-            case(Control.State.RobotBuddyBeta):
+            case Control.State.RobotBuddyBeta:
                 RobotBuddyBetaCamera.Priority = 100;
             break;
             default:
@@ -47,10 +45,5 @@ public class MiniGameCameraSwitcher : MonoBehaviour
         }
         
         miniGameCamera.Priority = 0;
-    }
-
-    public void OnControlStateUpdated(Control.State currentControlState)
-    {
-        currentState = currentControlState;
     }
 }

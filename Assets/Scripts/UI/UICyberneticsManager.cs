@@ -25,9 +25,9 @@ public class UICyberneticsManager : MonoBehaviour
 
     // Not for display
     private int currentTier = 0;
-    private Color green = new Color32(100, 255, 85, 255);
-    //private Color green = new Color32(100, 255, 85, 255);
-    private Color grey = new Color32(31, 31, 31, 222);
+    private Color onColor = new Color32(183, 117, 11, 255);
+    //private Color onColor = new Color32(100, 255, 85, 255);
+    private Color offColor = new Color32(66, 32, 59, 222);
     public void Awake(){
         TierZeroOverlay.SetActive(false);
         TierOneOverlay.SetActive(false);
@@ -76,15 +76,16 @@ public class UICyberneticsManager : MonoBehaviour
             break;
         }
         if(currentTier == 0){
-            TierZeroCharge1.color = green;
+            TierZeroCharge1.color = onColor;
         }else if(currentTier == 1 || currentTier == 2){
-            TierOneCharge1.color = green;
+            TierOneCharge1.color = onColor;
         }else if(currentTier == 3){
-            TierThreeCharge1.color = green;
+            TierThreeCharge1.color = onColor;
         }
     }
 
     private void UpdateUIComponents(int numCharges){
+        
         switch(currentTier){
             case 0:
                 SetChargeUIZero(numCharges);
@@ -103,9 +104,9 @@ public class UICyberneticsManager : MonoBehaviour
 
     private void SetChargeUIZero(int numCharges){
         if(numCharges == 0){
-            TierZeroCharge1.color = grey;
+            TierZeroCharge1.color = offColor;
         }else if(numCharges == 1){
-            TierZeroCharge1.color = green;
+            TierZeroCharge1.color = onColor;
         }else{
             Debug.LogError("[UICyberneticsManager] -: UpdateUIComponents() -> SetChargeUIZero(): numCharges is above the number that its current tech level allows for numCharges= "  + numCharges);
         }
@@ -113,16 +114,16 @@ public class UICyberneticsManager : MonoBehaviour
     private void SetChargeUITwo(int numCharges){
         switch(numCharges){
             case 0:
-                SetTierTwoImages(grey, grey, grey);
+                SetTierTwoImages(offColor, offColor, offColor);
             break;
             case 1:
-                SetTierTwoImages(green, grey, grey);
+                SetTierTwoImages(onColor, offColor, offColor);
             break;
             case 2:
-                SetTierTwoImages(green, green, grey);
+                SetTierTwoImages(onColor, onColor, offColor);
             break;
             case 3:
-                SetTierTwoImages(green, green, green);
+                SetTierTwoImages(onColor, onColor, onColor);
             break;
             default:
                 Debug.LogError("[UICyberneticsManager] -: UpdateUIComponents() -> SetChargeUIZero(): numCharges is above the number that its current tech level allows for numCharges= "  + numCharges);
@@ -132,25 +133,25 @@ public class UICyberneticsManager : MonoBehaviour
     private void SetChargeUIThree(int numCharges){
         switch(numCharges){
             case 0:
-                SetTierThreeImages(grey, grey, grey, grey, grey, grey);
+                SetTierThreeImages(offColor, offColor, offColor, offColor, offColor, offColor);
             break;
             case 1:
-                SetTierThreeImages(green, grey, grey, grey, grey, grey);
+                SetTierThreeImages(onColor, offColor, offColor, offColor, offColor, offColor);
             break;
             case 2:
-                SetTierThreeImages(green, green, grey, grey, grey, grey);
+                SetTierThreeImages(onColor, onColor, offColor, offColor, offColor, offColor);
             break;
             case 3:
-                SetTierThreeImages(green, green, green, grey, grey, grey);
+                SetTierThreeImages(onColor, onColor, onColor, offColor, offColor, offColor);
             break;
             case 4:
-                SetTierThreeImages(green, green, green, green, grey, grey);
+                SetTierThreeImages(onColor, onColor, onColor, onColor, offColor, offColor);
             break;
             case 5:
-                SetTierThreeImages(green, green, green, green, green, grey);
+                SetTierThreeImages(onColor, onColor, onColor, onColor, onColor, offColor);
             break;
             case 6:
-                SetTierThreeImages(green, green, green, green, green, green);
+                SetTierThreeImages(onColor, onColor, onColor, onColor, onColor, onColor);
             break;
             default:
                 Debug.LogError("[UICyberneticsManager] -: UpdateUIComponents() -> SetChargeUIZero(): numCharges is above the absolute max: numCharges= " + numCharges);

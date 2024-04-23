@@ -8,7 +8,7 @@ public class RobotBuddyController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
     private bool FocusedOn;
-    [SerializeField, ReadOnly] private float groundCheckRadius = 0.3f;
+    [SerializeField, ReadOnly] private float groundCheckRadius = 0.7f;
     [Header("Objects")]
     [SerializeField] private Rigidbody2D robotBody;
     [SerializeField] private GravityBody2D gravityBody;
@@ -25,7 +25,7 @@ public class RobotBuddyController : MonoBehaviour
     private enum RobotState { Idle, Walking, Interacting , Jumping}
     [SerializeField, ReadOnly] private RobotState currentState = RobotState.Idle;
     [SerializeField] public BoolEvent robotBuddyInteract;
-    [SerializeField] private FloatEvent adjustRobotUI;
+    [SerializeField] private RobotUIEvent adjustRobotUI;
     // Animation
     private Vector3 playerCoordinates;
     private GameManager gameManager;
@@ -33,25 +33,52 @@ public class RobotBuddyController : MonoBehaviour
     private bool playerCanInteract = false;
     [SerializeField, ReadOnly] private bool isActive;
     [SerializeField, ReadOnly] private int TechTier = 0;
+    [SerializeField, ReadOnly] private bool controllingRobotAlpha = false;
+    [SerializeField, ReadOnly] private bool controllingRobotBeta = false;
+    [SerializeField, ReadOnly] private bool beingCarried = false;
     RobotBuddy robotBuddy;
     CapsuleCollider2D chargeCollider;
+    CapsuleCollider2D normalCollider;
+
+    private float idleReduceCharge = 2.0f;
+    private float jumpReduceCharge = 5.0f;
+    private float interactReduceCharge = 5.0f;
+    private Vector3 hiddenPosition = new Vector3(999f, 999f);
+
     void Awake()
     {
-        transform.position = new Vector3(999f, 999f, 0);
+        transform.position = hiddenPosition;
         robotBuddy = new();
+        normalCollider = GetComponent<CapsuleCollider2D>();
         chargeCollider = gameObject.AddComponent<CapsuleCollider2D>();
         chargeCollider.isTrigger = true;
     }
 
-    IEnumerator DecreaseCharge()
+    IEnumerator DecreaseChargeAlpha()
     {
-        while(isActive)
+        while(isControllingAlpha())
         {
             //reduces 1 tick per 1 second
-            adjustRobotUI.Raise(robotBuddy.ReduceCharge(2.0f));
-            if(robotBuddy.UpdateTechTier() == 3){
-                adjustRobotUI.Raise(robotBuddy.GainCharge(0.5f));
-            }
+            SetCharge(robotBuddy.ReduceCharge(idleReduceCharge));
+            
+            //  I think we need to either get rid of 3rd TechLevel or think of something else it can do, maybe increase jump height
+            // if(robotBuddy.UpdateTechTier() == 3){
+            //     adjustRobotUI.Raise(robotBuddy.GainCharge(0.5f));
+            // }
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+    IEnumerator DecreaseChargeBeta()
+    {
+        while(isControllingBeta())
+        {
+            //reduces 1 tick per 1 second
+            SetCharge(robotBuddy.ReduceCharge(idleReduceCharge));
+            
+            //  I think we need to either get rid of 3rd TechLevel or think of something else it can do, maybe increase jump height
+            // if(robotBuddy.UpdateTechTier() == 3){
+            //     adjustRobotUI.Raise(robotBuddy.GainCharge(0.5f));
+            // }
             yield return new WaitForSeconds(1.0f);
         }
     }
@@ -78,14 +105,23 @@ public class RobotBuddyController : MonoBehaviour
     {
         if(currentControlState == Control.State.RobotBuddyAlpha){
             isActive = this.gameObject.name ==  "RobotBuddyAlpha";
+            controllingRobotAlpha = true;
+            controllingRobotBeta = false;
             if(robotBuddy.UpdateTechTier() != 4)
-                StartCoroutine(DecreaseCharge());
+                StartCoroutine(DecreaseChargeAlpha());
         }else if(currentControlState == Control.State.RobotBuddyBeta){
             isActive = this.gameObject.name ==  "RobotBuddyBeta";
+            controllingRobotAlpha = false;
+            controllingRobotBeta = true;
             if(robotBuddy.UpdateTechTier() != 4)
-                StartCoroutine(DecreaseCharge());
+                StartCoroutine(DecreaseChargeBeta());
+        }else{
+            isActive = false;
+            controllingRobotAlpha = false;
+            controllingRobotBeta = false;
         }
     }
+    
     public void OnRobotBuddyInteract(bool interacting)
     {
         if(!isActive)
@@ -94,20 +130,23 @@ public class RobotBuddyController : MonoBehaviour
     }
     public void OnRobotJump(bool jumping)
     {
-        adjustRobotUI.Raise(robotBuddy.ReduceCharge(5.0f));
-        //Debug.Log($"Robot controller - OnRobotJump: {robotBuddy.GetCurrentCharge()}");
-        Debug.Log($"Robot controller - jumping: {jumping}\tisGrounded: {isGrounded}");
-        if (jumping)
-        {
-            if (isGrounded)
+        if(isControllingAlpha() || isControllingBeta()){
+            //Debug.Log($"Robot controller - jumping: {jumping}\t\tisGrounded: {isGrounded}");
+            SetCharge(robotBuddy.ReduceCharge(jumpReduceCharge));
+            if (jumping)
             {
-                UpdateRobotState(RobotState.Jumping);
+                if (isGrounded)
+                {
+                    UpdateRobotState(RobotState.Jumping);
+                }
+            }
+            else
+            {
+                UpdateRobotState(isIdle ? RobotState.Idle : RobotState.Walking);
             }
         }
-        else
-        {
-            UpdateRobotState(isIdle ? RobotState.Idle : RobotState.Walking);
-        }
+        //Debug.Log($"Robot controller - OnRobotJump: {robotBuddy.GetCurrentCharge()}");
+        
     }
     private void RobotMove()
     {
@@ -125,7 +164,7 @@ public class RobotBuddyController : MonoBehaviour
     {
         if (isGrounded && currentState == RobotState.Interacting)
         {
-            adjustRobotUI.Raise(robotBuddy.ReduceCharge(5.0f));
+            SetCharge(robotBuddy.ReduceCharge(interactReduceCharge));
             robotBuddyInteract.Raise(true);
         }
     }
@@ -143,7 +182,7 @@ public class RobotBuddyController : MonoBehaviour
     // Physics calculations, ridigbody movement, collision detection
     private void FixedUpdate()
     {
-        if(!isActive)
+        if(!isActive || beingCarried)
             return;
         // First check to make sure the Robot is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -161,9 +200,10 @@ public class RobotBuddyController : MonoBehaviour
     }
 
     // when in contact with objects
-    private void OnTriggerEnter2D(Collider2D Collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (Collision.gameObject.tag)
+        //Debug.Log($"Collided with: {collision.gameObject.tag}");
+        switch (collision.gameObject.tag)
         {
             case "BlackPit":
                 isInPit = true;
@@ -195,11 +235,68 @@ public class RobotBuddyController : MonoBehaviour
     public void OnPlayerInteract(){
         if(playerCanInteract && CyberneticsManager.Instance.HasCyberneticCharge()){
             CyberneticsManager.Instance.UseCharge();
-            adjustRobotUI.Raise(robotBuddy.GiveFullCharge());
+            if(this.gameObject.name == "RobotBuddyAlpha"){
+                adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyAlpha, robotBuddy.GiveFullCharge()));
+            }else if(this.gameObject.name == "RobotBuddyBeta"){
+                adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyBeta, robotBuddy.GiveFullCharge()));
+            }
         }
+    }
+    public void OnPlayerPickup(){
+        if(playerCanInteract && beingCarried == false){
+            beingCarried = true;
+            DisablePhysics();
+            //get picked up logic
+        }else if(beingCarried == true){
+            beingCarried = false;
+            EnablePhysics();
+        }
+    }
+
+    private void DisablePhysics(){
+        transform.position = hiddenPosition;
+        robotBody.simulated = false;
+        normalCollider.enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        isActive = false;
+    }
+
+    private void EnablePhysics(){
+        TeleportRobotBuddy();
+        robotBody.simulated = true;
+        normalCollider.enabled = true;
+        GetComponent<SpriteRenderer>().enabled = true;
+        TeleportRobotBuddy();
     }
     private void UpdateRobotState(RobotState newState)
     {
         currentState = newState;
     }
+
+    private bool isControllingAlpha(){
+        if(controllingRobotAlpha && this.gameObject.name ==  "RobotBuddyAlpha"){
+            return true;
+        }
+        return false;
+    }
+    private bool isControllingBeta(){
+        if(controllingRobotBeta && this.gameObject.name ==  "RobotBuddyBeta"){
+            return true;
+        }
+        return false;
+    }
+    private void SetCharge(float num){
+        if(isControllingAlpha()){
+            adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyAlpha, num));
+        }else if(isControllingBeta()){
+            adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyBeta, num));
+        }
+    }
+    public void TeleportRobotBuddy(){
+        Vector3 screenPos = new Vector3(475, 285, 0f);
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        worldPos.z = 0;
+        transform.position = PlayerManager.Instance.GetPlayerPosition();
+    }
 }
+

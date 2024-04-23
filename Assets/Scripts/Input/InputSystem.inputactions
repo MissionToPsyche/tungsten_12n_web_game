@@ -246,6 +246,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerFlashlight",
+                    "type": "Button",
+                    "id": "726076e3-619b-4f78-b943-793c696127b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerPickupRobot",
+                    "type": "Button",
+                    "id": "911b8d42-dbd9-47bd-9948-db5976a40b13",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -532,6 +550,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PlayerBuildOverlay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "541ae8dd-02ea-4a33-a6cc-7c8a39061dfa",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerFlashlight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f18c9b30-6339-41e5-ad86-7222d4caac1b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerPickupRobot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -855,7 +895,7 @@
                     "id": "d78a56af-8d08-40a8-aff3-d9997f0e7078",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {

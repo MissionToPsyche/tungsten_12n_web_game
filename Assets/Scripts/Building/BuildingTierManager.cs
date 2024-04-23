@@ -1,10 +1,28 @@
 using System.Collections.Generic;
 using BuildingComponents;
+using UnityEngine;
 
-public class BuildingTierManager
+public class BuildingTierManager : MonoBehaviour
 {
+    public static BuildingTierManager Instance { get; private set; }
+
+    //Not For Display
     Dictionary<BuildingType, int> buildingTiers = new Dictionary<BuildingType, int>();
-    public BuildingTierManager(){
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        InitBuildingTierManager();
+    }
+    public void InitBuildingTierManager(){
         buildingTiers.Add(BuildingType.Extractor, 1);
         buildingTiers.Add(BuildingType.CommercialExtractor, 0);
         buildingTiers.Add(BuildingType.IndustrialExtractor, 0);
@@ -14,13 +32,14 @@ public class BuildingTierManager
         buildingTiers.Add(BuildingType.RobotBuddy, 0);
         buildingTiers.Add(BuildingType.Satellite, 0);
         buildingTiers.Add(BuildingType.LaunchPad, 0);
-
     }
 
-    public void UpdateBuildingTier(BuildingType building, int newLevel){
-        buildingTiers[building] = newLevel;
+    public void OnTechUpEvent(packet.TechUpPacket packet){
+        buildingTiers[packet.building] = packet.TechToLevel;
     }
 
+
+    //API
     public int GetTierOf(BuildingType building){
         return buildingTiers[building];
     }

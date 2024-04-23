@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Mutable")]
     [SerializeField] private GameObject playerObject;
     [SerializeField] private GameObject CyberneticToolObject;
-    [SerializeField] private GameObject MainSpawn; 
+    [SerializeField] private GameObject MainSpawn;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private bool playerGrounded;
@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
     public void OnPlayerPositionUpdated(Vector2 position)
     {
         playerPosition = position;
-        // Debug.Log("[GameManager]: playerPosition: " + position);
+        //Debug.Log("[GameManager]: playerPosition: " + position);
     }
 
     // -------------------------------------------------------------------

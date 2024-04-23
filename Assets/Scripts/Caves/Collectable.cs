@@ -1,24 +1,26 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-
+using BuildingComponents;
 public class Collectable : MonoBehaviour
 {
     [Header("Events")]
-
+    [SerializeField] private ResourceToInventoryEvent resourceToInventory;
     [Header("Mutable")]
-    [SerializeField] private TextMeshProUGUI reminderText;  
+    [SerializeField] private TextMeshProUGUI reminderText;
 
-    [Header("ReadOnly")] 
+    [Header("ReadOnly")]
     private bool isInRange;
-    private int itemValue; 
+    private int itemValue;
     private string collectableItem;
 
     // Not for display
-    public static Collectable Instance {get; private set;}
+    private BuildingComponents.ResourceType resourceToCollect;
+    public static Collectable Instance {get;private set;}
     private KeyCode interactKey = KeyCode.E;
     private bool playerInteracted;
     public VoidEvent OnCaveMiniGameEvent;
+    private CollectableResourceGen resourceGen = new();
 
     // -------------------------------------------------------------------
     // Class
@@ -46,45 +48,59 @@ public class Collectable : MonoBehaviour
                 switch(this.gameObject.GetComponent<SpriteRenderer>().sprite.name)
                 {
                     case "objects-bg_0":
-                        itemValue = 5;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.S_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_5":
-                        itemValue = 5;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.S_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_1":
-                        itemValue = 4;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.A_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_6":
-                        itemValue = 4;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.A_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_2":
-                        itemValue = 3;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.B_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_7":
-                        itemValue = 3;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.B_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_3":
-                        itemValue = 2;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.C_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_":
-                        itemValue = 2;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.C_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_4":
-                        itemValue = 1;
-                        break; 
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.D_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
                     case "objects-bg_9":
-                        itemValue = 1;
-                        break; 
-                    default: 
-                        itemValue = 1;
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.D_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
+                        break;
+                    default:
+                        resourceToCollect = resourceGen.GetRandomResource(AsteroidClass.D_Class);
+                        itemValue = resourceGen.GenerateRandomAmount(resourceToCollect);
                         break;
                 }
-                break; 
+                break;
             case "GeologicalPhenomena":
-                itemValue = 1; 
+                itemValue = 1;
+                resourceToCollect = BuildingComponents.ResourceType.TechPoint;
                 break;
             default:
                 itemValue = 1;
+                resourceToCollect = BuildingComponents.ResourceType.Iron;
+                Debug.LogError("[Collectable.cs] -: Start() missed all cases, this is unaccetable");
                 break;
         }
     }
@@ -95,6 +111,12 @@ public class Collectable : MonoBehaviour
         if (isInRange && Input.GetKeyDown(interactKey))
         {
             playerInteracted = true;
+
+            if(BuildingTierManager.Instance.GetTierOf(BuildingComponents.BuildingType.Exosuit) >= 3){
+                //dont trigger Mini Game
+                OnCaveMiniGameWin();
+                return;
+            }
             OnCaveMiniGameEvent.Raise();
         }
     }
@@ -105,16 +127,16 @@ public class Collectable : MonoBehaviour
         switch (collectableItem)
         {
             case "Rock":
-                reminderText.text = "+" + itemValue.ToString() + " rock material";
+                reminderText.text = "+" + itemValue.ToString() + " " + resourceToString(resourceToCollect) + "!";
                 break;
             
             case "GeologicalPhenomena":
-                reminderText.text = "+" + itemValue.ToString() + " skill point";
+                reminderText.text = "+" + itemValue.ToString() + " Tech point";
                 break;
         }
 
         // update the UI
-        OnPlayerCollect(); 
+        OnPlayerCollect();
         
         yield return new WaitForSeconds(1);
         
@@ -127,17 +149,17 @@ public class Collectable : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("RobotBuddy"))
         {
-            isInRange = true; 
+            isInRange = true;
             reminderText.text = "Collect Material";
         }
     }
 
-    // reset text when player is out of range 
+    // reset text when player is out of range
     void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("RobotBuddy"))
         {
-            isInRange = false; 
+            isInRange = false;
             reminderText.text = "";
         }
     }
@@ -145,13 +167,38 @@ public class Collectable : MonoBehaviour
     // update the UI
     void OnPlayerCollect()
     {
-        
+        resourceToInventory.Raise(new packet.ResourceToInventory(this.gameObject, itemValue, resourceToCollect, true));
     }
 
     public void OnCaveMiniGameWin(){
-       if(playerInteracted){
-         StartCoroutine(reminderTextCoroutine());
-       } 
-        
+        if(playerInteracted){
+            StartCoroutine(reminderTextCoroutine());
+        }
     }
+
+    public string resourceToString(ResourceType resource){
+        switch (resource)
+        {
+            case ResourceType.Iron:
+                return "Iron";
+            case ResourceType.Nickel:
+                return "Nickel";
+            case ResourceType.Cobalt:
+                return "Cobalt";
+            case ResourceType.Platinum:
+                return "Platinum";
+            case ResourceType.Gold:
+                return "Gold";
+            case ResourceType.Technitium:
+                return "Technitium";
+            case ResourceType.Tungsten:
+                return "Tungsten";
+            case ResourceType.Iridium:
+                return "Iridium";
+            default:
+                Debug.LogError("Collectable.cs --: resourceToString() :-- Failed to toString " + resource +" returning Iron");
+                return "Iron";
+        }
+    }
+
 }

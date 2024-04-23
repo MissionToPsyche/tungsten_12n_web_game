@@ -12,7 +12,6 @@ public class UIBuildManager : MonoBehaviour
     [SerializeField] private TechUpEvent techEvent;
     private GameObject currentOverlay;
     [SerializeField] private Sprite filledStar;
-    private BuildingTierManager tierManager;
     private ObjectsCost techCost = new ObjectsCost(0,0,0,0,0,0,0,0,1);
     //<------------------------------------ <Industry Vars> ------------------------------------>
     //<---- <Extractor Text Fields> ---->
@@ -64,7 +63,6 @@ public class UIBuildManager : MonoBehaviour
     {
         isOverlayActive = false;
         buildChildOverlay.SetActive(false);
-        tierManager = new BuildingTierManager();
     }
 
 
@@ -132,7 +130,7 @@ public class UIBuildManager : MonoBehaviour
 
     // -------------------------------------------------------------------
     public void OnTechUpEvent(packet.TechUpPacket packet){
-        tierManager.UpdateBuildingTier(packet.building, packet.TechToLevel);
+        //tierManager.UpdateBuildingTier(packet.building, packet.TechToLevel);
         //changes the stars
         switch(packet.building){
             case(BuildingComponents.BuildingType.Extractor):
@@ -257,7 +255,9 @@ public class UIBuildManager : MonoBehaviour
     //<------------------------------------ <Suit Functions> ------------------------------------>
     public void TryBuildExosuit(){
         //Implementation needed
-        Debug.Log("Implementation needed");
+        Exosuit tempExosuit = new();
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, tempExosuit.GetBuildingType(), tempExosuit.GetCostDictionary()));
     }
     public void TryTechUpExosuit(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -265,7 +265,9 @@ public class UIBuildManager : MonoBehaviour
     }
     public void TryBuildJetPack(){
         //Implementation needed
-        Debug.Log("Implementation needed");
+        JetPack tempJetPack = new();
+        checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, tempJetPack.GetBuildingType(), tempJetPack.GetCostDictionary()));
     }
     public void TryTechUpJetPack(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -311,4 +313,5 @@ public class UIBuildManager : MonoBehaviour
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingComponents.BuildingType.LaunchPad, techCost));
     }
+
 }

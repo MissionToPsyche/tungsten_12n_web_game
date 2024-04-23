@@ -24,6 +24,8 @@ public class BuildManager : MonoBehaviour
     [Header("Mutable")]
     [SerializeField] private GameObject buildUIObject;
     private UIBuildManager buildUI;
+    [SerializeField, ReadOnly] private bool hasBuiltExosuit = false;
+    [SerializeField, ReadOnly] private bool hasBuiltJetpack = false;
 
     void Awake()
     {
@@ -59,10 +61,10 @@ public class BuildManager : MonoBehaviour
                 SpawnNewEntity(IndustrialExtractorPrefab);
                 return;
             case BuildingComponents.BuildingType.Exosuit:
-
+                    hasBuiltExosuit = true;
                 return;
             case BuildingComponents.BuildingType.JetPack:
-
+                    hasBuiltJetpack = true;
                 return;
             case BuildingComponents.BuildingType.Cybernetics:
                     CyberneticsManager.Instance.SetCyberneticsBuilt();
@@ -104,4 +106,12 @@ public class BuildManager : MonoBehaviour
         robotBuddy.transform.position = worldPos;
     }
 
+
+    //API
+    public bool HasBuiltExosuit(){
+        return hasBuiltExosuit;
+    }
+    public bool HasBuiltJetpack(){
+        return hasBuiltJetpack;
+    }
 }

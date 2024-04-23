@@ -84,7 +84,7 @@
         "ID": "Exosuit",
         "Type": "Suit",
         "ItemTitle": "ExoSuit",
-        "ItemDescription": "Alters and allows for better movement",
+        "ItemDescription": "Increase movement by 10%",
         "Costs": {
           "Iron": 10,
           "Nickel": 10,
@@ -97,8 +97,8 @@
         },
         "Image": "",
         "TechUpTexts": [
-          "Increase movement speed by 20%",
-          "Equip suit with flashlight for cave exploration",
+          "Equip suit with flashlight for cave exploration, toggle with F",
+          "Increase movement speed by another 10% (total: 20%)",
           "Mine cave resourcees with no minigame",
           "Peak Technology Reached!!!"
         ]
@@ -166,9 +166,9 @@
         },
         "Image": "",
         "TechUpTexts": [
-          "Robot buddy is thirsty for more data... can now scan Geological Phenomina",
-          "Robot buddies hunger for the unkown knows no bounds... gains a flashlight and can mine cave resources",
-          "Solar panels make RobotBuddy charge while outside of caves",
+          "Tech to level 4 to make your robot buddies never run out of battery",
+          "Tech to level 4 to make your robot buddies never run out of battery",
+          "Tech to level 4 to make your robot buddies never run out of battery",
           "Through sheer will Robot buddy will never run out of power again...",
           "Peak Technology Reached!!!"
         ]
