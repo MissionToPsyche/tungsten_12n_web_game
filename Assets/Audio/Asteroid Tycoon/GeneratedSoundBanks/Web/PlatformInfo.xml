@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PlatformInfo>
-	<Platform Name="Web" BasePlatform="Web" Generator="2023.1.2.8444"/>
+	<Platform Name="Web" BasePlatform="Web" Generator="2023.1.3.8471"/>
 	<RootPaths>
 		<ProjectRoot>../..</ProjectRoot>
 		<SourceFilesRoot>../../.cache/Web</SourceFilesRoot>
@@ -28,5 +28,5 @@
 		<PrintObjectGuid>false</PrintObjectGuid>
 		<PrintObjectPath>false</PrintObjectPath>
 	</Settings>
-	<FileHash>{72E4EB12-97E7-EF7E-4CA2-7D4426B6E3A0}</FileHash>
+	<FileHash>{29C3F3A3-483C-21EA-480E-1CED35E65306}</FileHash>
 </PlatformInfo>

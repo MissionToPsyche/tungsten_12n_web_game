@@ -146,11 +146,7 @@ public class AkPluginActivator : UnityEditor.AssetPostprocessor
 			}
 
 			var pluginInfo = platformPluginActivator.GetPluginImporterInformation(pluginImporter);
-
-			if(!platformPluginActivator.ConfigurePlugin(pluginImporter, pluginInfo))
-			{
-				continue;
-			}
+			var bShouldActivatePlugin = platformPluginActivator.ConfigurePlugin(pluginImporter, pluginInfo);
 
 			if (pluginImporter.GetCompatibleWithAnyPlatform())
 			{
@@ -159,29 +155,28 @@ public class AkPluginActivator : UnityEditor.AssetPostprocessor
 				assetChanged = true;
 			}
 
-			var bShouldActOnPlugin = true;
 			if (pluginInfo.PluginConfig == "DSP")
 			{
 				if (!pluginInfo.IsSupportLibrary && !AkPlatformPluginList.IsPluginUsed(platformPluginActivator, pluginPlatform, Path.GetFileNameWithoutExtension(pluginImporter.assetPath)))
 				{
 					LogVerbose("Plugin" + pluginImporter.assetPath + " is not used, skipping.");
-					bShouldActOnPlugin = false;
+					bShouldActivatePlugin = false;
 				}
 			}
 			else if (pluginInfo.PluginConfig != GetCurrentConfig())
 			{
 				LogVerbose("Plugin" + pluginImporter.assetPath + " does not match current config (" + GetCurrentConfig() + "). Skipping.");
-				bShouldActOnPlugin = false;
+				bShouldActivatePlugin = false;
 			}
 
 			if (!string.IsNullOrEmpty(pluginInfo.PluginSDKVersion))
 			{
 				var sdkCompatible = platformPluginActivator.IsPluginSDKVersionCompatible(pluginInfo.PluginSDKVersion);
 				LogVerbose("Plugin " + pluginImporter.assetPath + " is " + (sdkCompatible ? "" : "NOT ") + "compatible with current platform SDK");
-				bShouldActOnPlugin &= sdkCompatible;
+				bShouldActivatePlugin &= sdkCompatible;
 			}
 
-			bool isCompatibleWithPlatform = bShouldActOnPlugin && Activate;
+			bool isCompatibleWithPlatform = bShouldActivatePlugin && Activate;
 			LogVerbose("Will set plugin " + pluginImporter.assetPath + " as " + (isCompatibleWithPlatform ? "" : "NOT ") + "compatible with platform.");
 			assetChanged |= pluginImporter.GetCompatibleWithPlatform(target) != isCompatibleWithPlatform;
 

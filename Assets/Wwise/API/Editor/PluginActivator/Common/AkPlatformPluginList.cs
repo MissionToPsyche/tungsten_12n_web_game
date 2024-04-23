@@ -82,7 +82,7 @@ internal class AkPlatformPluginList
 				return true;
 			}
 
-			//WebGL, iOS, tvOS, and Switch deal with the static libs directly, unlike all other platforms.
+			//WebGL, iOS, tvOS, visionOS, and Switch deal with the static libs directly, unlike all other platforms.
 			//Luckily the DLL name is always a subset of the lib name.
 			foreach (var pluginInfo in plugins)
 			{

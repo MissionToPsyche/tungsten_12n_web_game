@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WwiseSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CopySoundBanksAsPreBuildStep>true</CopySoundBanksAsPreBuildStep>
-  <GenerateSoundBanksAsPreBuildStep>true</GenerateSoundBanksAsPreBuildStep>
+  <GenerateSoundBanksAsPreBuildStep>false</GenerateSoundBanksAsPreBuildStep>
   <SoundbankPath>Audio/GeneratedSoundBanks</SoundbankPath>
   <CreatedPicker>true</CreatedPicker>
   <CreateWwiseGlobal>true</CreateWwiseGlobal>
@@ -11,8 +11,8 @@
   <ShowMissingRigidBodyWarning>true</ShowMissingRigidBodyWarning>
   <ShowSpatialAudioWarningMsg>true</ShowSpatialAudioWarningMsg>
   <WwiseInstallationPathMac>/Applications/Audiokinetic/Wwise 2023.1.2.8444/Wwise.app</WwiseInstallationPathMac>
-  <WwiseInstallationPathWindows>C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.2.8444</WwiseInstallationPathWindows>
-  <WwiseProjectPath>Audio/Asteroid Tycoon/Asteroid Tycoon.wproj</WwiseProjectPath>
+  <WwiseInstallationPathWindows>C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.3.8471</WwiseInstallationPathWindows>
+  <WwiseProjectPath>../../tungsten_12n_web_game/Assets/Audio/Asteroid Tycoon/Asteroid Tycoon.wproj</WwiseProjectPath>
   <UseWaapi>true</UseWaapi>
   <WaapiPort>8080</WaapiPort>
   <WaapiIP>127.0.0.1</WaapiIP>
