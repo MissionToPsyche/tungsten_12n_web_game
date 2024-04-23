@@ -1,11 +1,6 @@
 using UnityEngine;
-using Cinemachine;
-using System;
-using System.Numerics;
-using UnityEngine.SceneManagement;
 using TMPro;
 using System.Threading;
-
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
@@ -17,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public BoolEvent playerInteract;
     [SerializeField] public BoolEvent playerLaunchPadInteract;
     [SerializeField] public SoundEffectEvent soundEffectEvent;
-
     [SerializeField] public VoidEvent playerInPit;
 
     [Header("Mutable")]
@@ -30,8 +24,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GravityBody2D gravityBody;
     [SerializeField, ReadOnly] private PlayerState currentState = PlayerState.Idle;
     [SerializeField] private float jumpForce = 0f;
+    [SerializeField] private GameObject carryAlphaObject;
+    [SerializeField] private GameObject carryBetaObject;
 
     [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private bool isCarryingRobot = false;
+    [SerializeField, ReadOnly] private bool canPickupAlpha = false;
+    [SerializeField, ReadOnly] private bool canPickupBeta = false;
     [SerializeField, ReadOnly] private int selection = 0;
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
     [SerializeField, ReadOnly] private float currentSpeed;
@@ -62,6 +61,7 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
     private TextMeshProUGUI reminderText;
     private UnityEngine.Vector3 playerCoordinates;
+    
 
     // -------------------------------------------------------------------
     // Handle events
@@ -182,7 +182,25 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    public void OnPlayerPickupRobot(){
+        if(isCarryingRobot == false){
+            if(canPickupAlpha == true){
+                isCarryingRobot = true;
+                carryAlphaObject.SetActive(true);
+            }else if(canPickupBeta){
+                isCarryingRobot = true;
+                carryBetaObject.SetActive(true);
+            }
+        }else{
+            isCarryingRobot = false;
+            if(carryAlphaObject.activeSelf == true){
+                carryAlphaObject.SetActive(false);
+            }
+            if(carryBetaObject.activeSelf == true){
+                carryBetaObject.SetActive(false);
+            }
+        }
+    }
     // -------------------------------------------------------------------
     // Class
 
@@ -208,7 +226,6 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("SpriteRenderer not found on the object!");
         }
-
     }
 
     void Start()
@@ -243,6 +260,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         //LoadSelectedCharacter(selection);
+        carryAlphaObject.SetActive(false);
+        carryBetaObject.SetActive(false);
     }
 
     private void UpdatePlayerState(PlayerState newState)
@@ -321,10 +340,22 @@ public class PlayerController : MonoBehaviour
 
         // Calculate the movement direction based on the player's current orientation and input
         UnityEngine.Vector2 direction = transform.right * horizontalInput;
+        UnityEngine.Vector2 movement;
         // Calculate the actual movement amount
-        UnityEngine.Vector2 movement = direction * (currentSpeed * Time.fixedDeltaTime);
+        movement = DetermineMovementSpeed(direction);
+        
         // Move the player's rigidbody
         playerBody.position += movement;
+        playerPositionUpdated.Raise(playerBody.position);
+    }
+    private UnityEngine.Vector2 DetermineMovementSpeed(UnityEngine.Vector2 direction){
+        if(BuildManager.Instance.HasBuiltExosuit() == false){
+            return direction * (currentSpeed * Time.fixedDeltaTime);
+        }else if(BuildingTierManager.Instance.GetTierOf(BuildingComponents.BuildingType.Exosuit) < 2){
+            return direction * (currentSpeed * 1.10f * Time.fixedDeltaTime);
+        }else{
+            return direction * (currentSpeed * 1.20f * Time.fixedDeltaTime);
+        }
     }
 
     private void Jump()
@@ -441,7 +472,13 @@ public class PlayerController : MonoBehaviour
             case "BlackPit":
                 isInPit = true;
                 break;
-
+            case "RobotBuddy":
+                if(collison.gameObject.name == "RobotBuddyAlpha"){
+                    canPickupAlpha = true;
+                }else if(collison.gameObject.name == "RobotBuddyBeta"){
+                    canPickupBeta = true;
+                }
+                break;
             default:
                 break;
         }
@@ -461,7 +498,13 @@ public class PlayerController : MonoBehaviour
             case "BlackPit":
                 isInPit = false;
                 break;
-
+            case "RobotBuddy":
+                if(Collision.gameObject.name == "RobotBuddyAlpha"){
+                    canPickupAlpha = false;
+                }else if(Collision.gameObject.name == "RobotBuddyBeta"){
+                    canPickupBeta = false;
+                }
+                break;
             default:
                 break;
         }

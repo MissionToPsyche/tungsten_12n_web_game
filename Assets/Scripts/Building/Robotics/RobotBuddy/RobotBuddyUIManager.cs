@@ -1,5 +1,3 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,13 +21,13 @@ public class RobotUIBuddyManager: MonoBehaviour
         currentState = newState;
         UpdateUIOnState();
     }
-    public void OnAdjustRobotUI(float charge){
-        float clampVal = Mathf.Clamp(charge / maxChargeAmt, 0f, 1f);
+    public void OnAdjustRobotUI(packet.RobotUIPacket packet){
+        float clampVal = Mathf.Clamp(packet.newCharge / maxChargeAmt, 0f, 1f);
         //Debug.Log($"setting UI to: {charge}\tclamped: {clampVal}");
-        if(currentState == Control.State.RobotBuddyAlpha){
+        if(packet.robotToChange == Control.State.RobotBuddyAlpha){
             chargeFillAlphaMeter.fillAmount = clampVal;
-        }else if(currentState == Control.State.RobotBuddyBeta){
-            chargeFillAlphaMeter.fillAmount = clampVal;
+        }else if(packet.robotToChange == Control.State.RobotBuddyBeta){
+            chargeFillBetaMeter.fillAmount = clampVal;
         }
     }
 

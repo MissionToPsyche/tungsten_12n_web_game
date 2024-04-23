@@ -57,7 +57,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void OnMineEvent(packet.MiningPacket packet){
+    public void OnToInventoryEvent(packet.ResourceToInventory packet){
         currentInventory.AddResource(packet.resourceToChange, packet.amountToChange);
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }

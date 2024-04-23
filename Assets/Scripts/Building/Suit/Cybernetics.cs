@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cybernetics : BaseBuilding
 {
     private int numCharges;
-    private int currentMaxCharge;
+    private int currentMaxCharge = 1;
     private int initMaxCharge = 1;
     private int tier1MaxCharge = 3;
     private int tier3MaxCharge = 6;
@@ -28,10 +28,11 @@ public class Cybernetics : BaseBuilding
     public int GetCurrentMaxCharge(){
         return currentMaxCharge;
     }
-    public void IncrementCharge(){
+    public int IncrementCharge(){
         if(numCharges < currentMaxCharge){
-            numCharges += 1;
+            return numCharges += 1;
         }
+        return currentMaxCharge;
     }
     public float GetCurrentWaitAmount(){
         return currentWaitAmount;
@@ -39,12 +40,13 @@ public class Cybernetics : BaseBuilding
     public bool HasCharge(){
         return numCharges > 0;
     }
-    public void UseCharge(){
+    public int UseCharge(){
         if(numCharges == 0){
-            Debug.LogWarning("[Cybernetics.cs] -: UseCharge() used a charge when there was none available!");
-            return;
+            Debug.LogWarning("[Cybernetics.cs] -: UseCharge() used a charge when there was none available! Returned 0");
+            return 0;
         }
         numCharges -= 1;
+        return numCharges;
     }
     public void UpdateTechTier(){
         currentTier = InventoryManager.Instance.GetTechTier(BuildingComponents.BuildingType.Cybernetics);

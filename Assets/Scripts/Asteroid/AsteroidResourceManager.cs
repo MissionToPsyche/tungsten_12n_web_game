@@ -12,7 +12,7 @@ public class AsteroidResourceManager: MonoBehaviour{
         //Debug.LogWarning("Adding " + packet.resource.Name + " amt:" + packet.resource.GetDepositAmount());
     }
 
-    public void OnMiningEvent(packet.MiningPacket packet){
+    public void OnMiningEvent(packet.ResourceToInventory packet){
         GameObject obj = packet.obj;
         Resource resourceToChange = resourceMasterDict[obj];
         resourceToChange.ReduceDepositAmount(packet.amountToChange);

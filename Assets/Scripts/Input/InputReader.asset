@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4d9a6097324e345864a14cff49d7ba, type: 3}
   m_Name: InputReader
   m_EditorClassIdentifier: 
+  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
   ControlStateUpdated: {fileID: 11400000, guid: 8e2fb6dd0e2ee9a46be69cec3253465d, type: 2}
   ZoomIn: {fileID: 11400000, guid: 167d15a813801274dbc1eb761163d610, type: 2}
   ZoomOut: {fileID: 11400000, guid: 4f111cf133a3ea14db11c9019b203d78, type: 2}
@@ -25,6 +26,8 @@ MonoBehaviour:
   PlayerBuildOverlayCycleLeft: {fileID: 11400000, guid: 3c0b26c2b7a9f45f98f62ad27811b805, type: 2}
   PlayerBuildOverlayCycleRight: {fileID: 11400000, guid: c55e9f4c319f64f5782de4cfa355865b, type: 2}
   PlayerInventoryOverlay: {fileID: 11400000, guid: 731f79df71744ec43954fc41422a88c8, type: 2}
+  PlayerFlashlightToggle: {fileID: 11400000, guid: 9f397810862554eddb35a07037e6fb8e, type: 2}
+  PlayerPickupRobot: {fileID: 11400000, guid: 8e260297b9887444b83a446ae76b6da7, type: 2}
   PlayerObjectiveOverlay: {fileID: 11400000, guid: aa04b7753342a764d8a61b52ba0abe53, type: 2}
   SatelliteMove: {fileID: 11400000, guid: 6fca2a4f2e0e4c34dbc24956048aa2ad, type: 2}
   SatelliteScan: {fileID: 11400000, guid: 36fa7ae261644ea44afd0f8a3f6fded8, type: 2}

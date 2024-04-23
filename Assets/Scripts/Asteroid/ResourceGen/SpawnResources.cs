@@ -16,8 +16,6 @@ public class SpawnResources
         this.asteroid = asteroid;
         SpawnObjects();
     }
-
-
     private void SpawnObjects()
     {
         for (int iter = 0; iter < numberOfObjectsToSpawn; iter++)

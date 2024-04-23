@@ -27,11 +27,10 @@ public class CyberneticsManager: MonoBehaviour
     private IEnumerator ChargeCoroutine(){
         while(true){
             if(cybernetics.GetCurrentCharge() < cybernetics.GetCurrentMaxCharge()){
-                cybernetics.IncrementCharge();
-                UpdateCyberUI.Raise(cybernetics.GetCurrentCharge());
+                UpdateCyberUI.Raise(cybernetics.IncrementCharge());
             }
-            //yield return new WaitForSeconds(cybernetics.GetCurrentWaitAmount());
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(cybernetics.GetCurrentWaitAmount());
+            //yield return new WaitForSeconds(2f);
         }
     }
     
@@ -42,22 +41,25 @@ public class CyberneticsManager: MonoBehaviour
         }
     }
 
+    public void SetCyberneticsBuilt(){
+        cybernetics.SetBuilt();
+        cybernetics.UpdateTechTier();
+        StartCoroutine(ChargeCoroutine());
+    }
+    public void UseCharge(){
+        if(cybernetics.HasCharge()){
+            UpdateCyberUI.Raise(cybernetics.UseCharge());
+        }
+    }
+    // API
+    public bool IsBuilt(){
+        return cybernetics.IsBuilt();
+    }
     public bool HasCyberneticCharge(){
         if(cybernetics.IsBuilt()){
             return cybernetics.HasCharge();
         }else{
             return false;
         }
-    }
-    public void SetCyberneticsBuilt(){
-        cybernetics.SetBuilt();
-        StartCoroutine(ChargeCoroutine());
-    }
-    public void UseCharge(){
-        cybernetics.UseCharge();
-    }
-    // API
-    public bool IsBuilt(){
-        return cybernetics.IsBuilt();
     }
 }

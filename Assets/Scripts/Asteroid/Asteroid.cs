@@ -82,7 +82,7 @@ public class Asteroid : MonoBehaviour
         newResourceObject.name = $"{addedResource.Name}_" + iter;
 
         //newResourceObject.layer = LayerMask.NameToLayer(undiscoveredResourceName);
-        newResourceObject.layer = LayerMask.NameToLayer("DiscoveredResource");
+        newResourceObject.layer = LayerMask.NameToLayer("UndiscoveredResource");
 
         spawnResourceEvent.Raise(new packet.ResourceGameObjectPacket(newResourceObject, addedResource));
         resourceList.Add(addedResource);

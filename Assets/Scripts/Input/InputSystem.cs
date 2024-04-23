@@ -268,6 +268,24 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerFlashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""726076e3-619b-4f78-b943-793c696127b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerPickupRobot"",
+                    ""type"": ""Button"",
+                    ""id"": ""911b8d42-dbd9-47bd-9948-db5976a40b13"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -554,6 +572,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PlayerBuildOverlay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""541ae8dd-02ea-4a33-a6cc-7c8a39061dfa"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerFlashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f18c9b30-6339-41e5-ad86-7222d4caac1b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerPickupRobot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -877,7 +917,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""id"": ""d78a56af-8d08-40a8-aff3-d9997f0e7078"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -1025,6 +1065,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_PlayerBuildOverlayCycleRight = m_Player.FindAction("PlayerBuildOverlayCycleRight", throwIfNotFound: true);
         m_Player_PlayerBuildOverlayCycleLeft = m_Player.FindAction("PlayerBuildOverlayCycleLeft", throwIfNotFound: true);
         m_Player_PlayerBuildOverlay = m_Player.FindAction("PlayerBuildOverlay", throwIfNotFound: true);
+        m_Player_PlayerFlashlight = m_Player.FindAction("PlayerFlashlight", throwIfNotFound: true);
+        m_Player_PlayerPickupRobot = m_Player.FindAction("PlayerPickupRobot", throwIfNotFound: true);
         // Satellite
         m_Satellite = asset.FindActionMap("Satellite", throwIfNotFound: true);
         m_Satellite_SatelliteMove = m_Satellite.FindAction("SatelliteMove", throwIfNotFound: true);
@@ -1196,6 +1238,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PlayerBuildOverlayCycleRight;
     private readonly InputAction m_Player_PlayerBuildOverlayCycleLeft;
     private readonly InputAction m_Player_PlayerBuildOverlay;
+    private readonly InputAction m_Player_PlayerFlashlight;
+    private readonly InputAction m_Player_PlayerPickupRobot;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -1210,6 +1254,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @PlayerBuildOverlayCycleRight => m_Wrapper.m_Player_PlayerBuildOverlayCycleRight;
         public InputAction @PlayerBuildOverlayCycleLeft => m_Wrapper.m_Player_PlayerBuildOverlayCycleLeft;
         public InputAction @PlayerBuildOverlay => m_Wrapper.m_Player_PlayerBuildOverlay;
+        public InputAction @PlayerFlashlight => m_Wrapper.m_Player_PlayerFlashlight;
+        public InputAction @PlayerPickupRobot => m_Wrapper.m_Player_PlayerPickupRobot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1249,6 +1295,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @PlayerBuildOverlay.started += instance.OnPlayerBuildOverlay;
             @PlayerBuildOverlay.performed += instance.OnPlayerBuildOverlay;
             @PlayerBuildOverlay.canceled += instance.OnPlayerBuildOverlay;
+            @PlayerFlashlight.started += instance.OnPlayerFlashlight;
+            @PlayerFlashlight.performed += instance.OnPlayerFlashlight;
+            @PlayerFlashlight.canceled += instance.OnPlayerFlashlight;
+            @PlayerPickupRobot.started += instance.OnPlayerPickupRobot;
+            @PlayerPickupRobot.performed += instance.OnPlayerPickupRobot;
+            @PlayerPickupRobot.canceled += instance.OnPlayerPickupRobot;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1283,6 +1335,12 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @PlayerBuildOverlay.started -= instance.OnPlayerBuildOverlay;
             @PlayerBuildOverlay.performed -= instance.OnPlayerBuildOverlay;
             @PlayerBuildOverlay.canceled -= instance.OnPlayerBuildOverlay;
+            @PlayerFlashlight.started -= instance.OnPlayerFlashlight;
+            @PlayerFlashlight.performed -= instance.OnPlayerFlashlight;
+            @PlayerFlashlight.canceled -= instance.OnPlayerFlashlight;
+            @PlayerPickupRobot.started -= instance.OnPlayerPickupRobot;
+            @PlayerPickupRobot.performed -= instance.OnPlayerPickupRobot;
+            @PlayerPickupRobot.canceled -= instance.OnPlayerPickupRobot;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1628,6 +1686,8 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnPlayerBuildOverlayCycleRight(InputAction.CallbackContext context);
         void OnPlayerBuildOverlayCycleLeft(InputAction.CallbackContext context);
         void OnPlayerBuildOverlay(InputAction.CallbackContext context);
+        void OnPlayerFlashlight(InputAction.CallbackContext context);
+        void OnPlayerPickupRobot(InputAction.CallbackContext context);
     }
     public interface ISatelliteActions
     {

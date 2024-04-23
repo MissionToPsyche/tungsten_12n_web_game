@@ -32,13 +32,13 @@ namespace packet{
         }
     }
 
-    public class MiningPacket{
+    public class ResourceToInventory{
         //Obj is the sender, used purely for debugging
         public GameObject obj;
         public int amountToChange;
         public ResourceType resourceToChange;
         public bool Add;
-        public MiningPacket(GameObject obj, int amt, ResourceType resource, bool boolean){
+        public ResourceToInventory(GameObject obj, int amt, ResourceType resource, bool boolean){
             this.obj = obj;
             amountToChange = amt;
             resourceToChange = resource;
@@ -69,6 +69,15 @@ namespace packet{
         public ResourceGameObjectPacket(GameObject GameObjectResource, Resource resource){
             this.GameObjectResource = GameObjectResource;
             this.resource = resource;
+        }
+    }
+    public class RobotUIPacket{
+        public Control.State robotToChange;
+        public float newCharge;
+
+        public RobotUIPacket(Control.State newState, float amt){
+            robotToChange = newState;
+            newCharge = amt;
         }
     }
 }

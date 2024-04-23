@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feafd8b840a3c9a41aacb8f2c431dcee, type: 3}
-  m_Name: AdjustRBUI
+  m_Script: {fileID: 11500000, guid: 12e2591ac99db491c98fcfca3e81a8f6, type: 3}
+  m_Name: RobotUI
   m_EditorClassIdentifier: 

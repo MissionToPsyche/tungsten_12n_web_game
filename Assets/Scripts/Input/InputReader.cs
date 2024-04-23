@@ -104,6 +104,8 @@ public class InputReader :
     [SerializeField] private VoidEvent PlayerBuildOverlayCycleLeft;
     [SerializeField] private VoidEvent PlayerBuildOverlayCycleRight;
     [SerializeField] private VoidEvent PlayerInventoryOverlay;
+    [SerializeField] private VoidEvent PlayerFlashlightToggle;
+    [SerializeField] private VoidEvent PlayerPickupRobot;
     [SerializeField] private VoidEvent PlayerObjectiveOverlay;
     [Header("Satellite Events")]
     [SerializeField] private Vector2Event SatelliteMove;
@@ -304,12 +306,21 @@ public class InputReader :
     {
         PlayerInventoryOverlay.Raise();
     }
+    public void OnPlayerFlashlight(InputAction.CallbackContext context){
+        PlayerFlashlightToggle.Raise();
+    }
 
     public void OnPlayerObjectiveOverlay(InputAction.CallbackContext context)
     {
-        PlayerObjectiveOverlay.Raise();
+        if(context.phase == InputActionPhase.Performed){
+            PlayerObjectiveOverlay.Raise();
+        }
     }
-
+    public void OnPlayerPickupRobot(InputAction.CallbackContext context){
+        if(context.phase == InputActionPhase.Performed){
+            PlayerPickupRobot.Raise();
+        }
+    }
     // -------------------------------------------------------------------
     // Satellite action map
 
