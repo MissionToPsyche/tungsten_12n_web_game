@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using AK.Wwise;
 using System;
 
 public class SoundEffectManager : MonoBehaviour
@@ -15,7 +14,7 @@ public class SoundEffectManager : MonoBehaviour
 
     public void OnSoundEffect(packet.SoundEffectPacket sfxpacket)
     {
-        AkSoundEngine.PostEvent(soundEvents[sfxpacket.sound], sfxpacket.obj);
+        // AkSoundEngine.PostEvent(soundEvents[sfxpacket.sound], sfxpacket.obj);
     }
 
     // -------------------------------------------------------------------
@@ -32,7 +31,7 @@ public class SoundEffectManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        AkBankManager.LoadBank("Main", false, false);
+        // AkBankManager.LoadBank("Main", false, false);
 
     }
 
