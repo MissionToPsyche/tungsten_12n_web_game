@@ -37,15 +37,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""GamePause"",
-                    ""type"": ""Button"",
-                    ""id"": ""794299d1-56ea-488d-ba1a-8f23517d87e9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""ZoomIn"",
                     ""type"": ""Value"",
                     ""id"": ""1dee4c8e-9e61-476d-9900-9dae4036e9e0"",
@@ -93,28 +84,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwitchControlState"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7a1662d2-b689-4210-9f7f-d14e86343885"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GamePause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""05bced67-0580-4341-b4bb-4c88fee0fe69"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GamePause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -714,45 +683,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""UI"",
-            ""id"": ""56f7490e-17e1-423e-a893-c02cfbd74d78"",
-            ""actions"": [
-                {
-                    ""name"": ""GameResume"",
-                    ""type"": ""Button"",
-                    ""id"": ""601bccd5-e0b7-4b2c-8165-766785c7dca0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""c565e357-9d02-4848-a0db-2803cfd56a03"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GameResume"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4bb07896-8762-46fc-bef2-c29cdd29edd4"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GameResume"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Cave Scene"",
             ""id"": ""f89fc0bf-31ae-4cf1-989f-73905dfb2990"",
             ""actions"": [],
@@ -1049,7 +979,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_SwitchControlState = m_Gameplay.FindAction("SwitchControlState", throwIfNotFound: true);
-        m_Gameplay_GamePause = m_Gameplay.FindAction("GamePause", throwIfNotFound: true);
         m_Gameplay_ZoomIn = m_Gameplay.FindAction("ZoomIn", throwIfNotFound: true);
         m_Gameplay_ZoomOut = m_Gameplay.FindAction("ZoomOut", throwIfNotFound: true);
         m_Gameplay_RotateCameraWithPlayer = m_Gameplay.FindAction("RotateCameraWithPlayer", throwIfNotFound: true);
@@ -1071,9 +1000,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Satellite = asset.FindActionMap("Satellite", throwIfNotFound: true);
         m_Satellite_SatelliteMove = m_Satellite.FindAction("SatelliteMove", throwIfNotFound: true);
         m_Satellite_SatelliteScan = m_Satellite.FindAction("SatelliteScan", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_GameResume = m_UI.FindAction("GameResume", throwIfNotFound: true);
         // Cave Scene
         m_CaveScene = asset.FindActionMap("Cave Scene", throwIfNotFound: true);
         // Asteroid Scene
@@ -1151,7 +1077,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_SwitchControlState;
-    private readonly InputAction m_Gameplay_GamePause;
     private readonly InputAction m_Gameplay_ZoomIn;
     private readonly InputAction m_Gameplay_ZoomOut;
     private readonly InputAction m_Gameplay_RotateCameraWithPlayer;
@@ -1160,7 +1085,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         private @InputSystem m_Wrapper;
         public GameplayActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @SwitchControlState => m_Wrapper.m_Gameplay_SwitchControlState;
-        public InputAction @GamePause => m_Wrapper.m_Gameplay_GamePause;
         public InputAction @ZoomIn => m_Wrapper.m_Gameplay_ZoomIn;
         public InputAction @ZoomOut => m_Wrapper.m_Gameplay_ZoomOut;
         public InputAction @RotateCameraWithPlayer => m_Wrapper.m_Gameplay_RotateCameraWithPlayer;
@@ -1176,9 +1100,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SwitchControlState.started += instance.OnSwitchControlState;
             @SwitchControlState.performed += instance.OnSwitchControlState;
             @SwitchControlState.canceled += instance.OnSwitchControlState;
-            @GamePause.started += instance.OnGamePause;
-            @GamePause.performed += instance.OnGamePause;
-            @GamePause.canceled += instance.OnGamePause;
             @ZoomIn.started += instance.OnZoomIn;
             @ZoomIn.performed += instance.OnZoomIn;
             @ZoomIn.canceled += instance.OnZoomIn;
@@ -1195,9 +1116,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SwitchControlState.started -= instance.OnSwitchControlState;
             @SwitchControlState.performed -= instance.OnSwitchControlState;
             @SwitchControlState.canceled -= instance.OnSwitchControlState;
-            @GamePause.started -= instance.OnGamePause;
-            @GamePause.performed -= instance.OnGamePause;
-            @GamePause.canceled -= instance.OnGamePause;
             @ZoomIn.started -= instance.OnZoomIn;
             @ZoomIn.performed -= instance.OnZoomIn;
             @ZoomIn.canceled -= instance.OnZoomIn;
@@ -1413,52 +1331,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     }
     public SatelliteActions @Satellite => new SatelliteActions(this);
 
-    // UI
-    private readonly InputActionMap m_UI;
-    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_GameResume;
-    public struct UIActions
-    {
-        private @InputSystem m_Wrapper;
-        public UIActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @GameResume => m_Wrapper.m_UI_GameResume;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void AddCallbacks(IUIActions instance)
-        {
-            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @GameResume.started += instance.OnGameResume;
-            @GameResume.performed += instance.OnGameResume;
-            @GameResume.canceled += instance.OnGameResume;
-        }
-
-        private void UnregisterCallbacks(IUIActions instance)
-        {
-            @GameResume.started -= instance.OnGameResume;
-            @GameResume.performed -= instance.OnGameResume;
-            @GameResume.canceled -= instance.OnGameResume;
-        }
-
-        public void RemoveCallbacks(IUIActions instance)
-        {
-            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IUIActions instance)
-        {
-            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public UIActions @UI => new UIActions(this);
-
     // Cave Scene
     private readonly InputActionMap m_CaveScene;
     private List<ICaveSceneActions> m_CaveSceneActionsCallbackInterfaces = new List<ICaveSceneActions>();
@@ -1669,7 +1541,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnSwitchControlState(InputAction.CallbackContext context);
-        void OnGamePause(InputAction.CallbackContext context);
         void OnZoomIn(InputAction.CallbackContext context);
         void OnZoomOut(InputAction.CallbackContext context);
         void OnRotateCameraWithPlayer(InputAction.CallbackContext context);
@@ -1693,10 +1564,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     {
         void OnSatelliteMove(InputAction.CallbackContext context);
         void OnSatelliteScan(InputAction.CallbackContext context);
-    }
-    public interface IUIActions
-    {
-        void OnGameResume(InputAction.CallbackContext context);
     }
     public interface ICaveSceneActions
     {

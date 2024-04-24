@@ -9,7 +9,7 @@ public class InputReader : ScriptableObject,
     InputSystem.IGameplayActions,
     InputSystem.IPlayerActions,
     InputSystem.ISatelliteActions,
-    InputSystem.IUIActions,
+    // InputSystem.IUIActions,
     InputSystem.IRobotBuddyActions
 {
     private InputSystem inputSystem;
@@ -41,7 +41,7 @@ public class InputReader : ScriptableObject,
             inputSystem.Gameplay.SetCallbacks(this);
             inputSystem.Player.SetCallbacks(this);
             inputSystem.Satellite.SetCallbacks(this);
-            inputSystem.UI.SetCallbacks(this);
+            // inputSystem.UI.SetCallbacks(this);
             inputSystem.RobotBuddy.SetCallbacks(this);
             Debug.Log("Input System initialized and callbacks set.");
         }
@@ -56,7 +56,7 @@ public class InputReader : ScriptableObject,
         {
             { Control.State.Player, inputSystem.Player },
             { Control.State.Satellite, inputSystem.Satellite },
-            { Control.State.UI, inputSystem.UI },
+            // { Control.State.UI, inputSystem.UI },
             { Control.State.RobotBuddyAlpha, inputSystem.RobotBuddy },
             { Control.State.RobotBuddyBeta, inputSystem.RobotBuddy }
         };
@@ -69,7 +69,7 @@ public class InputReader : ScriptableObject,
         inputSystem.Gameplay.Enable();
         inputSystem.Player.Enable();
         inputSystem.Satellite.Enable();
-        inputSystem.UI.Enable();
+        // inputSystem.UI.Enable();
         inputSystem.RobotBuddy.Enable();
         // Debug.Log("All action maps have been enabled.");
     }
