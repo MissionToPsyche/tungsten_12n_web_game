@@ -31,6 +31,8 @@ public class PlayerManager : MonoBehaviour
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero;
     private Quaternion lastRotation = Quaternion.Euler(0,0,0);
     [SerializeField] private GameObject playerUIObject;
+    private bool isCarryingRobotAlpha = false;
+    private bool isCarryingRobotBeta = false;
     //private PlayerUIManager playerUIManager;
     
     // -------------------------------------------------------------------
@@ -50,7 +52,12 @@ public class PlayerManager : MonoBehaviour
 
     // -------------------------------------------------------------------
     // API
-
+    public bool GetIsCarryingRobotAlpha(){
+        return isCarryingRobotAlpha;
+    }
+    public bool GetIsCarryingRobotBeta(){
+        return isCarryingRobotBeta;
+    }
     public GameObject GetPlayerObject()
     {
         return playerObject;
@@ -130,5 +137,11 @@ public class PlayerManager : MonoBehaviour
     {
         this.lastCoordinates = playerObject.transform.position;
         this.lastRotation = playerObject.transform.rotation;
+    }
+    public void SetCarryingAlpha(bool set){
+        isCarryingRobotAlpha = set;
+    }
+    public void SetCarryingBeta(bool set){
+        isCarryingRobotBeta = set;
     }
 }

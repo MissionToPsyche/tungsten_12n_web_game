@@ -83,19 +83,23 @@ public class CameraManager : MonoBehaviour
         }
         else if (controlState == Control.State.RobotBuddyAlpha)
         {
-            SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyBetaCamera);
+            if(!PlayerManager.Instance.GetIsCarryingRobotAlpha()){
+                SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyBetaCamera);
 
-            robotBuddyAlphaCamera.Priority = 100;
-            currentCamera = robotBuddyAlphaCamera;
-            currentObject = RobotManager.Instance.GetRobotAlphaObject();
+                robotBuddyAlphaCamera.Priority = 100;
+                currentCamera = robotBuddyAlphaCamera;
+                currentObject = RobotManager.Instance.GetRobotAlphaObject();
+            }
         }
         else if (controlState == Control.State.RobotBuddyBeta)
         {
-            SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyAlphaCamera);
+            if(!PlayerManager.Instance.GetIsCarryingRobotBeta()){
+                SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyAlphaCamera);
 
-            robotBuddyBetaCamera.Priority = 100;
-            currentCamera = robotBuddyBetaCamera;
-            currentObject = RobotManager.Instance.GetRobotBetaObject();
+                robotBuddyBetaCamera.Priority = 100;
+                currentCamera = robotBuddyBetaCamera;
+                currentObject = RobotManager.Instance.GetRobotBetaObject();
+            }
         }
     }
 

@@ -4,9 +4,7 @@ public class JetPack : BaseBuilding{
 
     // Abstract method to get the cost dictionary
     public JetPack(){
-        buildingData = LoadBuildingData();
-        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("JetPack");
-        thisCosts = InitObjCost(thisObject);
+        buildingData = LoadBuildingData("Jetpack");
     }
     public BuildingComponents.BuildingType GetBuildingType(){
         return buildingType;

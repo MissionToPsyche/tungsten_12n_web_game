@@ -2,10 +2,8 @@ public class IndustrialExtractor : AbstractExtractor
 {
     public IndustrialExtractor(){
         buildingType = BuildingComponents.BuildingType.IndustrialExtractor;
-        buildingData = LoadBuildingData();
-        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("IndustrialExtractor");
-        SetVarsFromJsonData(thisObject.IntervalMine, thisObject.AmountToMine, thisObject.baseBreakChance, thisObject.percentAsteroidReach);
-        thisCosts = InitObjCost(thisObject);
+        buildingData = LoadBuildingData("IndustrialExtractor");
+        SetVarsFromJsonData(10, 5, .005f, 50);
     }
 
 }

@@ -78,7 +78,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
 
         Debug.DrawRay(transform.position, dir * maxGravityDistance, Color.blue);
         if (hit.collider != null){
-            Debug.Log($"point: {hit.point}\tdistToGround: {hit.distance}\torigin{origin}\tdist: {Vector2.Distance(hit.point, origin)}");
+            //Debug.Log($"point: {hit.point}\tdistToGround: {hit.distance}\torigin{origin}\tdist: {Vector2.Distance(hit.point, origin)}");
             return hit.distance;
         }else{
             return maxGravityDistance;

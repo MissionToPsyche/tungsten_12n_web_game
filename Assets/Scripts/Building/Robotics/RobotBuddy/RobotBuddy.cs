@@ -10,9 +10,8 @@ public class RobotBuddy : BaseBuilding
 
     // Abstract method to get the cost dictionary
     public RobotBuddy(){
-        buildingData = LoadBuildingData();
-        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("RobotBuddy");
-        thisCosts = InitObjCost(thisObject);
+        buildingData = LoadBuildingData("RobotBuddy");
+        //BuildingComponents.BuildingObject thisObject = BuildingComponents.
     }
     
     public BuildingComponents.BuildingType GetBuildingType(){
