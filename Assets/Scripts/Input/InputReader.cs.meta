@@ -23,7 +23,7 @@ MonoImporter:
   - GameResume: {instanceID: 0}
   - RobotBuddyMove: {instanceID: 0}
   - RobotBuddyInteract: {instanceID: 0}
-  executionOrder: 0
+  executionOrder: -1100
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

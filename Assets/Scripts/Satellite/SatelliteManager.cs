@@ -67,13 +67,23 @@ public class SatelliteManager : MonoBehaviour
                 return;
             }
 
-            GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, Quaternion.identity, currentAsteroid.transform);
+            // Calculate the direction vector from the asteroid's center to the spawn position
+            Vector3 directionToSpawn = (spawnPosition - currentAsteroid.transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, directionToSpawn);
+
+            GameObject spawnedSatellite = Instantiate(satellitePrefab, spawnPosition, rotation, currentAsteroid.transform);
             if (spawnedSatellite == null)
             {
                 Debug.LogError("[SatelliteManager]: Failed to instantiate the satellite prefab.");
                 return;
             }
             Debug.Log("[SatelliteManager]: Satellite instantiated successfully.");
+
+            SatelliteController satelliteController = spawnedSatellite.GetComponent<SatelliteController>();
+            if (satelliteController != null)
+            {
+                satelliteController.SetParentAsteroid(currentAsteroid);
+            }
 
             // Update the satellite construction status
             satelliteData.isBuilt = true;  // Mark as built
@@ -140,11 +150,13 @@ public class SatelliteManager : MonoBehaviour
 
         foreach (Vector2 point in edgePoints)
         {
-            float distance = Vector2.Distance(point, playerPosition);
+            // Ensure the point is in the same coordinate system as the player position
+            Vector2 worldPoint = transform.TransformPoint(point);  // Converting local to world if necessary
+            float distance = Vector2.Distance(worldPoint, playerPosition);
             if (distance < minDistance)
             {
                 minDistance = distance;
-                closestPoint = point;
+                closestPoint = worldPoint;
             }
         }
 
