@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
     Inventory currentInventory;
     [SerializeField] GameObject UIInvManagerObject;
     UIInventoryManager inventoryUI;
-    private isTest = true;
+    private bool isTest = true;
     private void Awake()
     {
         if (Instance != null && Instance != this)
