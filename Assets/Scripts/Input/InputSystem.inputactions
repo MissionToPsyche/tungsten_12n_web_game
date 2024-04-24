@@ -15,15 +15,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GamePause",
-                    "type": "Button",
-                    "id": "794299d1-56ea-488d-ba1a-8f23517d87e9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ZoomIn",
                     "type": "Value",
                     "id": "1dee4c8e-9e61-476d-9900-9dae4036e9e0",
@@ -71,28 +62,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchControlState",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7a1662d2-b689-4210-9f7f-d14e86343885",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GamePause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "05bced67-0580-4341-b4bb-4c88fee0fe69",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GamePause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -686,45 +655,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "SatelliteScan",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "UI",
-            "id": "56f7490e-17e1-423e-a893-c02cfbd74d78",
-            "actions": [
-                {
-                    "name": "GameResume",
-                    "type": "Button",
-                    "id": "601bccd5-e0b7-4b2c-8165-766785c7dca0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "c565e357-9d02-4848-a0db-2803cfd56a03",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GameResume",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4bb07896-8762-46fc-bef2-c29cdd29edd4",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GameResume",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

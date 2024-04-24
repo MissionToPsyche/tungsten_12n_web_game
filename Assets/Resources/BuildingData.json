@@ -15,7 +15,7 @@
           "Cobalt": 5,
           "Platinum": 0,
           "Gold": 0,
-          "Technitium": 0,
+          "Technetium": 0,
           "Tungsten": 0,
           "Iridium": 0
         },
@@ -41,7 +41,7 @@
           "Cobalt": 10,
           "Platinum": 0,
           "Gold": 0,
-          "Technitium": 0,
+          "Technetium": 0,
           "Tungsten": 0,
           "Iridium": 0
         },
@@ -68,7 +68,7 @@
           "Cobalt": 50,
           "Platinum": 0,
           "Gold": 0,
-          "Technitium": 0,
+          "Technetium": 0,
           "Tungsten": 0,
           "Iridium": 0
         },
@@ -91,7 +91,7 @@
           "Cobalt": 5,
           "Platinum": 0,
           "Gold": 0,
-          "Technitium": 0,
+          "Technetium": 0,
           "Tungsten": 0,
           "Iridium": 0
         },
@@ -114,7 +114,7 @@
           "Cobalt": 25,
           "Platinum": 0,
           "Gold": 0,
-          "Technitium": 0,
+          "Technetium": 0,
           "Tungsten": 0,
           "Iridium": 0
         },
@@ -137,7 +137,7 @@
           "Cobalt": 50,
           "Platinum": 0,
           "Gold": 0,
-          "Technitium": 0,
+          "Technetium": 0,
           "Tungsten": 0,
           "Iridium": 0
         },
@@ -160,7 +160,7 @@
           "Cobalt": 15,
           "Platinum": 0,
           "Gold": 0,
-          "Technitium": 0,
+          "Technetium": 0,
           "Tungsten": 0,
           "Iridium": 0
         },
@@ -184,7 +184,7 @@
           "Cobalt": 150,
           "Platinum": 75,
           "Gold": 75,
-          "Technitium": 75,
+          "Technetium": 75,
           "Tungsten": 10,
           "Iridium": 10
         },
@@ -207,7 +207,7 @@
           "Cobalt": 500,
           "Platinum": 250,
           "Gold": 250,
-          "Technitium": 250,
+          "Technetium": 250,
           "Tungsten": 75,
           "Iridium": 75
         },
@@ -222,5 +222,3 @@
     }
     ]
   }
-    
-  

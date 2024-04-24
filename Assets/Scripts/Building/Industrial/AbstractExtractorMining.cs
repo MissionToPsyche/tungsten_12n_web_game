@@ -35,25 +35,30 @@ public class AbstractExtractorMining : MonoBehaviour
     protected int TechTier;
     protected float mineAmtModifer;
     protected float breakChanceModifer;
-    protected float[] ExtractorMineAmtModifiers = {0, 1, 1.5f, 2.5f};
-    protected float[] ExtractorBCModifiers = {0, 1, .75f, .5f};
-    protected float[] CommercialExtractorMineAmtModifiers = {0f, 1.25f, 1.6f};
-    protected float[] CommercialExtractorBCModifiers = {0f, .5f, .25f};
-    protected float[] IndustrialExtractorMineAmtModifiers = {0f, 1.3f, 1.8f};
-    protected float[] IndustrialExtractorBCModifiers = {0f, 1, 0f};
+    protected float[] ExtractorMineAmtModifiers = { 0, 1, 1.5f, 2.5f };
+    protected float[] ExtractorBCModifiers = { 0, 1, .75f, .5f };
+    protected float[] CommercialExtractorMineAmtModifiers = { 0f, 1.25f, 1.6f };
+    protected float[] CommercialExtractorBCModifiers = { 0f, .5f, .25f };
+    protected float[] IndustrialExtractorMineAmtModifiers = { 0f, 1.3f, 1.8f };
+    protected float[] IndustrialExtractorBCModifiers = { 0f, 1, 0f };
     [SerializeField] protected bool isPlaced = false;
-    void Awake(){
-        if(buildingType == BuildingType.Extractor){
+    void Awake()
+    {
+        if (buildingType == BuildingType.Extractor)
+        {
             TechTier = 1;
         }
         QueryTechLevel();
         //sets modifers for the first time
         UpdateModifers();
     }
-    protected void MineIfPlaced(){
-        if(isPlaced && !isBroken){
+    protected void MineIfPlaced()
+    {
+        if (isPlaced && !isBroken)
+        {
             Mine();
-            if(linkedGameObject == null){
+            if (linkedGameObject == null)
+            {
                 //later we can change it to just change to a sprite with the lights off
                 Destroy(gameObject);
             }
@@ -69,12 +74,15 @@ public class AbstractExtractorMining : MonoBehaviour
             OnMineEvent.Raise(new packet.ResourceToInventory(linkedGameObject, GetCurrentMineAmt(), resourceToMine, true));
             timesMinedSinceBroken += 1;
             timer = 0f;
-            if (RollForModuleBreak()){
+            if (RollForModuleBreak())
+            {
                 isBroken = true;
                 QueryTechLevel();
                 ShowBrokeText();
                 timesMinedSinceBroken = 0;
-            }else{
+            }
+            else
+            {
                 ShowGainText();
             }
         }
@@ -88,7 +96,8 @@ public class AbstractExtractorMining : MonoBehaviour
             }
         }
     }
-    private void ResetText(GameObject currText){
+    private void ResetText(GameObject currText)
+    {
         Destroy(currText);
         timer = 0f;
         isLerping = false;
@@ -100,21 +109,26 @@ public class AbstractExtractorMining : MonoBehaviour
         isShowingText = true;
         return Instantiate(textPrefabPlusOne, pos, transform.rotation);
     }
-    private void ShowGainText(){
+    private void ShowGainText()
+    {
         Vector3 initPos = GetPositionTextAboveExtractor();
         currentExtractText = SpawnGainText(initPos);
         currentExtractText.GetComponent<TMPro.TextMeshPro>().SetText("+" + GetCurrentMineAmt().ToString());
-        Vector3 newPos = new Vector3(-gravityBody.GravityDirection.x, -gravityBody.GravityDirection.y, 0f)/2;
+        Vector3 newPos = new Vector3(-gravityBody.GravityDirection.x, -gravityBody.GravityDirection.y, 0f) / 2;
         StartCoroutine(LerpTextPosition(currentExtractText.transform, initPos + newPos, displayDuration));
     }
-    GameObject SpawnBrokeText(Vector3 pos){
+    GameObject SpawnBrokeText(Vector3 pos)
+    {
         return Instantiate(textPrefabExclamation, pos, transform.rotation);
     }
-    private int GetCurrentMineAmt(){
+    private int GetCurrentMineAmt()
+    {
         return (int)(amountToMine * mineAmtModifer);
     }
-    private void ShowBrokeText(){
-        if(currentExtractText != null){
+    private void ShowBrokeText()
+    {
+        if (currentExtractText != null)
+        {
             ResetText(currentExtractText);
         }
         Vector3 initPos = GetPositionTextAboveExtractor();
@@ -131,45 +145,54 @@ public class AbstractExtractorMining : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        if (textTransform){
+        if (textTransform)
+        {
             textTransform.position = targetPos;
         }
     }
     Vector3 GetPositionTextAboveExtractor()
     {
         //Position above the extractor relative to extractor
-        Vector3 newPos = new Vector3(-gravityBody.GravityDirection.x, -gravityBody.GravityDirection.y, 0f)*2.3f;
+        Vector3 newPos = new Vector3(-gravityBody.GravityDirection.x, -gravityBody.GravityDirection.y, 0f) * 2.3f;
         return transform.position + newPos;
     }
-    public void LinkToResource(GameObject resourceObject){
+    public void LinkToResource(GameObject resourceObject)
+    {
         isPlaced = true;
-        if(linkedGameObject == null){
+        if (linkedGameObject == null)
+        {
             linkedGameObject = resourceObject;
             resourceToMine = ConvertStrToResourceType(resourceObject.name);
         }
     }
-    private void OnDestroy(){
+    private void OnDestroy()
+    {
         isShowingText = false;
         DragAndDropExtractor.OnPlacementEvent -= LinkToResource;
     }
-    private void UpdateModifers(){
-        switch(buildingType){
+    private void UpdateModifers()
+    {
+        switch (buildingType)
+        {
             case BuildingType.Extractor:
-                    mineAmtModifer = ExtractorMineAmtModifiers[TechTier];
-            break;
+                mineAmtModifer = ExtractorMineAmtModifiers[TechTier];
+                break;
             case BuildingType.CommercialExtractor:
-                    mineAmtModifer = CommercialExtractorMineAmtModifiers[TechTier];
-            break;
+                mineAmtModifer = CommercialExtractorMineAmtModifiers[TechTier];
+                break;
             case BuildingType.IndustrialExtractor:
-                    mineAmtModifer = IndustrialExtractorMineAmtModifiers[TechTier];
-            break;
+                mineAmtModifer = IndustrialExtractorMineAmtModifiers[TechTier];
+                break;
         }
     }
-    private ResourceType ConvertStrToResourceType(string str){
+    private ResourceType ConvertStrToResourceType(string str)
+    {
         int underScoreIndex = str.IndexOf('_');
 
-        if(underScoreIndex != -1){
-            switch(str.Substring(0, underScoreIndex)){
+        if (underScoreIndex != -1)
+        {
+            switch (str.Substring(0, underScoreIndex))
+            {
                 case "Iron":
                     return ResourceType.Iron;
                 case "Nickel":
@@ -180,7 +203,7 @@ public class AbstractExtractorMining : MonoBehaviour
                     return ResourceType.Platinum;
                 case "Gold":
                     return ResourceType.Gold;
-                case "Technitium":
+                case "Technetium":
                     return ResourceType.Technetium;
                 case "Tungsten":
                     return ResourceType.Tungsten;
@@ -190,12 +213,15 @@ public class AbstractExtractorMining : MonoBehaviour
                     Debug.LogError("ExtractorMining.cs --: ConvertStrToResourceType() :-- Switch Statement missed all cases, returning Iron!");
                     return ResourceType.Iron;
             }
-        }else{
+        }
+        else
+        {
             Debug.LogError("ExtractorMining.cs --: ConvertStrToResourceType() :-- Recieved MineEvent Packet does not have correct resource naming, returning Iron!");
             return ResourceType.Iron;
         }
     }
-    private bool RollForModuleBreak(){
+    private bool RollForModuleBreak()
+    {
         float breakChance = (baseBreakChance * breakChanceModifer) * timesMinedSinceBroken;
         //float breakChance = 0.5f;
         //^Use this for debugging or testing the playerInteract feature
@@ -204,7 +230,8 @@ public class AbstractExtractorMining : MonoBehaviour
 
     //Events
     //------------------------------------------------------------------
-    public void QueryTechLevel(){
+    public void QueryTechLevel()
+    {
         TechTier = InventoryManager.Instance.GetTechTier(buildingType);
         UpdateModifers();
     }
@@ -214,25 +241,31 @@ public class AbstractExtractorMining : MonoBehaviour
         {
             playerCanInteract = true;
         }
-        if(((1 << collision.gameObject.layer) & LayerMask.GetMask("RobotBuddy")) != 0){
+        if (((1 << collision.gameObject.layer) & LayerMask.GetMask("RobotBuddy")) != 0)
+        {
             robotBuddyCanInteract = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision){
+    private void OnTriggerExit2D(Collider2D collision)
+    {
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
         {
             playerCanInteract = false;
         }
-        if(((1 << collision.gameObject.layer) & LayerMask.GetMask("RobotBuddy")) != 0){
+        if (((1 << collision.gameObject.layer) & LayerMask.GetMask("RobotBuddy")) != 0)
+        {
             robotBuddyCanInteract = false;
         }
     }
-    public void OnPlayerInteract(){
-        if(playerCanInteract && isBroken){
+    public void OnPlayerInteract()
+    {
+        if (playerCanInteract && isBroken)
+        {
             //IMPLEMENT MINI GAME LOGIC HERE
             playerInteracted = true;
-            if(CyberneticsManager.Instance.HasCyberneticCharge()){
+            if (CyberneticsManager.Instance.HasCyberneticCharge())
+            {
                 CyberneticsManager.Instance.UseCharge();
                 fix();
                 return;
@@ -240,15 +273,19 @@ public class AbstractExtractorMining : MonoBehaviour
             OnMiniGameEvent.Raise();
         }
     }
-    public void OnRobotBuddyInteract(){
-        if(robotBuddyCanInteract && isBroken){
+    public void OnRobotBuddyInteract()
+    {
+        if (robotBuddyCanInteract && isBroken)
+        {
             //IMPLEMENT MINI GAME LOGIC HERE
             playerInteracted = true;
             OnMiniGameEvent.Raise();
         }
     }
-    public void fix(){
-        if(playerInteracted){
+    public void fix()
+    {
+        if (playerInteracted)
+        {
             isBroken = false;
             ResetText(currentExtractText);
             playerInteracted = false;

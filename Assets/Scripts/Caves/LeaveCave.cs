@@ -10,7 +10,7 @@ public class LeaveCave : MonoBehaviour
     [Header("Events")]
 
     [Header("Mutable")]
-    [SerializeField] private TextMeshProUGUI reminderText;  
+    [SerializeField] private TextMeshProUGUI reminderText;
 
     [Header("ReadOnly")]
 
@@ -28,6 +28,11 @@ public class LeaveCave : MonoBehaviour
             string CaveScene = gameObject.scene.name;
             CaveManager.Instance.LeaveCaveScene(CaveScene);
             PlayerManager.Instance.SetScenePosition("AsteroidScene");
+
+            SoundFXManager.Instance.PlaySound(SFX.Cave.Exit, PlayerManager.Instance.GetPlayerObject().transform, 1f);
+
+            SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Cave));
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
         }
     }
 

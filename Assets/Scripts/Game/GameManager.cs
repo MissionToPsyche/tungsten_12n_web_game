@@ -9,9 +9,8 @@ public class GameManager : MonoBehaviour
 
     // [Header("Events")]
 
-    // [Header("Mutable")]
-    [SerializeField] public InputReader inputReader;
-    [SerializeField] public SoundEffectEvent soundEffectEvent;
+    [Header("Mutable")]
+    public InputReader inputReader;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private Control.State currentControlState;
@@ -63,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         if (inputReader != null)
         {
-            Debug.Log("InputReader has been loaded.");
+            // Debug.Log("InputReader has been loaded.");
         }
         else
         {
@@ -73,6 +72,6 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-
+        SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
     }
 }

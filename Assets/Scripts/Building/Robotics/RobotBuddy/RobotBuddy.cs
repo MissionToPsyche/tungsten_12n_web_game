@@ -9,36 +9,48 @@ public class RobotBuddy : BaseBuilding
     private readonly float maxCharge = 600;
 
     // Abstract method to get the cost dictionary
-    public RobotBuddy(){
+    public RobotBuddy()
+    {
         buildingData = LoadBuildingData("RobotBuddy");
         //BuildingComponents.BuildingObject thisObject = BuildingComponents.
     }
-    
-    public BuildingComponents.BuildingType GetBuildingType(){
+
+    public BuildingComponents.BuildingType GetBuildingType()
+    {
         return buildingType;
     }
-    public float ReduceCharge(float reduceBy){
+
+    public float ReduceCharge(float reduceBy)
+    {
         currentCharge -= reduceBy;
+
         return currentCharge;
     }
-    public float GainCharge(float gain){
+
+    public float GainCharge(float gain)
+    {
         currentCharge += gain;
         return currentCharge;
     }
-    public float GiveFullCharge(){
+
+    public float GiveFullCharge()
+    {
         currentCharge = maxCharge;
         return currentCharge;
     }
 
-    public float GetCurrentCharge(){
+    public float GetCurrentCharge()
+    {
         return currentCharge;
     }
 
-    public int GetCurrentTechTier(){
+    public int GetCurrentTechTier()
+    {
         return currentTier;
     }
 
-    public int UpdateTechTier(){
+    public int UpdateTechTier()
+    {
         return currentTier = InventoryManager.Instance.GetTechTier(buildingType);
     }
 }
