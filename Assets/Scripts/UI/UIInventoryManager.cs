@@ -16,7 +16,7 @@ public class UIInventoryManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI CobaltInvText;
     [SerializeField] private TextMeshProUGUI PlatinumInvText;
     [SerializeField] private TextMeshProUGUI GoldInvText;
-    [SerializeField] private TextMeshProUGUI TechnitiumInvText;
+    [SerializeField] private TextMeshProUGUI TechnetiumInvText;
     [SerializeField] private TextMeshProUGUI TungestenInvText;
     [SerializeField] private TextMeshProUGUI IridiumInvText;
     [SerializeField] private TextMeshProUGUI TechPointsInvText;
@@ -27,8 +27,8 @@ public class UIInventoryManager : MonoBehaviour
     [SerializeField] GameObject inventoryOverlay;
     // -------------------------------------------------------------------
     // Handle events
-    
-    
+
+
     public void UpdateInventoryFromDictionary(Dictionary<ResourceType, int> dict){
         foreach(var entry in dict)
         {
@@ -53,7 +53,7 @@ public class UIInventoryManager : MonoBehaviour
                 GoldInvText.text = amt.ToString();
                 break;
             case ResourceType.Technetium:
-                TechnitiumInvText.text = amt.ToString();
+                TechnetiumInvText.text = amt.ToString();
                 break;
             case ResourceType.Tungsten:
                 TungestenInvText.text = amt.ToString();

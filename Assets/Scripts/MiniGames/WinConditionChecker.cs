@@ -15,6 +15,9 @@ public class WinConditionChecker : MonoBehaviour
         if (allLightsOn)
         {
             Debug.Log("MiniGame Won");
+
+            SoundFXManager.Instance.PlaySound(SFX.MiniGame.Won, this.transform, 0.5f);
+
             winCondition.Raise(true);
             // Implement your win condition actions here
         }

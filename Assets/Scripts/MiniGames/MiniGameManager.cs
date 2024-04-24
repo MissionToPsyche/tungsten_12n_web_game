@@ -60,7 +60,7 @@ public class MiniGameManager : MonoBehaviour
         {
             // Switch back to the player camera
             isFixedEvent.Raise();
-            
+
             cameraSwitcher.SwitchBackFromMiniGameCamera();
 
             // Destroy the instantiated prefab
@@ -81,7 +81,7 @@ public class MiniGameManager : MonoBehaviour
 
          // Randomly choose a prefab from the list
         GameObject prefabToInstantiate = caveMiniGame;
-        
+
         // Instantiate the chosen prefab inside the parent GameObject
         instantiatedPrefab = Instantiate(prefabToInstantiate, parentObject.transform);
 
@@ -96,11 +96,11 @@ public class MiniGameManager : MonoBehaviour
     {
         if (instantiatedPrefab != null)
         {
-            
+
 
             // Switch back to the player camera
             isCollected.Raise();
-            
+
             cameraSwitcher.SwitchBackFromMiniGameCamera();
 
             // Destroy the instantiated prefab

@@ -115,7 +115,7 @@ public class SpawnResources
                 return generator.GenerateBiasedNumber(Cprobabilities);
 
             case AsteroidClass.D_Class:
-                //Spawns any Common resource with much lower chance of Plat or Gold, never Technitium
+                //Spawns any Common resource with much lower chance of Plat or Gold, never Technetium
                 double[] Dprobabilities = { 0.35, 0.35, 0.15, 0.10, 0.05, 0.0, 0.0, 0.0, 0.0 };
                 return generator.GenerateBiasedNumber(Dprobabilities);
 

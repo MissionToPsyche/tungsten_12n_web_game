@@ -36,6 +36,8 @@ public class Wire : MonoBehaviour
                 // check if the wires are same color
                 if (transform.parent.name.Equals(collider.transform.parent.name))
                 {
+                    SoundFXManager.Instance.PlaySound(SFX.MiniGame.PullCord, this.transform, 1f);
+
                     // count connection
                     //Main.Instance.SwitchChange(1);
 
@@ -43,6 +45,7 @@ public class Wire : MonoBehaviour
                     collider.GetComponent<Wire>()?.Done();
                     Done();
                 }
+
                 return;
             }
         }
@@ -82,4 +85,4 @@ public class Wire : MonoBehaviour
         wireEnd.size = new Vector2(dist, wireEnd.size.y);
 
     }
- }
+}

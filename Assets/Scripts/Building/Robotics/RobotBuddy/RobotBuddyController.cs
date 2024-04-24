@@ -22,13 +22,12 @@ public class RobotBuddyController : MonoBehaviour
     [Header("Movement")]
     [SerializeField, ReadOnly] private bool isGrounded = false;
 
-    private enum RobotState { Idle, Walking, Interacting , Jumping}
+    private enum RobotState { Idle, Walking, Interacting, Jumping }
     [SerializeField, ReadOnly] private RobotState currentState = RobotState.Idle;
     [SerializeField] public BoolEvent robotBuddyInteract;
     [SerializeField] private RobotUIEvent adjustRobotUI;
     // Animation
     private Vector3 playerCoordinates;
-    private GameManager gameManager;
     private bool isInPit;
     private bool playerCanInteract = false;
     [SerializeField, ReadOnly] private bool isActive;
@@ -56,11 +55,11 @@ public class RobotBuddyController : MonoBehaviour
 
     IEnumerator DecreaseChargeAlpha()
     {
-        while(isControllingAlpha())
+        while (isControllingAlpha())
         {
             //reduces 1 tick per 1 second
             SetCharge(robotBuddy.ReduceCharge(idleReduceCharge));
-            
+
             //  I think we need to either get rid of 3rd TechLevel or think of something else it can do, maybe increase jump height
             // if(robotBuddy.UpdateTechTier() == 3){
             //     adjustRobotUI.Raise(robotBuddy.GainCharge(0.5f));
@@ -68,13 +67,14 @@ public class RobotBuddyController : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
     }
+
     IEnumerator DecreaseChargeBeta()
     {
-        while(isControllingBeta())
+        while (isControllingBeta())
         {
             //reduces 1 tick per 1 second
             SetCharge(robotBuddy.ReduceCharge(idleReduceCharge));
-            
+
             //  I think we need to either get rid of 3rd TechLevel or think of something else it can do, maybe increase jump height
             // if(robotBuddy.UpdateTechTier() == 3){
             //     adjustRobotUI.Raise(robotBuddy.GainCharge(0.5f));
@@ -82,55 +82,66 @@ public class RobotBuddyController : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
     }
+
     // -------------------------------------------------------------------
     // Handle events
+
     // this method will set the player's last coordinates on the main asteroid scene
     public void SetPlayerCoordinates()
     {
         this.playerCoordinates = this.transform.position;
     }
+
     // this method will get the player's last coordinates on the main asteroid scene
     public Vector3 GetPlayerCoordinates()
     {
         return this.playerCoordinates;
     }
+
     public void OnRobotMove(Vector2 direction)
     {
-        if(!isActive)
+        if (!isActive)
             return;
         horizontalInput = direction.x;
     }
 
     public void OnControlStateUpdated(Control.State currentControlState)
     {
-        if(currentControlState == Control.State.RobotBuddyAlpha){
-            isActive = this.gameObject.name ==  "RobotBuddyAlpha";
+        if (currentControlState == Control.State.RobotBuddyAlpha)
+        {
+            isActive = this.gameObject.name == "RobotBuddyAlpha";
             controllingRobotAlpha = true;
             controllingRobotBeta = false;
-            if(robotBuddy.UpdateTechTier() != 4)
+            if (robotBuddy.UpdateTechTier() != 4)
                 StartCoroutine(DecreaseChargeAlpha());
-        }else if(currentControlState == Control.State.RobotBuddyBeta){
-            isActive = this.gameObject.name ==  "RobotBuddyBeta";
+        }
+        else if (currentControlState == Control.State.RobotBuddyBeta)
+        {
+            isActive = this.gameObject.name == "RobotBuddyBeta";
             controllingRobotAlpha = false;
             controllingRobotBeta = true;
-            if(robotBuddy.UpdateTechTier() != 4)
+            if (robotBuddy.UpdateTechTier() != 4)
                 StartCoroutine(DecreaseChargeBeta());
-        }else{
+        }
+        else
+        {
             isActive = false;
             controllingRobotAlpha = false;
             controllingRobotBeta = false;
         }
     }
-    
+
     public void OnRobotBuddyInteract(bool interacting)
     {
-        if(!isActive)
+        if (!isActive)
             return;
         //Fix Module, look how to call repairModule
     }
+
     public void OnRobotJump(bool jumping)
     {
-        if(isControllingAlpha() || isControllingBeta()){
+        if (isControllingAlpha() || isControllingBeta())
+        {
             //Debug.Log($"Robot controller - jumping: {jumping}\t\tisGrounded: {isGrounded}");
             SetCharge(robotBuddy.ReduceCharge(jumpReduceCharge));
             if (jumping)
@@ -146,8 +157,9 @@ public class RobotBuddyController : MonoBehaviour
             }
         }
         //Debug.Log($"Robot controller - OnRobotJump: {robotBuddy.GetCurrentCharge()}");
-        
+
     }
+
     private void RobotMove()
     {
         currentSpeed = walkingSpeed;
@@ -168,6 +180,7 @@ public class RobotBuddyController : MonoBehaviour
             robotBuddyInteract.Raise(true);
         }
     }
+
     private void Jump()
     {
         if (!isGrounded) return;
@@ -182,7 +195,7 @@ public class RobotBuddyController : MonoBehaviour
     // Physics calculations, ridigbody movement, collision detection
     private void FixedUpdate()
     {
-        if(!isActive || beingCarried)
+        if (!isActive || beingCarried)
             return;
         // First check to make sure the Robot is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -194,9 +207,7 @@ public class RobotBuddyController : MonoBehaviour
         // Handle falling in the pit scenario
         if (isInPit)
         {
-            //gameManager.GetComponent<PlayerManager>().SetScenePosition(SceneManager.GetActiveScene().name);
         }
-
     }
 
     // when in contact with objects
@@ -207,12 +218,12 @@ public class RobotBuddyController : MonoBehaviour
         {
             case "BlackPit":
                 isInPit = true;
-            break;
+                break;
             case "Player":
                 playerCanInteract = true;
-            break;
+                break;
             default:
-            break;
+                break;
         }
     }
 
@@ -223,39 +234,50 @@ public class RobotBuddyController : MonoBehaviour
         {
             case "BlackPit":
                 isInPit = false;
-            break;
+                break;
             case "Player":
                 playerCanInteract = false;
-            break;
+                break;
             default:
-            break;
+                break;
         }
     }
-    
-    public void OnPlayerInteract(){
-        if(playerCanInteract && CyberneticsManager.Instance.HasCyberneticCharge()){
+
+    public void OnPlayerInteract()
+    {
+        if (playerCanInteract && CyberneticsManager.Instance.HasCyberneticCharge())
+        {
             CyberneticsManager.Instance.UseCharge();
-            if(this.gameObject.name == "RobotBuddyAlpha"){
+            if (this.gameObject.name == "RobotBuddyAlpha")
+            {
                 adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyAlpha, robotBuddy.GiveFullCharge()));
-            }else if(this.gameObject.name == "RobotBuddyBeta"){
+            }
+            else if (this.gameObject.name == "RobotBuddyBeta")
+            {
                 adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyBeta, robotBuddy.GiveFullCharge()));
             }
         }
     }
-    public void OnPlayerPickup(){
-        if(playerCanInteract && beingCarried == false){
-            if(!PlayerManager.Instance.GetIsCarryingRobotAlpha() && !PlayerManager.Instance.GetIsCarryingRobotBeta())
+
+    public void OnPlayerPickup()
+    {
+        if (playerCanInteract && beingCarried == false)
+        {
+            if (!PlayerManager.Instance.GetIsCarryingRobotAlpha() && !PlayerManager.Instance.GetIsCarryingRobotBeta())
             {
                 beingCarried = true;
                 DisablePhysics();
             }
-        }else if(beingCarried == true){
+        }
+        else if (beingCarried == true)
+        {
             beingCarried = false;
             EnablePhysics();
         }
     }
 
-    private void DisablePhysics(){
+    private void DisablePhysics()
+    {
         transform.position = hiddenPosition;
         robotBody.simulated = false;
         normalCollider.enabled = false;
@@ -263,42 +285,55 @@ public class RobotBuddyController : MonoBehaviour
         isActive = false;
     }
 
-    private void EnablePhysics(){
+    private void EnablePhysics()
+    {
         TeleportRobotBuddy();
         robotBody.simulated = true;
         normalCollider.enabled = true;
         GetComponent<SpriteRenderer>().enabled = true;
         TeleportRobotBuddy();
     }
+
     private void UpdateRobotState(RobotState newState)
     {
         currentState = newState;
     }
 
-    private bool isControllingAlpha(){
-        if(controllingRobotAlpha && this.gameObject.name ==  "RobotBuddyAlpha"){
+    private bool isControllingAlpha()
+    {
+        if (controllingRobotAlpha && this.gameObject.name == "RobotBuddyAlpha")
+        {
             return true;
         }
         return false;
     }
-    private bool isControllingBeta(){
-        if(controllingRobotBeta && this.gameObject.name ==  "RobotBuddyBeta"){
+
+    private bool isControllingBeta()
+    {
+        if (controllingRobotBeta && this.gameObject.name == "RobotBuddyBeta")
+        {
             return true;
         }
         return false;
     }
-    private void SetCharge(float num){
-        if(isControllingAlpha()){
+
+    private void SetCharge(float num)
+    {
+        if (isControllingAlpha())
+        {
             adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyAlpha, num));
-        }else if(isControllingBeta()){
+        }
+        else if (isControllingBeta())
+        {
             adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyBeta, num));
         }
     }
-    public void TeleportRobotBuddy(){
+
+    public void TeleportRobotBuddy()
+    {
         Vector3 screenPos = new Vector3(475, 285, 0f);
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         worldPos.z = 0;
         transform.position = PlayerManager.Instance.GetPlayerPosition();
     }
 }
-

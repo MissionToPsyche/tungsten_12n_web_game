@@ -502,7 +502,7 @@ MonoBehaviour:
   CobaltInvText: {fileID: 2078141391}
   PlatinumInvText: {fileID: 1382314287}
   GoldInvText: {fileID: 286059223}
-  TechnitiumInvText: {fileID: 1048470589}
+  TechnetiumInvText: {fileID: 1048470589}
   TungestenInvText: {fileID: 237790012}
   IridiumInvText: {fileID: 1811317086}
   TechPointsInvText: {fileID: 2055569189}
@@ -3841,7 +3841,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!114 &261024770 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1423805339868086579, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -6304,7 +6303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!1001 &378202334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9535,42 +9533,13 @@ GameObject:
   m_Component:
   - component: {fileID: 662913322}
   - component: {fileID: 662913321}
-  - component: {fileID: 662913320}
   m_Layer: 0
-  m_Name: SoundEffectManager
+  m_Name: SoundFXManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &662913320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662913319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c97cd361bbc42b49a77d4c9b8bc05b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 662913321}
-        m_TargetAssemblyTypeName: SoundEffectManager, Assembly-CSharp
-        m_MethodName: OnSoundEffect
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &662913321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9583,6 +9552,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206a6ebd97b7c19469c0a75727eed3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 8960273432762880332, guid: 1925c8cc545fee34184e88b8fcdfd587, type: 3}
+  masterVolume: 0
+  musicVolume: 0
+  soundFXVolume: 0
 --- !u!4 &662913322
 Transform:
   m_ObjectHideFlags: 0
@@ -9592,7 +9565,7 @@ Transform:
   m_GameObject: {fileID: 662913319}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -377.77405, y: 323.36847, z: -14.516714}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11376,7 +11349,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!1 &723360946
 GameObject:
   m_ObjectHideFlags: 0
@@ -12118,7 +12090,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 9dca135c79fee004ab7ac8b3f7ee53ec, type: 2}
-  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
   currentControlState: 0
 --- !u!4 &815371160
 Transform:
@@ -13189,7 +13160,6 @@ MonoBehaviour:
   playerPositionUpdated: {fileID: 11400000, guid: a83a9c4ae9f067e468b68edf0bce127f, type: 2}
   playerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
   playerLaunchPadInteract: {fileID: 11400000, guid: e13e01f59d8ec4281ade5e2d7655c082, type: 2}
-  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
   playerInPit: {fileID: 11400000, guid: ba923ed4246c9584e9004f3a2858b500, type: 2}
   characterDatabase: {fileID: 11400000, guid: 0ffa1d2925c3c7d4fa18116d97de770a, type: 2}
   animator: {fileID: 911276413}
@@ -13204,6 +13174,7 @@ MonoBehaviour:
   jumpForce: 3
   carryAlphaObject: {fileID: 412729000}
   carryBetaObject: {fileID: 293440779}
+  jumpSoundClip: {fileID: 8300000, guid: 9cd38af0d0649d941a75cd3aad320df3, type: 3}
   isCarryingRobot: 0
   canPickupAlpha: 0
   canPickupBeta: 0
@@ -13991,7 +13962,7 @@ GameObject:
   - component: {fileID: 1048470590}
   - component: {fileID: 1048470589}
   m_Layer: 5
-  m_Name: Technitium_Count_Text
+  m_Name: Technetium_Count_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15303,7 +15274,7 @@ GameObject:
   - component: {fileID: 1185960885}
   - component: {fileID: 1185960884}
   m_Layer: 5
-  m_Name: Technitium_Icon
+  m_Name: Technetium_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18147,7 +18118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!1 &1382314285
 GameObject:
   m_ObjectHideFlags: 0
@@ -19607,7 +19577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!114 &1388968537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7424626220950589526, guid: 28fedfe434c53424a9b10c45e745f02d, type: 3}
@@ -19957,7 +19926,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
 --- !u!19719996 &1424476090
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -22692,7 +22660,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!1 &1429417824
 GameObject:
   m_ObjectHideFlags: 0
@@ -24694,7 +24661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!114 &1513131299 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 966282719510465232, guid: 2b12f83c287974ecd8dd3c09c10b4fb1, type: 3}
@@ -26971,7 +26937,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!1 &1848416332
 GameObject:
   m_ObjectHideFlags: 0
@@ -31009,7 +30974,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reminderText: {fileID: 201463511}
-  soundEffectEvent: {fileID: 0}
 --- !u!1001 &1971128936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32140,7 +32104,7 @@ GameObject:
   - component: {fileID: 2094293961}
   - component: {fileID: 2094293960}
   m_Layer: 5
-  m_Name: Technitium_Icon
+  m_Name: Technetium_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

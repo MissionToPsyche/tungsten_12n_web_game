@@ -31,7 +31,7 @@ public class Collectable : MonoBehaviour
     //     {
     //         Destroy(gameObject);
     //     }
-    //     else 
+    //     else
     //     {
     //         Instance = this;
     //         DontDestroyOnLoad(gameObject);
@@ -41,7 +41,7 @@ public class Collectable : MonoBehaviour
     void Start()
     {
         collectableItem = this.gameObject.tag;
-        
+
         switch (collectableItem)
         {
             case "Rock":
@@ -121,7 +121,7 @@ public class Collectable : MonoBehaviour
         }
     }
 
-    // update text 
+    // update text
     IEnumerator reminderTextCoroutine()
     {
         switch (collectableItem)
@@ -129,7 +129,7 @@ public class Collectable : MonoBehaviour
             case "Rock":
                 reminderText.text = "+" + itemValue.ToString() + " " + resourceToString(resourceToCollect) + "!";
                 break;
-            
+
             case "GeologicalPhenomena":
                 reminderText.text = "+" + itemValue.ToString() + " Tech point";
                 break;
@@ -137,9 +137,9 @@ public class Collectable : MonoBehaviour
 
         // update the UI
         OnPlayerCollect();
-        
+
         yield return new WaitForSeconds(1);
-        
+
         reminderText.text = "";
         this.gameObject.SetActive(false);
     }
@@ -192,7 +192,7 @@ public class Collectable : MonoBehaviour
             case ResourceType.Gold:
                 return "Gold";
             case ResourceType.Technetium:
-                return "Technitium";
+                return "Technetium";
             case ResourceType.Tungsten:
                 return "Tungsten";
             case ResourceType.Iridium:

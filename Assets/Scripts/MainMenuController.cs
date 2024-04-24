@@ -7,16 +7,16 @@ public class MainMenuController : MonoBehaviour
 {
     public CanvasGroup HelpOption;
     public CanvasGroup AboutOption;
-    [SerializeField] public SoundEffectEvent soundEffectEvent;
 
     public void Start()
     {
-        packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(this.gameObject, SFX.Music.MainMenu);
-        soundEffectEvent.Raise(sfxpacket);
+        SoundFXManager.Instance.PlaySound(SFX.Music.Asteroid.MainMenu, this.gameObject.transform, 1f, 1f);
     }
 
     public void PlayGame()
     {
+        SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Asteroid));
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
