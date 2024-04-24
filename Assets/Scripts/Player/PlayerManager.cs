@@ -59,8 +59,10 @@ public class PlayerManager : MonoBehaviour
         playerInteracting = interacting;
     }
 
-    public void OnTechUpEvent(packet.TechUpPacket packet){
-        if(packet.building == BuildingComponents.BuildingType.Exosuit && packet.TechToLevel == 1){
+    public void OnTechUpEvent(packet.TechUpPacket packet)
+    {
+        if (packet.building == BuildingComponents.BuildingType.Exosuit && packet.TechToLevel == 1)
+        {
             currentJumpForce = improvedJumpForce;
             playerController.UpdateJumpForce(currentJumpForce);
         }

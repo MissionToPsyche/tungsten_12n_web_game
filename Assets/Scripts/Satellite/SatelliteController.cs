@@ -14,14 +14,14 @@ public class SatelliteController : MonoBehaviour
     [SerializeField, ReadOnly] private GameObject parentAsteroid;
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
 
+    SatelliteScan satelliteScan;
     private Vector2[] edgePoints;
     private int currentTargetIndex = 0;
     private float movingSpeed = 5f;
     private float progressBetweenPoints = 0f; // Tracks interpolation progress between points
 
-    private enum State { Idle, Moving, Scanning, Manual }
-    private State currentState = State.Idle;
-    private bool isScanning = false;
+    private enum State { Autopilot, Manual }
+    private State currentState;
 
     private bool isManualControlEnabled = false;
     private bool lastDirectionWasLeft = true;
@@ -32,20 +32,14 @@ public class SatelliteController : MonoBehaviour
     public void OnSatelliteMove(UnityEngine.Vector2 direction)
     {
         horizontalInput = direction.x;
-    }
 
-    public void OnSatelliteScan(bool scanning)
-    {
-        if (currentState == State.Manual && Mathf.Approximately(satelliteBody.velocity.magnitude, 0))
+        if(Mathf.Approximately(satelliteBody.velocity.magnitude, 0))
         {
-            if (scanning)
-            {
-                StartScanning();
-            }
-            else
-            {
-                StopScanning();
-            }
+            satelliteScan.SetIsScanningAllowed(true);
+        }
+        else
+        {
+            satelliteScan.SetIsScanningAllowed(false);
         }
     }
 
@@ -62,7 +56,11 @@ public class SatelliteController : MonoBehaviour
 
     void Start()
     {
+        satelliteScan = gameObject.GetComponent<SatelliteScan>();
+        satelliteScan.SetParentAsteroid(parentAsteroid);
+
         UpdateEdgePoints();
+        currentState = State.Autopilot;
     }
 
     void UpdateEdgePoints()
@@ -71,7 +69,7 @@ public class SatelliteController : MonoBehaviour
         if (fieldPoints != null)
         {
             edgePoints = fieldPoints.edgePoints;
-            currentTargetIndex = FindClosestEdgePointIndex(edgePoints, transform.position);
+            currentTargetIndex = FindClosestEdgePointIndex(edgePoints,PlayerManager.Instance.GetPlayerPosition());
         }
     }
 
@@ -89,39 +87,6 @@ public class SatelliteController : MonoBehaviour
             }
         }
         return closestIndex;
-    }
-
-    private void StartScanning()
-    {
-        currentState = State.Scanning;
-        isScanning = true;
-        Debug.Log("Scan started");
-
-        // Calculate the direction vector pointing from the satellite towards the center of the asteroid
-        Vector2 rayDirection = (parentAsteroid.transform.position - transform.position).normalized;
-
-        // Perform the raycast
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, Mathf.Infinity, LayerMask.GetMask("DiscoveredResource"));
-
-        // Draw the ray in the editor for debugging purposes
-        if (hit.collider != null)
-        {
-            Debug.Log("Discovered resource detected!");
-            // Draw a red ray from the satellite to the hit point
-            Debug.DrawRay(transform.position, rayDirection * hit.distance, Color.red);
-        }
-        else
-        {
-            // If nothing is hit, draw the ray to show the direction anyway
-            Debug.DrawRay(transform.position, rayDirection * 100, Color.blue);
-        }
-    }
-
-    private void StopScanning()
-    {
-        currentState = State.Manual;
-        isScanning = false;
-        Debug.Log("Scan stopped");
     }
 
     void Update()
@@ -148,7 +113,7 @@ public class SatelliteController : MonoBehaviour
     private void ToggleControlMode()
     {
         isManualControlEnabled = !isManualControlEnabled;
-        currentState = isManualControlEnabled ? State.Manual : State.Moving;
+        currentState = isManualControlEnabled ? State.Manual : State.Autopilot;
 
         if (isManualControlEnabled)
         {
@@ -231,27 +196,5 @@ public class SatelliteController : MonoBehaviour
     {
         // currentState = newState;
         // UpdateAnimatorParameters();
-    }
-
-    private void UpdateAnimatorParameters()
-    {
-        // Reset all animator parameters
-        // animator.SetBool("isIdle", false);
-        // animator.SetBool("isMoving", false);
-        // animator.SetBool("isScanning", false);
-
-        // Update based on current state
-        // switch (currentState)
-        // {
-        //     case State.Idle:
-        //         animator.SetBool("isIdle", true);
-        //         break;
-        //     case State.Moving:
-        //         animator.SetBool("isMoving", true);
-        //         break;
-        //     case State.Scanning:
-        //         animator.SetBool("isScanning", true);
-        //         break;
-        // }
     }
 }

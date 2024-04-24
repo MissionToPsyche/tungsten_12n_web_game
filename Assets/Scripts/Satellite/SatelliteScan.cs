@@ -1,80 +1,102 @@
-// using UnityEngine;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using System;
 
-// public class SatelliteScan : MonoBehaviour
-// {
-//     private RaycastHit2D hit;
-//     private Vector2 rayDirection;
-//     private bool isScanning = false;
-//     private GameObject parentAsteroid;
+public class SatelliteScan : MonoBehaviour
+{
+    [Header("Events")]
 
+    [Header("Mutable")]
+    [SerializeField] private Rigidbody2D satelliteBody;
 
-//     // -------------------------------------------------------------------
-//     // Handle events
+    [Header("ReadOnly")]
+    [SerializeField, ReadOnly] private GameObject parentAsteroid;
+    [SerializeField, ReadOnly] private bool isScanningAllowed = false;
+    [SerializeField, ReadOnly] private bool isScanning = false;
+    [SerializeField, ReadOnly] private bool resourceDetected = false;
 
-//     public void OnSatelliteScan(bool scanning)
-//     {
-//         shouldDrawBlueRay = true;
+    // -------------------------------------------------------------------
+    // Handle events
 
-//         if (currentState == State.Manual && Mathf.Approximately(transform.velocity.magnitude, 0))
-//         {
-//             if (scanning)
-//             {
-//                 StartScanning();
-//             }
-//             else
-//             {
-//                 StopScanning();
-//             }
-//         }
-//     }
+    public void OnSatelliteScan(bool scanning)
+    {
+        if (isScanningAllowed)
+        {
+            if (scanning)
+            {
+                StartScanning();
+            }
+            else
+            {
+                StopScanning();
+            }
+        }
+    }
 
-//     // -------------------------------------------------------------------
-//     // API
+    // -------------------------------------------------------------------
+    // API
 
+    public void SetIsScanningAllowed(bool canScan)
+    {
+        isScanningAllowed = canScan;
+    }
 
-//     // -------------------------------------------------------------------
-//     // Class
+    public bool GetIsScanningAllowed()
+    {
+        return isScanningAllowed;
+    }
 
-//     public void StartScanning(Vector3 satellitePosition)
-//     {
-//         isScanning = true;
-//         Debug.Log("Scan started");
-//         UpdateRayDirection(satellitePosition); // Update direction each time scan starts
-//         hit = Physics2D.Raycast(satellitePosition, rayDirection, Mathf.Infinity, LayerMask.GetMask("DiscoveredResource"));
-//     }
+    public void SetParentAsteroid(GameObject asteroid)
+    {
+        parentAsteroid = asteroid;
+    }
 
-//     public void StopScanning()
-//     {
-//         isScanning = false;
-//         Debug.Log("Scan stopped");
-//     }
+    // -------------------------------------------------------------------
+    // Base
 
-//     public void UpdateScanningRay(Vector3 satellitePosition)
-//     {
-//         if (!isScanning) return;
+    private void Start()
+    {
 
-//         UpdateRayDirection(satellitePosition); // Continuously update direction
+    }
 
-//         if (hit.collider != null)
-//         {
-//             Debug.DrawRay(satellitePosition, rayDirection * hit.distance, Color.green);
-//         }
-//         else
-//         {
-//             Debug.DrawRay(satellitePosition, rayDirection * 100, Color.red); // Draw far enough for visibility
-//         }
-//     }
+    private void FixedUpdate()
+    {
+        if (isScanning)
+        {
+            Vector2 rayDirection = (parentAsteroid.transform.position - transform.position).normalized;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, Mathf.Infinity, LayerMask.GetMask("UndiscoveredResource"));
 
-//     private void UpdateRayDirection(Vector3 satellitePosition)
-//     {
-//         if (parentAsteroid != null)
-//         {
-//             rayDirection = (parentAsteroid.transform.position - satellitePosition).normalized;
-//         }
-//     }
+            if (hit.collider != null)
+            {
+                if (!resourceDetected)
+                {
+                    Debug.Log("Undiscovered resource detected!");
+                    resourceDetected = true;
+                    SoundFXManager.Instance.PlaySound(SFX.Satellite.Scan, transform, 1f);
+                }
 
-//     public void SetParentAsteroid(GameObject asteroid)
-//     {
-//         parentAsteroid = asteroid;
-//     }
-// }
+                Debug.DrawRay(transform.position, rayDirection * hit.distance, Color.red);
+            }
+            else
+            {
+                SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Satellite));
+                Debug.DrawRay(transform.position, rayDirection * 100, Color.blue);
+            }
+        }
+    }
+
+    // -------------------------------------------------------------------
+    // Functions
+
+    private void StartScanning()
+    {
+        isScanning = true;
+        Debug.Log("Scan started");
+    }
+
+    private void StopScanning()
+    {
+        isScanning = false;
+        Debug.Log("Scan stopped");
+    }
+}
