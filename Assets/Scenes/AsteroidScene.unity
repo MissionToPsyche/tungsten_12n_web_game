@@ -9354,7 +9354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &662913320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12928,7 +12928,8 @@ MonoBehaviour:
   carryAlphaObject: {fileID: 412729000}
   carryBetaObject: {fileID: 293440779}
   isCarryingRobot: 0
-  canPickupRobot: 0
+  canPickupAlpha: 0
+  canPickupBeta: 0
   selection: 0
   horizontalInput: 0
   currentSpeed: 0
