@@ -17,6 +17,7 @@ public class InventoryManager : MonoBehaviour
     Inventory currentInventory;
     [SerializeField] GameObject UIInvManagerObject;
     UIInventoryManager inventoryUI;
+    private isTest = true;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -29,9 +30,14 @@ public class InventoryManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         //init resource dictionary and add their starting resources
+        if(isTest == true){
+            currentInventory = new Inventory(999, 999, 999, 999, 999, 999, 999, 999, 25);
+        }else{
+            currentInventory = new Inventory(45, 45, 25, 0, 0, 0, 0, 0, 0);
+        }
         //currentInventory = new Inventory(45, 45, 25, 0, 0, 0, 0, 0, 0);
         //^ above is initial thought on starting resources, below is for testing the building
-        currentInventory = new Inventory(999, 999, 999, 999, 999, 999, 999, 999, 25);
+        //currentInventory = new Inventory(999, 999, 999, 999, 999, 999, 999, 999, 25);
         inventoryUI = UIInvManagerObject.GetComponent<UIInventoryManager>();
         inventoryUI.UpdateInventoryFromDictionary(currentInventory.GetInvDictionary());
     }
