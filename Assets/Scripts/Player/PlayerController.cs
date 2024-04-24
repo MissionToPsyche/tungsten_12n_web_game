@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip jumpSoundClip;
 
     [Header("ReadOnly")]
-    [SerializeField, ReadOnly] private bool isCarryingRobot = false;
+    [SerializeField, ReadOnly] private bool isCarryingRobotAlpha = false;
+    [SerializeField, ReadOnly] private bool isCarryingRobotBeta = false;
     [SerializeField, ReadOnly] private bool canPickupAlpha = false;
     [SerializeField, ReadOnly] private bool canPickupBeta = false;
     [SerializeField, ReadOnly] private int selection = 0;
@@ -182,39 +183,58 @@ public class PlayerController : MonoBehaviour
     }
     public void OnPlayerPickupRobot()
     {
-        if (isCarryingRobot == false)
+        if (isCarryingARobot() == false)
         {
-            if (canPickupAlpha == true)
-            {
-                isCarryingRobot = true;
-                PlayerManager.Instance.SetCarryingAlpha(true);
-                carryAlphaObject.SetActive(true);
+            if(TryPickUpAlpha() == false){
+                TryPickUpBeta();
             }
-            else if (canPickupBeta)
-            {
-                isCarryingRobot = true;
-                PlayerManager.Instance.SetCarryingBeta(true);
-                carryBetaObject.SetActive(true);
-            }
+
             SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Robot.Pickup), this.gameObject.transform, 1f);
         }
         else
         {
-            isCarryingRobot = false;
             PlayerManager.Instance.SetCarryingAlpha(false);
             PlayerManager.Instance.SetCarryingBeta(false);
-            if (carryAlphaObject.activeSelf == true)
+            if (isCarryingRobotAlpha)
             {
                 carryAlphaObject.SetActive(false);
-            }
-            if (carryBetaObject.activeSelf == true)
+                isCarryingRobotAlpha = false;
+                TryPickUpBeta();
+            }else if (isCarryingRobotBeta)
             {
                 carryBetaObject.SetActive(false);
+                isCarryingRobotBeta = false;
+                TryPickUpAlpha();
             }
 
             SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Robot.Dropped), this.gameObject.transform, 1f);
         }
-        Debug.Log("isCarryingrobot: " + isCarryingRobot);
+    }
+
+    private bool TryPickUpAlpha(){
+        if (canPickupAlpha == true)
+        {
+            isCarryingRobotAlpha = true;
+            PlayerManager.Instance.SetCarryingAlpha(true);
+            carryAlphaObject.SetActive(true);
+            return true;
+        }
+        return false;
+    }
+    private bool TryPickUpBeta(){
+        if (canPickupBeta == true)
+        {
+            isCarryingRobotBeta = true;
+            PlayerManager.Instance.SetCarryingBeta(true);
+            carryBetaObject.SetActive(true);
+            return true;
+        }
+        return false;
+    }
+    private bool isCarryingARobot(){
+        if(isCarryingRobotAlpha || isCarryingRobotBeta){
+            return true;
+        }else return false;
     }
     // -------------------------------------------------------------------
     // Class
@@ -386,6 +406,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentState == PlayerState.Jumping)
         {
+            Debug.Log("JumpForce of: " + jumpForce);
             playerBody.AddForce(-gravityBody.GravityDirection * jumpForce, ForceMode2D.Impulse);
         }
         else if (canDoubleJump)
