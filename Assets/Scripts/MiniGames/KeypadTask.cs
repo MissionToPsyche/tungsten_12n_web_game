@@ -32,7 +32,7 @@ public class KeypadTask : MonoBehaviour
 
     public void ButtonClick(int number)
     {
-        SoundFXManager.Instance.PlaySound(SFX.MiniGame.Typing, this.transform, 1f);
+        SoundFXManager.Instance.PlaySound(SFX.UI.Click, this.transform, 1f);
 
         if (isResetting) { return; }
 

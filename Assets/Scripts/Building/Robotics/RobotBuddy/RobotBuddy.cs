@@ -53,4 +53,10 @@ public class RobotBuddy : BaseBuilding
     {
         return currentTier = InventoryManager.Instance.GetTechTier(buildingType);
     }
+    public bool IsChargeEmpty(){
+        if(currentCharge <= 0){
+            return true;
+        }
+        return false;
+    }
 }

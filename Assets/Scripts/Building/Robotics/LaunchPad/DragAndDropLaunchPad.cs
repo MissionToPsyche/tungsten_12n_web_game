@@ -46,6 +46,7 @@ public class DragAndDropLaunchPad : DragAndDropSuper{
             //objectBody2D.simulated = false;
             spriteRenderer.color = Color.white;
             lpmanager.SetPlaced();
+            SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
         }
     }
 

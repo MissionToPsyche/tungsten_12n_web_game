@@ -59,6 +59,7 @@ public class AbstractExtractorMining : MonoBehaviour
             Mine();
             if (linkedGameObject == null)
             {
+                SoundFXManager.Instance.PlaySound(SFX.Cave.MineResource, this.transform, 1f);
                 //later we can change it to just change to a sprite with the lights off
                 Destroy(gameObject);
             }
@@ -286,6 +287,7 @@ public class AbstractExtractorMining : MonoBehaviour
     {
         if (playerInteracted)
         {
+            SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
             isBroken = false;
             ResetText(currentExtractText);
             playerInteracted = false;

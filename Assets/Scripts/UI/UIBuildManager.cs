@@ -219,61 +219,69 @@ public class UIBuildManager : MonoBehaviour
         }
     }
 
-    //----------< UIBuild/TechUp Button Functions >-----------//
-    public void OnTechQuery(BuildingType building){
-        //I beilieve this function is depracated
-        //techEvent.Raise(new packet.TechUpPacket(building, tierManager.GetTierOf(building)));
+    //----------< UIBuild/Sound Functions >-----------//
+    private void PlayClick(){
+        SoundFXManager.Instance.PlaySound(SFX.UI.Click, this.transform, 1f);
     }
     //<------------------------------------ <Industry Functions> ------------------------------------>
     public void TryBuildExtractor(){
+        PlayClick();
         Extractor newExtractor = new();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpExtractor(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingType.Extractor, techCost));
     }
     public void TryBuildCommercialExtractor(){
+        PlayClick();
         CommercialExtractor newExtractor = new();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpCommercialExtractor(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingType.CommercialExtractor, techCost));
     }
     public void TryBuildIndustrialExtractor(){
+        PlayClick();
         IndustrialExtractor newExtractor = new();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, newExtractor.GetBuildingType(), newExtractor.GetCostDictionary()));
     }
     public void TryTechUpIndustrialExtractor(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingType.IndustrialExtractor, techCost));
     }
     //<------------------------------------ <Suit Functions> ------------------------------------>
     public void TryBuildExosuit(){
-        //Implementation needed
+        PlayClick();
         Exosuit tempExosuit = new();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, tempExosuit.GetBuildingType(), tempExosuit.GetCostDictionary()));
     }
     public void TryTechUpExosuit(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingComponents.BuildingType.Exosuit, techCost));
     }
     public void TryBuildJetPack(){
-        //Implementation needed
+        PlayClick();
         JetPack tempJetPack = new();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, tempJetPack.GetBuildingType(), tempJetPack.GetCostDictionary()));
     }
     public void TryTechUpJetPack(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingComponents.BuildingType.JetPack, techCost));
     }
     public void TryBuildCybernetics(){
+        PlayClick();
         if(CyberneticsManager.Instance.IsBuilt() == false){
             Cybernetics tempCyber = new();
             checkInventory.Raise(new packet.CheckInventoryPacket(
@@ -281,35 +289,42 @@ public class UIBuildManager : MonoBehaviour
         }
     }
     public void TryTechUpCybernetics(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingComponents.BuildingType.Cybernetics, techCost));
     }
     //<------------------------------------ <Robotics Functions> ------------------------------------>
     public void TryBuildRobotBuddy(){
+        PlayClick();
         RobotBuddy tempRoboBuddy = new();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingType.RobotBuddy, tempRoboBuddy.GetCostDictionary()));
     }
     public void TryTechUpRobotBuddy(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingComponents.BuildingType.RobotBuddy, techCost));
     }
     public void TryBuildSatellite(){
+        PlayClick();
         Satellite tempSatellite = new();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingType.Satellite, tempSatellite.GetCostDictionary()));
     }
     public void TryTechUpSatellite(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingComponents.BuildingType.Satellite, techCost));
     }
     public void TryBuildLaunchPad(){
+        PlayClick();
         LaunchPad tempLaunchPad = new();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingType.LaunchPad, tempLaunchPad.GetCostDictionary()
         ));
     }
     public void TryTechUpLaunchPad(){
+        PlayClick();
         checkInventory.Raise(new packet.CheckInventoryPacket(
             this.gameObject, BuildingComponents.BuildingType.LaunchPad, techCost));
     }
