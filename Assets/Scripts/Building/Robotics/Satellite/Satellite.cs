@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Satellite : BaseBuilding
 {
-    public string satelliteName = "";
-    private ObjectsCost thisCosts;
     private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.Satellite;
 
     // Abstract method to get the cost dictionary
@@ -16,10 +14,6 @@ public class Satellite : BaseBuilding
         buildingData = LoadBuildingData("Satellite");
     }
 
-    public ObjectsCost GetCostDictionary()
-    {
-        return thisCosts;
-    }
     public BuildingComponents.BuildingType GetBuildingType()
     {
         return buildingType;

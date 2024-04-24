@@ -19,7 +19,7 @@ public class SoundFXManager : MonoBehaviour
     // -------------------------------------------------------------------
     // Handle events
 
-    public void PlaySound(Enum type, Transform transform, float volume)
+    public void PlaySound(Enum type, Transform transform, float volume, float delay = 0f)
     {
         // Spawn in object
         AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
@@ -32,13 +32,20 @@ public class SoundFXManager : MonoBehaviour
 
             if (audioSource.clip != null)
             {
-                audioSource.Play();
-                Destroy(audioSource.gameObject, clip.length);
-                activeAudioSources.Add(audioSource); // Track the source
+                if (delay > 0)
+                {
+                    audioSource.PlayDelayed(delay);
+                }
+                else
+                {
+                    audioSource.Play();
+                }
+                Destroy(audioSource.gameObject, audioSource.clip.length + delay);
+                activeAudioSources.Add(audioSource);
             }
             else
             {
-                Debug.LogError("Audio clip is null: " + type);
+                Debug.LogError("Audio clip is null or not found: " + type);
                 Destroy(audioSource.gameObject);
             }
         }
@@ -75,7 +82,9 @@ public class SoundFXManager : MonoBehaviour
         LoadSoundsForEnumType(typeof(SFX.Cave));
         LoadSoundsForEnumType(typeof(SFX.Player));
         LoadSoundsForEnumType(typeof(SFX.Satellite));
-        LoadSoundsForEnumType(typeof(SFX.Robot));
+        LoadSoundsForEnumType(typeof(SFX.Robot.Status));
+        LoadSoundsForEnumType(typeof(SFX.Robot.Pickup));
+        LoadSoundsForEnumType(typeof(SFX.Robot.Dropped));
         LoadSoundsForEnumType(typeof(SFX.MiniGame));
     }
 
@@ -155,7 +164,7 @@ public class SoundFXManager : MonoBehaviour
         }
     }
 
-    public void PlayRandomSoundOfType(Type enumType, Transform transform, float volume)
+    public void PlayRandomSoundOfType(Type enumType, Transform transform, float volume, float delay = 0f)
     {
         List<AudioClip> clipsOfType = new List<AudioClip>();
 
@@ -181,9 +190,17 @@ public class SoundFXManager : MonoBehaviour
 
             if (audioSource.clip != null)
             {
-                audioSource.Play();
-                Destroy(audioSource.gameObject, randomClip.length);  // Destroy the source after playing
-                activeAudioSources.Add(audioSource);  // Track the active source
+                    if (delay > 0)
+                    {
+                        audioSource.PlayDelayed(delay);
+                    }
+                    else
+                    {
+                        audioSource.Play();
+                    }
+
+                    Destroy(audioSource.gameObject, audioSource.clip.length + delay);
+                    activeAudioSources.Add(audioSource);
             }
             else
             {

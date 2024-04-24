@@ -15,9 +15,12 @@ public class BaseBuilding
     LoadableBuildingObject satellite;
     LoadableBuildingObject launchPad;
     LoadableBuildingObject robotBuddy;
-    public ObjectsCost GetCostDictionary(){
+
+    public ObjectsCost GetCostDictionary()
+    {
         return thisCosts;
     }
+
     protected LoadableBuildingObject LoadBuildingData(string id)
     {
         InitObjCost(FindBuildingObjectByID(id));
@@ -27,7 +30,8 @@ public class BaseBuilding
     public LoadableBuildingObject FindBuildingObjectByID(string id)
     {
         InitItems();
-        switch(id){
+        switch (id)
+        {
             case "Extractor":
                 return extractor;
             case "CommercialExtractor":
@@ -50,7 +54,8 @@ public class BaseBuilding
         }
     }
 
-    protected void InitObjCost(LoadableBuildingObject thisObject){
+    protected void InitObjCost(LoadableBuildingObject thisObject)
+    {
         thisCosts = new ObjectsCost(
                 thisObject.Costs["Iron"],
                 thisObject.Costs["Nickel"],
@@ -274,17 +279,17 @@ public class BaseBuilding
         }
     );
 
-    launchPad = new LoadableBuildingObject(
-        "LaunchPad",
-        "Robotics",
-        "Rocket Launch Pad",
-        "Fly home with all your mined resources!!!",
-        0,
-        0,
-        0,
-        0,
-        new Dictionary<string, int>
-        {
+        launchPad = new LoadableBuildingObject(
+            "LaunchPad",
+            "Robotics",
+            "Rocket Launch Pad",
+            "Fly home with all your mined resources!!!",
+            0,
+            0,
+            0,
+            0,
+            new Dictionary<string, int>
+            {
             { "Iron", 250 },
             { "Nickel", 250 },
             { "Cobalt", 150 },
@@ -293,17 +298,17 @@ public class BaseBuilding
             { "Technetium", 50 },
             { "Tungsten", 35 },
             { "Iridium", 35 }
-        },
-        "",
-        new List<string>
-        {
+            },
+            "",
+            new List<string>
+            {
             "Can now build Rocket Engines",
             "Can now build Rocket Chassis",
             "Can now build Rocket Cockpit",
             "Can now build Rocket Computer Wiring",
             "Peak Technology Reached!!!"
-        }
-    );
+            }
+        );
     }
 }
 

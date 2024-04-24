@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     private float initJumpForce = 3.0f;
     private float improvedJumpForce = 6.0f;
     //private PlayerUIManager playerUIManager;
-    
+
     // -------------------------------------------------------------------
     // Handle events
 
@@ -62,12 +62,17 @@ public class PlayerManager : MonoBehaviour
 
     // -------------------------------------------------------------------
     // API
-    public bool GetIsCarryingRobotAlpha(){
+
+    public bool GetIsCarryingRobotAlpha()
+    {
         return isCarryingRobotAlpha;
     }
-    public bool GetIsCarryingRobotBeta(){
+
+    public bool GetIsCarryingRobotBeta()
+    {
         return isCarryingRobotBeta;
     }
+
     public GameObject GetPlayerObject()
     {
         return playerObject;

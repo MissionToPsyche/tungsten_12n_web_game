@@ -74,22 +74,31 @@ namespace SFX
         PullCord,
     }
 
-    public enum Robot
+    namespace Robot
     {
-        [ResourcePath("Audio/SFX/robot_init")]
-        Initialize,
+        public enum Status
+        {
+            [ResourcePath("Audio/SFX/robot_init")]
+            Initialize,
 
-        [ResourcePath("Audio/SFX/robot_happy")]
-        Happy,
+            [ResourcePath("Audio/SFX/robot_dead")]
+            Dead,
+        }
 
-        [ResourcePath("Audio/SFX/robot_sad")]
-        Sad,
+        public enum Pickup
+        {
+            [ResourcePath("Audio/SFX/robot_happy")]
+            Happy,
 
-        [ResourcePath("Audio/SFX/robot_excited")]
-        Excited,
+            [ResourcePath("Audio/SFX/robot_excited")]
+            Excited,
+        }
 
-        [ResourcePath("Audio/SFX/robot_dead")]
-        Dead,
+        public enum Dropped
+        {
+            [ResourcePath("Audio/SFX/robot_sad")]
+            Sad,
+        }
     }
 
     public class ResourcePathAttribute : Attribute

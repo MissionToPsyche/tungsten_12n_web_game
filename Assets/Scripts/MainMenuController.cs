@@ -10,12 +10,13 @@ public class MainMenuController : MonoBehaviour
 
     public void Start()
     {
-        // SFX.Packet packet = new(SFX.Player.Jump, this.transform, 1f);
-        // soundFXEvent.Raise(packet);
+        SoundFXManager.Instance.PlaySound(SFX.Music.Asteroid.MainMenu, this.gameObject.transform, 1f, 1f);
     }
 
     public void PlayGame()
     {
+        SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Asteroid));
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

@@ -41,6 +41,9 @@ public class RobotManager : MonoBehaviour
             Debug.Log("[RobotManager]: robotAlpha not found in game");
             return;
         }
+
+        SoundFXManager.Instance.PlaySound(SFX.Robot.Status.Initialize, robotAlphaObject.transform, 1f);
+
         hasBuiltAlpha = true;
     }
 
@@ -65,6 +68,9 @@ public class RobotManager : MonoBehaviour
             Debug.Log("[RobotManager]: robotBetaObject not found in game");
             return;
         }
+
+        SoundFXManager.Instance.PlaySound(SFX.Robot.Status.Initialize, robotAlphaObject.transform, 1f);
+
         hasBuiltBeta = true;
     }
 

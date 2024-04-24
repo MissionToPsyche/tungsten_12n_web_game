@@ -11,30 +11,32 @@ public abstract class AbstractExtractor : BaseBuilding
     protected float AsteroidReach;
     protected BuildingComponents.BuildingType buildingType;
     // Abstract method to get the cost dictionary
-    protected void SetVarsFromJsonData(float mineInterval, int amountToMine, float baseBreakChance, float AsteroidReach){
+    protected void SetVarsFromJsonData(float mineInterval, int amountToMine, float baseBreakChance, float AsteroidReach)
+    {
         this.mineInterval = mineInterval;
         this.amountToMine = amountToMine;
         this.baseBreakChance = baseBreakChance;
         this.AsteroidReach = AsteroidReach;
     }
 
-    public ObjectsCost GetCostDictionary(){
-        return thisCosts;
-    }
-    public BuildingComponents.BuildingType GetBuildingType(){
+    public BuildingComponents.BuildingType GetBuildingType()
+    {
         return buildingType;
     }
-    public float GetMineInterval(){
+    public float GetMineInterval()
+    {
         return mineInterval;
     }
-    public int GetAmountToMine(){
+    public int GetAmountToMine()
+    {
         return amountToMine;
     }
-    public float GetBaseBreakChance(){
+    public float GetBaseBreakChance()
+    {
         return baseBreakChance;
     }
-    public float GetAsteroidReach(){
+    public float GetAsteroidReach()
+    {
         return AsteroidReach;
     }
 }
-

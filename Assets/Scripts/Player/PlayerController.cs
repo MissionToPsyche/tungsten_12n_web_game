@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Threading;
+using Unity.VisualScripting;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
@@ -179,27 +180,39 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    public void OnPlayerPickupRobot(){
-        if(isCarryingRobot == false){
-            if(canPickupAlpha == true){
+    public void OnPlayerPickupRobot()
+    {
+        if (isCarryingRobot == false)
+        {
+            if (canPickupAlpha == true)
+            {
                 isCarryingRobot = true;
                 PlayerManager.Instance.SetCarryingAlpha(true);
                 carryAlphaObject.SetActive(true);
-            }else if(canPickupBeta){
+            }
+            else if (canPickupBeta)
+            {
                 isCarryingRobot = true;
                 PlayerManager.Instance.SetCarryingBeta(true);
                 carryBetaObject.SetActive(true);
             }
-        }else{
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Robot.Pickup), this.gameObject.transform, 1f);
+        }
+        else
+        {
             isCarryingRobot = false;
             PlayerManager.Instance.SetCarryingAlpha(false);
             PlayerManager.Instance.SetCarryingBeta(false);
-            if(carryAlphaObject.activeSelf == true){
+            if (carryAlphaObject.activeSelf == true)
+            {
                 carryAlphaObject.SetActive(false);
             }
-            if(carryBetaObject.activeSelf == true){
+            if (carryBetaObject.activeSelf == true)
+            {
                 carryBetaObject.SetActive(false);
             }
+
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Robot.Dropped), this.gameObject.transform, 1f);
         }
         Debug.Log("isCarryingrobot: " + isCarryingRobot);
     }
@@ -350,12 +363,19 @@ public class PlayerController : MonoBehaviour
         playerBody.position += movement;
         playerPositionUpdated.Raise(playerBody.position);
     }
-    private UnityEngine.Vector2 DetermineMovementSpeed(UnityEngine.Vector2 direction){
-        if(BuildManager.Instance.HasBuiltExosuit() == false){
+
+    private UnityEngine.Vector2 DetermineMovementSpeed(UnityEngine.Vector2 direction)
+    {
+        if (BuildManager.Instance.HasBuiltExosuit() == false)
+        {
             return direction * (currentSpeed * Time.fixedDeltaTime);
-        }else if(BuildingTierManager.Instance.GetTierOf(BuildingComponents.BuildingType.Exosuit) < 2){
+        }
+        else if (BuildingTierManager.Instance.GetTierOf(BuildingComponents.BuildingType.Exosuit) < 2)
+        {
             return direction * (currentSpeed * 1.10f * Time.fixedDeltaTime);
-        }else{
+        }
+        else
+        {
             return direction * (currentSpeed * 1.20f * Time.fixedDeltaTime);
         }
     }
@@ -475,9 +495,12 @@ public class PlayerController : MonoBehaviour
                 isInPit = true;
                 break;
             case "RobotBuddy":
-                if(collison.gameObject.name == "RobotBuddyAlpha"){
+                if (collison.gameObject.name == "RobotBuddyAlpha")
+                {
                     canPickupAlpha = true;
-                }else if(collison.gameObject.name == "RobotBuddyBeta"){
+                }
+                else if (collison.gameObject.name == "RobotBuddyBeta")
+                {
                     canPickupBeta = true;
                 }
                 break;
@@ -501,9 +524,12 @@ public class PlayerController : MonoBehaviour
                 isInPit = false;
                 break;
             case "RobotBuddy":
-                if(Collision.gameObject.name == "RobotBuddyAlpha"){
+                if (Collision.gameObject.name == "RobotBuddyAlpha")
+                {
                     canPickupAlpha = false;
-                }else if(Collision.gameObject.name == "RobotBuddyBeta"){
+                }
+                else if (Collision.gameObject.name == "RobotBuddyBeta")
+                {
                     canPickupBeta = false;
                 }
                 break;
