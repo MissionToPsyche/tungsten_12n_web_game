@@ -24,24 +24,29 @@ public class CrackLayers : MonoBehaviour
         crackLayers[5].SetActive(false);
     }
 
-    private void OnMouseUp(){
+    private void OnMouseUp()
+    {
+        SoundFXManager.Instance.PlaySound(SFX.Cave.MineResource, this.transform, 1f);
         clickCounter += 1;
-        if(clickCounter == clickTarget){
-            
-            if(index < crackLayers.Length-1){
+        if (clickCounter == clickTarget)
+        {
+
+            if (index < crackLayers.Length - 1)
+            {
                 index += 1;
-                if(index == crackLayers.Length-1){
+                if (index == crackLayers.Length - 1)
+                {
+                    SoundFXManager.Instance.PlaySound(SFX.MiniGame.Won, this.transform, 0.5f);
+
                     WinConditionEvent.Raise(true);
                 }
             }
 
             clickCounter = 0;
             clickTarget = UnityEngine.Random.Range(3, 6);
-            crackLayers[index-1].SetActive(false);
+            crackLayers[index - 1].SetActive(false);
             crackLayers[index].SetActive(true);
 
         }
     }
-
-    
 }

@@ -2514,6 +2514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206a6ebd97b7c19469c0a75727eed3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 0}
 --- !u!4 &1121275265
 Transform:
   m_ObjectHideFlags: 0
@@ -2560,7 +2561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HelpOption: {fileID: 804888486}
   AboutOption: {fileID: 1412627680}
-  soundEffectEvent: {fileID: 11400000, guid: 5593417bf2fc8b042a0338d000cdf5eb, type: 2}
 --- !u!4 &1174106748
 Transform:
   m_ObjectHideFlags: 0

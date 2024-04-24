@@ -9,7 +9,6 @@ public class Interactable : MonoBehaviour
     private bool isInRange;
     private KeyCode interactKey = KeyCode.E;
     public TextMeshProUGUI reminderText;
-    [SerializeField] public SoundEffectEvent soundEffectEvent;
 
     // Update is called once per frame
     void Update()
@@ -21,10 +20,11 @@ public class Interactable : MonoBehaviour
             PlayerManager.Instance.SetLastPosition();
             PlayerManager.Instance.SetScenePosition(CaveScene, CaveSpawn);
 
-            // packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(gameObject, SFX.Cave.Enter);
-            // soundEffectEvent.Raise(sfxpacket);
-            // packet.SoundEffectPacket sfxpacket2 = new packet.SoundEffectPacket(gameObject, SFX.Cave.Ambience);
-            // soundEffectEvent.Raise(sfxpacket2);
+            SoundFXManager.Instance.PlaySound(SFX.Cave.Enter, PlayerManager.Instance.GetPlayerObject().transform, 1f);
+
+            SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music));
+            SoundFXManager.Instance.PlaySound(SFX.Music.CaveAmbience, PlayerManager.Instance.GetPlayerObject().transform, 1f);
+
         }
     }
 

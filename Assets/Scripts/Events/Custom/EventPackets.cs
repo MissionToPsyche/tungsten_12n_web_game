@@ -12,20 +12,6 @@ namespace packet
     /// Instantiate by using the object calling this event, the amount to change the Inventory by, the resource to change and true for addition, false for subtraction
     /// </summary>
 
-    public class SoundEffectPacket
-    {
-        public Transform transform;
-        public SoundEffect soundReference;
-        public float volume;
-
-        public SoundEffectPacket(SoundEffect soundReference, Transform transform, float volume)
-        {
-            this.transform = transform;
-            this.soundReference = soundReference;
-            this.volume = volume;
-        }
-    }
-
     public class CheckInventoryPacket
     {
         public GameObject objectThatSent;

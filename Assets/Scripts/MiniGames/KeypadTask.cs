@@ -13,37 +13,51 @@ public class KeypadTask : MonoBehaviour
 
     public float codeResetTimeInSeconds = 0.5f;
 
-    private bool isResetting = false; 
+    private bool isResetting = false;
 
     public BoolEvent winCondition;
 
-    private void OnEnable(){
+    private void OnEnable()
+    {
         string code = string.Empty;
 
-        for (int i = 0; i < codeLength; i++){
-            code += Random.Range(1,10);
+        for (int i = 0; i < codeLength; i++)
+        {
+            code += Random.Range(1, 10);
         }
 
         cardCode.text = code;
         inputCode.text = string.Empty;
     }
 
-    public void ButtonClick(int number){
-        if(isResetting) { return; }
+    public void ButtonClick(int number)
+    {
+        SoundFXManager.Instance.PlaySound(SFX.MiniGame.Typing, this.transform, 1f);
+
+        if (isResetting) { return; }
 
         inputCode.text += number;
 
-        if(inputCode.text == cardCode.text){
+        if (inputCode.text == cardCode.text)
+        {
             inputCode.text = "Correct";
+
+            SoundFXManager.Instance.PlaySound(SFX.MiniGame.Won, this.transform, 0.5f);
+
             winCondition.Raise(true);
         }
-        else if(inputCode.text.Length >= codeLength){
+        else if (inputCode.text.Length >= codeLength)
+        {
             inputCode.text = "failed";
+
+            SoundFXManager.Instance.PlaySound(SFX.MiniGame.Error, this.transform, 1f);
+
             StartCoroutine(ResetCode());
         }
     }
 
-    private IEnumerator ResetCode(){
+    private IEnumerator ResetCode()
+    {
         isResetting = true;
 
         yield return new WaitForSeconds(codeResetTimeInSeconds);
@@ -52,5 +66,5 @@ public class KeypadTask : MonoBehaviour
 
         isResetting = false;
     }
-   
+
 }

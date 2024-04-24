@@ -7,12 +7,11 @@ public class MainMenuController : MonoBehaviour
 {
     public CanvasGroup HelpOption;
     public CanvasGroup AboutOption;
-    [SerializeField] public SoundEffectEvent soundEffectEvent;
 
     public void Start()
     {
-        // packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(this.gameObject, SFX.Music.MainMenu);
-        // soundEffectEvent.Raise(sfxpacket);
+        // SFX.Packet packet = new(SFX.Player.Jump, this.transform, 1f);
+        // soundFXEvent.Raise(packet);
     }
 
     public void PlayGame()

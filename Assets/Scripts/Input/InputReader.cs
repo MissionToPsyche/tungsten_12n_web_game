@@ -19,8 +19,6 @@ public class InputReader : ScriptableObject,
 
     private Dictionary<Control.State, InputActionMap> stateToActionMap;
 
-    [SerializeField] public SoundEffectEvent soundEffectEvent;
-
     public static InputReader Instance { get; private set; }
 
     private void Awake()
@@ -73,7 +71,7 @@ public class InputReader : ScriptableObject,
         inputSystem.Satellite.Enable();
         inputSystem.UI.Enable();
         inputSystem.RobotBuddy.Enable();
-        Debug.Log("All action maps have been enabled.");
+        // Debug.Log("All action maps have been enabled.");
     }
 
     public void SetControlState(Control.State targetState)

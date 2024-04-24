@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Vector2Event playerPositionUpdated;
     [SerializeField] public BoolEvent playerInteract;
     [SerializeField] public BoolEvent playerLaunchPadInteract;
-    [SerializeField] public SoundEffectEvent soundEffectEvent;
     [SerializeField] public VoidEvent playerInPit;
 
     [Header("Mutable")]
@@ -101,8 +100,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Player.Walk);
-            // soundEffectEvent.Raise(sfxpacket);
+            // SoundFXManager.Instance.PlaySound()
             UpdatePlayerState(PlayerState.Walking);
         }
     }
@@ -139,8 +137,7 @@ public class PlayerController : MonoBehaviour
             {
                 isJumping = true;
                 UpdatePlayerState(PlayerState.Jumping);
-                packet.SoundEffectPacket sfxPacket = new packet.SoundEffectPacket(SoundEffect.PlayerJump, this.transform, 1f);
-                soundEffectEvent.Raise(sfxPacket);
+                SoundFXManager.Instance.PlaySound(SFX.Player.Jump, this.transform, 1f);
             }
         }
         else
