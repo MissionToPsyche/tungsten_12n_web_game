@@ -6,14 +6,14 @@ public class Inventory
     Dictionary<ResourceType, int> inv = new Dictionary<ResourceType, int>();
     Dictionary<BuildingType, int> currentTechLevels = new Dictionary<BuildingType, int>();
     public Inventory(int IronAmt, int NickelAmt, int CobaltAmt,
-    int PlatinumAmt, int GoldAmt, int TechnitiumAmt, int TungstenAmt, int IridiumAmt,
+    int PlatinumAmt, int GoldAmt, int TechnetiumAmt, int TungstenAmt, int IridiumAmt,
     int TechPointAmt){
         inv.Add(ResourceType.Iron, IronAmt);
         inv.Add(ResourceType.Nickel, NickelAmt);
         inv.Add(ResourceType.Cobalt, CobaltAmt);
         inv.Add(ResourceType.Platinum, PlatinumAmt);
         inv.Add(ResourceType.Gold, GoldAmt);
-        inv.Add(ResourceType.Technitium, TechnitiumAmt);
+        inv.Add(ResourceType.Technetium, TechnetiumAmt);
         inv.Add(ResourceType.Tungsten, TungstenAmt);
         inv.Add(ResourceType.Iridium, IridiumAmt);
         inv.Add(ResourceType.TechPoint, TechPointAmt);
@@ -74,8 +74,8 @@ public class Inventory
             case(ResourceType.Gold):
                 inv[ResourceType.Gold] += amt;
                 break;
-            case(ResourceType.Technitium):
-                inv[ResourceType.Technitium] += amt;
+            case(ResourceType.Technetium):
+                inv[ResourceType.Technetium] += amt;
                 break;
             case(ResourceType.Tungsten):
                 inv[ResourceType.Tungsten] += amt;
@@ -106,8 +106,8 @@ public class Inventory
             case(ResourceType.Gold):
                 inv[ResourceType.Gold] -= amt;
                 break;
-            case(ResourceType.Technitium):
-                inv[ResourceType.Technitium] -= amt;
+            case(ResourceType.Technetium):
+                inv[ResourceType.Technetium] -= amt;
                 break;
             case(ResourceType.Tungsten):
                 inv[ResourceType.Tungsten] -= amt;

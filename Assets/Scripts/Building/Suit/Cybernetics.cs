@@ -17,9 +17,8 @@ public class Cybernetics : BaseBuilding
     private BuildingComponents.BuildingType buildingType = BuildingComponents.BuildingType.Cybernetics;
     public Cybernetics(){
         currentTier = 0;
-        buildingData = LoadBuildingData();
-        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("LaunchPad");
-        thisCosts = InitObjCost(thisObject);
+        buildingData = LoadBuildingData("Cybernetics");
+        
     }
     
     public int GetCurrentCharge(){

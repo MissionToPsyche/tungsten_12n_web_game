@@ -10,9 +10,7 @@ public class LaunchPad : BaseBuilding{
 
     // Abstract method to get the cost dictionary
     public LaunchPad(){
-        buildingData = LoadBuildingData();
-        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("LaunchPad");
-        thisCosts = InitObjCost(thisObject);
+        buildingData = LoadBuildingData("LaunchPad");
     }
     public BuildingComponents.BuildingType GetBuildingType(){
         return buildingType;

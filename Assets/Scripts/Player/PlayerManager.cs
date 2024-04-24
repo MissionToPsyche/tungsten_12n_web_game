@@ -31,6 +31,11 @@ public class PlayerManager : MonoBehaviour
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero;
     private Quaternion lastRotation = Quaternion.Euler(0,0,0);
     [SerializeField] private GameObject playerUIObject;
+    private bool isCarryingRobotAlpha = false;
+    private bool isCarryingRobotBeta = false;
+    private float currentJumpForce = 3.0f;
+    private float initJumpForce = 3.0f;
+    private float improvedJumpForce = 6.0f;
     //private PlayerUIManager playerUIManager;
     
     // -------------------------------------------------------------------
@@ -48,9 +53,21 @@ public class PlayerManager : MonoBehaviour
         //Debug.Log("[GameManager]: playerPosition: " + position);
     }
 
+    public void OnTechUpEvent(packet.TechUpPacket packet){
+        if(packet.building == BuildingComponents.BuildingType.Exosuit && packet.TechToLevel == 1){
+            currentJumpForce = improvedJumpForce;
+            playerController.UpdateJumpForce(currentJumpForce);
+        }
+    }
+
     // -------------------------------------------------------------------
     // API
-
+    public bool GetIsCarryingRobotAlpha(){
+        return isCarryingRobotAlpha;
+    }
+    public bool GetIsCarryingRobotBeta(){
+        return isCarryingRobotBeta;
+    }
     public GameObject GetPlayerObject()
     {
         return playerObject;
@@ -85,7 +102,7 @@ public class PlayerManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        playerController = playerObject.GetComponent<PlayerController>(); 
+        playerController = playerObject.GetComponent<PlayerController>();
     }
 
     // set the players initial position and jump force
@@ -100,7 +117,7 @@ public class PlayerManager : MonoBehaviour
                     //Debug.Log(1);
                     this.playerObject.transform.position = this.lastCoordinates;
                     this.playerObject.transform.rotation = this.lastRotation;
-                    this.playerController.UpdateJumpForce(3.0f);
+                    this.playerController.UpdateJumpForce(currentJumpForce);
                 }
                 else
                 {
@@ -108,7 +125,7 @@ public class PlayerManager : MonoBehaviour
                     //Debug.Log(2);
                     this.playerObject.transform.position = MainSpawn.transform.position;
                     this.playerObject.transform.rotation = Quaternion.Euler(0,0,0);
-                    this.playerController.UpdateJumpForce(3.0f);
+                    this.playerController.UpdateJumpForce(currentJumpForce);
                 }
                 break;
 
@@ -130,5 +147,11 @@ public class PlayerManager : MonoBehaviour
     {
         this.lastCoordinates = playerObject.transform.position;
         this.lastRotation = playerObject.transform.rotation;
+    }
+    public void SetCarryingAlpha(bool set){
+        isCarryingRobotAlpha = set;
+    }
+    public void SetCarryingBeta(bool set){
+        isCarryingRobotBeta = set;
     }
 }

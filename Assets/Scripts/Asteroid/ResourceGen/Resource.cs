@@ -144,7 +144,7 @@ public class Technetium : Resource
     public Technetium(Vector2 pos) : base(pos)
     {
         Name = "Technetium";
-        resourceType = BuildingComponents.ResourceType.Technitium;
+        resourceType = BuildingComponents.ResourceType.Technetium;
         Color = Color.green;
         Position = pos;
         depositSize = base.randomizeSize();

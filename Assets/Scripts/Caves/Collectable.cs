@@ -172,6 +172,8 @@ public class Collectable : MonoBehaviour
 
     public void OnCaveMiniGameWin(){
         if(playerInteracted){
+            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+            sprite.enabled = false;
             StartCoroutine(reminderTextCoroutine());
         }
     }
@@ -189,7 +191,7 @@ public class Collectable : MonoBehaviour
                 return "Platinum";
             case ResourceType.Gold:
                 return "Gold";
-            case ResourceType.Technitium:
+            case ResourceType.Technetium:
                 return "Technitium";
             case ResourceType.Tungsten:
                 return "Tungsten";

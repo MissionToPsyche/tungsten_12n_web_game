@@ -183,13 +183,17 @@ public class PlayerController : MonoBehaviour
         if(isCarryingRobot == false){
             if(canPickupAlpha == true){
                 isCarryingRobot = true;
+                PlayerManager.Instance.SetCarryingAlpha(true);
                 carryAlphaObject.SetActive(true);
             }else if(canPickupBeta){
                 isCarryingRobot = true;
+                PlayerManager.Instance.SetCarryingBeta(true);
                 carryBetaObject.SetActive(true);
             }
         }else{
             isCarryingRobot = false;
+            PlayerManager.Instance.SetCarryingAlpha(false);
+            PlayerManager.Instance.SetCarryingBeta(false);
             if(carryAlphaObject.activeSelf == true){
                 carryAlphaObject.SetActive(false);
             }
@@ -197,6 +201,7 @@ public class PlayerController : MonoBehaviour
                 carryBetaObject.SetActive(false);
             }
         }
+        Debug.Log("isCarryingrobot: " + isCarryingRobot);
     }
     // -------------------------------------------------------------------
     // Class

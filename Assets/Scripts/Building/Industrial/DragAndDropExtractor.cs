@@ -23,7 +23,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(mousePosition.x, mousePosition.y, transform.position.z);
 
-            Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.size.y / 2f);
+            Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y);
             Vector2 direction = gravityBody.GravityDirection;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, 20f, layerToUse);
 
@@ -45,6 +45,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
     public override void OnEndDrag(PointerEventData eventData)
     {
         if(spriteRenderer.color == Color.green){
+            spriteRenderer.color = Color.white;
             isPlaced = true;
             //Lets Object know that it is placed in its final location, may start working
             OnPlacementEvent?.Invoke(resource);
@@ -58,7 +59,10 @@ public class DragAndDropExtractor : DragAndDropSuper{
     protected bool IsValidPos(RaycastHit2D hit, Vector2 origin, Vector2 dir)
     {
         float distToGround = GetDistanceToGround(origin, dir);
-        if (hit.collider != null && distToGround < .15f)
+        if(hit.collider != null){
+            //Debug.Log($"collider: {hit.collider.name}\tdistToGround: {distToGround}");
+        }
+        if (hit.collider != null && distToGround < 1f)
         {
             return true;
         }
@@ -70,10 +74,11 @@ public class DragAndDropExtractor : DragAndDropSuper{
 
     private float GetDistanceToGround(Vector2 origin, Vector2 dir){
         float maxGravityDistance = 10f;
-        RaycastHit2D hit = Physics2D.Raycast(origin, dir, maxGravityDistance, 1 << 7);
+        RaycastHit2D hit = Physics2D.Raycast(origin, dir.normalized, maxGravityDistance, 1 << LayerMask.NameToLayer("Asteroid"));
 
         Debug.DrawRay(transform.position, dir * maxGravityDistance, Color.blue);
         if (hit.collider != null){
+            //Debug.Log($"point: {hit.point}\tdistToGround: {hit.distance}\torigin{origin}\tdist: {Vector2.Distance(hit.point, origin)}");
             return hit.distance;
         }else{
             return maxGravityDistance;

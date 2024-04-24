@@ -4,9 +4,7 @@ public class Exosuit : BaseBuilding{
 
     // Abstract method to get the cost dictionary
     public Exosuit(){
-        buildingData = LoadBuildingData();
-        BuildingComponents.BuildingObject thisObject = FindBuildingObjectByID("Exosuit");
-        thisCosts = InitObjCost(thisObject);
+        buildingData = LoadBuildingData("Exosuit");
     }
     public BuildingComponents.BuildingType GetBuildingType(){
         return buildingType;

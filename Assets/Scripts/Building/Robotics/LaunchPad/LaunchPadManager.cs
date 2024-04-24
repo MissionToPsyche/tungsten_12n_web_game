@@ -12,10 +12,10 @@ public class LaunchPadManager : MonoBehaviour{
     [SerializeField] VoidEvent winningEvent;
     //building based vars
     [SerializeField] public InventoryCheckEvent checkInventory;
-    private ObjectsCost engineCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
-    private ObjectsCost chasisCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
-    private ObjectsCost cockpitCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
-    private ObjectsCost externalTankCosts = new ObjectsCost(1,0,0,0,0,0,0,0,0);
+    private ObjectsCost engineCosts = new ObjectsCost(100,100, 50,0,20,10,0,5,0);
+    private ObjectsCost chasisCosts = new ObjectsCost(100,100,75,20,0,10,10,10,0);
+    private ObjectsCost cockpitCosts = new ObjectsCost(100,100,75,50,50,25,25,25,0);
+    private ObjectsCost externalTankCosts = new ObjectsCost(100,100,75,50,50,50,50,40,0);
     [SerializeField] private GameObject enginesPrefab;
     [SerializeField] private GameObject chasisPrefab;
     [SerializeField] private GameObject cockpitPrefab;
@@ -105,6 +105,7 @@ public class LaunchPadManager : MonoBehaviour{
         //They have won the game
         triggerRocketModuleUIOverlay.Raise(false);
         winningEvent.Raise();
+        
     }
     private void TryBuildEngine(){
         checkInventory.Raise(new packet.CheckInventoryPacket(

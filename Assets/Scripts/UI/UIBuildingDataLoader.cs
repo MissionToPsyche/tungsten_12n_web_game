@@ -6,6 +6,8 @@ using TMPro;
 using System;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using System.Collections.Generic;
+using System.Linq;
 public class UIBuildingDataLoader : MonoBehaviour
 {
     //This class is responsible for loading in the building data into the UI,
@@ -57,25 +59,28 @@ public class UIBuildingDataLoader : MonoBehaviour
     //Json Vars
     //-----------------------------------------------------------------
     private BuildingData buildingData;
+    private BaseBuilding buildingBase;
+    private List<LoadableBuildingObject> allData = new List<LoadableBuildingObject>();
     private void Start()
     {
-        buildingData = LoadBuildingData();
-        LoadBuildingUI(buildingData);
+        buildingBase = new();
+        allData.Add(buildingBase.FindBuildingObjectByID("Extractor"));
+        allData.Add(buildingBase.FindBuildingObjectByID("CommercialExtractor"));
+        allData.Add(buildingBase.FindBuildingObjectByID("IndustrialExtractor"));
+        allData.Add(buildingBase.FindBuildingObjectByID("Cybernetics"));
+        allData.Add(buildingBase.FindBuildingObjectByID("Exosuit"));
+        allData.Add(buildingBase.FindBuildingObjectByID("Satellite"));
+        allData.Add(buildingBase.FindBuildingObjectByID("RobotBuddy"));
+        allData.Add(buildingBase.FindBuildingObjectByID("LaunchPad"));
+        LoadBuildingUI(allData);
     }
-    public BuildingData LoadBuildingData()
-    {
-        string jsonData = File.ReadAllText(filePath);
-        BuildingData buildingData = JsonConvert.DeserializeObject<BuildingData>(jsonData);
-
-        return buildingData;
-    }
-    private void LoadBuildingUI(BuildingData data){
-        foreach (var buildingObject in data.BuildingObject)
+    private void LoadBuildingUI(List<LoadableBuildingObject> data){
+        foreach (LoadableBuildingObject buildingObject in data)
         {
             SetUIBuildingItem(buildingObject);
         }
     }
-    private void SetUIBuildingItem(BuildingObject item){
+    private void SetUIBuildingItem(LoadableBuildingObject item){
         string itemID = item.ID;
         
         switch(itemID){
@@ -108,7 +113,7 @@ public class UIBuildingDataLoader : MonoBehaviour
             break;
         }
     }
-    private void LoadIntoUI(BuildingObject item, TextMeshProUGUI costText, TextMeshProUGUI helpText, TextMeshProUGUI techUpText){
+    private void LoadIntoUI(LoadableBuildingObject item, TextMeshProUGUI costText, TextMeshProUGUI helpText, TextMeshProUGUI techUpText){
         costText.text = "";
         int i = 0;
         foreach(var costNode in item.Costs){
@@ -126,7 +131,7 @@ public class UIBuildingDataLoader : MonoBehaviour
     }
 
     public void OnTechUpEvent(packet.TechUpPacket packet){
-        BuildingObject item = GetItemByBuilding(packet.building);
+        LoadableBuildingObject item = GetItemByBuilding(packet.building);
         switch(packet.building){
             case(BuildingComponents.BuildingType.Extractor):
                 ExtractorTechUpText.text = item.TechUpTexts[packet.TechToLevel - 1];
@@ -158,15 +163,15 @@ public class UIBuildingDataLoader : MonoBehaviour
         }
     }
 
-    private BuildingObject GetItemByBuilding(BuildingComponents.BuildingType building){
-        foreach (var buildingObject in buildingData.BuildingObject)
+    private LoadableBuildingObject GetItemByBuilding(BuildingComponents.BuildingType building){
+        foreach (var buildingObject in allData)
         {
             if(buildingObject.ID == BuildingTypeToString(building)){
                 return buildingObject;
             }
         }
         Debug.LogError("UIBuildingDataLoader could not find json entry for building " + BuildingTypeToString(building));
-        return new BuildingObject();
+        return null;
     }
     private String BuildingTypeToString(BuildingComponents.BuildingType building){
         switch(building){

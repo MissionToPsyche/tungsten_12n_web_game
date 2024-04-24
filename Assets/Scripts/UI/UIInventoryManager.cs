@@ -52,7 +52,7 @@ public class UIInventoryManager : MonoBehaviour
             case ResourceType.Gold:
                 GoldInvText.text = amt.ToString();
                 break;
-            case ResourceType.Technitium:
+            case ResourceType.Technetium:
                 TechnitiumInvText.text = amt.ToString();
                 break;
             case ResourceType.Tungsten:
