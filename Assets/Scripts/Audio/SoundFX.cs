@@ -4,16 +4,28 @@ using UnityEngine;
 
 namespace SFX
 {
-    public enum Music
+    namespace Music
     {
-        [ResourcePath("Audio/Music/cave_ambience")]
-        CaveAmbience,
+        public enum Asteroid
+        {
+            [ResourcePath("Audio/Music/main_menu")]
+            MainMenu,
 
-        [ResourcePath("Audio/Music/main_menu")]
-        MainMenu,
+            [ResourcePath("Audio/Music/big_js_face_in_space")]
+            BigJ,
 
-        [ResourcePath("Audio/Music/big_js_face_in_space")]
-        BigJ
+            [ResourcePath("Audio/Music/space_church")]
+            SpaceChurch
+        }
+
+        public enum Cave
+        {
+            [ResourcePath("Audio/Music/cave_ambience")]
+            Ambience,
+
+            [ResourcePath("Audio/Music/cave_braver")]
+            Braver
+        }
     }
 
     public enum Cave
@@ -64,7 +76,20 @@ namespace SFX
 
     public enum Robot
     {
+        [ResourcePath("Audio/SFX/robot_init")]
+        Initialize,
 
+        [ResourcePath("Audio/SFX/robot_happy")]
+        Happy,
+
+        [ResourcePath("Audio/SFX/robot_sad")]
+        Sad,
+
+        [ResourcePath("Audio/SFX/robot_excited")]
+        Excited,
+
+        [ResourcePath("Audio/SFX/robot_dead")]
+        Dead,
     }
 
     public class ResourcePathAttribute : Attribute

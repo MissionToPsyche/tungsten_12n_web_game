@@ -70,7 +70,8 @@ public class SoundFXManager : MonoBehaviour
 
     private void InitializeSounds()
     {
-        LoadSoundsForEnumType(typeof(SFX.Music));
+        LoadSoundsForEnumType(typeof(SFX.Music.Asteroid));
+        LoadSoundsForEnumType(typeof(SFX.Music.Cave));
         LoadSoundsForEnumType(typeof(SFX.Cave));
         LoadSoundsForEnumType(typeof(SFX.Player));
         LoadSoundsForEnumType(typeof(SFX.Satellite));
@@ -153,4 +154,47 @@ public class SoundFXManager : MonoBehaviour
             activeAudioSources.Remove(source);
         }
     }
+
+    public void PlayRandomSoundOfType(Type enumType, Transform transform, float volume)
+    {
+        List<AudioClip> clipsOfType = new List<AudioClip>();
+
+        // Gather all clips that match the provided enum type
+        foreach (var entry in soundMap)
+        {
+            if (entry.Key.GetType() == enumType)
+            {
+                clipsOfType.Add(entry.Value);
+            }
+        }
+
+        // Check if there are any clips to play
+        if (clipsOfType.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, clipsOfType.Count);  // Get a random index
+            AudioClip randomClip = clipsOfType[randomIndex];  // Select a random clip
+
+            // Create and configure the AudioSource
+            AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
+            audioSource.clip = randomClip;
+            audioSource.volume = volume;
+
+            if (audioSource.clip != null)
+            {
+                audioSource.Play();
+                Destroy(audioSource.gameObject, randomClip.length);  // Destroy the source after playing
+                activeAudioSources.Add(audioSource);  // Track the active source
+            }
+            else
+            {
+                Debug.LogError("Randomly selected audio clip is null");
+                Destroy(audioSource.gameObject);  // Destroy immediately if clip is invalid
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No audio clips found for enum type: " + enumType.Name);
+        }
+    }
+
 }
