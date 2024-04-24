@@ -12,7 +12,7 @@ namespace BuildingComponents
         Cobalt,
         Platinum,
         Gold,
-        Technitium,
+        Technetium,
         Tungsten,
         Iridium,
         TechPoint

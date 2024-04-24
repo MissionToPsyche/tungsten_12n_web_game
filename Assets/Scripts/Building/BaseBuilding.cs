@@ -57,7 +57,7 @@ public class BaseBuilding
                 thisObject.Costs["Cobalt"],
                 thisObject.Costs["Platinum"],
                 thisObject.Costs["Gold"],
-                thisObject.Costs["Technitium"],
+                thisObject.Costs["Technetium"],
                 thisObject.Costs["Tungsten"],
                 thisObject.Costs["Iridium"],
                 0
@@ -82,7 +82,7 @@ public class BaseBuilding
                 { "Cobalt", 5 },
                 { "Platinum", 0 },
                 { "Gold", 0 },
-                { "Technitium", 0 },
+                { "Technetium", 0 },
                 { "Tungsten", 0 },
                 { "Iridium", 0 }
             },
@@ -111,7 +111,7 @@ public class BaseBuilding
                 { "Cobalt", 10 },
                 { "Platinum", 0 },
                 { "Gold", 0 },
-                { "Technitium", 0 },
+                { "Technetium", 0 },
                 { "Tungsten", 0 },
                 { "Iridium", 0 }
             },
@@ -141,7 +141,7 @@ public class BaseBuilding
                 { "Cobalt", 50 },
                 { "Platinum", 0 },
                 { "Gold", 0 },
-                { "Technitium", 0 },
+                { "Technetium", 0 },
                 { "Tungsten", 0 },
                 { "Iridium", 0 }
             },
@@ -169,16 +169,16 @@ public class BaseBuilding
                 { "Iron", 10 },
                 { "Nickel", 10 },
                 { "Cobalt", 5 },
-                { "Platinum", 0 },
-                { "Gold", 0 },
-                { "Technitium", 0 },
+                { "Platinum", 1 },
+                { "Gold", 1 },
+                { "Technetium", 0 },
                 { "Tungsten", 0 },
                 { "Iridium", 0 }
             },
             "",
             new List<string>
             {
-                "Equip suit with flashlight for cave exploration, toggle with F",
+                "Hydraulic glute supporters allow for higher jumping",
                 "Increase movement speed by another 10% (total: 20%)",
                 "Mine cave resources with no minigame",
                 "Peak Technology Reached!!!"
@@ -199,11 +199,11 @@ public class BaseBuilding
                 { "Iron", 75 },
                 { "Nickel", 75 },
                 { "Cobalt", 50 },
-                { "Platinum", 0 },
-                { "Gold", 0 },
-                { "Technitium", 0 },
+                { "Platinum", 10 },
+                { "Gold", 15 },
+                { "Technetium", 10 },
                 { "Tungsten", 0 },
-                { "Iridium", 0 }
+                { "Iridium", 1}
             },
             "",
             new List<string>
@@ -228,9 +228,9 @@ public class BaseBuilding
                 { "Iron", 35 },
                 { "Nickel", 35 },
                 { "Cobalt", 15 },
-                { "Platinum", 0 },
+                { "Platinum", 10 },
                 { "Gold", 0 },
-                { "Technitium", 0 },
+                { "Technetium", 5 },
                 { "Tungsten", 0 },
                 { "Iridium", 0 }
             },
@@ -260,7 +260,7 @@ public class BaseBuilding
             { "Cobalt", 150 },
             { "Platinum", 75 },
             { "Gold", 75 },
-            { "Technitium", 75 },
+            { "Technetium", 75 },
             { "Tungsten", 10 },
             { "Iridium", 10 }
         },
@@ -285,14 +285,14 @@ public class BaseBuilding
         0,
         new Dictionary<string, int>
         {
-            { "Iron", 500 },
-            { "Nickel", 500 },
-            { "Cobalt", 500 },
-            { "Platinum", 250 },
-            { "Gold", 250 },
-            { "Technitium", 250 },
-            { "Tungsten", 75 },
-            { "Iridium", 75 }
+            { "Iron", 250 },
+            { "Nickel", 250 },
+            { "Cobalt", 150 },
+            { "Platinum", 75 },
+            { "Gold", 50 },
+            { "Technetium", 50 },
+            { "Tungsten", 35 },
+            { "Iridium", 35 }
         },
         "",
         new List<string>

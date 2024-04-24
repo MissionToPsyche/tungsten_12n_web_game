@@ -29,7 +29,7 @@ public class AbstractExtractorMining : MonoBehaviour
     //GameObjects
     protected GravityBody2D gravityBody;
     protected ResourceType resourceToMine;
-    protected GameObject linkedGameObject;
+    [SerializeField, ReadOnly] protected GameObject linkedGameObject;
     //Extractor Modifiers is determinate by buildingType
     protected BuildingType buildingType;
     protected int TechTier;
@@ -143,8 +143,10 @@ public class AbstractExtractorMining : MonoBehaviour
     }
     public void LinkToResource(GameObject resourceObject){
         isPlaced = true;
-        linkedGameObject = resourceObject;
-        resourceToMine = ConvertStrToResourceType(resourceObject.name);
+        if(linkedGameObject == null){
+            linkedGameObject = resourceObject;
+            resourceToMine = ConvertStrToResourceType(resourceObject.name);
+        }
     }
     private void OnDestroy(){
         isShowingText = false;
@@ -179,7 +181,7 @@ public class AbstractExtractorMining : MonoBehaviour
                 case "Gold":
                     return ResourceType.Gold;
                 case "Technitium":
-                    return ResourceType.Technitium;
+                    return ResourceType.Technetium;
                 case "Tungsten":
                     return ResourceType.Tungsten;
                 case "Iridium":

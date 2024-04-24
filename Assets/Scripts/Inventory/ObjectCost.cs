@@ -20,7 +20,7 @@ public class ObjectsCost
         if(GoldAmt != 0)
             inv.Add(ResourceType.Gold, GoldAmt);
         if(TechnitiumAmt != 0)
-            inv.Add(ResourceType.Technitium, TechnitiumAmt);
+            inv.Add(ResourceType.Technetium, TechnitiumAmt);
         if(TungstenAmt != 0)
             inv.Add(ResourceType.Tungsten, TungstenAmt);
         if(IridiumAmt != 0)

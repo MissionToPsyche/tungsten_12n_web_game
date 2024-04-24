@@ -31,7 +31,7 @@ public class CollectableResourceGen
             case 4:
                 return ResourceType.Gold;
             case 5:
-                return ResourceType.Technitium;
+                return ResourceType.Technetium;
             case 6:
                 return ResourceType.Tungsten;
             case 7:
@@ -112,7 +112,7 @@ public class CollectableResourceGen
                 return UnityEngine.Random.Range(7, 18);
             case ResourceType.Gold:
                 return UnityEngine.Random.Range(6, 12);
-            case ResourceType.Technitium:
+            case ResourceType.Technetium:
                 return UnityEngine.Random.Range(1, 11);
             case ResourceType.Tungsten:
                 return UnityEngine.Random.Range(1, 8);
