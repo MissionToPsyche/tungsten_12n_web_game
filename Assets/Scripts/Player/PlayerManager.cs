@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private bool playerGrounded;
     [SerializeField, ReadOnly] private Vector2 playerPosition;
+    [SerializeField, ReadOnly] private bool playerInteracting;
 
     // Not for display
     private Camera cam;
@@ -51,6 +52,11 @@ public class PlayerManager : MonoBehaviour
     {
         playerPosition = position;
         //Debug.Log("[GameManager]: playerPosition: " + position);
+    }
+
+    public void OnPlayerInteracting(bool interacting)
+    {
+        playerInteracting = interacting;
     }
 
     public void OnTechUpEvent(packet.TechUpPacket packet){
@@ -86,6 +92,11 @@ public class PlayerManager : MonoBehaviour
     public Vector2 GetPlayerPosition()
     {
         return playerPosition;
+    }
+
+    public bool GetPlayerInteracting()
+    {
+        return playerInteracting;
     }
 
     public Vector3 GetLastCoordinates()

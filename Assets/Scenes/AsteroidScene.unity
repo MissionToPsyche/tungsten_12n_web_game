@@ -9553,9 +9553,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFXObject: {fileID: 8960273432762880332, guid: 1925c8cc545fee34184e88b8fcdfd587, type: 3}
-  masterVolume: 0
-  musicVolume: 0
-  soundFXVolume: 0
 --- !u!4 &662913322
 Transform:
   m_ObjectHideFlags: 0
@@ -12213,6 +12210,7 @@ GameObject:
   - component: {fileID: 827782830}
   - component: {fileID: 827782829}
   - component: {fileID: 827782831}
+  - component: {fileID: 827782832}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -12252,6 +12250,7 @@ MonoBehaviour:
   MainSpawn: {fileID: 1141533547}
   playerGrounded: 0
   playerPosition: {x: 0, y: 0}
+  playerInteracting: 0
   playerUIObject: {fileID: 0}
 --- !u!114 &827782829
 MonoBehaviour:
@@ -12328,6 +12327,34 @@ MonoBehaviour:
       - m_Target: {fileID: 827782828}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: OnTechUpEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &827782832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827782826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a0ba10e730b4b47964098f09b8f35c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 827782828}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: OnPlayerInteracting
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
