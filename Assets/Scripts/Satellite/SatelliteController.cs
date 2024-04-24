@@ -5,81 +5,232 @@ using System;
 
 public class SatelliteController : MonoBehaviour
 {
-    public static SatelliteController Instance { get; private set; }
-
     [Header("Events")]
 
     [Header("Mutable")]
     [SerializeField] private Rigidbody2D satelliteBody;
 
     [Header("ReadOnly")]
-    [SerializeField, ReadOnly] private GameObject currentAsteroid;
+    [SerializeField, ReadOnly] private GameObject parentAsteroid;
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
-    [SerializeField, ReadOnly] private float currentSpeed;
-    [SerializeField, ReadOnly] private State currentState = State.Idle;
-    [SerializeField, ReadOnly] private bool isIdle = false;
-    [SerializeField, ReadOnly] private bool isMoving = false;
-    [SerializeField, ReadOnly] private bool isFacingRight = false;
 
-    // Not for display
-    private float idleSpeed = 0f;
-    private float movingSpeed = 7.5f;
-    private enum State { Idle, Moving, Scanning }
+    private Vector2[] edgePoints;
+    private int currentTargetIndex = 0;
+    private float movingSpeed = 5f;
+    private float progressBetweenPoints = 0f; // Tracks interpolation progress between points
+
+    private enum State { Idle, Moving, Scanning, Manual }
+    private State currentState = State.Idle;
+    private bool isScanning = false;
+
+    private bool isManualControlEnabled = false;
+    private bool lastDirectionWasLeft = true;
 
     // -------------------------------------------------------------------
     // Handle events
 
-    public void OnSatelliteMove(Vector2 direction)
+    public void OnSatelliteMove(UnityEngine.Vector2 direction)
     {
         horizontalInput = direction.x;
-        isIdle = horizontalInput == 0;
-
-        if (isIdle)
-        {
-            UpdateState(State.Idle);
-        }
-        else
-        {
-            UpdateState(State.Moving);
-        }
     }
 
     public void OnSatelliteScan(bool scanning)
     {
-        if (scanning)
+        if (currentState == State.Manual && Mathf.Approximately(satelliteBody.velocity.magnitude, 0))
         {
-            if (currentState != State.Idle) return;
-            UpdateState(State.Scanning);
-        }
-        else
-        {
-            if (currentState == State.Scanning)
+            if (scanning)
             {
-                UpdateState(State.Idle);
+                StartScanning();
+            }
+            else
+            {
+                StopScanning();
             }
         }
     }
 
     // -------------------------------------------------------------------
+    // API
+
+    public void SetParentAsteroid(GameObject asteroid)
+    {
+        parentAsteroid = asteroid;
+    }
+
+    // -------------------------------------------------------------------
     // Class
 
-    private void Awake()
+    void Start()
     {
-        if (Instance != null && Instance != this)
+        UpdateEdgePoints();
+    }
+
+    void UpdateEdgePoints()
+    {
+        GravityFieldEdgePoints fieldPoints = parentAsteroid.GetComponentInChildren<GravityFieldEdgePoints>();
+        if (fieldPoints != null)
         {
-            Destroy(gameObject);
+            edgePoints = fieldPoints.edgePoints;
+            currentTargetIndex = FindClosestEdgePointIndex(edgePoints, transform.position);
+        }
+    }
+
+    int FindClosestEdgePointIndex(Vector2[] points, Vector2 position)
+    {
+        int closestIndex = 0;
+        float minDistance = float.MaxValue;
+        for (int i = 0; i < points.Length; i++)
+        {
+            float dist = Vector2.Distance(points[i], position);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                closestIndex = i;
+            }
+        }
+        return closestIndex;
+    }
+
+    private void StartScanning()
+    {
+        currentState = State.Scanning;
+        isScanning = true;
+        Debug.Log("Scan started");
+
+        // Calculate the direction vector pointing from the satellite towards the center of the asteroid
+        Vector2 rayDirection = (parentAsteroid.transform.position - transform.position).normalized;
+
+        // Perform the raycast
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, Mathf.Infinity, LayerMask.GetMask("DiscoveredResource"));
+
+        // Draw the ray in the editor for debugging purposes
+        if (hit.collider != null)
+        {
+            Debug.Log("Discovered resource detected!");
+            // Draw a red ray from the satellite to the hit point
+            Debug.DrawRay(transform.position, rayDirection * hit.distance, Color.red);
         }
         else
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // If nothing is hit, draw the ray to show the direction anyway
+            Debug.DrawRay(transform.position, rayDirection * 100, Color.blue);
+        }
+    }
+
+    private void StopScanning()
+    {
+        currentState = State.Manual;
+        isScanning = false;
+        Debug.Log("Scan stopped");
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ToggleControlMode();
+        }
+
+        if (edgePoints != null && edgePoints.Length > 0)
+        {
+            if (currentState == State.Manual)
+            {
+                ManualMove(-horizontalInput);
+            }
+            else
+            {
+                MoveAlongEdge();
+            }
+            UpdateRotation();
+        }
+    }
+
+    private void ToggleControlMode()
+    {
+        isManualControlEnabled = !isManualControlEnabled;
+        currentState = isManualControlEnabled ? State.Manual : State.Moving;
+
+        if (isManualControlEnabled)
+        {
+            // Capture the current exact position for precise manual control
+            satelliteBody.velocity = Vector2.zero; // Stop all movement
+        }
+        else
+        {
+            // Adjust the index to make sure the next automatic movement is in the last manual direction
+            AdjustTargetIndexForDirection();
+        }
+    }
+
+
+    private void ManualMove(float input)
+    {
+        progressBetweenPoints += input * Time.deltaTime * movingSpeed;
+        progressBetweenPoints = Mathf.Clamp01(progressBetweenPoints);
+
+        if (input != 0)
+        {
+            lastDirectionWasLeft = input < 0;
+        }
+
+        Vector2 currentPoint = edgePoints[currentTargetIndex];
+        Vector2 nextPoint = edgePoints[(currentTargetIndex + 1) % edgePoints.Length];
+        satelliteBody.position = Vector2.Lerp(currentPoint, nextPoint, progressBetweenPoints);
+
+        if (progressBetweenPoints >= 1)
+        {
+            currentTargetIndex = (currentTargetIndex + 1) % edgePoints.Length;
+            progressBetweenPoints = 0;
+        }
+        else if (progressBetweenPoints <= 0)
+        {
+            currentTargetIndex = (currentTargetIndex - 1 + edgePoints.Length) % edgePoints.Length;
+            progressBetweenPoints = 1;
+        }
+    }
+
+    void MoveAlongEdge()
+    {
+        int nextIndex = lastDirectionWasLeft ?
+            (currentTargetIndex - 1 + edgePoints.Length) % edgePoints.Length :
+            (currentTargetIndex + 1) % edgePoints.Length;
+
+        Vector2 targetPoint = edgePoints[currentTargetIndex];
+        Vector2 nextPoint = edgePoints[nextIndex];
+        float step = movingSpeed * Time.deltaTime;
+
+        satelliteBody.position = Vector2.MoveTowards(satelliteBody.position, targetPoint, step);
+
+        if (Vector2.Distance(satelliteBody.position, targetPoint) < 0.01f)
+        {
+            currentTargetIndex = nextIndex;
+            progressBetweenPoints = 0;
+        }
+    }
+
+    private void UpdateRotation()
+    {
+        Vector3 directionToCenter = (transform.position - parentAsteroid.transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, directionToCenter);
+    }
+
+    private void AdjustTargetIndexForDirection()
+    {
+        // Determine the closest point in the last direction moved
+        if (lastDirectionWasLeft)
+        {
+            currentTargetIndex = (currentTargetIndex - 1 + edgePoints.Length) % edgePoints.Length;
+        }
+        else
+        {
+            currentTargetIndex = (currentTargetIndex + 1) % edgePoints.Length;
         }
     }
 
     private void UpdateState(State newState)
     {
-        currentState = newState;
-        UpdateAnimatorParameters();
+        // currentState = newState;
+        // UpdateAnimatorParameters();
     }
 
     private void UpdateAnimatorParameters()
@@ -102,96 +253,5 @@ public class SatelliteController : MonoBehaviour
         //         animator.SetBool("isScanning", true);
         //         break;
         // }
-    }
-
-    private void Move()
-    {
-        switch (currentState)
-        {
-            case State.Idle:
-                currentSpeed = idleSpeed;
-                break;
-            case State.Moving:
-                currentSpeed = movingSpeed;
-                break;
-        }
-
-        // Calculate the movement direction based on the satellite's current orientation and input
-        Vector2 direction = transform.right * horizontalInput;
-        // Calculate the actual movement amount
-        Vector2 movement = direction * (currentSpeed * Time.fixedDeltaTime);
-
-        // Move the satellite's rigidbody
-        satelliteBody.position += movement;
-
-        currentAsteroid = AsteroidManager.Instance.GetCurrentAsteroid();
-
-        Debug.Log("[SatelliteController]: currentAsteroid: " + currentAsteroid.name);
-
-        // Aim the satellite's local 'up' away from the asteroid
-        Vector2 directionToCenter = (Vector2)currentAsteroid.transform.position - (Vector2)satelliteBody.transform.position;
-        float angle = Mathf.Atan2(directionToCenter.y, directionToCenter.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0, 0, angle + 90);
-        satelliteBody.transform.rotation = targetRotation;
-    }
-
-    private void Scan()
-    {
-        if (isIdle)
-        {
-            // do something
-        }
-    }
-
-    // User input, animations, moving non-physics objects, game logic
-    private void Update()
-    {
-        UpdateAnimations();
-
-        switch (currentState)
-        {
-            case State.Idle:
-                // Debug.Log("Satellite is IDLE");
-                break;
-            case State.Moving:
-                // Debug.Log("Satellite is MOVING");
-                break;
-            case State.Scanning:
-                // Debug.Log("Satellite is SCANNING");
-                break;
-        }
-    }
-
-    // Physics calculations, ridigbody movement, collision detection
-    private void FixedUpdate()
-    {
-        // Handle possible inputs
-        Move();
-        Scan();
-    }
-
-    private void UpdateAnimations()
-    {
-        if (!isFacingRight && horizontalInput > 0f)
-        {
-            Flip();
-        }
-        else if (isFacingRight && horizontalInput < 0f)
-        {
-            Flip();
-        }
-
-        // animator.SetBool("isFacingRight", isFacingRight);
-        // animator.SetFloat("Horizontal", horizontalInput);
-    }
-
-    private void Flip()
-    {
-        // Switch the way the object is facing
-        isFacingRight = !isFacingRight;
-
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
     }
 }
