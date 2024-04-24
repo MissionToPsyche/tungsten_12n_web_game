@@ -15,13 +15,13 @@ namespace packet
     public class SoundEffectPacket
     {
         public Transform transform;
-        public AudioClip clip;
+        public SoundEffect soundReference;
         public float volume;
 
-        public SoundEffectPacket(AudioClip clip, Transform transform, float volume)
+        public SoundEffectPacket(SoundEffect soundReference, Transform transform, float volume)
         {
             this.transform = transform;
-            this.clip = clip;
+            this.soundReference = soundReference;
             this.volume = volume;
         }
     }
@@ -31,6 +31,7 @@ namespace packet
         public GameObject objectThatSent;
         public BuildingType building;
         public ObjectsCost objCost;
+
         public CheckInventoryPacket(GameObject obj, BuildingType build, ObjectsCost cost)
         {
             objectThatSent = obj;
@@ -46,6 +47,7 @@ namespace packet
         public int amountToChange;
         public ResourceType resourceToChange;
         public bool Add;
+
         public ResourceToInventory(GameObject obj, int amt, ResourceType resource, bool boolean)
         {
             this.obj = obj;
@@ -59,6 +61,7 @@ namespace packet
     {
         public GameObject objectThatSent;
         public Dictionary<ResourceType, int> inventory;
+
         public UpdateButtonCostTextPacket(Dictionary<ResourceType, int> inventory)
         {
             this.inventory = inventory;
@@ -69,6 +72,7 @@ namespace packet
     {
         public int TechToLevel;
         public BuildingComponents.BuildingType building;
+
         public TechUpPacket(BuildingComponents.BuildingType building, int TechToLevel)
         {
             this.building = building;

@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
             {
                 isJumping = true;
                 UpdatePlayerState(PlayerState.Jumping);
-                packet.SoundEffectPacket sfxPacket = new packet.SoundEffectPacket(jumpSoundClip, this.transform, 1f);
+                packet.SoundEffectPacket sfxPacket = new packet.SoundEffectPacket(SoundEffect.PlayerJump, this.transform, 1f);
                 soundEffectEvent.Raise(sfxPacket);
             }
         }
