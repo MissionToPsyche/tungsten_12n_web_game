@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     private bool isCarryingRobotBeta = false;
     private float currentJumpForce = 3.0f;
     private float initJumpForce = 3.0f;
-    private float improvedJumpForce = 6.0f;
+    private float improvedJumpForce = 7.5f;
     //private PlayerUIManager playerUIManager;
 
     // -------------------------------------------------------------------

@@ -16,7 +16,8 @@ public class ObjectiveManager : MonoBehaviour
 
     private void Start()
     {
-        isOverlayActive = true;
+        // isOverlayActive = true;
+        isOverlayActive = false;
         objectiveOverlay.SetActive(isOverlayActive);
     }
 

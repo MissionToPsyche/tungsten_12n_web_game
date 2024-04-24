@@ -261,10 +261,14 @@ public class RobotBuddyController : MonoBehaviour
 
     public void OnPlayerPickup()
     {
+        
         if (playerCanInteract && beingCarried == false)
         {
-            if (!PlayerManager.Instance.GetIsCarryingRobotAlpha() && !PlayerManager.Instance.GetIsCarryingRobotBeta())
+            if (this.gameObject.name == "RobotBuddyAlpha" && !PlayerManager.Instance.GetIsCarryingRobotBeta())
             {
+                beingCarried = true;
+                DisablePhysics();
+            }else if(this.gameObject.name == "RobotBuddyBeta" && !PlayerManager.Instance.GetIsCarryingRobotAlpha()){
                 beingCarried = true;
                 DisablePhysics();
             }
