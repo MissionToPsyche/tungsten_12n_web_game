@@ -186,6 +186,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  distanceToGround: 0
+  gravityFieldLayer:
+    serializedVersion: 2
+    m_Bits: 0
   currentRotationSpeed: 0
 --- !u!114 &8598083915132581793
 MonoBehaviour:
@@ -218,7 +222,6 @@ MonoBehaviour:
   chasisPrefab: {fileID: 7576616402008002139}
   cockpitPrefab: {fileID: 4063270260587211157}
   externalTankPrefab: {fileID: 4143017786913488921}
-  queryTechEvent: {fileID: 11400000, guid: bf7ca6c4859be41a0891e429f150edcc, type: 2}
 --- !u!114 &-8801835502089615350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1291935712201893613, guid: fa6f6c239100a4787998904dd2de492a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.75
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 1291935712201893613, guid: fa6f6c239100a4787998904dd2de492a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -444,7 +447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1291935712201893613, guid: 746fb70af627342b9b4429860a5132a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.89
+      value: 3.35
       objectReference: {fileID: 0}
     - target: {fileID: 1291935712201893613, guid: 746fb70af627342b9b4429860a5132a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -515,7 +518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1291935712201893613, guid: a0d01015de7ca4f9383ea7b75a5f8b8c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.66
+      value: 6.53
       objectReference: {fileID: 0}
     - target: {fileID: 1291935712201893613, guid: a0d01015de7ca4f9383ea7b75a5f8b8c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -586,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1291935712201893613, guid: a6e760f4cecdd4fbdac54a4b48ba33a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 1291935712201893613, guid: a6e760f4cecdd4fbdac54a4b48ba33a6, type: 3}
       propertyPath: m_LocalPosition.z

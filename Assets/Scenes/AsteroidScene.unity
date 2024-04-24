@@ -11950,7 +11950,6 @@ GameObject:
   - component: {fileID: 827782828}
   - component: {fileID: 827782830}
   - component: {fileID: 827782829}
-  - component: {fileID: 827782831}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -12038,34 +12037,6 @@ MonoBehaviour:
       - m_Target: {fileID: 827782828}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: OnPlayerGrounded
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &827782831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 827782826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf41782eb8e2946e4b682789f65b190b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: e9511a8a222d34218a2c459ae78d35ba, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 827782828}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: OnTechUpEvent
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12927,7 +12898,8 @@ MonoBehaviour:
   carryAlphaObject: {fileID: 412729000}
   carryBetaObject: {fileID: 293440779}
   isCarryingRobot: 0
-  canPickupRobot: 0
+  canPickupAlpha: 0
+  canPickupBeta: 0
   selection: 0
   horizontalInput: 0
   currentSpeed: 0

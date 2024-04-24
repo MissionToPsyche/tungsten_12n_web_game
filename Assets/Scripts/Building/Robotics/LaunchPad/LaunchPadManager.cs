@@ -105,6 +105,7 @@ public class LaunchPadManager : MonoBehaviour{
         //They have won the game
         triggerRocketModuleUIOverlay.Raise(false);
         winningEvent.Raise();
+        
     }
     private void TryBuildEngine(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
