@@ -7,14 +7,33 @@ public class SoundEffectManager : MonoBehaviour
 {
     public static SoundEffectManager Instance { get; private set; }
 
+    [Header("Mutable")]
+    public AudioSource soundFXObject;
+
     private Dictionary<Enum, string> soundEvents;
 
     // -------------------------------------------------------------------
     // Handle events
 
-    public void OnSoundEffect(packet.SoundEffectPacket sfxpacket)
+    public void OnSoundEffect(packet.SoundEffectPacket pkt)
     {
-        // AkSoundEngine.PostEvent(soundEvents[sfxpacket.sound], sfxpacket.obj);
+        // Spawn in object
+        AudioSource audioSource = Instantiate(soundFXObject, pkt.transform.position, Quaternion.identity);
+
+        // Assign the AudioCLip
+        audioSource.clip = pkt.clip;
+
+        // Assign volume
+        audioSource.volume = pkt.volume;
+
+        // Play sound
+        audioSource.Play();
+
+        // Get length of sound fx clip
+        float clipLength = audioSource.clip.length;
+
+        // Destroy the clip after it is finished playing
+        Destroy(audioSource.gameObject, clipLength);
     }
 
     // -------------------------------------------------------------------
@@ -31,8 +50,6 @@ public class SoundEffectManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        // AkBankManager.LoadBank("Main", false, false);
-
     }
 
     void Start()
@@ -52,7 +69,7 @@ public class SoundEffectManager : MonoBehaviour
             { SFX.Music.BigJ, "big_j" }
         };
 
-        packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(this.gameObject, SFX.Music.BigJ);
-        OnSoundEffect(sfxpacket);
+        // packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(this.gameObject, SFX.Music.BigJ);
+        // OnSoundEffect(sfxpacket);
     }
 }

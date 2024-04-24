@@ -21,8 +21,8 @@ public class Interactable : MonoBehaviour
             PlayerManager.Instance.SetLastPosition();
             PlayerManager.Instance.SetScenePosition(CaveScene, CaveSpawn);
 
-            packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(gameObject, SFX.Cave.Enter);
-            soundEffectEvent.Raise(sfxpacket);
+            // packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(gameObject, SFX.Cave.Enter);
+            // soundEffectEvent.Raise(sfxpacket);
             // packet.SoundEffectPacket sfxpacket2 = new packet.SoundEffectPacket(gameObject, SFX.Cave.Ambience);
             // soundEffectEvent.Raise(sfxpacket2);
         }

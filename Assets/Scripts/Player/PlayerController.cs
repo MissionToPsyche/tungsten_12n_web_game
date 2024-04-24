@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 0f;
     [SerializeField] private GameObject carryAlphaObject;
     [SerializeField] private GameObject carryBetaObject;
+    [SerializeField] private AudioClip jumpSoundClip;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private bool isCarryingRobot = false;
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
     private TextMeshProUGUI reminderText;
     private UnityEngine.Vector3 playerCoordinates;
-    
+
 
     // -------------------------------------------------------------------
     // Handle events
@@ -138,15 +139,14 @@ public class PlayerController : MonoBehaviour
             {
                 isJumping = true;
                 UpdatePlayerState(PlayerState.Jumping);
-                packet.SoundEffectPacket sfxpacket = new packet.SoundEffectPacket(PlayerManager.Instance.GetPlayerObject(), SFX.Player.Jump);
-                soundEffectEvent.Raise(sfxpacket);
+                packet.SoundEffectPacket sfxPacket = new packet.SoundEffectPacket(jumpSoundClip, this.transform, 1f);
+                soundEffectEvent.Raise(sfxPacket);
             }
         }
         else
         {
             isJumping = false;
             UpdatePlayerState(isIdle ? PlayerState.Idle : PlayerState.Walking);
-
         }
     }
 
@@ -343,7 +343,7 @@ public class PlayerController : MonoBehaviour
         UnityEngine.Vector2 movement;
         // Calculate the actual movement amount
         movement = DetermineMovementSpeed(direction);
-        
+
         // Move the player's rigidbody
         playerBody.position += movement;
         playerPositionUpdated.Raise(playerBody.position);
