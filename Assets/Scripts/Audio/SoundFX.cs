@@ -47,6 +47,8 @@ namespace SFX
 
         [ResourcePath("Audio/SFX/player_jump")]
         Jump,
+        [ResourcePath("Audio/SFX/player_work")]
+        Work,
     }
 
     public enum Satellite
@@ -69,11 +71,14 @@ namespace SFX
         [ResourcePath("Audio/SFX/minigame_switch")]
         Switch,
 
-        [ResourcePath("Audio/SFX/minigame_typing")]
-        Typing,
-
         [ResourcePath("Audio/SFX/minigame_pullcord")]
         PullCord,
+    }
+
+    public enum UI
+    {
+        [ResourcePath("Audio/SFX/ui_click")]
+        Click,
     }
 
     namespace Robot
@@ -100,6 +105,15 @@ namespace SFX
         {
             [ResourcePath("Audio/SFX/robot_sad")]
             Sad,
+        }
+    }
+
+    namespace Extractor
+    {
+        public enum Status
+        {
+            [ResourcePath("Audio/SFX/extractor_humming")]
+            Humming,
         }
     }
 

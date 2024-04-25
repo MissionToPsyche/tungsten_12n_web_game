@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -151,7 +151,7 @@ public class InputReader : ScriptableObject,
         if (context.phase == InputActionPhase.Performed)
         {
             Control.State nextState = currentControlState;
-
+            Debug.Log("");
             switch (currentControlState)
             {
                 case Control.State.Player:
@@ -166,7 +166,7 @@ public class InputReader : ScriptableObject,
                         {
                             nextState = Control.State.Satellite;
                         }
-                        else if (RobotManager.Instance.GetRobotAlphaBuilt())
+                        else if (RobotManager.Instance.GetRobotAlphaBuilt() && !PlayerManager.Instance.GetIsCarryingRobotAlpha())
                         {
                             nextState = Control.State.RobotBuddyAlpha;
                         }
@@ -177,7 +177,7 @@ public class InputReader : ScriptableObject,
                     }
                     break;
                 case Control.State.Satellite:
-                    if (RobotManager.Instance.GetRobotAlphaBuilt())
+                    if (RobotManager.Instance.GetRobotAlphaBuilt() && !PlayerManager.Instance.GetIsCarryingRobotAlpha())
                     {
                         nextState = Control.State.RobotBuddyAlpha;
                     }
@@ -187,7 +187,7 @@ public class InputReader : ScriptableObject,
                     }
                     break;
                 case Control.State.RobotBuddyAlpha:
-                    if (RobotManager.Instance.GetRobotBetaBuilt())
+                    if (RobotManager.Instance.GetRobotBetaBuilt() && !PlayerManager.Instance.GetIsCarryingRobotBeta())
                     {
                         nextState = Control.State.RobotBuddyBeta;
                     }

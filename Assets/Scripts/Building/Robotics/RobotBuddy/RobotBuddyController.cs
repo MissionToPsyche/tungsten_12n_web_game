@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
-
-//!!! IMPLEMENTATION OF TECHTIER, lights and to charge while outside
 public class RobotBuddyController : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
@@ -39,10 +36,11 @@ public class RobotBuddyController : MonoBehaviour
     CapsuleCollider2D chargeCollider;
     CapsuleCollider2D normalCollider;
 
-    private float idleReduceCharge = 2.0f;
+    private float idleReduceCharge = 4.0f;
     private float jumpReduceCharge = 5.0f;
     private float interactReduceCharge = 5.0f;
     private Vector3 hiddenPosition = new Vector3(999f, 999f);
+    private bool deathSoundPlayed = false;
 
     void Awake()
     {
@@ -195,7 +193,7 @@ public class RobotBuddyController : MonoBehaviour
     // Physics calculations, ridigbody movement, collision detection
     private void FixedUpdate()
     {
-        if (!isActive || beingCarried)
+        if (!isActive || beingCarried || robotBuddy.IsChargeEmpty())
             return;
         // First check to make sure the Robot is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -248,6 +246,8 @@ public class RobotBuddyController : MonoBehaviour
         if (playerCanInteract && CyberneticsManager.Instance.HasCyberneticCharge())
         {
             CyberneticsManager.Instance.UseCharge();
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Robot.Pickup), this.gameObject.transform, 1f);
+            deathSoundPlayed = false;
             if (this.gameObject.name == "RobotBuddyAlpha")
             {
                 adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyAlpha, robotBuddy.GiveFullCharge()));
@@ -330,6 +330,10 @@ public class RobotBuddyController : MonoBehaviour
         else if (isControllingBeta())
         {
             adjustRobotUI.Raise(new packet.RobotUIPacket(Control.State.RobotBuddyBeta, num));
+        }
+        if(num <= 0 && deathSoundPlayed == false){
+            SoundFXManager.Instance.PlaySound(SFX.Robot.Status.Dead, this.gameObject.transform, 1f);
+            deathSoundPlayed = true;
         }
     }
 

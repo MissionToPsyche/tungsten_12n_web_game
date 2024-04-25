@@ -1,7 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Threading;
-using Unity.VisualScripting;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
@@ -190,8 +188,6 @@ public class PlayerController : MonoBehaviour
             if(TryPickUpAlpha() == false){
                 TryPickUpBeta();
             }
-
-            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Robot.Pickup), this.gameObject.transform, 1f);
         }
         else
         {
@@ -219,6 +215,7 @@ public class PlayerController : MonoBehaviour
             isCarryingRobotAlpha = true;
             PlayerManager.Instance.SetCarryingAlpha(true);
             carryAlphaObject.SetActive(true);
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Robot.Pickup), this.gameObject.transform, 1f);
             return true;
         }
         return false;
@@ -229,6 +226,7 @@ public class PlayerController : MonoBehaviour
             isCarryingRobotBeta = true;
             PlayerManager.Instance.SetCarryingBeta(true);
             carryBetaObject.SetActive(true);
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Robot.Pickup), this.gameObject.transform, 1f);
             return true;
         }
         return false;

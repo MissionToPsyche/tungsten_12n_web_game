@@ -75,7 +75,7 @@ public class BaseBuilding
             "Extractor",
             "Industrial",
             "Extractor",
-            "Mines resources, could maybe potentially break very easily",
+            "Mines shallow resources, could maybe potentially break very easily",
             2,
             5,
             20,
@@ -104,7 +104,7 @@ public class BaseBuilding
             "CommercialExtractor",
             "Industrial",
             "Commercial Extractor",
-            "Mines resources, could potentially break",
+            "Mines deep resources, could potentially break",
             5,
             5,
             30,
@@ -114,9 +114,9 @@ public class BaseBuilding
                 { "Iron", 25 },
                 { "Nickel", 25 },
                 { "Cobalt", 10 },
-                { "Platinum", 0 },
+                { "Platinum", 10 },
                 { "Gold", 0 },
-                { "Technetium", 0 },
+                { "Technetium", 2 },
                 { "Tungsten", 0 },
                 { "Iridium", 0 }
             },
@@ -124,8 +124,8 @@ public class BaseBuilding
             new List<string>
             {
                 "Unlock this building",
-                "Increase mining amount by 20%, reduce break chance and increase extractor reach",
-                "Increase mining amount by 40%, further reduce break chance and increase reach",
+                "Increase mining amount by 20%, reduce break chance",
+                "Increase mining amount by 40%, further reduce break chance",
                 "Peak Technology Reached!!!"
             }
         );
@@ -134,7 +134,7 @@ public class BaseBuilding
             "IndustrialExtractor",
             "Industrial",
             "Industrial Extractor",
-            "A Robust piece of mining equipment",
+            "A Robust piece of mining equipment that reaches that deepest of minerals",
             10,
             5,
             50,
@@ -144,10 +144,10 @@ public class BaseBuilding
                 { "Iron", 75 },
                 { "Nickel", 75 },
                 { "Cobalt", 50 },
-                { "Platinum", 0 },
+                { "Platinum", 15 },
                 { "Gold", 0 },
-                { "Technetium", 0 },
-                { "Tungsten", 0 },
+                { "Technetium", 1 },
+                { "Tungsten", 1 },
                 { "Iridium", 0 }
             },
             "",
@@ -171,12 +171,12 @@ public class BaseBuilding
             0,
             new Dictionary<string, int>
             {
-                { "Iron", 10 },
-                { "Nickel", 10 },
-                { "Cobalt", 5 },
+                { "Iron", 50 },
+                { "Nickel", 50 },
+                { "Cobalt", 30 },
                 { "Platinum", 1 },
-                { "Gold", 1 },
-                { "Technetium", 0 },
+                { "Gold", 10 },
+                { "Technetium", 1 },
                 { "Tungsten", 0 },
                 { "Iridium", 0 }
             },
@@ -234,7 +234,7 @@ public class BaseBuilding
                 { "Nickel", 35 },
                 { "Cobalt", 15 },
                 { "Platinum", 10 },
-                { "Gold", 0 },
+                { "Gold", 20 },
                 { "Technetium", 5 },
                 { "Tungsten", 0 },
                 { "Iridium", 0 }
@@ -253,7 +253,7 @@ public class BaseBuilding
         "Satellite",
         "Robotics",
         "Satellite",
-        "Use to scan for resources, 3 minute scan time",
+        "Use to reveal resources (Max 1 per asteroid)",
         0,
         0,
         0,
@@ -264,17 +264,17 @@ public class BaseBuilding
             { "Nickel", 150 },
             { "Cobalt", 150 },
             { "Platinum", 75 },
-            { "Gold", 75 },
-            { "Technetium", 75 },
-            { "Tungsten", 10 },
-            { "Iridium", 10 }
+            { "Gold", 50 },
+            { "Technetium", 4 },
+            { "Tungsten",1 },
+            { "Iridium", 2 }
         },
         "",
         new List<string>
         {
-            "Reduce scan time to 2 minutes",
             "Gain the ability to steer satellites",
-            "1 minute scan time",
+            "Future Satellites cost 50 less Cobalt and 25 less platinum",
+            "Future Satellites cost 20 less Gold and no Iridium",
             "Peak Technology Reached!!!"
         }
     );

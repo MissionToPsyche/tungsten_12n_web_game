@@ -17,7 +17,7 @@ public class Resource
     public Rarity rarity;
 
     //Deposit info
-    public Vector3 depositSize { get; set; }
+    public Vector2 depositSize { get; set; }
     public int depositAmount { get; set; }
     public bool isDepleted;
     public BuildingComponents.ResourceType resourceType;
@@ -34,12 +34,12 @@ public class Resource
         depositAmount = (int)(depositSize.x + depositSize.y) * 25;
     }
 
-    protected Vector3 randomizeSize()
+    protected Vector2 randomizeSize()
     {
         float xSize = Random.Range(0.5f, 5f);
         float ySize = Random.Range(0.5f, 5f);
 
-        Vector3 valToReturn = new Vector3(xSize, ySize, 1);
+        Vector2 valToReturn = new Vector3(xSize, ySize);
         return valToReturn;
     }
     public BuildingComponents.ResourceType GetResourceType(){
@@ -51,14 +51,13 @@ public class Resource
     public void ReduceDepositAmount(int minedAmount){
         depositAmount -= minedAmount;
     }
-    public Vector3 ReduceSize(int AfterAmount, int changeAmt){
-        Debug.LogWarning("Before xSize: " + xSize  + "\tySize: " + ySize + "\tDepositSize: " + depositSize);
+    public Vector2 ReduceSize(int AfterAmount, int changeAmt, GameObject resource){
         float percentDecrease = (float)AfterAmount / originalAmount;
-        float splitDecrease = 1 - (1 - percentDecrease) / 2;
-        xSize *= splitDecrease;
-        ySize *= splitDecrease;
-        Debug.LogWarning("After xSize: " + xSize + "\tsplitDecrease: " + splitDecrease + "\tySize: " + ySize);
-        return new Vector3(xSize, ySize, 1);
+        Debug.Log($"percentDecrease: {percentDecrease}");
+
+        Vector2 newScale = resource.transform.localScale * percentDecrease;
+        depositSize = newScale;
+        return newScale;
     }
 }
 
@@ -72,7 +71,7 @@ public class Iron : Resource
         resourceType = BuildingComponents.ResourceType.Iron;
         Position = pos;
         depositSize = base.randomizeSize();
-        depositAmount = (int)(depositSize.x + depositSize.y) * 100;
+        depositAmount = (int)(depositSize.x + depositSize.y) * 70;
         rarity = Rarity.Common;
         originalAmount = depositAmount;
     }
@@ -87,7 +86,7 @@ public class Nickel : Resource
         resourceType = BuildingComponents.ResourceType.Nickel;
         Position = pos;
         depositSize = base.randomizeSize();
-        depositAmount = (int)(depositSize.x + depositSize.y) * 100;
+        depositAmount = (int)(depositSize.x + depositSize.y) * 70;
         rarity = Rarity.Common;
         originalAmount = depositAmount;
     }
@@ -102,7 +101,7 @@ public class Cobalt : Resource
         Color = Color.white;
         Position = pos;
         depositSize = base.randomizeSize();
-        depositAmount = (int)(depositSize.x + depositSize.y) * 100;
+        depositAmount = (int)(depositSize.x + depositSize.y) * 65;
         rarity = Rarity.Common;
         originalAmount = depositAmount;
     }
@@ -164,7 +163,7 @@ public class Tungsten : Resource
         Color = Color.blue;
         Position = pos;
         depositSize = base.randomizeSize();
-        depositAmount = (int)(depositSize.x + depositSize.y) * 25;
+        depositAmount = (int)(depositSize.x + depositSize.y) * 20;
         rarity = Rarity.Exotic;
         originalAmount = depositAmount;
     }

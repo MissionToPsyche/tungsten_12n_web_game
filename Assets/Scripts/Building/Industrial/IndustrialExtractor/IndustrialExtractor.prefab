@@ -14,12 +14,12 @@ GameObject:
   - component: {fileID: 3665365977757770297}
   - component: {fileID: 4522911323830508007}
   - component: {fileID: 6473744850528406571}
-  - component: {fileID: -3320008579766996007}
-  - component: {fileID: 4800309846365389543}
-  - component: {fileID: 1982131736934851756}
-  - component: {fileID: -8775929138349216777}
+  - component: {fileID: 1167572162938859552}
+  - component: {fileID: 1422273109692160702}
+  - component: {fileID: 7185643901240020566}
+  - component: {fileID: 2245592374331507889}
   m_Layer: 9
-  m_Name: CommericalExtractorPrefab
+  m_Name: IndustrialExtractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,8 +34,8 @@ Transform:
   m_GameObject: {fileID: 8513086824239921780}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -258.2307, y: 321.5604, z: 0}
-  m_LocalScale: {x: 1.3992, y: 1.0258, z: 1}
+  m_LocalPosition: {x: -258.7245, y: 321.4931, z: 0}
+  m_LocalScale: {x: 1.0141294, y: 0.9732106, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 227411197
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1540937291, guid: 91099ed4949f4c63aa7ee4495fd41126, type: 3}
+  m_Sprite: {fileID: -914690540, guid: 91099ed4949f4c63aa7ee4495fd41126, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,7 +124,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0053477883, y: -0.080251396}
+  m_Offset: {x: -0.019254863, y: 0.0130877495}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -135,7 +135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.572205, y: 1.9190913}
+  m_Size: {x: 2.5532103, y: 2.1003542}
   m_EdgeRadius: 0
 --- !u!50 &3665365977757770297
 Rigidbody2D:
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d241a57f3140f4268b4b1a5279dedadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3320008579766996007
+--- !u!114 &1167572162938859552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,15 +206,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8513086824239921780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3466cd37b191c41999303ca15283bbcc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4419fe705a75f4bacb078f3a0d3124be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnMiniGameEvent: {fileID: 11400000, guid: 4ef8aa52794c80344bf367b0095ecb80, type: 2}
   OnMineEvent: {fileID: 11400000, guid: 36ea3a6d9efb64529b1652eadc632db5, type: 2}
   textPrefabPlusOne: {fileID: 7402745957934915356, guid: 1582b7f0caa9d4aa6bc52df01478b0ce, type: 3}
   textPrefabExclamation: {fileID: 7402745957934915356, guid: 42c8678fc9cb94a2ba1502dfc5df1a25, type: 3}
+  linkedGameObject: {fileID: 0}
   isPlaced: 0
---- !u!114 &4800309846365389543
+--- !u!114 &1422273109692160702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,7 +231,7 @@ MonoBehaviour:
   unityEventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3320008579766996007}
+      - m_Target: {fileID: 1167572162938859552}
         m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
         m_MethodName: fix
         m_Mode: 1
@@ -242,7 +243,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1982131736934851756
+--- !u!114 &7185643901240020566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,11 +255,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf41782eb8e2946e4b682789f65b190b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: ebb129fe3d513468bb6c82a0772056e9, type: 2}
+  gameEvent: {fileID: 0}
   unityEventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3320008579766996007}
+      - m_Target: {fileID: 1167572162938859552}
         m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
         m_MethodName: OnQueryTechResponse
         m_Mode: 0
@@ -270,7 +271,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-8775929138349216777
+--- !u!114 &2245592374331507889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,7 +287,7 @@ MonoBehaviour:
   unityEventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3320008579766996007}
+      - m_Target: {fileID: 1167572162938859552}
         m_TargetAssemblyTypeName: AbstractExtractorMining, Assembly-CSharp
         m_MethodName: OnPlayerInteract
         m_Mode: 1

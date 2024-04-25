@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 8168771669024908843}
   - component: {fileID: -3503305990065939508}
   m_Layer: 9
-  m_Name: ExtractorPrefab
+  m_Name: Extractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

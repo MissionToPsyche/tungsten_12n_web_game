@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SpawnResources
 {
@@ -103,7 +100,7 @@ public class SpawnResources
                 return generator.GenerateBiasedNumber(Sprobabilities);
 
             case AsteroidClass.A_Class:
-                double[] Aprobabilities = { 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.0 };
+                double[] Aprobabilities = { 0.12, 0.12, 0.125, 0.125, 0.135, 0.125, 0.125, 0.125, 0.0 };
                 return generator.GenerateBiasedNumber(Aprobabilities);
 
             case AsteroidClass.B_Class:
@@ -111,12 +108,12 @@ public class SpawnResources
                 return generator.GenerateBiasedNumber(Bprobabilities);
 
             case AsteroidClass.C_Class:
-                double[] Cprobabilities = { 0.35, 0.30, 0.25, 0.03, 0.03, 0.02, 0.01, 0.01, 0.0 };
+                double[] Cprobabilities = { 0.28, 0.24, 0.20, 0.1, 0.07, 0.05, 0.03, 0.03, 0.0 };
                 return generator.GenerateBiasedNumber(Cprobabilities);
 
             case AsteroidClass.D_Class:
-                //Spawns any Common resource with much lower chance of Plat or Gold, never Technetium
-                double[] Dprobabilities = { 0.35, 0.35, 0.15, 0.10, 0.05, 0.0, 0.0, 0.0, 0.0 };
+                //Spawns any Common resource with much lower chance of Plat or Gold, rarely exotics Technetium
+                double[] Dprobabilities = { 0.32, 0.32, 0.15, 0.09, 0.05, 0.03, 0.02, 0.02, 0.0 };
                 return generator.GenerateBiasedNumber(Dprobabilities);
 
             default:
@@ -158,13 +155,13 @@ public class SpawnResources
         float innerRestriction = 0f, outerRestriction = 1f;
         if (rarity == Rarity.Common)
         {
-            innerRestriction = 0.75f;
-            outerRestriction = 1.0f;
+            innerRestriction = 0.70f;
+            outerRestriction = .95f;
         }
         else if (rarity == Rarity.Commodity)
         {
-            innerRestriction = 0.40f;
-            outerRestriction = 0.70f;
+            innerRestriction = 0.33f;
+            outerRestriction = 0.68f;
         }
         else if (rarity == Rarity.Exotic)
         {
