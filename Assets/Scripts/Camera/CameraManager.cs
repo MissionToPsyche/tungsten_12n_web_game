@@ -63,45 +63,28 @@ public class CameraManager : MonoBehaviour
 
     public void OnControlStateUpdated(Control.State controlState)
     {
-        if (controlState == Control.State.Player)
+        switch (controlState)
         {
-            SetCamerasLowPrio(satelliteCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
-            playerCamera.Priority = 100;
-            currentCamera = playerCamera;
-            currentObject = PlayerManager.Instance.GetPlayerObject();
-        }
-        else if (controlState == Control.State.Satellite)
-        {
-            SetCamerasLowPrio(playerCamera, robotBuddyAlphaCamera, robotBuddyBetaCamera);
-
-            satelliteCamera.Priority = 100;
-            Transform satelliteTransform = SatelliteManager.Instance.GetCurrentSatelliteObject().transform;
-            satelliteCamera.Follow = satelliteTransform;
-            satelliteCamera.LookAt = satelliteTransform;
-            currentCamera = satelliteCamera;
-            currentObject = SatelliteManager.Instance.GetCurrentSatelliteObject();
-        }
-        else if (controlState == Control.State.RobotBuddyAlpha)
-        {
-
-            SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyBetaCamera);
-
-            robotBuddyAlphaCamera.Priority = 100;
-            currentCamera = robotBuddyAlphaCamera;
-            currentObject = RobotManager.Instance.GetRobotAlphaObject();
-        }
-        else if (controlState == Control.State.RobotBuddyBeta)
-        {
-            SetCamerasLowPrio(playerCamera, satelliteCamera, robotBuddyAlphaCamera);
-
-            robotBuddyBetaCamera.Priority = 100;
-            currentCamera = robotBuddyBetaCamera;
-            currentObject = RobotManager.Instance.GetRobotBetaObject();
+            case Control.State.Player:
+                ActivateCamera(playerCamera, PlayerManager.Instance.GetPlayerObject());
+                break;
+            case Control.State.Satellite:
+                GameObject satellite = SatelliteManager.Instance.GetCurrentSatelliteObject();
+                ActivateCamera(satelliteCamera, satellite, satellite.transform);
+                break;
+            case Control.State.RobotBuddyAlpha:
+                if (!PlayerManager.Instance.GetIsCarryingRobotAlpha())
+                    ActivateCamera(robotBuddyAlphaCamera, RobotManager.Instance.GetRobotAlphaObject());
+                break;
+            case Control.State.RobotBuddyBeta:
+                if (!PlayerManager.Instance.GetIsCarryingRobotBeta())
+                    ActivateCamera(robotBuddyBetaCamera, RobotManager.Instance.GetRobotBetaObject());
+                break;
         }
     }
 
     // -------------------------------------------------------------------
-    // Class
+    // Base
 
     private void Awake()
     {
@@ -119,30 +102,6 @@ public class CameraManager : MonoBehaviour
         currentObject = PlayerManager.Instance.GetPlayerObject();
 
         SetInitialZoomLevel(10f);
-    }
-
-    void Update()
-    {
-        playerCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(playerCamera.m_Lens.OrthographicSize, targetZoom, ref zoomSpeed, 0.1f);
-    }
-
-    void Zoom(float increment)
-    {
-
-        playerCamera.m_Lens.OrthographicSize = Mathf.Clamp(playerCamera.m_Lens.OrthographicSize + increment, minZoom, maxZoom);
-        targetZoom = Mathf.Clamp(playerCamera.m_Lens.OrthographicSize + increment, minZoom, maxZoom);
-    }
-
-    public void SetInitialZoomLevel(float initialZoom)
-    {
-        if (initialZoom >= minZoom && initialZoom <= maxZoom)
-        {
-            if (playerCamera != null)
-            {
-                playerCamera.m_Lens.OrthographicSize = initialZoom;
-                targetZoom = initialZoom;
-            }
-        }
     }
 
     private void FixedUpdate()
@@ -163,10 +122,53 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void SetCamerasLowPrio(CinemachineVirtualCamera cam1, CinemachineVirtualCamera cam2, CinemachineVirtualCamera cam3)
+    void Update()
     {
-        cam1.Priority = 0;
-        cam2.Priority = 0;
-        cam3.Priority = 0;
+        playerCamera.m_Lens.OrthographicSize = Mathf.SmoothDamp(playerCamera.m_Lens.OrthographicSize, targetZoom, ref zoomSpeed, 0.1f);
+    }
+
+    // -------------------------------------------------------------------
+    // Functions
+
+    private void ActivateCamera(CinemachineVirtualCamera camera, GameObject targetObject, Transform followTransform = null)
+    {
+        SetAllCamerasLowPriority();
+
+        camera.Priority = 100;
+        currentCamera = camera;
+        currentObject = targetObject;
+
+        if (followTransform != null)
+        {
+            camera.Follow = followTransform;
+            camera.LookAt = followTransform;
+        }
+    }
+
+    private void SetAllCamerasLowPriority()
+    {
+        playerCamera.Priority = 0;
+        satelliteCamera.Priority = 0;
+        robotBuddyAlphaCamera.Priority = 0;
+        robotBuddyBetaCamera.Priority = 0;
+    }
+
+    void Zoom(float increment)
+    {
+
+        playerCamera.m_Lens.OrthographicSize = Mathf.Clamp(playerCamera.m_Lens.OrthographicSize + increment, minZoom, maxZoom);
+        targetZoom = Mathf.Clamp(playerCamera.m_Lens.OrthographicSize + increment, minZoom, maxZoom);
+    }
+
+    public void SetInitialZoomLevel(float initialZoom)
+    {
+        if (initialZoom >= minZoom && initialZoom <= maxZoom)
+        {
+            if (playerCamera != null)
+            {
+                playerCamera.m_Lens.OrthographicSize = initialZoom;
+                targetZoom = initialZoom;
+            }
+        }
     }
 }

@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject carryAlphaObject;
     [SerializeField] private GameObject carryBetaObject;
     [SerializeField] private AudioClip jumpSoundClip;
+    [SerializeField] private CanvasGroup ControlGroup;
 
     [Header("ReadOnly")]
     [SerializeField, ReadOnly] private bool isCarryingRobotAlpha = false;
@@ -446,6 +447,22 @@ public class PlayerController : MonoBehaviour
         if (isLadder && Mathf.Abs(vertical) > 0f)
         {
             isClimibing = true;
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            switch (ControlGroup.alpha)
+            {
+                case 0:
+                    ControlGroup.alpha = 1;
+                    ControlGroup.blocksRaycasts = true;
+                    break;
+                case 1:
+                    ControlGroup.alpha = 0;
+                    ControlGroup.blocksRaycasts = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

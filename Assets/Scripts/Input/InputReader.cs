@@ -133,6 +133,7 @@ public class InputReader : ScriptableObject,
     [Header("Satellite Events")]
     [SerializeField] private Vector2Event SatelliteMove;
     [SerializeField] private BoolEvent SatelliteScan;
+    [SerializeField] private VoidEvent SatelliteControlToggle;
 
     [Header("UI Events")]
     [SerializeField] private VoidEvent GamePause;
@@ -362,6 +363,11 @@ public class InputReader : ScriptableObject,
         {
             SatelliteScan.Raise(false);
         }
+    }
+
+    public void OnSatelliteControlToggle(InputAction.CallbackContext context)
+    {
+        SatelliteControlToggle.Raise();
     }
 
     // -------------------------------------------------------------------
