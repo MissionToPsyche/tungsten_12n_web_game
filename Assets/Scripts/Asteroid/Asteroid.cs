@@ -80,6 +80,8 @@ public class Asteroid : MonoBehaviour
         newResourceObject.transform.parent = this.transform;
         newResourceObject.name = $"{addedResource.Name}_" + iter;
 
+        // newResourceObject.layer = LayerMask.NameToLayer("DiscoveredResource");
+
         spawnResourceEvent.Raise(new packet.ResourceGameObjectPacket(newResourceObject, addedResource));
         resourceList.Add(addedResource);
     }

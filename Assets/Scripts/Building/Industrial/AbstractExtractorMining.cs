@@ -224,7 +224,7 @@ public class AbstractExtractorMining : MonoBehaviour
     private bool RollForModuleBreak()
     {
         float breakChance = (baseBreakChance * breakChanceModifer) * timesMinedSinceBroken;
-        //float breakChance = 0.5f;
+        // float breakChance = 0.5f;
         //^Use this for debugging or testing the playerInteract feature
         return Random.value < breakChance;
     }

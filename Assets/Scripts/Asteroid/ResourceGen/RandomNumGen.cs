@@ -37,7 +37,7 @@ public class RandomNumGen
         }
         if(sum != 1.0)
         {
-            Debug.LogError("RandomNumGen.cs --: GenerateBiasedNumver :-- Sum of Probabilities do not equal to 1 " + sum);
+            Debug.LogError("RandomNumGen.cs --: GenerateBiasedNumver :-- Probabilities Sum does not equal 1 : Sum = " + sum);
         }
     }
 }

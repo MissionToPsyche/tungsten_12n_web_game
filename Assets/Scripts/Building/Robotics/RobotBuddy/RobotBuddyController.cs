@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
-
-//!!! IMPLEMENTATION OF TECHTIER, lights and to charge while outside
 public class RobotBuddyController : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
@@ -39,7 +36,7 @@ public class RobotBuddyController : MonoBehaviour
     CapsuleCollider2D chargeCollider;
     CapsuleCollider2D normalCollider;
 
-    private float idleReduceCharge = 2.0f;
+    private float idleReduceCharge = 4.0f;
     private float jumpReduceCharge = 5.0f;
     private float interactReduceCharge = 5.0f;
     private Vector3 hiddenPosition = new Vector3(999f, 999f);

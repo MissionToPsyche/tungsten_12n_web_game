@@ -16,14 +16,14 @@ public class AsteroidResourceManager: MonoBehaviour{
         GameObject obj = packet.obj;
         Resource resourceToChange = resourceMasterDict[obj];
         resourceToChange.ReduceDepositAmount(packet.amountToChange);
+        //Debug.Log("Deposit amonut: " + resourceToChange.GetDepositAmount());
         if(resourceToChange.GetDepositAmount() < 0){
             Destroy(obj);
             RemoveResourceDictEntry(obj);
             return;
         }
 
-        //NOT IMPLEMENTING YET BECAUSE UNSURE OF FINAL RESOURCE SPRITES
-        //obj.transform.localScale = resourceToChange.ReduceSize(resourceToChange.GetDepositAmount(), packet.amountToChange);
+        obj.transform.localScale = resourceToChange.ReduceSize(resourceToChange.GetDepositAmount(), packet.amountToChange, obj);
     }
     //class specific functions
     private void AddResourceDictEntry(GameObject gameObject, Resource resource){

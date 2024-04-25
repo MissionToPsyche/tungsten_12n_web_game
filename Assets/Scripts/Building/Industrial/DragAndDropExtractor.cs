@@ -11,18 +11,22 @@ public class DragAndDropExtractor : DragAndDropSuper{
     private float rayCastReach;
     void Awake(){
         if(gameObject.name == "Extractor(Clone)"){
-            rayCastReach = 20f;
+            rayCastReach = Vector2.Distance(transform.position, AsteroidManager.Instance.GetCurrentAsteroid().transform.position) * .33f;
         }else if(gameObject.name == "CommercialExtractor(Clone)"){
-            rayCastReach = 25f;
+            rayCastReach = Vector2.Distance(transform.position, AsteroidManager.Instance.GetCurrentAsteroid().transform.position) * .66f;
         }else{
-            rayCastReach = 30f;
+            rayCastReach = Vector2.Distance(transform.position, AsteroidManager.Instance.GetCurrentAsteroid().transform.position);
         }
-
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectBody2D = GetComponent<Rigidbody2D>();
         gravityBody = GetComponent<GravityBody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         layerToUse = SetLayerToUse();
+    }
+    public void Update(){
+        Vector2 direction = gravityBody.GravityDirection;
+        Debug.DrawRay(transform.position, direction * rayCastReach, Color.green);
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -61,7 +65,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
             //Stops all possible movement
             objectBody2D.isKinematic = true;
             objectBody2D.bodyType = RigidbodyType2D.Static;
-            SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
+            SoundFXManager.Instance.PlaySound(SFX.Extractor.Status.Humming, this.gameObject.transform, 1f);
         }
     }
 
