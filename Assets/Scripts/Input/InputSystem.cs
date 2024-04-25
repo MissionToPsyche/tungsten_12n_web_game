@@ -589,6 +589,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SatelliteControlToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""3956e523-32cd-40d3-9a06-c5e67e983d15"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -677,6 +686,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SatelliteScan"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1213ab66-f99c-445b-b0c7-4e447fda231c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SatelliteControlToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1000,6 +1020,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Satellite = asset.FindActionMap("Satellite", throwIfNotFound: true);
         m_Satellite_SatelliteMove = m_Satellite.FindAction("SatelliteMove", throwIfNotFound: true);
         m_Satellite_SatelliteScan = m_Satellite.FindAction("SatelliteScan", throwIfNotFound: true);
+        m_Satellite_SatelliteControlToggle = m_Satellite.FindAction("SatelliteControlToggle", throwIfNotFound: true);
         // Cave Scene
         m_CaveScene = asset.FindActionMap("Cave Scene", throwIfNotFound: true);
         // Asteroid Scene
@@ -1282,12 +1303,14 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private List<ISatelliteActions> m_SatelliteActionsCallbackInterfaces = new List<ISatelliteActions>();
     private readonly InputAction m_Satellite_SatelliteMove;
     private readonly InputAction m_Satellite_SatelliteScan;
+    private readonly InputAction m_Satellite_SatelliteControlToggle;
     public struct SatelliteActions
     {
         private @InputSystem m_Wrapper;
         public SatelliteActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @SatelliteMove => m_Wrapper.m_Satellite_SatelliteMove;
         public InputAction @SatelliteScan => m_Wrapper.m_Satellite_SatelliteScan;
+        public InputAction @SatelliteControlToggle => m_Wrapper.m_Satellite_SatelliteControlToggle;
         public InputActionMap Get() { return m_Wrapper.m_Satellite; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1303,6 +1326,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SatelliteScan.started += instance.OnSatelliteScan;
             @SatelliteScan.performed += instance.OnSatelliteScan;
             @SatelliteScan.canceled += instance.OnSatelliteScan;
+            @SatelliteControlToggle.started += instance.OnSatelliteControlToggle;
+            @SatelliteControlToggle.performed += instance.OnSatelliteControlToggle;
+            @SatelliteControlToggle.canceled += instance.OnSatelliteControlToggle;
         }
 
         private void UnregisterCallbacks(ISatelliteActions instance)
@@ -1313,6 +1339,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @SatelliteScan.started -= instance.OnSatelliteScan;
             @SatelliteScan.performed -= instance.OnSatelliteScan;
             @SatelliteScan.canceled -= instance.OnSatelliteScan;
+            @SatelliteControlToggle.started -= instance.OnSatelliteControlToggle;
+            @SatelliteControlToggle.performed -= instance.OnSatelliteControlToggle;
+            @SatelliteControlToggle.canceled -= instance.OnSatelliteControlToggle;
         }
 
         public void RemoveCallbacks(ISatelliteActions instance)
@@ -1564,6 +1593,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     {
         void OnSatelliteMove(InputAction.CallbackContext context);
         void OnSatelliteScan(InputAction.CallbackContext context);
+        void OnSatelliteControlToggle(InputAction.CallbackContext context);
     }
     public interface ICaveSceneActions
     {

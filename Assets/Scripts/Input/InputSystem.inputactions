@@ -567,6 +567,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SatelliteControlToggle",
+                    "type": "Button",
+                    "id": "3956e523-32cd-40d3-9a06-c5e67e983d15",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -655,6 +664,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SatelliteScan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1213ab66-f99c-445b-b0c7-4e447fda231c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SatelliteControlToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

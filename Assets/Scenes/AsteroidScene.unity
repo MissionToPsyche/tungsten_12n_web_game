@@ -7314,6 +7314,7 @@ GameObject:
   - component: {fileID: 475161551}
   - component: {fileID: 475161550}
   - component: {fileID: 475161552}
+  - component: {fileID: 475161553}
   m_Layer: 0
   m_Name: SatelliteManager
   m_TagString: Untagged
@@ -7354,7 +7355,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 475161551}
         m_TargetAssemblyTypeName: SatelliteManager, Assembly-CSharp
-        m_MethodName: OnSatelliteSpawnTriggered
+        m_MethodName: OnSatelliteSpawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7380,6 +7381,7 @@ MonoBehaviour:
   activeSatellites: []
   numberOfSatellites: 0
   currentSatelliteObject: {fileID: 0}
+  isSatelliteControlUnlocked: 0
 --- !u!114 &475161552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7400,6 +7402,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SatelliteManager, Assembly-CSharp
         m_MethodName: OnCurrentSatelliteChanged
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &475161553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475161548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 22bc0615d94ad524284e811fdbd86da4, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 475161551}
+        m_TargetAssemblyTypeName: SatelliteManager, Assembly-CSharp
+        m_MethodName: OnSatelliteControlUnlocked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12828,7 +12858,7 @@ MonoBehaviour:
   RobotBuddyAlphaObject: {fileID: 1680418309}
   RobotBuddyBetaObject: {fileID: 87420897}
   LaunchPadPrefab: {fileID: 8513086824239921780, guid: 9c74d5ec0bb9b4b0e8fe3e264c5ca19e, type: 3}
-  satelliteSpawnTrigged: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
+  satelliteSpawn: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
   buildRobotBuddyAlpha: {fileID: 11400000, guid: 9e82d6ae773fc4ad5976eb0b8400e4de, type: 2}
   buildRobotBuddyBeta: {fileID: 11400000, guid: dbfe9535f1c9c4707804de67e3f01089, type: 2}
   buildUIObject: {fileID: 550765332}
@@ -13050,7 +13080,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -288286793
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13204,6 +13234,7 @@ MonoBehaviour:
   playerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
   playerLaunchPadInteract: {fileID: 11400000, guid: e13e01f59d8ec4281ade5e2d7655c082, type: 2}
   playerInPit: {fileID: 11400000, guid: ba923ed4246c9584e9004f3a2858b500, type: 2}
+  satelliteSpawn: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
   characterDatabase: {fileID: 11400000, guid: 0ffa1d2925c3c7d4fa18116d97de770a, type: 2}
   animator: {fileID: 911276413}
   spriteRenderer: {fileID: 911276411}
