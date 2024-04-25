@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7883782213484737866}
   - component: {fileID: -5056199644739332714}
   - component: {fileID: -3736349297150580046}
+  - component: {fileID: -8952336708575723881}
   - component: {fileID: -4310272163425356286}
   m_Layer: 16
   m_Name: Satellite
@@ -130,11 +131,6 @@ MonoBehaviour:
   satelliteBody: {fileID: 7883782213484737866}
   parentAsteroid: {fileID: 0}
   horizontalInput: 0
-  currentSpeed: 0
-  currentState: 0
-  isIdle: 0
-  isMoving: 0
-  isFacingRight: 0
 --- !u!114 &-3736349297150580046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +159,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-8952336708575723881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513086824239921780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04f507561a7a4054c8a283c5be6a4acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  satelliteBody: {fileID: 7883782213484737866}
+  parentAsteroid: {fileID: 0}
+  isScanningAllowed: 0
+  isScanning: 0
 --- !u!114 &-4310272163425356286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,8 +191,8 @@ MonoBehaviour:
   unityEventResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -5056199644739332714}
-        m_TargetAssemblyTypeName: SatelliteController, Assembly-CSharp
+      - m_Target: {fileID: -8952336708575723881}
+        m_TargetAssemblyTypeName: SatelliteScan, Assembly-CSharp
         m_MethodName: OnSatelliteScan
         m_Mode: 0
         m_Arguments:
