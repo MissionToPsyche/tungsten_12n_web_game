@@ -3001,7 +3001,7 @@ GameObject:
   - component: {fileID: 2127202516}
   - component: {fileID: 2127202515}
   m_Layer: 5
-  m_Name: HelpDescription
+  m_Name: About Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3046,14 +3046,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This game was designed with the intention to provide students with the
+  m_text: "This game was designed with the intention to provide students with the
     opportunity to have a fun and educational experience when playing a game about
-    space exploration. The games creators are Justin Lavi, Joseph Dungan, Adrian
-    Mena Altamirano, and Abhi Gandavarapu.
-
-
-    We hope you enjoy the game and learn
-    more about space exploration!'
+    space exploration. \n\nThe games creators are Justin Lavi, Joseph Dungan, Adrian
+    Mena Altamirano, and Abhi Gandavarapu.\n\nWe hope you enjoy the game and learn
+    more about space exploration!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
   m_sharedMaterial: {fileID: -6969445821730098892, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
@@ -3142,7 +3139,7 @@ GameObject:
   - component: {fileID: 2147214491}
   - component: {fileID: 2147214490}
   m_Layer: 5
-  m_Name: HelpDescription
+  m_Name: Help Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3187,12 +3184,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "- Controls: Uses traditional WASD for movement, with A and D being the
-    primary controls.\n\n- Objectives: Press the R key to display the Objectives
-    Menu, these are constantly updated as objectives are completed. \n\n- Switch
-    cameras: Press the Tab key to switch between cameras in the main asteroid scene.\n\n-
-    Skill tree: Earn credits and unlock new abilities that allow new movements, help
-    exploration, and tools.\n\n"
+  m_text: "Controls: \nWASD: Movement\nShift: Run\nSpace: Jump\nE: Interact with
+    elements\nB: For build menu\nR: Open help menu\nQ: Pickup robot buddy \nTab:
+    Swap cameras between satellite and robot buddy\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
   m_sharedMaterial: {fileID: -6969445821730098892, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
