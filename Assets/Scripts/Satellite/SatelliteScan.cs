@@ -85,6 +85,21 @@ public class SatelliteScan : MonoBehaviour
         }
     }
 
+    // -------------------------------------------------------------------
+    // Functions
+
+    private void StartScanning()
+    {
+        isScanning = true;
+        Debug.Log("Scan started");
+    }
+
+    private void StopScanning()
+    {
+        isScanning = false;
+        Debug.Log("Scan stopped");
+    }
+
     private RaycastHit2D PerformResourceScan(Vector2 direction, float length)
     {
         RaycastHit2D hitUndiscovered = Physics2D.Raycast(transform.position, direction, length, LayerMask.GetMask("UndiscoveredResource"));
@@ -115,7 +130,7 @@ public class SatelliteScan : MonoBehaviour
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("DiscoveredResource"))
         {
             Color detectedColor = hit.collider.gameObject.GetComponent<SpriteRenderer>().color;
-            Debug.Log($"Setting Line Renderer color to: {detectedColor}");
+            // Debug.Log($"Setting Line Renderer color to: {detectedColor}");
             lineRenderer.startColor = lineRenderer.endColor = detectedColor;
         }
         else
@@ -129,20 +144,5 @@ public class SatelliteScan : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, transform.position);
         lineRenderer.startColor = lineRenderer.endColor = Color.white;
-    }
-
-    // -------------------------------------------------------------------
-    // Functions
-
-    private void StartScanning()
-    {
-        isScanning = true;
-        Debug.Log("Scan started");
-    }
-
-    private void StopScanning()
-    {
-        isScanning = false;
-        Debug.Log("Scan stopped");
     }
 }

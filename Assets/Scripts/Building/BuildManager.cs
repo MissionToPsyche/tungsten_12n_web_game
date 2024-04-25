@@ -17,7 +17,7 @@ public class BuildManager : MonoBehaviour
     private bool hasBuiltLaunchPad = false;
 
     [Header("Events")]
-    public VoidEvent satelliteSpawnTrigged;
+    public VoidEvent satelliteSpawn;
     [SerializeField] private VoidEvent buildRobotBuddyAlpha;
     [SerializeField] private VoidEvent buildRobotBuddyBeta;
 
@@ -38,9 +38,9 @@ public class BuildManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        if (satelliteSpawnTrigged == null)
+        if (satelliteSpawn == null)
         {
-            satelliteSpawnTrigged = ScriptableObject.CreateInstance<VoidEvent>();
+            satelliteSpawn = ScriptableObject.CreateInstance<VoidEvent>();
         }
         buildUI = buildUIObject.GetComponent<UIBuildManager>();
     }
@@ -81,8 +81,7 @@ public class BuildManager : MonoBehaviour
                 }
                 return;
             case BuildingComponents.BuildingType.Satellite:
-                // Debug.Log("[GameManager]: satelliteSpawnTrigged");
-                satelliteSpawnTrigged.Raise();
+                satelliteSpawn.Raise();
                 return;
             case BuildingComponents.BuildingType.LaunchPad:
                     if(hasBuiltLaunchPad == false){

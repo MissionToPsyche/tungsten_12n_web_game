@@ -30,6 +30,15 @@ public class SatelliteController : MonoBehaviour
     // -------------------------------------------------------------------
     // Handle events
 
+    public void OnSatelliteControlToggle()
+    {
+        if (SatelliteManager.Instance.IsSatelliteControlUnlocked())
+        {
+            State nextState = isManualControlEnabled ? State.Autopilot : State.Manual;
+            ChangeState(nextState);
+        }
+    }
+
     public void OnSatelliteMove(UnityEngine.Vector2 direction)
     {
         horizontalInput = direction.x;
@@ -53,8 +62,7 @@ public class SatelliteController : MonoBehaviour
     }
 
     // -------------------------------------------------------------------
-    // Class
-
+    // Base
     void Start()
     {
         satelliteScan = gameObject.GetComponent<SatelliteScan>();
@@ -64,6 +72,32 @@ public class SatelliteController : MonoBehaviour
         UpdateEdgePoints();
         currentState = State.Autopilot;
     }
+
+    void Update()
+    {
+        if (edgePoints == null || edgePoints.Length == 0) return;
+
+        // Always perform autonomous movement and rotation updates
+        if (currentState == State.Autopilot)
+        {
+            MoveAlongEdge();
+        }
+
+        // Conditional manual movement: only if this is the current satellite
+        if (SatelliteManager.Instance.GetCurrentSatelliteObject() == this.gameObject)
+        {
+            if (currentState == State.Manual)
+            {
+                ManualMove(-horizontalInput);
+            }
+        }
+
+        // Update rotation is always called regardless of which satellite is active
+        UpdateRotation();
+    }
+
+    // -------------------------------------------------------------------
+    // Functions
 
     void UpdateEdgePoints()
     {
@@ -89,39 +123,6 @@ public class SatelliteController : MonoBehaviour
             }
         }
         return closestIndex;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ToggleControlMode();
-        }
-
-        // Move the satellite based on the current state
-        MoveBasedOnState();
-        UpdateRotation();
-    }
-
-    private void ToggleControlMode()
-    {
-        State nextState = isManualControlEnabled ? State.Autopilot : State.Manual;
-        ChangeState(nextState);
-    }
-
-    private void MoveBasedOnState()
-    {
-        if (edgePoints == null || edgePoints.Length == 0) return;
-
-        switch (currentState)
-        {
-            case State.Manual:
-                ManualMove(-horizontalInput);
-                break;
-            case State.Autopilot:
-                MoveAlongEdge();
-                break;
-        }
     }
 
     private void ChangeState(State newState)

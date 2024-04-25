@@ -89,11 +89,11 @@ TagManager:
   - name: RobotBuddy
     uniqueID: 273207475
     locked: 0
-  - name: Player
-    uniqueID: 4006680503
-    locked: 0
   - name: Satellite
     uniqueID: 3626788549
+    locked: 0
+  - name: Player
+    uniqueID: 4006680503
     locked: 0
   - name: MiniGame
     uniqueID: 4239968931

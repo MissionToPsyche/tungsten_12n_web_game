@@ -16,9 +16,7 @@ public class SatelliteManager : MonoBehaviour
     [SerializeField, ReadOnly] private List<string> activeSatellites = new();
     [SerializeField, ReadOnly] private int numberOfSatellites = 0;
     [SerializeField, ReadOnly] private GameObject currentSatelliteObject;
-
-    // Not for display
-
+    [SerializeField, ReadOnly] private bool isSatelliteControlUnlocked;
 
     // -------------------------------------------------------------------
     // Handle events
@@ -32,8 +30,9 @@ public class SatelliteManager : MonoBehaviour
         }
     }
 
-    public void OnSatelliteSpawnTriggered()
+    public void OnSatelliteSpawn()
     {
+        Debug.Log("Satellite spawn triggered by game manager");
         GameObject currentAsteroid = AsteroidManager.Instance.GetCurrentAsteroid();
         if (currentAsteroid == null)
         {
@@ -116,6 +115,11 @@ public class SatelliteManager : MonoBehaviour
         }
     }
 
+    public void OnSatelliteControlUnlocked()
+    {
+        isSatelliteControlUnlocked = true;
+    }
+
     // -------------------------------------------------------------------
     // API
 
@@ -129,8 +133,13 @@ public class SatelliteManager : MonoBehaviour
         return currentSatelliteObject;
     }
 
+    public bool IsSatelliteControlUnlocked()
+    {
+        return isSatelliteControlUnlocked;
+    }
+
     // -------------------------------------------------------------------
-    // Class
+    // Base
 
     private void Awake()
     {
@@ -143,7 +152,12 @@ public class SatelliteManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        isSatelliteControlUnlocked = false;
     }
+
+    // -------------------------------------------------------------------
+    // Functions
 
     private Vector2 FindClosestEdgePoint(Vector2[] edgePoints, Vector2 playerPosition)
     {

@@ -6556,7 +6556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6313726, g: 0.6117647, b: 0.6117647, a: 0.627451}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7316,6 +7316,7 @@ GameObject:
   - component: {fileID: 475161551}
   - component: {fileID: 475161550}
   - component: {fileID: 475161552}
+  - component: {fileID: 475161553}
   m_Layer: 0
   m_Name: SatelliteManager
   m_TagString: Untagged
@@ -7356,7 +7357,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 475161551}
         m_TargetAssemblyTypeName: SatelliteManager, Assembly-CSharp
-        m_MethodName: OnSatelliteSpawnTriggered
+        m_MethodName: OnSatelliteSpawn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7382,6 +7383,7 @@ MonoBehaviour:
   activeSatellites: []
   numberOfSatellites: 0
   currentSatelliteObject: {fileID: 0}
+  isSatelliteControlUnlocked: 0
 --- !u!114 &475161552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7402,6 +7404,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SatelliteManager, Assembly-CSharp
         m_MethodName: OnCurrentSatelliteChanged
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &475161553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475161548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd583788680d1c4aa5e055ed87d273a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 22bc0615d94ad524284e811fdbd86da4, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 475161551}
+        m_TargetAssemblyTypeName: SatelliteManager, Assembly-CSharp
+        m_MethodName: OnSatelliteControlUnlocked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11698,7 +11728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763896219}
   - component: {fileID: 763896220}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Control Section
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11739,7 +11769,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!224 &769893283 stripped
 RectTransform:
@@ -12884,7 +12914,7 @@ MonoBehaviour:
   RobotBuddyAlphaObject: {fileID: 1680418309}
   RobotBuddyBetaObject: {fileID: 87420897}
   LaunchPadPrefab: {fileID: 8513086824239921780, guid: 9c74d5ec0bb9b4b0e8fe3e264c5ca19e, type: 3}
-  satelliteSpawnTrigged: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
+  satelliteSpawn: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
   buildRobotBuddyAlpha: {fileID: 11400000, guid: 9e82d6ae773fc4ad5976eb0b8400e4de, type: 2}
   buildRobotBuddyBeta: {fileID: 11400000, guid: dbfe9535f1c9c4707804de67e3f01089, type: 2}
   buildUIObject: {fileID: 550765332}
@@ -13050,7 +13080,7 @@ GameObject:
   - component: {fileID: 894237478}
   - component: {fileID: 894237480}
   - component: {fileID: 894237479}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13090,7 +13120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6313726, g: 0.6117647, b: 0.6117647, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13181,7 +13211,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -288286793
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16361,7 +16391,7 @@ GameObject:
   - component: {fileID: 1266101823}
   - component: {fileID: 1266101822}
   - component: {fileID: 1266101821}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Control Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25968,7 +25998,7 @@ GameObject:
   - component: {fileID: 1566089354}
   - component: {fileID: 1566089353}
   - component: {fileID: 1566089352}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Control Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26210,7 +26240,7 @@ GameObject:
   - component: {fileID: 1625970332}
   - component: {fileID: 1625970331}
   - component: {fileID: 1625970330}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Return Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27752,7 +27782,7 @@ GameObject:
   - component: {fileID: 1843789045}
   - component: {fileID: 1843789047}
   - component: {fileID: 1843789046}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Secondary Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27792,7 +27822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
