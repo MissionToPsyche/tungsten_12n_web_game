@@ -15,14 +15,14 @@ public class CaveManager : MonoBehaviour
     [Header("Events")]
 
     [Header("Mutable")]
-    [SerializeField] private Light2D GlobalLight; 
+    [SerializeField] private Light2D GlobalLight;
 
     [Header("ReadOnly")]
     [ReadOnly] public List<GameObject> Caves;
     [ReadOnly] public List<Transform> CaveSpawns;
     [ReadOnly] public string CurrentCave = "";
     [ReadOnly] public Transform CurrentSpawn = null;
-    
+
 
     private AsyncOperation async;
     private bool playerInCave = false;
@@ -45,34 +45,34 @@ public class CaveManager : MonoBehaviour
         switch (CaveIndex)
         {
             case 0:
-                GlobalLight.intensity = (float)0.2; 
+                GlobalLight.intensity = (float)0.2;
                 break;
             case 1:
-                GlobalLight.intensity = (float)0.2; 
+                GlobalLight.intensity = (float)0.2;
                 break;
             case 2:
-                GlobalLight.intensity = (float)0.2; 
+                GlobalLight.intensity = (float)0.2;
                 break;
             case 3:
-                GlobalLight.intensity = (float)0.2; 
+                GlobalLight.intensity = (float)0.2;
                 break;
             case 4:
-                GlobalLight.intensity = (float)0.15; 
+                GlobalLight.intensity = (float)0.15;
                 break;
             case 5:
-                GlobalLight.intensity = (float)0.1; 
+                GlobalLight.intensity = (float)0.1;
                 break;
             case 6:
-                GlobalLight.intensity = (float)0.1; 
+                GlobalLight.intensity = (float)0.1;
                 break;
             case 7:
-                GlobalLight.intensity = (float)0.1; 
+                GlobalLight.intensity = (float)0.1;
                 break;
             case 8:
-                GlobalLight.intensity = (float)0.05; 
+                GlobalLight.intensity = (float)0.05;
                 break;
             case 9:
-                GlobalLight.intensity = (float)0.1; 
+                GlobalLight.intensity = (float)0.1;
                 break;
         }
         playerInCave = true;
@@ -85,7 +85,7 @@ public class CaveManager : MonoBehaviour
     public void LeaveCaveScene(string CaveScene)
     {
         int CaveIndex = int.Parse(ExtractPositionFromName(CaveScene)) - 1;
-        GlobalLight.intensity = (float)0.5; 
+        GlobalLight.intensity = (float)0.5;
         CurrentCave = "";
         CurrentSpawn = null;
         Caves[CaveIndex].SetActive(false);
@@ -117,7 +117,7 @@ public class CaveManager : MonoBehaviour
 
         for (int i = 1; i < 11; i++)
         {
-            sceneName = "Cave_" + i.ToString(); 
+            sceneName = "Cave_" + i.ToString();
             LoadCaveScene(sceneName);
             //AssignCave(sceneName);
         }
@@ -150,12 +150,12 @@ public class CaveManager : MonoBehaviour
             }
         }
     }
-    
+
     private IEnumerator LoadCaveSceneAsync(string caveScene)
     {
         // additively load the cave scene
         async = SceneManager.LoadSceneAsync(caveScene, LoadSceneMode.Additive);
-        
+
         // save the players last known coordinates
 
         // wait to load the scene until it is done

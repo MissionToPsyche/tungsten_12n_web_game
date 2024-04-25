@@ -42,8 +42,6 @@ public class Asteroid : MonoBehaviour
         return null; // Return null if no underscore is found or it's at the end of the string
     }
 
-    private string undiscoveredResourceName = "UndiscoveredResource";
-
     public void InstantiateAsteroid(float Size, int numberOfResources, AsteroidClass asteroidClass, GameObject prefab)
     {
         // Set the size based on the average scale of the GameObject
@@ -73,7 +71,11 @@ public class Asteroid : MonoBehaviour
     public void SetNewResourceObject(GameObject newResourceObject, Resource addedResource, int iter)
     {
         SpriteRenderer spriteRenderer = newResourceObject.GetComponent<SpriteRenderer>();
-        spriteRenderer.color = addedResource.Color;
+
+        // Set color with alpha set to 0 to make the sprite invisible until discovered
+        Color invisibleColor = addedResource.Color;
+        invisibleColor.a = 0; // Set alpha to 0 for invisibility
+        spriteRenderer.color = invisibleColor;
 
         //Debug.Log(this.name + " " + transform.parent.name);
         newResourceObject.transform.localScale = addedResource.depositSize;
