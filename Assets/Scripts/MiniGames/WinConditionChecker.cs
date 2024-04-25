@@ -18,7 +18,9 @@ public class WinConditionChecker : MonoBehaviour
 
             SoundFXManager.Instance.PlaySound(SFX.MiniGame.Won, this.transform, 0.5f);
 
-            winCondition.Raise(true);
+            StartCoroutine(CompleteTaskWithDelay());
+
+            //winCondition.Raise(true);
             // Implement your win condition actions here
         }
     }
@@ -33,5 +35,12 @@ public class WinConditionChecker : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private IEnumerator CompleteTaskWithDelay()
+    {
+        yield return new WaitForSeconds(0.5f); // Delay for 1 second
+
+        winCondition.Raise(true);
     }
 }

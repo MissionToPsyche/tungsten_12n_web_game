@@ -29,7 +29,7 @@ public class LeaveCave : MonoBehaviour
             SoundFXManager.Instance.PlaySound(SFX.Cave.Exit, PlayerManager.Instance.GetPlayerObject().transform, 1f);
 
             SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Cave));
-            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), PlayerManager.Instance.GetPlayerObject().transform, 0.5f, 1f);
         }
     }
 

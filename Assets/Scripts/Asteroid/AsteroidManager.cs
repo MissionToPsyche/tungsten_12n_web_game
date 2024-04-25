@@ -8,6 +8,7 @@ public class AsteroidManager : MonoBehaviour
 
     [Header("Events")]
     [SerializeField] public StringEvent currentSatelliteChanged;
+    [SerializeField] public VoidEvent satelliteSpawn;
 
     [Header("Mutable")]
     [SerializeField] public GameObject asteroidPrefab;
@@ -21,6 +22,7 @@ public class AsteroidManager : MonoBehaviour
     // Dictionary to keep track of satellites for each asteroid
     public Dictionary<string, SatelliteData> satelliteMap = new Dictionary<string, SatelliteData>();
 
+    private bool isFirstSatelliteSpawned = false;
 
     // -------------------------------------------------------------------
     // Handle events
@@ -59,6 +61,11 @@ public class AsteroidManager : MonoBehaviour
         else
         {
             Debug.LogError("[AsteroidManager]: No satellite data found for '" + asteroidName + "'.");
+        }
+
+        if (!isFirstSatelliteSpawned)
+        {
+            satelliteSpawn.Raise();
         }
     }
 

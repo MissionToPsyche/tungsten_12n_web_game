@@ -23,7 +23,7 @@ public class Interactable : MonoBehaviour
             SoundFXManager.Instance.PlaySound(SFX.Cave.Enter, PlayerManager.Instance.GetPlayerObject().transform, 1f);
 
             SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Asteroid));
-            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Cave), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Cave), PlayerManager.Instance.GetPlayerObject().transform, 0.5f, 1f);
         }
     }
 

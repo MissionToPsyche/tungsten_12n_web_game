@@ -83,6 +83,11 @@ public class UIBuildManager : MonoBehaviour
             RoboticsButtonOverlay.SetActive(false);
         }
     }
+    //Makes it so the player isn't able to go into caves with the build menu open
+    public void OnPlayerInteract(){
+        isOverlayActive = false;
+        buildChildOverlay.SetActive(isOverlayActive);
+    }
 
     //  <Suit> | <Industry> | <Robotics>
     //Always Starts Industry, cylce left continuously

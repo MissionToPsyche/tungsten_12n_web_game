@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingTierManager : MonoBehaviour
 {
     public static BuildingTierManager Instance { get; private set; }
-
+    [SerializeField] VoidEvent satelliteUnlockSteeringEvent;
     //Not For Display
     Dictionary<BuildingType, int> buildingTiers = new Dictionary<BuildingType, int>();
     void Awake()
@@ -36,6 +36,10 @@ public class BuildingTierManager : MonoBehaviour
 
     public void OnTechUpEvent(packet.TechUpPacket packet){
         buildingTiers[packet.building] = packet.TechToLevel;
+
+        if(packet.building == BuildingComponents.BuildingType.Satellite && packet.TechToLevel == 1){
+            satelliteUnlockSteeringEvent.Raise();
+        }
     }
 
 

@@ -10,7 +10,7 @@ public class MainMenuController : MonoBehaviour
 
     public void Start()
     {
-        SoundFXManager.Instance.PlaySound(SFX.Music.Asteroid.MainMenu, this.gameObject.transform, 1f, 1f);
+        SoundFXManager.Instance.PlaySound(SFX.Music.Asteroid.MainMenu, this.gameObject.transform, 0.5f, 1f);
     }
 
     public void PlayGame()

@@ -2,6 +2,7 @@ using UnityEngine;
 using BuildingComponents;
 using System.IO;
 using TMPro;
+using System.Collections;
 
 public class LaunchPadUIManager : MonoBehaviour{
 
@@ -16,6 +17,8 @@ public class LaunchPadUIManager : MonoBehaviour{
     private ObjectsCost chasisCosts = new ObjectsCost(100,100,75,20,0,10,10,10,0);
     private ObjectsCost cockpitCosts = new ObjectsCost(100,100,75,50,50,25,25,25,0);
     private ObjectsCost externalTankCosts = new ObjectsCost(100,100,75,50,50,50,50,40,0);
+    [SerializeField] private GameObject EndCreditsOverlay;
+    [SerializeField] private GameObject SideOverlay;
     public void OnTriggerRocketModuleUIOverlay(bool setTo){
         BuildRocketModuleUI.SetActive(setTo);
     }
@@ -24,6 +27,7 @@ public class LaunchPadUIManager : MonoBehaviour{
     }
     public void OnWin(){
         youWonOverlay.SetActive(true);
+        StartCoroutine(LoadEndScene());
     }
     public void Awake(){
         LoadIntoUI(engineCosts, EngineCostText);
@@ -41,8 +45,20 @@ public class LaunchPadUIManager : MonoBehaviour{
                 }else{
                     costText.text += $"{costNode.Key}: {costNode.Value}\n";
                 }
-                
+
                 i++;
         }
+    }
+
+
+    private IEnumerator LoadEndScene(){
+        yield return new WaitForSeconds(3f);
+        SideOverlay.SetActive(false);
+        EndCreditsOverlay.SetActive(true);
+        SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Asteroid));
+        SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), gameObject.transform, 0.5f);
+        yield return new WaitForSeconds(40f);
+        SideOverlay.SetActive(true);
+        EndCreditsOverlay.SetActive(false);
     }
 }

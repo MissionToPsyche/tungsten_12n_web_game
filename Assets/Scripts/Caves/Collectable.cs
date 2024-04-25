@@ -106,7 +106,7 @@ public class Collectable : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void OnPlayerInteract()
+    public void OnGenericInteract()
     {
         if (isInRange && Input.GetKeyDown(interactKey))
         {

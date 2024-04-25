@@ -151,33 +151,35 @@ public class InputReader : ScriptableObject,
         if (context.phase == InputActionPhase.Performed)
         {
             Control.State nextState = currentControlState;
-            Debug.Log("");
+            Debug.Log("");  // Consider adding a meaningful log message here
+
+            GameObject currentAsteroid = AsteroidManager.Instance.GetCurrentAsteroid();
+
+            // First, check if a robot can be switched to regardless of the player's location
+            bool canSwitchToRobotAlpha = RobotManager.Instance.GetRobotAlphaBuilt() && !PlayerManager.Instance.GetIsCarryingRobotAlpha();
+            bool canSwitchToRobotBeta = RobotManager.Instance.GetRobotBetaBuilt() && !PlayerManager.Instance.GetIsCarryingRobotBeta();
+
             switch (currentControlState)
             {
                 case Control.State.Player:
-                    GameObject currentAsteroid = AsteroidManager.Instance.GetCurrentAsteroid();
-                    // Debug.Log("[InputReader]: Current Asteroid" + currentAsteroid.name);
-                    if (currentAsteroid != null)
+                    // Prevent satellite control in a cave
+                    if (currentAsteroid != null && !CaveManager.Instance.GetIsPlayerInCave() && !MiniGameManager.Instance.GetIsInMiniGame())
                     {
-                        // Check if the current asteroid has a built satellite
-                        SatelliteData satelliteData = AsteroidManager.Instance.satelliteMap[currentAsteroid.name];
-                        // Debug.Log("[InputReader]: Current Satellite" + satelliteData.satelliteName);
+                        SatelliteData satelliteData = AsteroidManager.Instance.satelliteMap.ContainsKey(currentAsteroid.name) ? AsteroidManager.Instance.satelliteMap[currentAsteroid.name] : null;
                         if (satelliteData != null && satelliteData.isBuilt)
                         {
                             nextState = Control.State.Satellite;
                         }
-                        else if (RobotManager.Instance.GetRobotAlphaBuilt() && !PlayerManager.Instance.GetIsCarryingRobotAlpha())
-                        {
-                            nextState = Control.State.RobotBuddyAlpha;
-                        }
-                        else
-                        {
-                            nextState = Control.State.Player; // If nothing else, stay in Player state
-                        }
+                    }
+
+                    // Allow switching to robot buddy if satellite switch was not done
+                    if (nextState == Control.State.Player && canSwitchToRobotAlpha)
+                    {
+                        nextState = Control.State.RobotBuddyAlpha;
                     }
                     break;
                 case Control.State.Satellite:
-                    if (RobotManager.Instance.GetRobotAlphaBuilt() && !PlayerManager.Instance.GetIsCarryingRobotAlpha())
+                    if (canSwitchToRobotAlpha)
                     {
                         nextState = Control.State.RobotBuddyAlpha;
                     }
@@ -187,7 +189,7 @@ public class InputReader : ScriptableObject,
                     }
                     break;
                 case Control.State.RobotBuddyAlpha:
-                    if (RobotManager.Instance.GetRobotBetaBuilt() && !PlayerManager.Instance.GetIsCarryingRobotBeta())
+                    if (canSwitchToRobotBeta)
                     {
                         nextState = Control.State.RobotBuddyBeta;
                     }

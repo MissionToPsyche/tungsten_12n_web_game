@@ -26,6 +26,7 @@ public class CaveManager : MonoBehaviour
 
     private AsyncOperation async;
     private bool playerInCave = false;
+
     // -------------------------------------------------------------------
     // Handle events
     public void PlayerFellInPit()
@@ -35,9 +36,12 @@ public class CaveManager : MonoBehaviour
 
     // -------------------------------------------------------------------
     // API
-    public bool GetIsPlayerInCave(){
+
+    public bool GetIsPlayerInCave()
+    {
         return playerInCave;
     }
+
     public Transform EnterCaveScene(string CaveScene)
     {
         int CaveIndex = int.Parse(ExtractPositionFromName(CaveScene)) - 1;
