@@ -42,8 +42,6 @@ public class Asteroid : MonoBehaviour
         return null; // Return null if no underscore is found or it's at the end of the string
     }
 
-    private string undiscoveredResourceName = "UndiscoveredResource";
-
     public void InstantiateAsteroid(float Size, int numberOfResources, AsteroidClass asteroidClass, GameObject prefab)
     {
         // Set the size based on the average scale of the GameObject
