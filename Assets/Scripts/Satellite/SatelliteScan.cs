@@ -120,13 +120,8 @@ public class SatelliteScan : MonoBehaviour
     {
         Debug.Log("Undiscovered resource detected and converted to Discovered Resource.");
 
-        // Get the GameObject from the collider
         GameObject resourceObject = hit.collider.gameObject;
-
-        // Set the resource layer to "DiscoveredResource"
         resourceObject.layer = LayerMask.NameToLayer("DiscoveredResource");
-
-        // Set the sorting layer of the sprite renderer to "Resource"
         SpriteRenderer spriteRenderer = resourceObject.GetComponent<SpriteRenderer>();
 
         // Make the sprite fully visible by setting alpha to 1
