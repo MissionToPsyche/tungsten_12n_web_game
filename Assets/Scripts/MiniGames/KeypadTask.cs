@@ -36,7 +36,7 @@ public class KeypadTask : MonoBehaviour
 
         if (isResetting) { return; }
 
-        inputCode.text += number;
+            inputCode.text += number;
 
         if (inputCode.text == cardCode.text)
         {
@@ -44,7 +44,7 @@ public class KeypadTask : MonoBehaviour
 
             SoundFXManager.Instance.PlaySound(SFX.MiniGame.Won, this.transform, 0.5f);
 
-            winCondition.Raise(true);
+            StartCoroutine(CompleteTaskWithDelay());
         }
         else if (inputCode.text.Length >= codeLength)
         {
@@ -55,6 +55,14 @@ public class KeypadTask : MonoBehaviour
             StartCoroutine(ResetCode());
         }
     }
+
+    private IEnumerator CompleteTaskWithDelay()
+    {
+        yield return new WaitForSeconds(1f); // Delay for 1 second
+
+        winCondition.Raise(true);
+    }
+
 
     private IEnumerator ResetCode()
     {
