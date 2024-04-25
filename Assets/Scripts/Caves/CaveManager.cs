@@ -21,10 +21,11 @@ public class CaveManager : MonoBehaviour
     [ReadOnly] public List<GameObject> Caves;
     [ReadOnly] public List<Transform> CaveSpawns;
     [ReadOnly] public string CurrentCave = "";
-    [ReadOnly] public Transform CurrentSpawn = null; 
+    [ReadOnly] public Transform CurrentSpawn = null;
+    
 
     private AsyncOperation async;
-
+    private bool playerInCave = false;
     // -------------------------------------------------------------------
     // Handle events
     public void PlayerFellInPit()
@@ -34,7 +35,9 @@ public class CaveManager : MonoBehaviour
 
     // -------------------------------------------------------------------
     // API
-
+    public bool GetIsPlayerInCave(){
+        return playerInCave;
+    }
     public Transform EnterCaveScene(string CaveScene)
     {
         int CaveIndex = int.Parse(ExtractPositionFromName(CaveScene)) - 1;
@@ -72,7 +75,7 @@ public class CaveManager : MonoBehaviour
                 GlobalLight.intensity = (float)0.1; 
                 break;
         }
-
+        playerInCave = true;
         Caves[CaveIndex].SetActive(true);
         CurrentCave = CaveScene;
         CurrentSpawn = CaveSpawns[CaveIndex];
@@ -86,7 +89,7 @@ public class CaveManager : MonoBehaviour
         CurrentCave = "";
         CurrentSpawn = null;
         Caves[CaveIndex].SetActive(false);
-
+        playerInCave = false;
     }
 
     // public void LoadAsteroidScene(String caveScene)

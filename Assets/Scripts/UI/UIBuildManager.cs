@@ -73,13 +73,15 @@ public class UIBuildManager : MonoBehaviour
     }
     public void OnPlayerBuildOverlay()
     {
-        isOverlayActive = !isOverlayActive;
-        buildChildOverlay.SetActive(isOverlayActive);
+        if(CaveManager.Instance.GetIsPlayerInCave() == false){
+            isOverlayActive = !isOverlayActive;
+            buildChildOverlay.SetActive(isOverlayActive);
 
-        currentOverlay = IndustryButtonOverlay;
-        IndustryButtonOverlay.SetActive(true);
-        SuitButtonOverlay.SetActive(false);
-        RoboticsButtonOverlay.SetActive(false);
+            currentOverlay = IndustryButtonOverlay;
+            IndustryButtonOverlay.SetActive(true);
+            SuitButtonOverlay.SetActive(false);
+            RoboticsButtonOverlay.SetActive(false);
+        }
     }
 
     //  <Suit> | <Industry> | <Robotics>
@@ -307,9 +309,22 @@ public class UIBuildManager : MonoBehaviour
     }
     public void TryBuildSatellite(){
         PlayClick();
-        Satellite tempSatellite = new();
-        checkInventory.Raise(new packet.CheckInventoryPacket(
-            this.gameObject, BuildingType.Satellite, tempSatellite.GetCostDictionary()));
+        ObjectsCost costToSend;
+        if(BuildingTierManager.Instance.GetTierOf(BuildingType.Satellite) < 2){
+            Satellite tempSatellite = new();
+            costToSend = tempSatellite.GetCostDictionary();
+            checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, BuildingType.Satellite, costToSend));
+        }else if (BuildingTierManager.Instance.GetTierOf(BuildingType.Satellite) == 2){
+            costToSend = new ObjectsCost(150, 150, 100, 50, 50, 4, 1, 2, 0);
+            checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, BuildingType.Satellite, costToSend));
+        }else if(BuildingTierManager.Instance.GetTierOf(BuildingType.Satellite) >= 3){
+            costToSend = new ObjectsCost(150, 150, 100, 50, 30, 4, 1, 0, 0);
+            checkInventory.Raise(new packet.CheckInventoryPacket(
+            this.gameObject, BuildingType.Satellite, costToSend));
+        }
+        
     }
     public void TryTechUpSatellite(){
         PlayClick();

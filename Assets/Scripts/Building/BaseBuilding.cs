@@ -253,7 +253,7 @@ public class BaseBuilding
         "Satellite",
         "Robotics",
         "Satellite",
-        "Use to scan for resources, 3 minute scan time",
+        "Use to reveal resources (Max 1 per asteroid)",
         0,
         0,
         0,
@@ -264,17 +264,17 @@ public class BaseBuilding
             { "Nickel", 150 },
             { "Cobalt", 150 },
             { "Platinum", 75 },
-            { "Gold", 75 },
-            { "Technetium", 75 },
-            { "Tungsten", 10 },
-            { "Iridium", 10 }
+            { "Gold", 50 },
+            { "Technetium", 4 },
+            { "Tungsten",1 },
+            { "Iridium", 2 }
         },
         "",
         new List<string>
         {
-            "Reduce scan time to 2 minutes",
             "Gain the ability to steer satellites",
-            "1 minute scan time",
+            "Future Satellites cost 50 less Cobalt and 25 less platinum",
+            "Future Satellites cost 20 less Gold and no Iridium",
             "Peak Technology Reached!!!"
         }
     );

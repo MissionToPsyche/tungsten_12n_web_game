@@ -156,10 +156,32 @@ public class UIBuildingDataLoader : MonoBehaviour
             break;
             case(BuildingComponents.BuildingType.Satellite):
                 SatelliteTechUpText.text = item.TechUpTexts[packet.TechToLevel];
+                if(packet.TechToLevel == 2){
+                    ObjectsCost newCost = new ObjectsCost(150, 150, 100, 50, 50, 4, 1, 2, 0);
+                    UpdateCostUI(newCost, SatelliteCostText);
+                }else if (packet.TechToLevel == 3){
+                    ObjectsCost newCost = new ObjectsCost(150, 150, 100, 50, 30, 4, 1, 0, 0);
+                    UpdateCostUI(newCost, SatelliteCostText);
+                }
+
             break;
             case(BuildingComponents.BuildingType.LaunchPad):
                 LaunchPadTechUpText.text = item.TechUpTexts[packet.TechToLevel];
             break;
+        }
+    }
+    private void UpdateCostUI(ObjectsCost item, TextMeshProUGUI costText){
+        costText.text = "";
+        int i = 0;
+        foreach(var costNode in item.getCostDictionary()){
+            if (Convert.ToInt32(costNode.Value) > 0)
+                if(i % 2 == 0){
+                    costText.text += $"{costNode.Key}: {costNode.Value}\t";
+                }else{
+                    costText.text += $"{costNode.Key}: {costNode.Value}\n";
+                }
+                
+                i++;
         }
     }
 
