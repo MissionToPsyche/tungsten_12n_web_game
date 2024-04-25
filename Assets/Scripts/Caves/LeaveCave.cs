@@ -15,23 +15,21 @@ public class LeaveCave : MonoBehaviour
     [Header("ReadOnly")]
 
     private bool isInRange;
+    private KeyCode interactKey = KeyCode.E;
 
     // Update is called once per frame
     void Update()
     {
-        if (isInRange)
+        if (isInRange && Input.GetKeyDown(interactKey))
         {
-            if (PlayerManager.Instance.GetPlayerInteracting())
-            {
-                string CaveScene = gameObject.scene.name;
-                CaveManager.Instance.LeaveCaveScene(CaveScene);
-                PlayerManager.Instance.SetScenePosition("AsteroidScene");
+            string CaveScene = gameObject.scene.name;
+            CaveManager.Instance.LeaveCaveScene(CaveScene);
+            PlayerManager.Instance.SetScenePosition("AsteroidScene");
 
-                SoundFXManager.Instance.PlaySound(SFX.Cave.Exit, PlayerManager.Instance.GetPlayerObject().transform, 1f);
+            SoundFXManager.Instance.PlaySound(SFX.Cave.Exit, PlayerManager.Instance.GetPlayerObject().transform, 1f);
 
-                SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Cave));
-                SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
-            }
+            SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Cave));
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
         }
     }
 

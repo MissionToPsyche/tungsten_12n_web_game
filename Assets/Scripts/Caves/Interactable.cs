@@ -7,24 +7,23 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     private bool isInRange;
+    private KeyCode interactKey = KeyCode.E;
     public TextMeshProUGUI reminderText;
 
+    // Update is called once per frame
     void Update()
     {
-        if (isInRange)
+        if (isInRange && Input.GetKeyDown(interactKey))
         {
-            if (PlayerManager.Instance.GetPlayerInteracting())
-            {
-                string CaveScene = gameObject.tag;
-                Transform CaveSpawn = CaveManager.Instance.EnterCaveScene(CaveScene);
-                PlayerManager.Instance.SetLastPosition();
-                PlayerManager.Instance.SetScenePosition(CaveScene, CaveSpawn);
+            string CaveScene = gameObject.tag;
+            Transform CaveSpawn = CaveManager.Instance.EnterCaveScene(CaveScene);
+            PlayerManager.Instance.SetLastPosition();
+            PlayerManager.Instance.SetScenePosition(CaveScene, CaveSpawn);
 
-                SoundFXManager.Instance.PlaySound(SFX.Cave.Enter, PlayerManager.Instance.GetPlayerObject().transform, 1f);
+            SoundFXManager.Instance.PlaySound(SFX.Cave.Enter, PlayerManager.Instance.GetPlayerObject().transform, 1f);
 
-                SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Asteroid));
-                SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Cave), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
-            }
+            SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Asteroid));
+            SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Cave), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
         }
     }
 
