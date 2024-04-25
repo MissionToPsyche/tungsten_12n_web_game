@@ -107,7 +107,7 @@ public class SatelliteManager : MonoBehaviour
             currentSatelliteObject = spawnedSatellite;
             Debug.Log("[SatelliteManager]: Spawned satellite at " + spawnPosition);
 
-            SoundFXManager.Instance.PlaySound(SFX.Satellite.Spawn, PlayerManager.Instance.GetPlayerObject().transform, 0.25f);
+            SoundFXManager.Instance.PlaySound(SFX.Satellite.Spawn, PlayerManager.Instance.GetPlayerObject().transform, 0.10f);
         }
         else
         {

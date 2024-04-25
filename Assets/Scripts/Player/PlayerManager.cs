@@ -25,8 +25,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField, ReadOnly] private bool playerInteracting;
 
     // Not for display
-    private Camera cam;
-    private CinemachineVirtualCamera virtualPlayerCamera;
     private PlayerController playerController;
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero;
     private Quaternion lastRotation = Quaternion.Euler(0,0,0);

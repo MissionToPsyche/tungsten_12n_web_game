@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class MiniGameManager : MonoBehaviour
 {
+    public static MiniGameManager Instance { get; private set; }
+
     public List<GameObject> prefabsToChooseFrom;
 
     public GameObject caveMiniGame;
@@ -21,6 +23,31 @@ public class MiniGameManager : MonoBehaviour
     public GameObject ExtractorTaskBG;
 
     public GameObject CaveTaskBG;
+
+    private bool isInMiniGame = false;
+
+    public bool GetIsInMiniGame()
+    {
+        return isInMiniGame;
+    }
+
+    public void SetIsInMiniGame(bool state)
+    {
+        isInMiniGame = state;
+    }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     // Method to generate and place a prefab inside another object
     public void GenerateAndPlacePrefab()
@@ -84,6 +111,8 @@ public class MiniGameManager : MonoBehaviour
 
         // Instantiate the chosen prefab inside the parent GameObject
         instantiatedPrefab = Instantiate(prefabToInstantiate, parentObject.transform);
+
+        SetIsInMiniGame(true);
 
         // Set the scale of the instantiated prefab
         //instantiatedPrefab.transform.localScale = desiredScale;

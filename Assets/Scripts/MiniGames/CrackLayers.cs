@@ -38,6 +38,8 @@ public class CrackLayers : MonoBehaviour
                 {
                     SoundFXManager.Instance.PlaySound(SFX.MiniGame.Won, this.transform, 0.5f);
 
+                    MiniGameManager.Instance.SetIsInMiniGame(false);
+
                     //WinConditionEvent.Raise(true);
 
                     StartCoroutine(CompleteTaskWithDelay());
@@ -54,7 +56,7 @@ public class CrackLayers : MonoBehaviour
 
     private IEnumerator CompleteTaskWithDelay()
     {
-        yield return new WaitForSeconds(0.5f); // Delay for 1 second
+        yield return new WaitForSeconds(0.25f); // Delay for 1 second
 
         WinConditionEvent.Raise(true);
     }
