@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Battery Life
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
+  m_sharedMaterial: {fileID: -6969445821730098892, guid: 51e65d303b3aadf4097cc2dc4a6e5c7b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

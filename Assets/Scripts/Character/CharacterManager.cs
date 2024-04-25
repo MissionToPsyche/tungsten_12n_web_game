@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class CharacterManager : MonoBehaviour
 {
+    //public static CharacterManager Instance {get; private set;} 
+    public CanvasGroup Disclaimer;
+    public CanvasGroup Controls;
     public CharacterDatabase characterDatabase;
     public TextMeshProUGUI nameText; 
     public SpriteRenderer artworkSprite; 
@@ -52,6 +55,21 @@ public class CharacterManager : MonoBehaviour
 
         UpdateCharacter(selection);
         SaveSelection();
+    }
+
+    public void CharacterContinue()
+    {
+        Disclaimer.alpha = 1; 
+        Disclaimer.blocksRaycasts = true; 
+        artworkSprite.enabled = false;
+    }
+
+    public void DisclaimerContinue()
+    {
+        Disclaimer.alpha = 0;
+        Disclaimer.blocksRaycasts = false;
+        Controls.alpha = 1; 
+        Controls.blocksRaycasts = true;
     }
 
     private void UpdateCharacter(int selection) 
