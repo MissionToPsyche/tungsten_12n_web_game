@@ -113,7 +113,7 @@ public class CaveManager : MonoBehaviour
         }
 
         // load all the caves into the scene
-        string sceneName; 
+        string sceneName;
 
         for (int i = 1; i < 11; i++)
         {
@@ -130,7 +130,7 @@ public class CaveManager : MonoBehaviour
 
     private void AssignCave(string caveScene)
     {
-        List<GameObject> rootObject = new List<GameObject>(); 
+        List<GameObject> rootObject = new List<GameObject>();
         Scene scene = SceneManager.GetSceneByName(caveScene);
         scene.GetRootGameObjects( rootObject );
         Caves.Add(rootObject[0]);
@@ -138,12 +138,12 @@ public class CaveManager : MonoBehaviour
 
     private void DisableCave(string caveScene)
     {
-        // disable the cave grid at the start of the game 
+        // disable the cave grid at the start of the game
         for (int i = 0; i < Caves.Count; i++)
         {
             GameObject currentCave = Caves[i];
             if (currentCave.name == caveScene + "_Grid")
-            {   
+            {
                 Transform caveSpawn = currentCave.transform.GetChild(0).GameObject().transform;
                 CaveSpawns.Add(caveSpawn);
                 currentCave.SetActive(false);

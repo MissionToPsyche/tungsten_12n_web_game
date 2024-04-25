@@ -1,6 +1,7 @@
 using UnityEngine;
 using BuildingComponents;
-using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 [DefaultExecutionOrder(100)]
 public class LaunchPadManager : MonoBehaviour{
@@ -20,6 +21,7 @@ public class LaunchPadManager : MonoBehaviour{
     [SerializeField] private GameObject chasisPrefab;
     [SerializeField] private GameObject cockpitPrefab;
     [SerializeField] private GameObject externalTankPrefab;
+    
     public void Awake(){
         launchpad = new();
         QueryTechLevel();
@@ -107,9 +109,12 @@ public class LaunchPadManager : MonoBehaviour{
         launchpad.SetExternalTankBuilt();
         SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
         //They have won the game
+
+
         triggerRocketModuleUIOverlay.Raise(false);
         winningEvent.Raise();
     }
+
     private void TryBuildEngine(){
         checkInventory.Raise(new packet.CheckInventoryPacket(
                 this.gameObject, BuildingType.Engines, engineCosts

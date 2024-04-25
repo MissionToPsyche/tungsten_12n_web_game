@@ -91,6 +91,7 @@ public class GravityBody2D : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (gravityApplied)
             rigidBody2D.AddForce(GravityDirection * (GRAVITY_FORCE * Time.fixedDeltaTime), ForceMode2D.Force);
 
