@@ -74,15 +74,11 @@ public class Asteroid : MonoBehaviour
     {
         SpriteRenderer spriteRenderer = newResourceObject.GetComponent<SpriteRenderer>();
         spriteRenderer.color = addedResource.Color;
-        spriteRenderer.sortingLayerName = "Resource";
 
         //Debug.Log(this.name + " " + transform.parent.name);
         newResourceObject.transform.localScale = addedResource.depositSize;
         newResourceObject.transform.parent = this.transform;
         newResourceObject.name = $"{addedResource.Name}_" + iter;
-
-        //newResourceObject.layer = LayerMask.NameToLayer("DiscoveredResource");
-        newResourceObject.layer = LayerMask.NameToLayer("UndiscoveredResource");
 
         spawnResourceEvent.Raise(new packet.ResourceGameObjectPacket(newResourceObject, addedResource));
         resourceList.Add(addedResource);
