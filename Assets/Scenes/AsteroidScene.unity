@@ -6556,7 +6556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6313726, g: 0.6117647, b: 0.6117647, a: 0.627451}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11728,7 +11728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763896219}
   - component: {fileID: 763896220}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Control Section
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11769,7 +11769,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!224 &769893283 stripped
 RectTransform:
@@ -13080,7 +13080,7 @@ GameObject:
   - component: {fileID: 894237478}
   - component: {fileID: 894237480}
   - component: {fileID: 894237479}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13120,7 +13120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6313726, g: 0.6117647, b: 0.6117647, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13365,7 +13365,6 @@ MonoBehaviour:
   playerInteract: {fileID: 11400000, guid: b201a2577f282c94d90d2bfd7f7f619b, type: 2}
   playerLaunchPadInteract: {fileID: 11400000, guid: e13e01f59d8ec4281ade5e2d7655c082, type: 2}
   playerInPit: {fileID: 11400000, guid: ba923ed4246c9584e9004f3a2858b500, type: 2}
-  satelliteSpawn: {fileID: 11400000, guid: ca60d994686e89e42b6f978276e368b6, type: 2}
   characterDatabase: {fileID: 11400000, guid: 0ffa1d2925c3c7d4fa18116d97de770a, type: 2}
   animator: {fileID: 911276413}
   spriteRenderer: {fileID: 911276411}
@@ -16392,7 +16391,7 @@ GameObject:
   - component: {fileID: 1266101823}
   - component: {fileID: 1266101822}
   - component: {fileID: 1266101821}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Control Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25999,7 +25998,7 @@ GameObject:
   - component: {fileID: 1566089354}
   - component: {fileID: 1566089353}
   - component: {fileID: 1566089352}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Control Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26241,7 +26240,7 @@ GameObject:
   - component: {fileID: 1625970332}
   - component: {fileID: 1625970331}
   - component: {fileID: 1625970330}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Return Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27783,7 +27782,7 @@ GameObject:
   - component: {fileID: 1843789045}
   - component: {fileID: 1843789047}
   - component: {fileID: 1843789046}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Secondary Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27823,7 +27822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
