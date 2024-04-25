@@ -23,8 +23,6 @@ public class RobotManager : MonoBehaviour
     [SerializeField, ReadOnly] private Vector2 robotBetaPosition;
 
     // Not for display
-    private Camera cam;
-    private CinemachineVirtualCamera virtualRobotCamera;
     private RobotBuddyController robotController;
     private UnityEngine.Vector3 lastCoordinates = Vector3.zero;
     private Quaternion lastRotation = Quaternion.Euler(0,0,0);

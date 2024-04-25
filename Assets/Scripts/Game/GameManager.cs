@@ -72,6 +72,6 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), PlayerManager.Instance.GetPlayerObject().transform, 1f, 1f);
+        SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), PlayerManager.Instance.GetPlayerObject().transform, 0.5f, 1f);
     }
 }
