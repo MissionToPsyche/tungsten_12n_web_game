@@ -58,7 +58,7 @@ public class KeypadTask : MonoBehaviour
 
     private IEnumerator CompleteTaskWithDelay()
     {
-        yield return new WaitForSeconds(1f); // Delay for 1 second
+        yield return new WaitForSeconds(0.5f); // Delay for 1 second
 
         winCondition.Raise(true);
     }
