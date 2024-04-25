@@ -34,8 +34,12 @@ public class SatelliteController : MonoBehaviour
     {
         if (SatelliteManager.Instance.IsSatelliteControlUnlocked())
         {
-            State nextState = isManualControlEnabled ? State.Autopilot : State.Manual;
-            ChangeState(nextState);
+            // Conditional state switching: only if this is the current satellite
+            if (SatelliteManager.Instance.GetCurrentSatelliteObject() == this.gameObject)
+            {
+                State nextState = isManualControlEnabled ? State.Autopilot : State.Manual;
+                ChangeState(nextState);
+            }
         }
     }
 
@@ -63,6 +67,7 @@ public class SatelliteController : MonoBehaviour
 
     // -------------------------------------------------------------------
     // Base
+
     void Start()
     {
         satelliteScan = gameObject.GetComponent<SatelliteScan>();
@@ -207,13 +212,25 @@ public class SatelliteController : MonoBehaviour
     {
         if (edgePoints == null || edgePoints.Length < 2) return;  // Ensure there are at least two points to form a segment
 
+        if (currentTargetIndex < 0 || currentTargetIndex >= edgePoints.Length)
+        {
+            Debug.LogError("CurrentTargetIndex is out of range: " + currentTargetIndex);
+            return;
+        }
+
         // Safely calculate the next index with wrapping
-        int nextIndex = (currentTargetIndex - 1) % edgePoints.Length;
+        int nextIndex = (currentTargetIndex - 1 + edgePoints.Length) % edgePoints.Length;
 
         if (currentTargetIndex < 0 || currentTargetIndex >= edgePoints.Length)
         {
             Debug.LogError("CurrentTargetIndex is out of range: " + currentTargetIndex);
             return;  // Add this check to prevent accessing the array with an invalid index
+        }
+
+        if (edgePoints == null || edgePoints.Length < 2)
+        {
+            Debug.LogError("Edge points array is null or does not contain enough points.");
+            return;
         }
 
         Vector2 currentPoint = edgePoints[currentTargetIndex];
