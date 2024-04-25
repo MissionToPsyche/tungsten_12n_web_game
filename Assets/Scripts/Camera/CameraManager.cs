@@ -70,7 +70,8 @@ public class CameraManager : MonoBehaviour
                 break;
             case Control.State.Satellite:
                 GameObject satellite = SatelliteManager.Instance.GetCurrentSatelliteObject();
-                ActivateCamera(satelliteCamera, satellite, satellite.transform);
+                GameObject asteroid = AsteroidManager.Instance.GetCurrentAsteroid();
+                ActivateSatelliteCamera(satellite, asteroid);
                 break;
             case Control.State.RobotBuddyAlpha:
                 if (!PlayerManager.Instance.GetIsCarryingRobotAlpha())
@@ -129,6 +130,31 @@ public class CameraManager : MonoBehaviour
 
     // -------------------------------------------------------------------
     // Functions
+
+    private void ActivateSatelliteCamera(GameObject satellite, GameObject asteroid)
+    {
+        ActivateCamera(satelliteCamera, satellite, satellite.transform);
+        if (asteroid != null)
+        {
+            // Calculate the 2D distance between the satellite and the asteroid's center
+            float distance = Vector2.Distance(new Vector2(satellite.transform.position.x, satellite.transform.position.y),
+                                              new Vector2(asteroid.transform.position.x, asteroid.transform.position.y));
+
+            // Calculate additional buffer for the top side to keep the satellite in frame
+            float additionalBuffer = distance * 0.05f;  // 5% of the distance as buffer
+
+            // Set the camera's tracked object offset to center the view
+            var transposer = satelliteCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+            transposer.m_TrackedObjectOffset.y = -(distance / 2 + additionalBuffer / 2); // Offset slightly more towards the top
+
+            // Adjust the orthographic size of the camera based on the distance and additional buffer
+            satelliteCamera.m_Lens.OrthographicSize = (distance / 2) + additionalBuffer;
+        }
+        else
+        {
+            Debug.LogError("Asteroid object is null. Unable to set camera properties.");
+        }
+    }
 
     private void ActivateCamera(CinemachineVirtualCamera camera, GameObject targetObject, Transform followTransform = null)
     {

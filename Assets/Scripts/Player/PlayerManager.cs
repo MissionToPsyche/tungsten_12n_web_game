@@ -6,7 +6,6 @@ using Cinemachine;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerManager : MonoBehaviour

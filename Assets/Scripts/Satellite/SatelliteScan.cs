@@ -22,15 +22,19 @@ public class SatelliteScan : MonoBehaviour
 
     public void OnSatelliteScan(bool scanning)
     {
-        if (isScanningAllowed)
+        // Conditional state switching: only if this is the current satellite
+        if (SatelliteManager.Instance.GetCurrentSatelliteObject() == this.gameObject)
         {
-            if (scanning)
+            if (isScanningAllowed)
             {
-                StartScanning();
-            }
-            else
-            {
-                StopScanning();
+                if (scanning)
+                {
+                    StartScanning();
+                }
+                else
+                {
+                    StopScanning();
+                }
             }
         }
     }
@@ -115,10 +119,20 @@ public class SatelliteScan : MonoBehaviour
     private void DiscoverResource(RaycastHit2D hit)
     {
         Debug.Log("Undiscovered resource detected and converted to Discovered Resource.");
-        hit.collider.gameObject.layer = LayerMask.NameToLayer("DiscoveredResource");
-        hit.collider.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Resource";
+
+        GameObject resourceObject = hit.collider.gameObject;
+        resourceObject.layer = LayerMask.NameToLayer("DiscoveredResource");
+        SpriteRenderer spriteRenderer = resourceObject.GetComponent<SpriteRenderer>();
+
+        // Make the sprite fully visible by setting alpha to 1
+        Color visibleColor = spriteRenderer.color;
+        visibleColor.a = 1;
+        spriteRenderer.color = visibleColor;
+
+        // Play discovery sound effect
         SoundFXManager.Instance.PlaySound(SFX.Satellite.Scan, transform, 1f);
     }
+
 
     private void UpdateLineRenderer(RaycastHit2D hit, Vector2 direction, float length)
     {
