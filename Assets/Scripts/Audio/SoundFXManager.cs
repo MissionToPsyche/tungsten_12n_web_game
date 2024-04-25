@@ -19,7 +19,7 @@ public class SoundFXManager : MonoBehaviour
     // -------------------------------------------------------------------
     // Handle events
 
-    public void PlaySound(Enum type, Transform transform, float volume, float delay = 0f)
+    public void PlaySound(Enum type, Transform transform, float volume, float delay = 0f, bool loop = false)
     {
         // Spawn in object
         AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
@@ -29,6 +29,7 @@ public class SoundFXManager : MonoBehaviour
         {
             audioSource.clip = clip;
             audioSource.volume = volume;
+            audioSource.loop = loop;
 
             if (audioSource.clip != null)
             {
@@ -139,23 +140,39 @@ public class SoundFXManager : MonoBehaviour
 
     public void StopSoundsOfType(Type enumType)
     {
-        List<AudioSource> sourcesToRemove = new List<AudioSource>();
-
         foreach (var entry in soundMap)
         {
             if (entry.Key.GetType() == enumType)
             {
-                // Find all audio sources playing this clip and stop them
-                for (int i = activeAudioSources.Count - 1; i >= 0; i--)
-                {
-                    AudioSource source = activeAudioSources[i];
-                    if (source != null && source.clip == entry.Value)
-                    {
-                        source.Stop();
-                        GameObject.Destroy(source.gameObject);  // Destroy the object
-                        sourcesToRemove.Add(source);
-                    }
-                }
+                StopAudioSource(entry.Key);
+            }
+        }
+    }
+
+    public void StopSound(Enum soundEnum)
+    {
+        StopAudioSource(soundEnum);
+    }
+
+    private void StopAudioSource(Enum soundEnum)
+    {
+        List<AudioSource> sourcesToRemove = new List<AudioSource>();
+
+        for (int i = activeAudioSources.Count - 1; i >= 0; i--)
+        {
+            AudioSource source = activeAudioSources[i];
+            // Check if the source is null or has been destroyed
+            if (source == null || source.Equals(null))
+            {
+                activeAudioSources.RemoveAt(i);
+                continue;
+            }
+
+            if (source.clip == soundMap[soundEnum])
+            {
+                source.Stop();
+                GameObject.Destroy(source.gameObject);  // Destroy the object
+                sourcesToRemove.Add(source);
             }
         }
 

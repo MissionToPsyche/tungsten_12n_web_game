@@ -14,17 +14,14 @@ public class LeaveCave : MonoBehaviour
 
     [Header("ReadOnly")]
 
-
     private bool isInRange;
     private KeyCode interactKey = KeyCode.E;
-    private GameManager gameManager;
 
     // Update is called once per frame
     void Update()
     {
         if (isInRange && Input.GetKeyDown(interactKey))
         {
-            //Debug.Log(gameObject.scene.name);
             string CaveScene = gameObject.scene.name;
             CaveManager.Instance.LeaveCaveScene(CaveScene);
             PlayerManager.Instance.SetScenePosition("AsteroidScene");

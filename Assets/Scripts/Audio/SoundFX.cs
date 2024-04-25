@@ -56,6 +56,8 @@ namespace SFX
         [ResourcePath("Audio/SFX/satellite_spawn")]
         Spawn,
 
+        [ResourcePath("Audio/SFX/satellite_scan")]
+        Scan,
     }
 
     public enum MiniGame

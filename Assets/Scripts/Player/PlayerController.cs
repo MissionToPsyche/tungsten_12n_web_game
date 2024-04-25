@@ -179,6 +179,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     public void OnPlayerPickupRobot()
     {
         if (isCarryingARobot() == false)
@@ -404,7 +405,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentState == PlayerState.Jumping)
         {
-            Debug.Log("JumpForce of: " + jumpForce);
+            // Debug.Log("JumpForce of: " + jumpForce);
             playerBody.AddForce(-gravityBody.GravityDirection * jumpForce, ForceMode2D.Impulse);
         }
         else if (canDoubleJump)
