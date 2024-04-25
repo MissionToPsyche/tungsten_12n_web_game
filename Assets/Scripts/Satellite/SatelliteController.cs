@@ -14,17 +14,18 @@ public class SatelliteController : MonoBehaviour
     [SerializeField, ReadOnly] private GameObject parentAsteroid;
     [SerializeField, ReadOnly] private float horizontalInput = 0f;
 
-    SatelliteScan satelliteScan;
     private Vector2[] edgePoints;
     private int currentTargetIndex = 0;
-    private float movingSpeed = 5f;
+    private float movingSpeed = 2.5f;
     private float progressBetweenPoints = 0f; // Tracks interpolation progress between points
 
     private enum State { Autopilot, Manual }
     private State currentState;
 
     private bool isManualControlEnabled = false;
-    private bool lastDirectionWasLeft = true;
+
+    // SatelliteScan Component for handling scanning
+    SatelliteScan satelliteScan;
 
     // -------------------------------------------------------------------
     // Handle events
@@ -58,6 +59,7 @@ public class SatelliteController : MonoBehaviour
     {
         satelliteScan = gameObject.GetComponent<SatelliteScan>();
         satelliteScan.SetParentAsteroid(parentAsteroid);
+        satelliteScan.SetIsScanningAllowed(true);
 
         UpdateEdgePoints();
         currentState = State.Autopilot;
@@ -96,47 +98,93 @@ public class SatelliteController : MonoBehaviour
             ToggleControlMode();
         }
 
-        if (edgePoints != null && edgePoints.Length > 0)
-        {
-            if (currentState == State.Manual)
-            {
-                ManualMove(-horizontalInput);
-            }
-            else
-            {
-                MoveAlongEdge();
-            }
-            UpdateRotation();
-        }
+        // Move the satellite based on the current state
+        MoveBasedOnState();
+        UpdateRotation();
     }
 
     private void ToggleControlMode()
     {
-        isManualControlEnabled = !isManualControlEnabled;
-        currentState = isManualControlEnabled ? State.Manual : State.Autopilot;
+        State nextState = isManualControlEnabled ? State.Autopilot : State.Manual;
+        ChangeState(nextState);
+    }
 
-        if (isManualControlEnabled)
+    private void MoveBasedOnState()
+    {
+        if (edgePoints == null || edgePoints.Length == 0) return;
+
+        switch (currentState)
         {
-            // Capture the current exact position for precise manual control
-            satelliteBody.velocity = Vector2.zero; // Stop all movement
-        }
-        else
-        {
-            // Adjust the index to make sure the next automatic movement is in the last manual direction
-            AdjustTargetIndexForDirection();
+            case State.Manual:
+                ManualMove(-horizontalInput);
+                break;
+            case State.Autopilot:
+                MoveAlongEdge();
+                break;
         }
     }
 
+    private void ChangeState(State newState)
+    {
+        currentState = newState;
+        isManualControlEnabled = (newState == State.Manual);
+
+        if (currentState == State.Manual)
+        {
+            RecalculateProgress();
+        }
+
+        // Always reset the velocity when changing states to avoid sudden jumps
+        satelliteBody.velocity = Vector2.zero;
+    }
+
+    private void RecalculateProgress()
+    {
+        if (currentTargetIndex >= edgePoints.Length || edgePoints.Length < 2) return;
+
+        Vector2 currentPoint = edgePoints[currentTargetIndex];
+        Vector2 nextPoint = edgePoints[(currentTargetIndex + 1) % edgePoints.Length];
+        Vector2 position = satelliteBody.position;
+
+        // Calculate the projection of the current position on the line segment from currentPoint to nextPoint
+        Vector2 lineDir = nextPoint - currentPoint;
+        float lineLength = lineDir.magnitude;
+        Vector2 lineDirNormalized = lineDir / lineLength;
+
+        // Project the current position onto the line direction
+        float projection = Vector2.Dot(position - currentPoint, lineDirNormalized);
+        projection = Mathf.Clamp(projection, 0, lineLength); // Clamping to stay within the segment
+
+        progressBetweenPoints = projection / lineLength;
+
+        // Correct the currentTargetIndex if necessary
+        if (projection == 0)
+        {
+            // Check if it should snap to the previous segment
+            currentTargetIndex = (currentTargetIndex - 1 + edgePoints.Length) % edgePoints.Length;
+            nextPoint = currentPoint;
+            currentPoint = edgePoints[currentTargetIndex];
+            lineDir = nextPoint - currentPoint;
+            lineLength = lineDir.magnitude;
+            lineDirNormalized = lineDir.normalized;
+            projection = Vector2.Dot(position - currentPoint, lineDirNormalized);
+            progressBetweenPoints = projection / lineLength;
+        }
+        else if (projection == lineLength)
+        {
+            // Move to the next segment
+            currentTargetIndex = (currentTargetIndex + 1) % edgePoints.Length;
+            progressBetweenPoints = 0;
+        }
+    }
 
     private void ManualMove(float input)
     {
+        if (currentTargetIndex >= edgePoints.Length) return;
+
+        // Interpolate between the current and next point based on player input
         progressBetweenPoints += input * Time.deltaTime * movingSpeed;
         progressBetweenPoints = Mathf.Clamp01(progressBetweenPoints);
-
-        if (input != 0)
-        {
-            lastDirectionWasLeft = input < 0;
-        }
 
         Vector2 currentPoint = edgePoints[currentTargetIndex];
         Vector2 nextPoint = edgePoints[(currentTargetIndex + 1) % edgePoints.Length];
@@ -156,20 +204,27 @@ public class SatelliteController : MonoBehaviour
 
     void MoveAlongEdge()
     {
-        int nextIndex = lastDirectionWasLeft ?
-            (currentTargetIndex - 1 + edgePoints.Length) % edgePoints.Length :
-            (currentTargetIndex + 1) % edgePoints.Length;
+        if (edgePoints == null || edgePoints.Length < 2) return;  // Ensure there are at least two points to form a segment
 
-        Vector2 targetPoint = edgePoints[currentTargetIndex];
+        // Safely calculate the next index with wrapping
+        int nextIndex = (currentTargetIndex - 1) % edgePoints.Length;
+
+        if (currentTargetIndex < 0 || currentTargetIndex >= edgePoints.Length)
+        {
+            Debug.LogError("CurrentTargetIndex is out of range: " + currentTargetIndex);
+            return;  // Add this check to prevent accessing the array with an invalid index
+        }
+
+        Vector2 currentPoint = edgePoints[currentTargetIndex];
         Vector2 nextPoint = edgePoints[nextIndex];
         float step = movingSpeed * Time.deltaTime;
 
-        satelliteBody.position = Vector2.MoveTowards(satelliteBody.position, targetPoint, step);
+        satelliteBody.position = Vector2.MoveTowards(satelliteBody.position, nextPoint, step);
 
-        if (Vector2.Distance(satelliteBody.position, targetPoint) < 0.01f)
+        if (Vector2.Distance(satelliteBody.position, nextPoint) < 0.01f)
         {
             currentTargetIndex = nextIndex;
-            progressBetweenPoints = 0;
+            progressBetweenPoints = 0; // Reset progress when the point is reached
         }
     }
 
@@ -177,24 +232,5 @@ public class SatelliteController : MonoBehaviour
     {
         Vector3 directionToCenter = (transform.position - parentAsteroid.transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, directionToCenter);
-    }
-
-    private void AdjustTargetIndexForDirection()
-    {
-        // Determine the closest point in the last direction moved
-        if (lastDirectionWasLeft)
-        {
-            currentTargetIndex = (currentTargetIndex - 1 + edgePoints.Length) % edgePoints.Length;
-        }
-        else
-        {
-            currentTargetIndex = (currentTargetIndex + 1) % edgePoints.Length;
-        }
-    }
-
-    private void UpdateState(State newState)
-    {
-        // currentState = newState;
-        // UpdateAnimatorParameters();
     }
 }

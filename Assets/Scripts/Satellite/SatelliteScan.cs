@@ -60,9 +60,9 @@ public class SatelliteScan : MonoBehaviour
     {
         // Add a LineRenderer component dynamically and configure it
         lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.material = new Material(Shader.Find("Unlit/Color"));
-        lineRenderer.startColor = new Color(0, 1, 0, 1); // Fully opaque green
-        lineRenderer.endColor = new Color(0, 1, 0, 1); // Fully opaque green
+        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        lineRenderer.startColor = new Color(1, 1, 1, 1); // Fully opaque white
+        lineRenderer.endColor = new Color(1, 1, 1, 1); // Fully opaque white
         lineRenderer.sortingLayerName = "Foreground";
         lineRenderer.sortingOrder = 1;
         lineRenderer.startWidth = 0.05f; // Start width of the line
@@ -76,44 +76,59 @@ public class SatelliteScan : MonoBehaviour
         {
             Vector2 rayDirection = (parentAsteroid.transform.position - transform.position).normalized;
             float rayLength = Vector2.Distance(transform.position, parentAsteroid.transform.position);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, rayLength, LayerMask.GetMask("UndiscoveredResource"));
-
-            // Set the positions of the line renderer
-            lineRenderer.SetPosition(0, transform.position);
-            Vector3 endPosition = transform.position + (Vector3)rayDirection * (hit.collider ? hit.distance : rayLength);
-            lineRenderer.SetPosition(1, endPosition);
-
-            if (hit.collider != null)
-            {
-                if (!resourceDetected)
-                {
-                    Debug.Log("Undiscovered resource detected!");
-                    resourceDetected = true;
-                    SoundFXManager.Instance.PlaySound(SFX.Satellite.Scan, transform, 1f);
-
-                    // Update the detected resource's layermask
-                    hit.collider.gameObject.layer = LayerMask.NameToLayer("DiscoveredResource");
-                    hit.collider.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Resource";
-                    Debug.DrawRay(transform.position, rayDirection * hit.distance, Color.green);
-                }
-            }
-            else
-            {
-                if (resourceDetected)
-                {
-                    resourceDetected = false;
-                    SoundFXManager.Instance.StopSound(SFX.Satellite.Scan);
-                }
-
-                Debug.DrawRay(transform.position, rayDirection * rayLength, Color.cyan);
-            }
+            RaycastHit2D hitResource = PerformResourceScan(rayDirection, rayLength);
+            UpdateLineRenderer(hitResource, rayDirection, rayLength);
         }
         else
         {
-            // Ensure line renderer is invisible when not scanning
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, transform.position);
+            DisableLineRenderer();
         }
+    }
+
+    private RaycastHit2D PerformResourceScan(Vector2 direction, float length)
+    {
+        RaycastHit2D hitUndiscovered = Physics2D.Raycast(transform.position, direction, length, LayerMask.GetMask("UndiscoveredResource"));
+        if (hitUndiscovered.collider != null)
+        {
+            DiscoverResource(hitUndiscovered);
+        }
+
+        RaycastHit2D hitDiscovered = Physics2D.Raycast(transform.position, direction, length, LayerMask.GetMask("DiscoveredResource"));
+        return hitUndiscovered.collider ? hitUndiscovered : hitDiscovered;
+    }
+
+    private void DiscoverResource(RaycastHit2D hit)
+    {
+        Debug.Log("Undiscovered resource detected and converted to Discovered Resource.");
+        hit.collider.gameObject.layer = LayerMask.NameToLayer("DiscoveredResource");
+        hit.collider.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Resource";
+        SoundFXManager.Instance.PlaySound(SFX.Satellite.Scan, transform, 1f);
+    }
+
+    private void UpdateLineRenderer(RaycastHit2D hit, Vector2 direction, float length)
+    {
+        float closestHitDistance = hit.collider ? hit.distance : length;
+        Vector3 endPosition = transform.position + (Vector3)direction * closestHitDistance;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, endPosition);
+
+        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("DiscoveredResource"))
+        {
+            Color detectedColor = hit.collider.gameObject.GetComponent<SpriteRenderer>().color;
+            Debug.Log($"Setting Line Renderer color to: {detectedColor}");
+            lineRenderer.startColor = lineRenderer.endColor = detectedColor;
+        }
+        else
+        {
+            lineRenderer.startColor = lineRenderer.endColor = Color.white;
+        }
+    }
+
+    private void DisableLineRenderer()
+    {
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, transform.position);
+        lineRenderer.startColor = lineRenderer.endColor = Color.white;
     }
 
     // -------------------------------------------------------------------
