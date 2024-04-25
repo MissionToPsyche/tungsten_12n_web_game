@@ -61,6 +61,9 @@ public class AbstractExtractorMining : MonoBehaviour
             {
                 SoundFXManager.Instance.PlaySound(SFX.Cave.MineResource, this.transform, 1f);
                 //later we can change it to just change to a sprite with the lights off
+                if(currentExtractText != null){
+                    Destroy(currentExtractText);
+                }
                 Destroy(gameObject);
             }
         }
@@ -223,7 +226,8 @@ public class AbstractExtractorMining : MonoBehaviour
     }
     private bool RollForModuleBreak()
     {
-        float breakChance = (baseBreakChance * breakChanceModifer) * timesMinedSinceBroken;
+        float breakChance = baseBreakChance * timesMinedSinceBroken;
+        //Debug.Log($"baseBreakChance: {baseBreakChance}\tbreakChanceModifer: {breakChanceModifer}\ttimesMinedSinceBroken: {timesMinedSinceBroken}");
         // float breakChance = 0.5f;
         //^Use this for debugging or testing the playerInteract feature
         return Random.value < breakChance;

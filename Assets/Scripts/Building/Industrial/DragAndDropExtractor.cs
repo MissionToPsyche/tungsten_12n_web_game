@@ -75,7 +75,7 @@ public class DragAndDropExtractor : DragAndDropSuper{
         if(hit.collider != null){
             //Debug.Log($"collider: {hit.collider.name}\tdistToGround: {distToGround}");
         }
-        if (hit.collider != null && distToGround < 1f)
+        if (hit.collider != null && distToGround < 1f && distToGround > 0f)
         {
             return true;
         }

@@ -8783,6 +8783,7 @@ GameObject:
   - component: {fileID: 550765343}
   - component: {fileID: 550765344}
   - component: {fileID: 550765345}
+  - component: {fileID: 550765346}
   m_Layer: 5
   m_Name: BuildOverlay
   m_TagString: Untagged
@@ -9079,6 +9080,34 @@ MonoBehaviour:
       - m_Target: {fileID: 550765336}
         m_TargetAssemblyTypeName: UIBuildManager, Assembly-CSharp
         m_MethodName: OnPlayerInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &550765346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550765332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256f0e4730a9fdf4e959127cc3815583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8e2fb6dd0e2ee9a46be69cec3253465d, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 550765336}
+        m_TargetAssemblyTypeName: UIBuildManager, Assembly-CSharp
+        m_MethodName: OnUpdateControlState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11788,7 +11817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 64, y: -142}
+  m_AnchoredPosition: {x: 52, y: -21}
   m_SizeDelta: {x: 720.3, y: 668.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &723360948
@@ -11813,19 +11842,31 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 66dd1cbc196856149a6bc9c70a90ba4f, type: 3}
-    m_FontSize: 30
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 45
+    m_MaxSize: 35
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: build all four space shuttle modules from the launchpad to get back home
-    and win the game!!!
+  m_Text: '1. Use Tab to switch to your Satellite.  Then hold E to scan for resources.
+
+
+    2.Use
+    B to open and build an Extractor and place it over the resource.
+
+
+    3.Go to
+    the cave to get tech points and unlock new abilities using the build menu, B
+
+
+    4.Gather
+    enough resources to build a launchpad and a spaceship to fly home and win the
+    game!'
 --- !u!222 &723360949
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15319,7 +15360,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162, y: -353.8}
+  m_AnchoredPosition: {x: -181, y: -361}
   m_SizeDelta: {x: 720.3, y: 668.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1120455254
@@ -17861,7 +17902,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Resource Key:'
+  m_Text: How To Play!
 --- !u!222 &1329605545
 CanvasRenderer:
   m_ObjectHideFlags: 0

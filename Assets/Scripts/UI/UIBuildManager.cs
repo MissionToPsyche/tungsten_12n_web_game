@@ -88,6 +88,10 @@ public class UIBuildManager : MonoBehaviour
         isOverlayActive = false;
         buildChildOverlay.SetActive(isOverlayActive);
     }
+    public void OnUpdateControlState(){
+        isOverlayActive = false;
+        buildChildOverlay.SetActive(isOverlayActive);
+    }
 
     //  <Suit> | <Industry> | <Robotics>
     //Always Starts Industry, cylce left continuously

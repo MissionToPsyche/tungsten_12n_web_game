@@ -79,7 +79,7 @@ public class BaseBuilding
             2,
             5,
             20,
-            0.02f,
+            0.1f,
             new Dictionary<string, int>
             {
                 { "Iron", 15 },
@@ -108,7 +108,7 @@ public class BaseBuilding
             5,
             5,
             30,
-            0.01f,
+            0.05f,
             new Dictionary<string, int>
             {
                 { "Iron", 25 },
@@ -138,7 +138,7 @@ public class BaseBuilding
             10,
             5,
             50,
-            0.005f,
+            0.01f,
             new Dictionary<string, int>
             {
                 { "Iron", 75 },
