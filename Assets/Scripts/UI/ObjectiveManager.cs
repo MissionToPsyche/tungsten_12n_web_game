@@ -17,8 +17,8 @@ public class ObjectiveManager : MonoBehaviour
     private void Start()
     {
         // isOverlayActive = true;
-        isOverlayActive = false;
-        objectiveOverlay.SetActive(isOverlayActive);
+        // isOverlayActive = false;
+        // objectiveOverlay.SetActive(isOverlayActive);
     }
 
     // -------------------------------------------------------------------
@@ -26,8 +26,8 @@ public class ObjectiveManager : MonoBehaviour
 
     public void OnPlayerObjectiveOverlay()
     {
-        isOverlayActive = !isOverlayActive;
-        objectiveOverlay.SetActive(isOverlayActive);
+        // isOverlayActive = !isOverlayActive;
+        // objectiveOverlay.SetActive(isOverlayActive);
     }
 
     // -------------------------------------------------------------------

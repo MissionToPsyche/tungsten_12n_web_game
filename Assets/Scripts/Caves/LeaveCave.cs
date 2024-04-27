@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,6 +18,20 @@ public class LeaveCave : MonoBehaviour
     private bool isInRange;
     private KeyCode interactKey = KeyCode.E;
 
+    // -------------------------------------------------------------------
+    // Handle events
+    public void ChangeCaveText(String SomeText)
+    {
+        //Debug.Log(SomeText);
+        reminderText.text = SomeText;
+        
+    }
+
+    // -------------------------------------------------------------------
+    // API
+
+    // -------------------------------------------------------------------
+    // Class
     // Update is called once per frame
     void Update()
     {
@@ -38,7 +53,7 @@ public class LeaveCave : MonoBehaviour
         if (collision.gameObject == PlayerManager.Instance.GetPlayerObject())
         {
             isInRange = true;
-            reminderText.text = "Leave Cave";
+            reminderText.text = "Press E to leave Cave";
         }
     }
 

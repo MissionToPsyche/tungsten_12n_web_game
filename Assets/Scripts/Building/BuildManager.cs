@@ -29,15 +29,7 @@ public class BuildManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        Instance = this;
         if (satelliteSpawn == null)
         {
             satelliteSpawn = ScriptableObject.CreateInstance<VoidEvent>();
