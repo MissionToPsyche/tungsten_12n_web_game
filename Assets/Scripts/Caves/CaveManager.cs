@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CaveManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class CaveManager : MonoBehaviour
 
     [Header("Mutable")]
     [SerializeField] private Light2D GlobalLight;
+
 
     [Header("ReadOnly")]
     [ReadOnly] public List<GameObject> Caves;
@@ -106,15 +108,16 @@ public class CaveManager : MonoBehaviour
     private void Start()
     {
         // ensure this object is not destroyed when transitioning between scenes
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        // if (Instance != null && Instance != this)
+        // {
+        //     Destroy(gameObject);
+        // }
+        // else
+        // {
+        //     Instance = this;
+        //     DontDestroyOnLoad(gameObject);
+        // }
+        Instance = this;
 
         // load all the caves into the scene
         string sceneName;

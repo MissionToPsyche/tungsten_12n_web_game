@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public BoolEvent playerInteract;
     [SerializeField] public BoolEvent playerLaunchPadInteract;
     [SerializeField] public VoidEvent playerInPit;
+    [SerializeField] public VoidEvent launchGeneralOverlay;
+    [SerializeField] public VoidEvent shortcutControlOverlay;
+    [SerializeField] public StringEvent caveReminderText; 
 
     [Header("Mutable")]
     [SerializeField] private CharacterDatabase characterDatabase;
@@ -241,19 +244,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
         if (currentAsteroidChanged == null)
         {
             currentAsteroidChanged = ScriptableObject.CreateInstance<StringEvent>();
+        }
+        if (caveReminderText == null) 
+        {
+            caveReminderText = ScriptableObject.CreateInstance<StringEvent>();
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -265,15 +262,16 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        // if (Instance != null && Instance != this)
+        // {
+        //     Destroy(gameObject);
+        // }
+        // else
+        // {
+        //     Instance = this;
+        //     DontDestroyOnLoad(gameObject);
+        // }
+        Instance = this;
 
         if (!PlayerPrefs.HasKey("selectedOption"))
         {
@@ -450,19 +448,11 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            switch (ControlGroup.alpha)
-            {
-                case 0:
-                    ControlGroup.alpha = 1;
-                    ControlGroup.blocksRaycasts = true;
-                    break;
-                case 1:
-                    ControlGroup.alpha = 0;
-                    ControlGroup.blocksRaycasts = false;
-                    break;
-                default:
-                    break;
-            }
+            shortcutControlOverlay.Raise();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            launchGeneralOverlay.Raise();
         }
     }
 
@@ -526,6 +516,8 @@ public class PlayerController : MonoBehaviour
         {
             case "Ladder":
                 isLadder = true;
+                caveReminderText.Raise("Press W to go up, S to go down");
+               //Debug.Log("Colliding with ladder");
                 break;
 
             case "BlackPit":
@@ -555,6 +547,8 @@ public class PlayerController : MonoBehaviour
             case "Ladder":
                 isLadder = false;
                 isClimibing = false;
+                caveReminderText.Raise("");
+                //Debug.Log("Not Colliding with ladder");
                 break;
 
             case "BlackPit":

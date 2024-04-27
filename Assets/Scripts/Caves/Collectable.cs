@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using BuildingComponents;
+using System;
 public class Collectable : MonoBehaviour
 {
     [Header("Events")]
@@ -21,6 +22,13 @@ public class Collectable : MonoBehaviour
     private bool playerInteracted;
     public VoidEvent OnCaveMiniGameEvent;
     private CollectableResourceGen resourceGen = new();
+
+    // -------------------------------------------------------------------
+    // Handle events
+
+
+    // -------------------------------------------------------------------
+    // API
 
     // -------------------------------------------------------------------
     // Class
@@ -118,6 +126,7 @@ public class Collectable : MonoBehaviour
                 return;
             }
             OnCaveMiniGameEvent.Raise();
+            reminderText.text = "Double click square to collect Material";
         }
     }
 
@@ -150,7 +159,7 @@ public class Collectable : MonoBehaviour
         if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("RobotBuddy"))
         {
             isInRange = true;
-            reminderText.text = "Collect Material";
+            reminderText.text = "Press E to collect Material";
         }
     }
 

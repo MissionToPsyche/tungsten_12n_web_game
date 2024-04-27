@@ -10,15 +10,16 @@ public class BuildingTierManager : MonoBehaviour
     Dictionary<BuildingType, int> buildingTiers = new Dictionary<BuildingType, int>();
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        // if (Instance != null && Instance != this)
+        // {
+        //     Destroy(gameObject);
+        // }
+        // else
+        // {
+        //     Instance = this;
+        //     DontDestroyOnLoad(gameObject);
+        // }
+        Instance = this;
 
         InitBuildingTierManager();
     }

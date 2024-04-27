@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -32,7 +33,7 @@ public class Interactable : MonoBehaviour
         if (collision.gameObject == PlayerManager.Instance.GetPlayerObject())
         {
             isInRange = true;
-            reminderText.text = "Press E to enter Cave!";
+            reminderText.text = "Press E to enter Cave. Be cautious of the black pits!";
         }
     }
 
