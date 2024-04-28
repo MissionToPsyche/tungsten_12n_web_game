@@ -89,6 +89,7 @@ public class SoundFXManager : MonoBehaviour
         LoadSoundsForEnumType(typeof(SFX.MiniGame));
         LoadSoundsForEnumType(typeof(SFX.Extractor.Status));
         LoadSoundsForEnumType(typeof(SFX.UI));
+        LoadSoundsForEnumType(typeof(SFX.Rocket));
     }
 
     private void LoadSoundsForEnumType(Type enumType)

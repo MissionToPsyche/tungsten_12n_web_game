@@ -132,22 +132,26 @@ public class LaunchPadManager : MonoBehaviour{
     private void SpawnEngines(){
         enginesPrefab.SetActive(true);
         launchpad.SetEngineBuilt();
-        SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
+        SoundFXManager.Instance.StopSound(SFX.Player.Work);
+        SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 0.5f);
     }
     private void SpawnChasis(){
         chasisPrefab.SetActive(true);
         launchpad.SetChasisBuilt();
-        SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
+        SoundFXManager.Instance.StopSound(SFX.Player.Work);
+        SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 0.5f);
     }
     private void SpawnCockpit(){
         cockpitPrefab.SetActive(true);
         launchpad.SetCockpitBuilt();
-        SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
+        SoundFXManager.Instance.StopSound(SFX.Player.Work);
+        SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 0.5f);
     }
     private void SpawnExternalTank(){
         externalTankPrefab.SetActive(true);
         launchpad.SetExternalTankBuilt();
-        SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
+        SoundFXManager.Instance.StopSound(SFX.Player.Work);
+        SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 0.5f);
         //They have won the game
 
 

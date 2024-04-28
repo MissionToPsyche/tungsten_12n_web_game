@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 public class DragAndDropLaunchPad : DragAndDropSuper{
-    
+
     private GravityBody2D gravityBody;
     private LaunchPadManager lpmanager;
     void Awake(){
@@ -22,7 +22,7 @@ public class DragAndDropLaunchPad : DragAndDropSuper{
 
             Vector2 Origin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.size.y / 2f);
             Vector2 direction = gravityBody.GravityDirection;
-            
+
             if(IsValidPos(Origin, direction)){
                 spriteRenderer.color = Color.green;
             }else{
@@ -46,7 +46,7 @@ public class DragAndDropLaunchPad : DragAndDropSuper{
             //objectBody2D.simulated = false;
             spriteRenderer.color = Color.white;
             lpmanager.SetPlaced();
-            SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
+            SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 0.5f);
         }
     }
 

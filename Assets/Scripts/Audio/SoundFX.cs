@@ -117,6 +117,12 @@ namespace SFX
         }
     }
 
+    public enum Rocket
+    {
+        [ResourcePath("Audio/SFX/propulsion")]
+        Propulsion,
+    }
+
     public class ResourcePathAttribute : Attribute
     {
         public string resourcePath { get; private set; }

@@ -41,7 +41,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CaveScenes/Cave_10.unity
     guid: 21a843c9a53ef174cab2622c6b67d7eb
-  - enabled: 1
-    path: Assets/Scenes/End Credits.unity
-    guid: 1ed0974d15332de4aa1ccd0f354b3993
   m_configObjects: {}

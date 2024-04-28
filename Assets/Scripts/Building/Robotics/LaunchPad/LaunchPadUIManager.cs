@@ -3,6 +3,7 @@ using BuildingComponents;
 using System.IO;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LaunchPadUIManager : MonoBehaviour
 {
@@ -62,13 +63,13 @@ public class LaunchPadUIManager : MonoBehaviour
 
     private IEnumerator LoadEndScene()
     {
+        SoundFXManager.Instance.PlaySound(SFX.Rocket.Propulsion, gameObject.transform, 0.5f);
         yield return new WaitForSeconds(3f);
         SideOverlay.SetActive(false);
         EndCreditsOverlay.SetActive(true);
-        SoundFXManager.Instance.StopSoundsOfType(typeof(SFX.Music.Asteroid));
+        SoundFXManager.Instance.StopAllSounds();
         SoundFXManager.Instance.PlayRandomSoundOfType(typeof(SFX.Music.Asteroid), gameObject.transform, 0.5f);
-        yield return new WaitForSeconds(40f);
-        SideOverlay.SetActive(true);
-        EndCreditsOverlay.SetActive(false);
+        yield return new WaitForSeconds(25f);
+        SceneManager.LoadScene("MainMenuScene");
     }
 }

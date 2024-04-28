@@ -291,7 +291,7 @@ public class AbstractExtractorMining : MonoBehaviour
     {
         if (playerInteracted)
         {
-            SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 1f);
+            SoundFXManager.Instance.PlaySound(SFX.Player.Work, this.gameObject.transform, 0.5f);
             isBroken = false;
             ResetText(currentExtractText);
             playerInteracted = false;
