@@ -142,7 +142,7 @@ public class CameraManager : MonoBehaviour
                                               new Vector2(asteroid.transform.position.x, asteroid.transform.position.y));
 
             // Calculate additional buffer for the top side to keep the satellite in frame
-            float additionalBuffer = distance * 0.05f;  // 5% of the distance as buffer
+            float additionalBuffer = distance * 0.075f;  // 5% of the distance as buffer
 
             // Set the camera's tracked object offset to center the view
             var transposer = satelliteCamera.GetCinemachineComponent<CinemachineFramingTransposer>();

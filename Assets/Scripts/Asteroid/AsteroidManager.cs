@@ -66,6 +66,7 @@ public class AsteroidManager : MonoBehaviour
         if (!isFirstSatelliteSpawned)
         {
             satelliteSpawn.Raise();
+            isFirstSatelliteSpawned = true;
         }
     }
 

@@ -21,7 +21,7 @@ public class LaunchPadManager : MonoBehaviour{
     [SerializeField] private GameObject chasisPrefab;
     [SerializeField] private GameObject cockpitPrefab;
     [SerializeField] private GameObject externalTankPrefab;
-    
+
     public void Awake(){
         launchpad = new();
         QueryTechLevel();
@@ -31,11 +31,51 @@ public class LaunchPadManager : MonoBehaviour{
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Log the entering object and its layer to ensure the trigger is working
+        Debug.Log("OnTriggerEnter2D triggered by: " + collision.gameObject.name + " on layer: " + LayerMask.LayerToName(collision.gameObject.layer));
+
+        // Checking if the collision object is indeed on the "Player" layer
+        if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0)
+        {
+            Debug.Log("Collision with Player confirmed.");
+        }
+        else
+        {
+            Debug.Log("Collision with Player not confirmed, collided with layer: " + LayerMask.LayerToName(collision.gameObject.layer));
+        }
+
+        // Check the 'isPlaced' condition
+        if (isPlaced)
+        {
+            Debug.Log("'isPlaced' is true.");
+        }
+        else
+        {
+            Debug.Log("'isPlaced' is false.");
+        }
+
+        // Check if the external tank is built
+        if (!launchpad.isExternalTankBuilt())
+        {
+            Debug.Log("External tank is not built, proceeding to raise event.");
+        }
+        else
+        {
+            Debug.Log("External tank is already built, not raising event.");
+        }
+
+        // Full condition check and event raising
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("Player")) != 0 && isPlaced && !launchpad.isExternalTankBuilt())
         {
+            Debug.Log("Raising the triggerRocketModuleUIOverlay event.");
             triggerRocketModuleUIOverlay.Raise(true);
         }
+        else
+        {
+            Debug.Log("Event not raised due to failing condition checks.");
+        }
     }
+
 
     private void OnTriggerExit2D(Collider2D collision){
         //Turn off current price
