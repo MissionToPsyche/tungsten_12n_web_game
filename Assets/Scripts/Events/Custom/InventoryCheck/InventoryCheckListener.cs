@@ -1,1 +1,0 @@
-public class InventoryCheckListener : BaseGameEventListener<packet.CheckInventoryPacket, InventoryCheckEvent, UnityInventoryCheckEvent> {}
